@@ -1,0 +1,268 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>rl-xy 0.2 资源版流程</title><style>body{max-width:1100px;margin:40px auto;padding:0 24px;background:#f5f7fa;color:#182b42;font:16px/1.75 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:28px;border-radius:12px}h1{color:#164a80}</style><h1>rl-xy 0.2：实际验收与完整流程</h1><p>轻量文本预览。完整结构化文件请阅读同目录Markdown；不执行网络脚本。</p><pre># rl-xy 0.2：资源版工程说明与完整流程
+
+交付日期：2026-10-26（Asia/Shanghai）。这是实际Docker/AstraSim运行证据生成的工程报告，不是目标硬件精度声明。
+
+## 1. 本次新增内容
+
+原0.1是算子级控制/通信回放骨架。0.2在算子级在线执行不变的前提下，补充typed shape、SRAM合法OS映射、DRAM流量、本地搬运成本、保守activation tape/反向partial、KV预算、实际资源准入和独立mesh竞争测试。没有把DNN当成缺失硬件标签的替代品。
+
+远端唯一活动工程：`/path/to/research/rl-xy`；Docker容器内：`/workspace/rl-xy`；运行容器：`rl-xy-mapped`。无sudo，无GPU数值训练，未提交/推送Git。
+
+## 2. 实际验收结果
+
+| 场景 | 总时间 / model ns | 逻辑操作 | rank节点 | 内部检查 |
+|---|---:|---:|---:|---:|
+| transfer | 21.000 | 9 | 10 | 7/7 |
+| toy | 108832.270 | 664 | 1293 | 39/39 |
+| two_rounds | 217663.540 | 1328 | 2586 | 61/61 |
+| toy_repeat | 108832.270 | 664 | 1293 | 39/39 |
+| slow_dram | 244210.770 | 664 | 1293 | 39/39 |
+| small_sram | 110222.270 | 664 | 1293 | 39/39 |
+
+单测：`Ran 50 tests in 1.426s`，OK。总验收9条检查全部通过，另有13条原生资源/网络fixture断言。所有正例命令退出0；OOM命令预期非零，该非零不能被误报为验收失败或成功运行。
+
+验收入口：`acceptance/resource-20261026-release/report.json`。每条命令、实际退出码、日志和SHA-256均在该报告中。
+
+原0.1的100264.270ns与当前结果不是优化前后speedup：模型合同、访存、反向产品与成本均改变，不可作性能收益比较。两轮验证版本和容量复用，不强求任意异步rank时间恰好是单轮2倍。
+
+## 3. 运行身份与复现
+
+| 字段 | 本次值 |
+|---|---|
+| rl_xy_version | `0.2.0` |
+| container_image_tag | `rlxy-astrasim:0.2.0` |
+| container_image_id | `sha256:b9dc100c7872aa7a124bec8a51d3caf0abed522b4a25d8ed8eacb57b258fafc1` |
+| astrasim_commit | `4ce9ecfe746a3ee5fe47559a11d91644d641fa7f` |
+| astrasim_binary_sha256 | `078deeb64756843f6ed95c9c527a2bd049d3ca1c6d8acfa1ae24a90c649e1118` |
+| rl_xy_source_tree_sha256 | `2725cc179bc178317e9f230670a3d992f286807b89f54c1ac46cd3aff4140ff6` |
+| python | `3.12.3` |
+
+AstraSim为固定官方commit加本工程透明扩展，并非未修改的上游二进制；Workload资源hook、CPU统计修正、二维mesh适配均保留源码和hash：
+
+```text
+0e3207349f4794babae36fa53fcfe54a592d679c66345367980dbddf25f9dabe  /tmp/rlxy-workload.patch
+99ebfc23971fd3428c97d1129e9811ed73d84043ce84e4575ad6049095a76bb6  /tmp/rlxy-statistics.patch
+4cd1f2b31ec3741bd9cd612a42827d27f5e6426e2ea9e4ade6f00b77550e8741  /tmp/rlxy-mesh.patch
+39b20524334ced6e82ef05c50abb76fad67cd05622df2cc6aef6d53ceda5848c  astra-sim/workload/RlxyResources.hh
+6a6d4cdc084c0ae4e704abb57453f1951719cc1f33919b3bfb21e273b813425c  astra-sim/workload/RlxyMesh.hh
+```
+
+源码hash覆盖src、configs、tests、scripts、Docker及手写文档；排除4份自引用的0.1/0.2派生MD/HTML、运行目录、缓存和日志。结果manifest另对全部运行文件hash。
+
+```bash
+cd /path/to/research/rl-xy
+bash scripts/docker.sh build-mapped rlxy-astrasim:0.2.0
+RLXY_CONTAINER=rl-xy-mapped bash scripts/docker.sh create-container rlxy-astrasim:0.2.0
+python3 scripts/resource_acceptance.py --container rl-xy-mapped --run-id &lt;新的唯一ID&gt;
+python3 scripts/write_resource_report.py --acceptance acceptance/&lt;新的唯一ID&gt;/report.json
+```
+
+基础镜像为已构建的0.1项目镜像（其底层为pjlab/deeplearning:v2.2.3-cuda12.8.0-torch2.7.0）。从零构建0.1参见docker组件说明。已存在但镜像不同的容器会被拒绝，不自动删除旧容器。每次run拒绝覆盖目录。
+
+## 4. 分层架构与完整执行链
+
+```text
+case W/H/S → workflow typed operator DAG → communication endpoint lowering
+          → tensor plan/ALLOC-READY-FREE → SRAM mapper + local costs
+          → resource_contract + per-rank Chakra ET → actual AstraSim
+          → issue/callback + resource logs → independent replay/checks → hashed bundle
+```
+
+在线不逐tile执行：离线mapper计算合法tile及其流量/工作区，在线算子服务段使用该成本并获取资源。Python不计算“仿真完成时间”替代Astra；所有最终时间与资源快照均来自native issue/callback。
+
+| 层 | 功能与关键文件 |
+|---|---|
+| workload | `config.py/model.py/workflow.py`：同步GRPO、TP2、版本与typed matmul方向 |
+| mapping/cost | `operator_ir.py/mapping.py/cost_model.py/mapped_costs.py`：OS/SRAM/DRAM及来源 |
+| tensor/resource | `tensor_plan.py/RlxyResources.hh/resource_validation.py`：对象、准入、同一时钟核验 |
+| network | `communication_lowering.py/astra_adapter/`：端点服务、native collectives/P2P，独立mesh fixture |
+| evidence | `run.py/reporting.py/check_result.py/resource_acceptance.py`：失败关闭、归档、不可混淆的指标 |
+
+## 5. 一个完整同步GRPO轮
+
+模型2层、hidden8、MHA2heads、vocab16；2die各1logical core、TP2。输入prompt=[1,2]；A回答3token/reward1，B回答2token/reward0；去均值优势+0.5/-0.5，全局loss分母5。只回放shape/依赖/资源，不计算这些张量的数值。
+
+| 阶段 | 本轮动作 | actual start / ns | actual end / ns | span / ns |
+|---|---|---:|---:|---:|
+| 输入 | host 将 prompt [1,2] 送入 D0，再通过 P2P 复制到 D1。 | 0.000 | 7.000 | 7.000 |
+| 生成 | A/B 各 prefill 两 token，随后 A1/B1 decode、释放 B KV，再 decode A2、释放 A KV。D1 logits 发给 D0，由 D0 采样并广播 token。 | 6.000 | 15698.530 | 15692.530 |
+| 奖励 | 已完成回答送回 host；固定规则奖励 A=1、B=0，并向 D1 发送奖励结果和阶段围栏。 | 15697.530 | 15718.530 | 21.000 |
+| Reference 概率 | 冻结 Reference 对 A/B 的 teacher-forcing 输入执行前向，取 3/2 个回答位置的 log-prob。 | 15717.530 | 30237.075 | 14519.545 |
+| 旧策略概率 | 更新前 actor v0 对同一 A/B 输入执行无梯度前向，输出 old log-prob。 | 30236.075 | 44755.620 | 14519.545 |
+| 组内优势 | 组均值为0.5，A/B 优势为+0.5/-0.5；D0 将结果复制给 D1。 | 44754.620 | 44766.620 | 12.000 |
+| 训练 A | 先清零本轮 FP32 梯度缓冲；执行 A 的前向、全局分母5的损失、损失到 logits 的反向、模型反向及梯度累积。 | 44765.620 | 72944.210 | 28178.590 |
+| 训练 B | 执行 B 的同类前后向并累积到同一梯度缓冲；B 不会再次清零。 | 72943.210 | 93569.270 | 20626.060 |
+| 梯度裁剪 | 分片贡献局部平方和；复制 norm 参数由 owner 贡献；标量 AllReduce 后应用裁剪。 | 93568.270 | 97614.770 | 4046.500 |
+| 优化器 | shape-only AdamW 读取 gradient/master/m/v，写 master/m/v/actor；Reference 不写。 | 97613.770 | 108825.770 | 11212.000 |
+| 发布 | 全分片小 payload AllReduce 围栏后发布 actor v1；publish marker 显式为1 ns。 | 108824.770 | 108831.270 | 6.500 |
+| 回收 | 记录本轮临时 KV 已释放；cleanup marker 显式为1 ns；下一轮从新 actor 版本继续。 | 108830.270 | 108832.270 | 2.000 |
+
+阶段起止为该phase所有rank事件的min(issue)/max(callback)，局部1ns控制marker可与另一rank后续事件交叠，不能将phase span直接求和当wall time。完成时间是所有rank最终callback最大值。actor经过两条microbatch累积后更新并发布；Reference保留原版本且禁止写入。
+
+## 6. 访存、容量和生命周期
+
+| 项目 | 本轮值 |
+|---|---|
+| 声明对象数（跨rank、含持久对象） | 1242 |
+| local DRAM reads / writes（跨rank；非网络字节） | 181332 / 106244 B |
+| d0.c0.sram peak allocated | 832 B |
+| d0.dram peak allocated | 25672 B |
+| d1.c0.sram peak allocated | 832 B |
+| d1.dram peak allocated | 25652 B |
+
+这些峰值包含当前模板声明的前向激活/tape、反向产品、KV、trajectory和通信目标输出。保守out-of-place/no-recompute保留不等于最优allocator；`reads`为生命周期pin集合，不等于实际kernel逐一读全部pin对象。实际访问量由kernel成本合同单独计算。
+
+参数1576 unique、每die808 elements；长期状态12928B，加常驻FP32梯度为16160B/die。每microbatch参数梯度partial3232B/die。旧16352B/die只是旧常驻+KV小计，不能代表本版全轮峰值。
+
+8×8×8 OS手算：tile4工作区128B，读512B/写128B；tile2工作区32B，读1024B/写128B。更小SRAM会改变映射和流量。inclusive-local-serial时间=算术时间+本地搬运时间；局部DRAM/module/SRAM路径只按瓶颈带宽计一次。
+
+网络目标ALLOC与READY分开：native到达后仍须endpoint_write callback；KV预留转实际分配不得重复计费。runtime snapshot逐条与Astra日志同tick核验，轮末恢复持久对象，无KV/tape/资源泄漏。
+
+## 7. 资源与网络反事实
+
+| 检查 | PASS | 实际证据 |
+|---|---|---|
+| local_memory_serializes_distinct_engines_rank0 | True | `{&quot;locked_end_tick&quot;: 129000, &quot;unlocked_end_tick&quot;: 65000}` |
+| local_memory_serializes_distinct_engines_rank1 | True | `{&quot;locked_end_tick&quot;: 129000, &quot;unlocked_end_tick&quot;: 65000}` |
+| allocated_not_ready_blocks_independent_lane_without_DAG_edge | True | `{&quot;consumer_issue_tick&quot;: 64000, &quot;producer_callback_tick&quot;: 64000}` |
+| cpp_rejects_dram_oom | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;DRAM capacity exceeded&quot;}` |
+| cpp_rejects_sram_oom | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;SRAM capacity exceeded&quot;}` |
+| cpp_rejects_read_absent | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;read absent/freed tensor&quot;}` |
+| cpp_rejects_double_free | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;double free&quot;}` |
+| cpp_rejects_reference_write | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;immutable reference write&quot;}` |
+| cpp_rejects_free_active_reader | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;free with active access&quot;}` |
+| cpp_rejects_read_after_free | True | `{&quot;exit_status&quot;: 2, &quot;expected_error&quot;: &quot;read absent/freed tensor&quot;}` |
+| aware_shared_route_slows_probe | True | `{&quot;shared&quot;: 2561000, &quot;solo&quot;: 2050000}` |
+| aware_disjoint_route_preserves_probe | True | `{&quot;disjoint&quot;: 2050000, &quot;solo&quot;: 2050000}` |
+| unaware_cannot_model_route_contention | True | `{&quot;ticks&quot;: [1025000, 1025000, 1025000]}` |
+
+资源独立lane65ns与共享lease129ns来自原生callback。七种负例直接进入C++，未仅依赖Python预检；错误必须非零退出，避免上游回调异常被捕获后假成功。另检查ALLOC未READY会阻止无数据DAG边的独立lane消费者。
+
+网络为独立4rank/2×2mesh XY fixture，8192B probe 0→1→3；干扰流延迟512ns，共享1→3或独立2→0。aware采用原生store-and-forward Link队列，unaware不表达争用。
+
+| 配置 | unaware probe / model ns | aware probe / model ns |
+|---|---:|---:|
+| solo | 1025.000 | 2050.000 |
+| disjoint | 1025.000 | 2050.000 |
+| shared | 1025.000 | 2561.000 |
+
+aware与unaware的solo差异来自原生模型的逐跳/端到端计时差异，不是拥塞损失；拥塞对比必须在同一backend内比较solo/shared。同样，fixture不是全流程已扩为4rank或大规模晶圆。
+
+## 8. 全部工程文件说明
+
+下表覆盖83个工程文件，不包括外部上游依赖、Git内部、缓存、runs/acceptance/build_logs和本文派生证据。逐文件遗漏会使报告生成失败。
+
+| 文件 | 内容与功能 |
+|---|---|
+| [.dockerignore](../.dockerignore) | 限制 Docker build context；排除依赖缓存、历史运行结果、构建日志和验收包。 |
+| [.gitignore](../.gitignore) | 区分源码与可再生文件；排除 .deps、缓存、运行结果、验收包和构建日志。 |
+| [LICENSE](../LICENSE) | 自建工程的 MIT 许可证；上游 AstraSim/Chakra 仍遵守各自许可证。 |
+| [Makefile](../Makefile) | Docker 脚本的快捷入口；提供 build、test、transfer、toy、two-rounds、all。 |
+| [README.md](../README.md) | 工程总入口、最小例子、运行命令、证据边界与文档导航。 |
+| [compose.yaml](../compose.yaml) | 可选 Compose 构建/交互声明；正式结果使用 docker.sh 保留镜像身份。 |
+| [configs/fixture_transfer/astra_network.yml](../configs/fixture_transfer/astra_network.yml) | 两 rank FullyConnected；精确表达放大 1000 倍后的带宽与链路时延。 |
+| [configs/fixture_transfer/astra_remote_memory.json](../configs/fixture_transfer/astra_remote_memory.json) | 固定 NO_MEMORY_EXPANSION；禁止隐式借用远程内存。 |
+| [configs/fixture_transfer/astra_system.json](../configs/fixture_transfer/astra_system.json) | FIFO/native ring、trace 开关、零额外 endpoint/reduction delay 和后端设置。 |
+| [configs/fixture_transfer/case.json](../configs/fixture_transfer/case.json) | 该案例的工作负载、硬件、策略与合成成本合同；CLI 的主输入。 |
+| [configs/toy_grpo_2die/astra_network.yml](../configs/toy_grpo_2die/astra_network.yml) | 两 rank FullyConnected；精确表达放大 1000 倍后的带宽与链路时延。 |
+| [configs/toy_grpo_2die/astra_remote_memory.json](../configs/toy_grpo_2die/astra_remote_memory.json) | 固定 NO_MEMORY_EXPANSION；禁止隐式借用远程内存。 |
+| [configs/toy_grpo_2die/astra_system.json](../configs/toy_grpo_2die/astra_system.json) | FIFO/native ring、trace 开关、零额外 endpoint/reduction delay 和后端设置。 |
+| [configs/toy_grpo_2die/case.json](../configs/toy_grpo_2die/case.json) | 该案例的工作负载、硬件、策略与合成成本合同；CLI 的主输入。 |
+| [docker/Dockerfile](../docker/Dockerfile) | 基于指定本地镜像构建 Abseil、Protobuf、固定 AstraSim 和隔离 Python 环境。 |
+| [docker/Dockerfile.mapped](../docker/Dockerfile.mapped) | 在固定0.1镜像上接入资源、CPU统计修正和mesh扩展，编译两个analytical后端并冻结patch hash。 |
+| [docker/astrasim/RlxyMesh.hh](../docker/astrasim/RlxyMesh.hh) | 新增无wrap二维mesh、XY路由；使用原生Device/Link/Chunk排队并输出实际路径。 |
+| [docker/astrasim/RlxyResources.hh](../docker/astrasim/RlxyResources.hh) | 实际Astra时钟的ALLOC/READY/FREE、容量、KV预留、SRAM和排他local-memory准入；错误强制非零退出。 |
+| [docker/astrasim/mesh.patch](../docker/astrasim/mesh.patch) | 在congestion-aware frontend显式选择mesh2d override；无override保留上游行为。 |
+| [docker/astrasim/statistics.patch](../docker/astrasim/statistics.patch) | 允许CPU/控制节点参与回放；以GPU/COMM区间并集计算overlap，避免CPU空隙误计或无符号下溢。 |
+| [docker/astrasim/workload.patch](../docker/astrasim/workload.patch) | 向上游Workload的can_issue、issue、callback插入资源hook，不另建事件时钟。 |
+| [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | W/H/S 分层、模块边界、rank-local DAG、时间编码与当前扩展边界。 |
+| [docs/EVIDENCE_BOUNDARIES.md](../docs/EVIDENCE_BOUNDARIES.md) | 区分合成回放、解析假设、硬件校准和真实训练；规定指标可支持的结论。 |
+| [docs/REPRODUCIBILITY.md](../docs/REPRODUCIBILITY.md) | 环境、执行顺序、结果包、hash 复查和失败后的复现规则。 |
+| [docs/components/astra_adapter.md](../docs/components/astra_adapter.md) | Chakra 映射、官方 CLI、单位、日志契约及 SEND/RECV 口径。 |
+| [docs/components/config.md](../docs/components/config.md) | 配置组件的输入、输出、字段约束和失败条件。 |
+| [docs/components/docker.md](../docs/components/docker.md) | 指定基础镜像、独立 venv、项目持久容器、临时代理和正式运行说明。 |
+| [docs/components/ledger.md](../docs/components/ledger.md) | storage 和 KV 容量账本的字段、公式、释放规则及覆盖范围。 |
+| [docs/components/mapped_costs.md](../docs/components/mapped_costs.md) | 映射/流量公式、计时合同、analytic/lookup来源与DNN边界。 |
+| [docs/components/network.md](../docs/components/network.md) | mesh适配、原生排队、四rank反事实、YAML override和拓扑适用边界。 |
+| [docs/components/reporting.md](../docs/components/reporting.md) | run bundle 每类产物、指标定义、来源和哈希/状态约束。 |
+| [docs/components/tensor_resources.md](../docs/components/tensor_resources.md) | 张量类别、保守pin与真实流量的区别、准入时序、资源合同及未建模buffer。 |
+| [docs/components/validation.md](../docs/components/validation.md) | 独立验收项、fail-closed 行为、手算链路和负例要求。 |
+| [docs/components/workload.md](../docs/components/workload.md) | 工作流组件的阶段、操作、采样/TP/损失/反向与版本语义。 |
+| [docs/完整流程预览.html](../docs/完整流程预览.html) | 本文的轻量预览：运行结果、12 阶段流程、阶段时间与文件清单。 |
+| [docs/工程文件与完整流程.md](../docs/工程文件与完整流程.md) | 本文：全部自建文件索引、完整案例、实际阶段时间、复现入口及结果解释。 |
+| [docs/资源版完整流程预览.html](../docs/资源版完整流程预览.html) | v0.2自包含轻量预览，含实际指标和逐阶段数据。 |
+| [docs/资源版工程说明与完整流程.md](../docs/资源版工程说明与完整流程.md) | v0.2自动生成的验收、指标、阶段时间、模块及全部文件索引；不替换历史报告。 |
+| [examples/toy_grpo_2die/README.md](../examples/toy_grpo_2die/README.md) | 教学例子的模型、两条轨迹、参数/KV/版本公式和逐步使用说明。 |
+| [pyproject.toml](../pyproject.toml) | Python 包名/版本/依赖、src 布局及 rlxy CLI 注册。 |
+| [scripts/acceptance.py](../scripts/acceptance.py) | 依次执行容器测试、链路、单轮、两轮、重复运行和完整性门禁，保存命令日志。 |
+| [scripts/check_result.py](../scripts/check_result.py) | 复查成功状态、非空检查集、固定上游版本、Docker 证据和全部文件 SHA-256。 |
+| [scripts/docker.sh](../scripts/docker.sh) | 无 sudo 的 Docker build/create/exec/run 统一入口；核验挂载、UID/GID、镜像 ID。 |
+| [scripts/integration_fixtures.py](../scripts/integration_fixtures.py) | Docker内真实执行资源竞争/READY门控/七类C++负例及4rank共享/独立mesh路由反事实。 |
+| [scripts/resource_acceptance.py](../scripts/resource_acceptance.py) | 宿主只编排Docker命令；单轮/两轮/repeat、带宽/SRAM敏感性、OOM、native fixture、完整性与版本冻结。 |
+| [scripts/write_resource_report.py](../scripts/write_resource_report.py) | 从资源版PASS证据生成本文件与HTML预览；逐文件说明缺项即拒绝。 |
+| [scripts/write_walkthrough.py](../scripts/write_walkthrough.py) | 读取 PASS 验收包生成本文及 HTML 预览；逐文件说明缺项时立即失败。 |
+| [src/rl_xy/__init__.py](../src/rl_xy/__init__.py) | Python 包入口与包版本。 |
+| [src/rl_xy/astra_adapter/__init__.py](../src/rl_xy/astra_adapter/__init__.py) | 公开配置核验、trace 生成、进程执行、日志解析的边界接口。 |
+| [src/rl_xy/astra_adapter/config.py](../src/rl_xy/astra_adapter/config.py) | 交叉核验 system/network/remote-memory 与 case 的 rank、时间及带宽单位。 |
+| [src/rl_xy/astra_adapter/generator.py](../src/rl_xy/astra_adapter/generator.py) | 生成每 rank 的官方 Chakra ET；验证节点、tag、参与者、本地依赖和 collective。 |
+| [src/rl_xy/astra_adapter/parser.py](../src/rl_xy/astra_adapter/parser.py) | 配对 issue/callback，核验节点类型、所有 rank 完成与统计，不接受残缺结果。 |
+| [src/rl_xy/astra_adapter/runner.py](../src/rl_xy/astra_adapter/runner.py) | 核验官方 commit 和可执行文件；无 shell 调用 AstraSim，保存命令与原始日志。 |
+| [src/rl_xy/cli.py](../src/rl_xy/cli.py) | argparse 单入口；run 执行 toy，fixture-transfer 执行链路测试。 |
+| [src/rl_xy/communication_lowering.py](../src/rl_xy/communication_lowering.py) | 跨die通信展开端点读/原生网络/端点写，并补反向残差相加；重建rank-local依赖。 |
+| [src/rl_xy/config.py](../src/rl_xy/config.py) | 严格读取 case JSON；拒绝未知字段、类型漂移及不支持的并行/学习合同。 |
+| [src/rl_xy/cost_model.py](../src/rl_xy/cost_model.py) | 解析inclusive-local成本和带来源/OOD拒绝的精确profile lookup接口；未训练DNN。 |
+| [src/rl_xy/costs.py](../src/rl_xy/costs.py) | 声明的 FLOP/vector 合成成本；保留局部 DMA 公式；无硬件实测校准。 |
+| [src/rl_xy/fixture.py](../src/rl_xy/fixture.py) | 独立的 21 ns 数据移动链、out-of-place SRAM 分配与 63 B 容量负例。 |
+| [src/rl_xy/ledger.py](../src/rl_xy/ledger.py) | 参数/优化器/梯度持久 storage 与 rollout KV 的身份、生命周期和准入容量账。 |
+| [src/rl_xy/mapped_costs.py](../src/rl_xy/mapped_costs.py) | 在操作图不变的条件下应用typed GEMM和显式向量/状态RMW成本，不生成时间戳。 |
+| [src/rl_xy/mapping.py](../src/rl_xy/mapping.py) | 单逻辑核OS合法tile枚举与精确ragged/batch流量；不将非法tile静默塞入SRAM。 |
+| [src/rl_xy/model.py](../src/rl_xy/model.py) | 枚举 Transformer 参数分片/复制、各状态字节及每 token KV 字节。 |
+| [src/rl_xy/operator_ir.py](../src/rl_xy/operator_ir.py) | 有类型的张量shape/dtype/layout、Matmul方向与KernelSpec及互斥计时合同。 |
+| [src/rl_xy/reporting.py](../src/rl_xy/reporting.py) | 写 CSV/JSON/JSONL、round.phase 时间、指标、SUMMARY 与 hash manifest。 |
+| [src/rl_xy/resource_validation.py](../src/rl_xy/resource_validation.py) | 独立重放C++资源日志并与实际Astra ticks逐节点交叉核验，生成主流程内存峰值。 |
+| [src/rl_xy/run.py](../src/rl_xy/run.py) | 串接配置复制、trace、AstraSim 执行、解析、账本检查及成功/失败归档。 |
+| [src/rl_xy/tensor_plan.py](../src/rl_xy/tensor_plan.py) | 完整声明对象、保守tape/反向partial保留、KV预留兑现和每节点可执行资源合同。 |
+| [src/rl_xy/types.py](../src/rl_xy/types.py) | 配置、Operation、ObjectRecord、MemorySnapshot、AstraEvent、CheckResult 等共享类型。 |
+| [src/rl_xy/validation.py](../src/rl_xy/validation.py) | 从独立清单核对阶段、反向、清零、Adam 读写、版本、KV、通信与真实事件。 |
+| [src/rl_xy/workflow.py](../src/rl_xy/workflow.py) | 将同步 GRPO 展开成 rank-local DAG，显式生成 TP、采样、损失反向和版本节点。 |
+| [tests/test_astra_config.py](../tests/test_astra_config.py) | 带宽缩放/两套配置正例，带宽漂移和 bool 冒充整数负例。 |
+| [tests/test_check_result.py](../tests/test_check_result.py) | 完整 bundle 校验正例，以及篡改 metrics 后拒绝的负例。 |
+| [tests/test_config_model.py](../tests/test_config_model.py) | 参数/KV 手算、未知字段、证据等级、策略字段和 rounds 覆盖测试。 |
+| [tests/test_fixture.py](../tests/test_fixture.py) | T01 结构/容量手算与 63 B out-of-place 不可行负例。 |
+| [tests/test_generator_contract.py](../tests/test_generator_contract.py) | P2P 参与者错误、tag 越界、不支持 collective 的 fail-closed 测试。 |
+| [tests/test_ledger.py](../tests/test_ledger.py) | 长期状态、KV reservation/materialization、NIC 计划容量及两轮无泄漏检查。 |
+| [tests/test_mapping_cost_model.py](../tests/test_mapping_cost_model.py) | OS手算、ragged独立循环、SRAM合法性/自动重映射、带宽/dtype/profile失配等测试。 |
+| [tests/test_parser.py](../tests/test_parser.py) | 事件配对、缺 callback、乱序日志、rank-local 节点和提前 RECV 等待测试。 |
+| [tests/test_reporting.py](../tests/test_reporting.py) | 两轮 phase 不混桶，以及空参数表仍有固定 CSV schema。 |
+| [tests/test_tensor_resources.py](../tests/test_tensor_resources.py) | tape/梯度shape、延迟READY、容量/生命周期/预留失败、只读Reference及两轮无增长。 |
+| [tests/test_validation.py](../tests/test_validation.py) | 完整证据正例；删依赖、漏反向/Adam 状态、容量越界/漏事件等负例。 |
+| [tests/test_workflow.py](../tests/test_workflow.py) | 本地依赖链、完整前后向、embedding TP 求和、梯度清零及 v2 发布。 |
+
+## 9. 结果包怎么读
+
+先看 `summary.json/status.json/checks.json`，再看 `manifest.json` 的code/image/binary/input/artifact hash。`operations.jsonl` 是计划，`events.jsonl` 是actual issue/callback；二者不能混用。`resource_contract.json` 定义逐节点读/分配/READY/FREE及资源；`astra_logs/resources.&lt;rank&gt;.jsonl` 是C++实际资源快照。
+
+`tensor_specs.json/tensor_objects.csv` 为完整声明对象清单；`objects.csv/legacy_memory.csv` 为历史持久/KV交叉账，不能与新 `memory.csv` 相加。`cost_estimates.json` 给shape、映射、流量、时长与来源；`transfers.csv` 的logical payload不是物理网络每跳总字节。
+
+| bundle | 远端相对目录 |
+|---|---|
+| transfer | `runs/fixture_transfer_21ns/resource-20261026-release` |
+| toy | `runs/toy_grpo_2die_resource/resource-20261026-release` |
+| two_rounds | `runs/toy_grpo_2die_resource_2rounds/resource-20261026-release` |
+| toy_repeat | `runs/toy_grpo_2die_resource/resource-20261026-release-repeat` |
+| slow_dram | `runs/resource_sensitivity/resource-20261026-release-slow_dram` |
+| small_sram | `runs/resource_sensitivity/resource-20261026-release-small_sram` |
+
+## 10. 与实施计划对齐及剩余边界
+
+| 项 | 当前状态 |
+|---|---|
+| M1算子合同 | 已接typed matmul方向、dtype、layout/shape和timing合同；非任意框架图导入器 |
+| M2参考mapper | 已接OS合法映射、ragged/batch流量、带宽/SRAM敏感性；非经过校准的cycle-level核仿真 |
+| M3张量 | 当前模板保守tape/反向产品/KV/端点空间与真实准入已接；不声称tight allocator峰值 |
+| M4资源/网络 | local-memory/SRAM/容量原生hook与独立mesh争用验证已接；主流程仍固定2die同步，非细粒度多核/NoC模型 |
+| M5预测器 | 精确profile lookup接口和来源/OOD拒绝已实现；CLI主成本使用analytic provider。无真实标签，未训练DNN或宣称预测精度 |
+| M6真实输入 | 目前仅严格配置化toy模板与Chakra适配；未完成真实框架trace导入或大模型校准 |
+
+仍未建模native collective内部buffer、allocator碎片、DMA启动、bank/NoC/VC/细粒度竞争；无目标晶圆硬件校准、误差数据、功耗或数值学习质量结论。下一步需真实profile标签与held-out校准后，才能接DNN并扩到真实RL workload；不要以本验收替代这些证据。
+</pre></html>

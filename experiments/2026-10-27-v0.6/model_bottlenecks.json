@@ -1,0 +1,138 @@
+{
+  "wafer_original": {
+    "scope": "declared analytic cost and actual simulator events; not measured GPU/wafer counters",
+    "step_model_s": 0.195475331404,
+    "all_ranks_model_dram_traffic_bytes": 11358573281312,
+    "all_ranks_declared_matmul_flops": 38620747554816,
+    "heaviest_local_service_rank": 2,
+    "heaviest_rank": {
+      "host_ns": 235,
+      "declared_dram_traffic_bytes": 368981590788,
+      "device_service_ns": 191773198,
+      "arithmetic_and_launch_ns": 7274606,
+      "local_memory_service_ns": 184498590,
+      "explicit_device_service_ns": 2,
+      "last_tick": 195474982708,
+      "event_durations_tick": 195474982708,
+      "communication_and_peer_wait_tick": 3701549708,
+      "timeline_gaps_tick": 0
+    },
+    "max_local_service_s": 0.191773198,
+    "top_global_model_kernel_service_ns": {
+      "gate_up_backward": 1048389312,
+      "down_partial": 914745984,
+      "lm_head_backward_dinput_dweight": 665283124,
+      "gate_up": 567823776,
+      "ffn_down_backward": 439628736,
+      "qkv": 319632000,
+      "lm_head_local": 306872916,
+      "adamw_read_modify_write": 202543794,
+      "o_proj_backward": 197168448,
+      "gradient_accumulate_rmw": 190690688
+    },
+    "communication_residence_includes_peer_wait_not_pure_network_latency": true,
+    "all_rank_profiles_match_actual_serial_timelines": true
+  },
+  "gpu_reference": {
+    "scope": "declared analytic cost and actual simulator events; not measured GPU/wafer counters",
+    "step_model_s": 0.129083868267,
+    "all_ranks_model_dram_traffic_bytes": 3224364304296,
+    "all_ranks_declared_matmul_flops": 38620747554816,
+    "heaviest_local_service_rank": 10,
+    "heaviest_rank": {
+      "host_ns": 235,
+      "declared_dram_traffic_bytes": 99223910764,
+      "device_service_ns": 109692305,
+      "arithmetic_and_launch_ns": 61019951,
+      "local_memory_service_ns": 48672352,
+      "explicit_device_service_ns": 2,
+      "last_tick": 128991366565,
+      "event_durations_tick": 128991366565,
+      "communication_and_peer_wait_tick": 19298826565,
+      "timeline_gaps_tick": 0
+    },
+    "max_local_service_s": 0.109692305,
+    "top_global_model_kernel_service_ns": {
+      "gate_up_backward": 651098784,
+      "lm_head_backward_dinput_dweight": 402156488,
+      "ffn_down_backward": 291659520,
+      "gate_up": 258581760,
+      "down_partial": 223116288,
+      "gradient_accumulate_rmw": 189467904,
+      "adamw_read_modify_write": 181810704,
+      "lm_head_local": 120001608,
+      "dp_gradient_local_service": 114033360,
+      "o_proj_backward": 100085952
+    },
+    "communication_residence_includes_peer_wait_not_pure_network_latency": true,
+    "all_rank_profiles_match_actual_serial_timelines": true
+  },
+  "gpu_optimistic": {
+    "scope": "declared analytic cost and actual simulator events; not measured GPU/wafer counters",
+    "step_model_s": 0.075417170484,
+    "all_ranks_model_dram_traffic_bytes": 3059011336104,
+    "all_ranks_declared_matmul_flops": 38620747554816,
+    "heaviest_local_service_rank": 10,
+    "heaviest_rank": {
+      "host_ns": 235,
+      "declared_dram_traffic_bytes": 93423999340,
+      "device_service_ns": 55573115,
+      "arithmetic_and_launch_ns": 9745241,
+      "local_memory_service_ns": 45827872,
+      "explicit_device_service_ns": 2,
+      "last_tick": 75324668782,
+      "event_durations_tick": 75324668782,
+      "communication_and_peer_wait_tick": 19751318782,
+      "timeline_gaps_tick": 0
+    },
+    "max_local_service_s": 0.055573115,
+    "top_global_model_kernel_service_ns": {
+      "gate_up": 237077760,
+      "down_partial": 201612288,
+      "gradient_accumulate_rmw": 189339904,
+      "adamw_read_modify_write": 181762704,
+      "gate_up_backward": 174083616,
+      "lm_head_local": 119105608,
+      "dp_gradient_local_service": 113985360,
+      "lm_head_backward_dinput_dweight": 109519116,
+      "ffn_down_backward": 71144640,
+      "apply_gradient_clip": 70394352
+    },
+    "communication_residence_includes_peer_wait_not_pure_network_latency": true,
+    "all_rank_profiles_match_actual_serial_timelines": true
+  },
+  "wafer_rates": {
+    "scope": "declared analytic cost and actual simulator events; not measured GPU/wafer counters",
+    "step_model_s": 0.221357898328,
+    "all_ranks_model_dram_traffic_bytes": 11358573281312,
+    "all_ranks_declared_matmul_flops": 38620747554816,
+    "heaviest_local_service_rank": 2,
+    "heaviest_rank": {
+      "host_ns": 235,
+      "declared_dram_traffic_bytes": 368981590788,
+      "device_service_ns": 217666324,
+      "arithmetic_and_launch_ns": 33167732,
+      "local_memory_service_ns": 184498590,
+      "explicit_device_service_ns": 2,
+      "last_tick": 221357549632,
+      "event_durations_tick": 221357549632,
+      "communication_and_peer_wait_tick": 3690990632,
+      "timeline_gaps_tick": 0
+    },
+    "max_local_service_s": 0.217666324,
+    "top_global_model_kernel_service_ns": {
+      "gate_up_backward": 1357597728,
+      "down_partial": 914745984,
+      "lm_head_backward_dinput_dweight": 866585416,
+      "ffn_down_backward": 598030560,
+      "gate_up": 567823776,
+      "qkv": 319632000,
+      "lm_head_local": 306872916,
+      "qkv_backward": 230453088,
+      "o_proj_backward": 227546880,
+      "adamw_read_modify_write": 209871702
+    },
+    "communication_residence_includes_peer_wait_not_pure_network_latency": true,
+    "all_rank_profiles_match_actual_serial_timelines": true
+  }
+}

@@ -1,0 +1,17 @@
+ARG RLXY_BASE_IMAGE=rlxy-astrasim:0.1.0
+FROM ${RLXY_BASE_IMAGE}
+USER root
+COPY docker/astrasim/RlxyResources.hh /opt/astra-sim/astra-sim/workload/RlxyResources.hh
+COPY docker/astrasim/RlxyMesh.hh /opt/astra-sim/astra-sim/workload/RlxyMesh.hh
+COPY docker/astrasim/workload.patch /tmp/rlxy-workload.patch
+COPY docker/astrasim/statistics.patch /tmp/rlxy-statistics.patch
+COPY docker/astrasim/mesh.patch /tmp/rlxy-mesh.patch
+RUN cd /opt/astra-sim \
+    && git apply --unidiff-zero /tmp/rlxy-workload.patch /tmp/rlxy-statistics.patch /tmp/rlxy-mesh.patch \
+    && ./build/astra_analytical/build.sh -t all \
+    && sha256sum /tmp/rlxy-workload.patch /tmp/rlxy-statistics.patch /tmp/rlxy-mesh.patch astra-sim/workload/RlxyResources.hh astra-sim/workload/RlxyMesh.hh > /opt/astra-sim/.rlxy-resource-patch \
+    && rm /tmp/rlxy-workload.patch /tmp/rlxy-statistics.patch /tmp/rlxy-mesh.patch
+LABEL io.rlxy.resource-contract="1.0"
+ENV RLXY_RESOURCE_BACKEND=1
+COPY src/rl_xy /opt/rlxy-source/rl_xy
+ENV PYTHONPATH=/workspace/rl-xy/src:/opt/rlxy-source:/opt/astra-sim

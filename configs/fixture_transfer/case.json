@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "case_id": "fixture_transfer_21ns",
+  "evidence_kind": "synthetic_fixture",
+  "input_bytes": 32,
+  "dram_bytes_per_die": 128,
+  "sram_bytes_per_core": 64,
+  "nic_tx_bytes_per_die": 32,
+  "nic_rx_bytes_per_die": 32,
+  "local_dma_bytes_per_ns": 16,
+  "d2d_bytes_per_ns": 8,
+  "d2d_latency_ns": 1,
+  "astra_time_scale": 1000,
+  "compute_duration_ns": 2,
+  "expected_completion_ns": 21,
+  "expected_sram_peak_bytes": 64,
+  "expected_d2d_payload_bytes": 32,
+  "expected_dram_traffic_bytes": 192
+}
+

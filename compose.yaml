@@ -1,0 +1,23 @@
+services:
+  rlxy:
+    image: ${RLXY_IMAGE:-rlxy-astrasim:0.1.0}
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        ASTRA_SIM_COMMIT: 4ce9ecfe746a3ee5fe47559a11d91644d641fa7f
+    working_dir: /workspace/rl-xy
+    # Formal runs use scripts/docker.sh. Compose defaults to an unprivileged
+    # identity so an accidental direct run cannot create root-owned evidence.
+    user: "${RLXY_UID:-65534}:${RLXY_GID:-65534}"
+    shm_size: 8gb
+    volumes:
+      - .:/workspace/rl-xy
+    environment:
+      ASTRA_SIM_ROOT: /opt/astra-sim
+      ASTRA_SIM_BIN: /opt/astra-sim/build/astra_analytical/build/bin/AstraSim_Analytical_Congestion_Unaware
+      PYTHONPATH: /workspace/rl-xy/src:/opt/astra-sim
+      RLXY_IMAGE: ${RLXY_IMAGE:-rlxy-astrasim:0.1.0}
+      RLXY_IMAGE_ID: ${RLXY_IMAGE_ID:-}
+    entrypoint: ["python3", "-m", "rl_xy.cli"]
+

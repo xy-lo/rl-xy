@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.1",
+  "case_id": "qwen2_selected_length_groups",
+  "evidence_kind": "synthetic_fixture",
+  "rounds": 1,
+  "model": {
+    "layers": 24,
+    "hidden_size": 896,
+    "query_heads": 14,
+    "kv_heads": 2,
+    "head_dim": 64,
+    "ffn_size": 4864,
+    "vocab_size": 151936,
+    "actor_dtype_bytes": 2,
+    "reference_dtype_bytes": 2,
+    "master_dtype_bytes": 4,
+    "gradient_dtype_bytes": 4,
+    "optimizer_dtype_bytes": 4,
+    "qkv_bias": true,
+    "rotary_embedding": true,
+    "tie_word_embeddings": true
+  },
+  "workload": {
+    "round_id": 1,
+    "group_id": "selected-complete-groups",
+    "prompt_token_ids": [],
+    "max_response_length": 4,
+    "behavior_version": 0,
+    "trajectories": [
+      {
+        "trajectory_id": "T0",
+        "prompt_length": 91,
+        "response_length": 4,
+        "group_id": "03afb71d-211e-4ff4-a361-dc3196594082",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T1",
+        "prompt_length": 91,
+        "response_length": 4,
+        "group_id": "03afb71d-211e-4ff4-a361-dc3196594082",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T2",
+        "prompt_length": 110,
+        "response_length": 4,
+        "group_id": "067c70ce-9041-4d7f-92b5-5dbf55ff49a5",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T3",
+        "prompt_length": 110,
+        "response_length": 4,
+        "group_id": "067c70ce-9041-4d7f-92b5-5dbf55ff49a5",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T4",
+        "prompt_length": 79,
+        "response_length": 4,
+        "group_id": "0fc7440d-4b29-4c45-9c7f-1541973e61fc",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T5",
+        "prompt_length": 79,
+        "response_length": 4,
+        "group_id": "0fc7440d-4b29-4c45-9c7f-1541973e61fc",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T6",
+        "prompt_length": 108,
+        "response_length": 4,
+        "group_id": "159dd3ef-bc99-41f5-8540-d052373544b8",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T7",
+        "prompt_length": 108,
+        "response_length": 4,
+        "group_id": "159dd3ef-bc99-41f5-8540-d052373544b8",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T8",
+        "prompt_length": 101,
+        "response_length": 4,
+        "group_id": "27856e96-aba1-43de-b296-fd1bf297e593",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T9",
+        "prompt_length": 101,
+        "response_length": 4,
+        "group_id": "27856e96-aba1-43de-b296-fd1bf297e593",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T10",
+        "prompt_length": 127,
+        "response_length": 4,
+        "group_id": "37729c5b-07a7-4ea1-99bb-3d7bf2231eb3",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T11",
+        "prompt_length": 127,
+        "response_length": 4,
+        "group_id": "37729c5b-07a7-4ea1-99bb-3d7bf2231eb3",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T12",
+        "prompt_length": 111,
+        "response_length": 4,
+        "group_id": "49048bad-9639-41ee-93b6-740280943cb0",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T13",
+        "prompt_length": 111,
+        "response_length": 4,
+        "group_id": "49048bad-9639-41ee-93b6-740280943cb0",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T14",
+        "prompt_length": 93,
+        "response_length": 4,
+        "group_id": "5110772c-f197-4742-92e9-a4ffee8bac22",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T15",
+        "prompt_length": 93,
+        "response_length": 4,
+        "group_id": "5110772c-f197-4742-92e9-a4ffee8bac22",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T16",
+        "prompt_length": 98,
+        "response_length": 4,
+        "group_id": "5300ee93-7dd5-481d-be43-c007b3c92002",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T17",
+        "prompt_length": 98,
+        "response_length": 4,
+        "group_id": "5300ee93-7dd5-481d-be43-c007b3c92002",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T18",
+        "prompt_length": 70,
+        "response_length": 4,
+        "group_id": "5969f19e-8adb-49b1-a94d-3967e76f5146",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T19",
+        "prompt_length": 70,
+        "response_length": 4,
+        "group_id": "5969f19e-8adb-49b1-a94d-3967e76f5146",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T20",
+        "prompt_length": 98,
+        "response_length": 4,
+        "group_id": "5b71effa-d6ee-456a-bbeb-7d86a00b93b8",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T21",
+        "prompt_length": 98,
+        "response_length": 4,
+        "group_id": "5b71effa-d6ee-456a-bbeb-7d86a00b93b8",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T22",
+        "prompt_length": 85,
+        "response_length": 4,
+        "group_id": "5cba8eb9-c77d-4efe-bf24-c1d81cf90d19",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T23",
+        "prompt_length": 85,
+        "response_length": 4,
+        "group_id": "5cba8eb9-c77d-4efe-bf24-c1d81cf90d19",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T24",
+        "prompt_length": 88,
+        "response_length": 4,
+        "group_id": "5fffbd2c-3a5b-40e7-8c66-7e08958daf31",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T25",
+        "prompt_length": 88,
+        "response_length": 4,
+        "group_id": "5fffbd2c-3a5b-40e7-8c66-7e08958daf31",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T26",
+        "prompt_length": 125,
+        "response_length": 4,
+        "group_id": "6611e74b-17f3-4977-af88-a52c5f6273a8",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T27",
+        "prompt_length": 125,
+        "response_length": 4,
+        "group_id": "6611e74b-17f3-4977-af88-a52c5f6273a8",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T28",
+        "prompt_length": 96,
+        "response_length": 4,
+        "group_id": "6d516545-db0c-4ab4-b6bf-dc40b4dea98f",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T29",
+        "prompt_length": 96,
+        "response_length": 4,
+        "group_id": "6d516545-db0c-4ab4-b6bf-dc40b4dea98f",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T30",
+        "prompt_length": 80,
+        "response_length": 4,
+        "group_id": "795e5231-8e1e-4046-9e17-600e33eac539",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T31",
+        "prompt_length": 80,
+        "response_length": 4,
+        "group_id": "795e5231-8e1e-4046-9e17-600e33eac539",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T32",
+        "prompt_length": 92,
+        "response_length": 4,
+        "group_id": "7ee36894-4b5b-466c-abdb-f0c4e8678b9a",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T33",
+        "prompt_length": 92,
+        "response_length": 4,
+        "group_id": "7ee36894-4b5b-466c-abdb-f0c4e8678b9a",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T34",
+        "prompt_length": 75,
+        "response_length": 4,
+        "group_id": "84a57a92-d0d2-4479-b7a2-874185cf6383",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T35",
+        "prompt_length": 75,
+        "response_length": 4,
+        "group_id": "84a57a92-d0d2-4479-b7a2-874185cf6383",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T36",
+        "prompt_length": 100,
+        "response_length": 4,
+        "group_id": "91f2da7e-748a-41f4-ad9a-9c387b393b8c",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T37",
+        "prompt_length": 100,
+        "response_length": 4,
+        "group_id": "91f2da7e-748a-41f4-ad9a-9c387b393b8c",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T38",
+        "prompt_length": 123,
+        "response_length": 4,
+        "group_id": "98375b29-bc02-4911-8606-0b8464bcf08d",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T39",
+        "prompt_length": 123,
+        "response_length": 4,
+        "group_id": "98375b29-bc02-4911-8606-0b8464bcf08d",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T40",
+        "prompt_length": 87,
+        "response_length": 4,
+        "group_id": "9f3adfc7-8abb-44cd-8730-20347ab86366",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T41",
+        "prompt_length": 87,
+        "response_length": 4,
+        "group_id": "9f3adfc7-8abb-44cd-8730-20347ab86366",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T42",
+        "prompt_length": 83,
+        "response_length": 4,
+        "group_id": "a0431118-abb9-412b-876b-09f188014106",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T43",
+        "prompt_length": 83,
+        "response_length": 4,
+        "group_id": "a0431118-abb9-412b-876b-09f188014106",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T44",
+        "prompt_length": 95,
+        "response_length": 4,
+        "group_id": "b5024829-58b4-4c7c-98dc-5b2922c088fa",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T45",
+        "prompt_length": 95,
+        "response_length": 4,
+        "group_id": "b5024829-58b4-4c7c-98dc-5b2922c088fa",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T46",
+        "prompt_length": 100,
+        "response_length": 4,
+        "group_id": "bccac33e-0d4f-488d-bc86-cd685ec97988",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T47",
+        "prompt_length": 100,
+        "response_length": 4,
+        "group_id": "bccac33e-0d4f-488d-bc86-cd685ec97988",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T48",
+        "prompt_length": 97,
+        "response_length": 4,
+        "group_id": "c128973b-b10e-471a-a123-ce2eb796bad3",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T49",
+        "prompt_length": 97,
+        "response_length": 4,
+        "group_id": "c128973b-b10e-471a-a123-ce2eb796bad3",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T50",
+        "prompt_length": 115,
+        "response_length": 4,
+        "group_id": "ccc3f2d3-a0b0-4e9b-8542-c58f6d9b8a9b",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T51",
+        "prompt_length": 115,
+        "response_length": 4,
+        "group_id": "ccc3f2d3-a0b0-4e9b-8542-c58f6d9b8a9b",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T52",
+        "prompt_length": 101,
+        "response_length": 4,
+        "group_id": "d60e8cdd-e72d-4387-bf22-6471c309a420",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T53",
+        "prompt_length": 101,
+        "response_length": 4,
+        "group_id": "d60e8cdd-e72d-4387-bf22-6471c309a420",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T54",
+        "prompt_length": 111,
+        "response_length": 4,
+        "group_id": "e953a1ff-c898-4a7d-8f3b-d86a1199ec93",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T55",
+        "prompt_length": 111,
+        "response_length": 4,
+        "group_id": "e953a1ff-c898-4a7d-8f3b-d86a1199ec93",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T56",
+        "prompt_length": 102,
+        "response_length": 4,
+        "group_id": "ec014d92-20a4-479b-ad9c-882fbf75c0fa",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T57",
+        "prompt_length": 102,
+        "response_length": 4,
+        "group_id": "ec014d92-20a4-479b-ad9c-882fbf75c0fa",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T58",
+        "prompt_length": 95,
+        "response_length": 4,
+        "group_id": "ec8d90cc-539a-4b8b-9fe5-151cb5b46535",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T59",
+        "prompt_length": 95,
+        "response_length": 4,
+        "group_id": "ec8d90cc-539a-4b8b-9fe5-151cb5b46535",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T60",
+        "prompt_length": 97,
+        "response_length": 4,
+        "group_id": "f853c23b-f79a-48fa-8f05-b8a2e6b14903",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T61",
+        "prompt_length": 97,
+        "response_length": 4,
+        "group_id": "f853c23b-f79a-48fa-8f05-b8a2e6b14903",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T62",
+        "prompt_length": 100,
+        "response_length": 4,
+        "group_id": "f8a3bc2f-6a34-4cb4-bacb-0a70b949fb47",
+        "finish_reason": "truncated",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T63",
+        "prompt_length": 100,
+        "response_length": 4,
+        "group_id": "f8a3bc2f-6a34-4cb4-bacb-0a70b949fb47",
+        "finish_reason": "truncated",
+        "reward": null
+      }
+    ],
+    "advantage_rule": "demean_only",
+    "loss_reduction": "global_response_token_mean",
+    "optimizer": "adamw_shape_only"
+  },
+  "hardware": {
+    "dies": 2,
+    "cores_per_die": 1,
+    "dram_bytes_per_die": 262144,
+    "sram_bytes_per_core": 4096,
+    "nic_tx_bytes_per_die": 64,
+    "nic_rx_bytes_per_die": 64,
+    "gemm_flops_per_ns": 1,
+    "vector_ops_per_ns": 1,
+    "dram_bytes_per_ns": 16,
+    "module_path_bytes_per_ns": 16,
+    "sram_bytes_per_ns": 32,
+    "d2d_bytes_per_ns_per_direction": 8,
+    "d2d_latency_ns": 1,
+    "d2d_packet_bytes": 64,
+    "host_bytes_per_ns": 8,
+    "host_latency_ns": 2,
+    "astra_time_scale": 1000
+  },
+  "strategy": {
+    "tensor_parallel": 2,
+    "pipeline_parallel": 1,
+    "data_parallel": 1,
+    "training_microbatch_trajectories": 1,
+    "rollout_max_concurrency": 64,
+    "share_prompt_kv": false,
+    "actor_train_inference_layout_compatible": true,
+    "schedule": "strict_synchronous",
+    "kv_admission": "reserve_public_max_length"
+  },
+  "costs": {
+    "reward_cpu_ns": 12,
+    "advantage_cpu_ns": 8,
+    "sample_vector_ops_per_token": 16,
+    "softmax_vector_ops_per_element": 5,
+    "rmsnorm_vector_ops_per_element": 6,
+    "swiglu_vector_ops_per_element": 5,
+    "optimizer_vector_ops_per_local_parameter": 12,
+    "gradient_clip_vector_ops_per_local_parameter": 3,
+    "control_marker_ns": 1
+  }
+}

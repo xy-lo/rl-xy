@@ -1,0 +1,460 @@
+{
+  "status": "PASS",
+  "origin_declared": "framework_capture",
+  "step": 1,
+  "selected_groups": [
+    "03afb71d-211e-4ff4-a361-dc3196594082",
+    "067c70ce-9041-4d7f-92b5-5dbf55ff49a5",
+    "0fc7440d-4b29-4c45-9c7f-1541973e61fc",
+    "159dd3ef-bc99-41f5-8540-d052373544b8",
+    "27856e96-aba1-43de-b296-fd1bf297e593",
+    "37729c5b-07a7-4ea1-99bb-3d7bf2231eb3",
+    "49048bad-9639-41ee-93b6-740280943cb0",
+    "5110772c-f197-4742-92e9-a4ffee8bac22",
+    "5300ee93-7dd5-481d-be43-c007b3c92002",
+    "5969f19e-8adb-49b1-a94d-3967e76f5146",
+    "5b71effa-d6ee-456a-bbeb-7d86a00b93b8",
+    "5cba8eb9-c77d-4efe-bf24-c1d81cf90d19",
+    "5fffbd2c-3a5b-40e7-8c66-7e08958daf31",
+    "6611e74b-17f3-4977-af88-a52c5f6273a8",
+    "6d516545-db0c-4ab4-b6bf-dc40b4dea98f",
+    "795e5231-8e1e-4046-9e17-600e33eac539",
+    "7ee36894-4b5b-466c-abdb-f0c4e8678b9a",
+    "84a57a92-d0d2-4479-b7a2-874185cf6383",
+    "91f2da7e-748a-41f4-ad9a-9c387b393b8c",
+    "98375b29-bc02-4911-8606-0b8464bcf08d",
+    "9f3adfc7-8abb-44cd-8730-20347ab86366",
+    "a0431118-abb9-412b-876b-09f188014106",
+    "b5024829-58b4-4c7c-98dc-5b2922c088fa",
+    "bccac33e-0d4f-488d-bc86-cd685ec97988",
+    "c128973b-b10e-471a-a123-ce2eb796bad3",
+    "ccc3f2d3-a0b0-4e9b-8542-c58f6d9b8a9b",
+    "d60e8cdd-e72d-4387-bf22-6471c309a420",
+    "e953a1ff-c898-4a7d-8f3b-d86a1199ec93",
+    "ec014d92-20a4-479b-ad9c-882fbf75c0fa",
+    "ec8d90cc-539a-4b8b-9fe5-151cb5b46535",
+    "f853c23b-f79a-48fa-8f05-b8a2e6b14903",
+    "f8a3bc2f-6a34-4cb4-bacb-0a70b949fb47"
+  ],
+  "full_step_replayed": true,
+  "counterfactual_response_cap": null,
+  "response_lengths_modified": false,
+  "original_response_lengths": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+  ],
+  "executed_response_lengths": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+  ],
+  "selection_scope": "explicit complete-group structural probe; not an unbiased full-step throughput sample",
+  "input_values": {
+    "token_ids": false,
+    "reward": false,
+    "logprob": false
+  },
+  "model_config_sha256": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45",
+  "length_trace_sha256": "942cd3059ec12a23f071658c0abbe90241533ecc8909848cfdf164b01a8e0b91",
+  "template_sha256": "770552198d3374abc0445aeeb079bd64e83200b8888780abcd1108cc1a9ab21f",
+  "model_identity_verified_against_historical_weights": false,
+  "hardware_scope": "caller-supplied TP2 logical template; run-wafer may expand an explicit DP/multicore scenario; no implicit calibrated H",
+  "trajectories": 64,
+  "groups": 32,
+  "original_to_execution_ids": [
+    {
+      "original": "t1-000008",
+      "execution": "T0"
+    },
+    {
+      "original": "t1-000055",
+      "execution": "T1"
+    },
+    {
+      "original": "t1-000025",
+      "execution": "T2"
+    },
+    {
+      "original": "t1-000038",
+      "execution": "T3"
+    },
+    {
+      "original": "t1-000002",
+      "execution": "T4"
+    },
+    {
+      "original": "t1-000061",
+      "execution": "T5"
+    },
+    {
+      "original": "t1-000024",
+      "execution": "T6"
+    },
+    {
+      "original": "t1-000039",
+      "execution": "T7"
+    },
+    {
+      "original": "t1-000022",
+      "execution": "T8"
+    },
+    {
+      "original": "t1-000041",
+      "execution": "T9"
+    },
+    {
+      "original": "t1-000031",
+      "execution": "T10"
+    },
+    {
+      "original": "t1-000032",
+      "execution": "T11"
+    },
+    {
+      "original": "t1-000027",
+      "execution": "T12"
+    },
+    {
+      "original": "t1-000036",
+      "execution": "T13"
+    },
+    {
+      "original": "t1-000010",
+      "execution": "T14"
+    },
+    {
+      "original": "t1-000053",
+      "execution": "T15"
+    },
+    {
+      "original": "t1-000017",
+      "execution": "T16"
+    },
+    {
+      "original": "t1-000046",
+      "execution": "T17"
+    },
+    {
+      "original": "t1-000000",
+      "execution": "T18"
+    },
+    {
+      "original": "t1-000063",
+      "execution": "T19"
+    },
+    {
+      "original": "t1-000016",
+      "execution": "T20"
+    },
+    {
+      "original": "t1-000047",
+      "execution": "T21"
+    },
+    {
+      "original": "t1-000005",
+      "execution": "T22"
+    },
+    {
+      "original": "t1-000058",
+      "execution": "T23"
+    },
+    {
+      "original": "t1-000007",
+      "execution": "T24"
+    },
+    {
+      "original": "t1-000056",
+      "execution": "T25"
+    },
+    {
+      "original": "t1-000030",
+      "execution": "T26"
+    },
+    {
+      "original": "t1-000033",
+      "execution": "T27"
+    },
+    {
+      "original": "t1-000013",
+      "execution": "T28"
+    },
+    {
+      "original": "t1-000050",
+      "execution": "T29"
+    },
+    {
+      "original": "t1-000003",
+      "execution": "T30"
+    },
+    {
+      "original": "t1-000060",
+      "execution": "T31"
+    },
+    {
+      "original": "t1-000009",
+      "execution": "T32"
+    },
+    {
+      "original": "t1-000054",
+      "execution": "T33"
+    },
+    {
+      "original": "t1-000001",
+      "execution": "T34"
+    },
+    {
+      "original": "t1-000062",
+      "execution": "T35"
+    },
+    {
+      "original": "t1-000020",
+      "execution": "T36"
+    },
+    {
+      "original": "t1-000043",
+      "execution": "T37"
+    },
+    {
+      "original": "t1-000029",
+      "execution": "T38"
+    },
+    {
+      "original": "t1-000034",
+      "execution": "T39"
+    },
+    {
+      "original": "t1-000006",
+      "execution": "T40"
+    },
+    {
+      "original": "t1-000057",
+      "execution": "T41"
+    },
+    {
+      "original": "t1-000004",
+      "execution": "T42"
+    },
+    {
+      "original": "t1-000059",
+      "execution": "T43"
+    },
+    {
+      "original": "t1-000012",
+      "execution": "T44"
+    },
+    {
+      "original": "t1-000051",
+      "execution": "T45"
+    },
+    {
+      "original": "t1-000018",
+      "execution": "T46"
+    },
+    {
+      "original": "t1-000045",
+      "execution": "T47"
+    },
+    {
+      "original": "t1-000014",
+      "execution": "T48"
+    },
+    {
+      "original": "t1-000049",
+      "execution": "T49"
+    },
+    {
+      "original": "t1-000028",
+      "execution": "T50"
+    },
+    {
+      "original": "t1-000035",
+      "execution": "T51"
+    },
+    {
+      "original": "t1-000021",
+      "execution": "T52"
+    },
+    {
+      "original": "t1-000042",
+      "execution": "T53"
+    },
+    {
+      "original": "t1-000026",
+      "execution": "T54"
+    },
+    {
+      "original": "t1-000037",
+      "execution": "T55"
+    },
+    {
+      "original": "t1-000023",
+      "execution": "T56"
+    },
+    {
+      "original": "t1-000040",
+      "execution": "T57"
+    },
+    {
+      "original": "t1-000011",
+      "execution": "T58"
+    },
+    {
+      "original": "t1-000052",
+      "execution": "T59"
+    },
+    {
+      "original": "t1-000015",
+      "execution": "T60"
+    },
+    {
+      "original": "t1-000048",
+      "execution": "T61"
+    },
+    {
+      "original": "t1-000019",
+      "execution": "T62"
+    },
+    {
+      "original": "t1-000044",
+      "execution": "T63"
+    }
+  ],
+  "parameter_totals": {
+    "unique_parameter_elements": 494032768,
+    "local_parameter_elements_per_die": 247038336,
+    "long_term_bytes_per_die": 3952613376,
+    "gradient_buffer_bytes_per_die": 988153344,
+    "resident_with_gradient_bytes_per_die": 4940766720
+  },
+  "gpu_observed_stage_times_s": {
+    "actor": 11.043,
+    "old_logprob": 7.113,
+    "ref": 10.059,
+    "rollout": 14.018,
+    "sync": 0.289
+  },
+  "gpu_times_used_as_chip_durations": false
+}

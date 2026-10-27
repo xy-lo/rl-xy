@@ -1,0 +1,25 @@
+diff --git a/astra-sim/workload/Statistics.cc b/astra-sim/workload/Statistics.cc
+--- a/astra-sim/workload/Statistics.cc
++++ b/astra-sim/workload/Statistics.cc
+@@ -102,3 +102,2 @@
+         default:
+-            throw std::runtime_error(
+-                "Only GPU and COMM types are supported for overlap extraction");
++            break; // CPU/remote memory are not GPU/COMM intervals.
+@@ -111,4 +110,12 @@
+-    Tick overlap = 0;
+-    overlap = this->type_time.at(OperatorStatistics::OperatorType::GPU) +
+-              this->type_time.at(OperatorStatistics::OperatorType::COMM) -
+-              this->wall_time;
++    std::vector<std::pair<Tick, Tick>> combined;
++    for (const auto& entry : operator_statistics) {
++        const auto& stat = entry.second;
++        if (stat.type == OperatorStatistics::OperatorType::GPU ||
++            stat.type == OperatorStatistics::OperatorType::COMM) {
++            combined.push_back({stat.start_time, stat.end_time});
++        }
++    }
++    Tick overlap =
++        this->type_time.at(OperatorStatistics::OperatorType::GPU) +
++        this->type_time.at(OperatorStatistics::OperatorType::COMM) -
++        _calculateTotalRuntimeFromIntervals(combined);

@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "source_tree_sha256": "b095047bb4733cb40cffb46ee3f8665315c7b85c6d9923bf0eaf53d4a23cf379",
+  "archive_hashes": {
+    "rl-xy-source.tar.gz": "538fffd7668abec516a58d6fe3220ad0a3ef6787b6ff9ee10c3d44ed3ce35a06",
+    "rl-xy-evidence.tar.gz": "801470a477623176fa42523866593009a402d54ef2474d95612397975ec64826"
+  },
+  "command_log_hashes": 20,
+  "new_bundles": 5,
+  "frozen_control_manifest_sha256": "8db3d9ec9022d808905b4cea77b9dce39ce3344002486002dbfc067e21406014",
+  "outcomes": {
+    "primary": {
+      "wafer_faster": false,
+      "gpu_over_wafer_ratio": 0.6603588664608273
+    },
+    "gpu_favoring": {
+      "wafer_faster": false,
+      "gpu_over_wafer_ratio": 0.38581426076792796
+    },
+    "wafer_rate_sensitivity": {
+      "wafer_faster": false,
+      "gpu_over_wafer_ratio": 0.5831455269589173
+    },
+    "joint_sensitivity": {
+      "wafer_faster": false,
+      "gpu_over_wafer_ratio": 0.34070241474848845
+    }
+  },
+  "independent_native_replay": {
+    "gpu4": {
+      "rank_events": 2947,
+      "operations": 1506,
+      "checks": 13,
+      "max_callback_tick": 778728369,
+      "resource_peak_locations": 440
+    },
+    "wafer4": {
+      "rank_events": 2947,
+      "operations": 1506,
+      "checks": 13,
+      "max_callback_tick": 1675970,
+      "resource_peak_locations": 24
+    },
+    "reference": {
+      "rank_events": 546396,
+      "operations": 273914,
+      "checks": 101,
+      "max_callback_tick": 129083868267,
+      "resource_peak_locations": 5280
+    },
+    "optimistic": {
+      "rank_events": 546396,
+      "operations": 273914,
+      "checks": 101,
+      "max_callback_tick": 75417170484,
+      "resource_peak_locations": 5280
+    },
+    "wafer_rates": {
+      "rank_events": 546552,
+      "operations": 274001,
+      "checks": 113,
+      "max_callback_tick": 221357898328,
+      "resource_peak_locations": 13932
+    }
+  },
+  "model_decompositions_recomputed": 4
+}

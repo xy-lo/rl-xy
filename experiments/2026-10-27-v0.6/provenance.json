@@ -1,0 +1,32 @@
+{
+  "experiment_id": "gpu-sim-20261027-adaptive-final",
+  "recorded_at": "2026-10-27",
+  "experimental_gpu_source_tree_sha256": "b095047bb4733cb40cffb46ee3f8665315c7b85c6d9923bf0eaf53d4a23cf379",
+  "experimental_wafer_control_source_tree_sha256": "a48f1e1b6324daed04a04f138a1dc915c6adaad666ef1e227180e60e15f0cdc9",
+  "original_acceptance_report_sha256": "c9a02284a576a509a9baa74190851e99b28e0a4d45737843ba699a9fb6c0428b",
+  "original_archive_hashes": {
+    "rl-xy-source.tar.gz": "538fffd7668abec516a58d6fe3220ad0a3ef6787b6ff9ee10c3d44ed3ce35a06",
+    "rl-xy-evidence.tar.gz": "801470a477623176fa42523866593009a402d54ef2474d95612397975ec64826"
+  },
+  "original_archives_in_git": false,
+  "historical_raw_replay_from_git_alone_possible": false,
+  "published_input_files_exact_copies": true,
+  "runtime_costs_communication_and_training_semantics_changed_in_publication": false,
+  "publication_changes": [
+    "Rewrite current README and add navigation/results/reproduction.",
+    "Parameterize personal SSH and optional legacy collection paths.",
+    "Add complete Docker image-chain builder and bounded reproduction wrapper.",
+    "Ignore local configuration, credentials, caches, large archives and runs symlink."
+  ],
+  "new_publication_source_identity_is_not_experimental_identity": true,
+  "original_wafer_archive_hashes": {
+    "rl-xy-source.tar.gz": "1d8f7f174523b2e3445296955e0f678beba5d08478862ac1aab1549cfffd7703",
+    "rl-xy-evidence.tar.gz": "6efaa7c95acb4ced66c1632560d389baf58becec726697c69544ed34bb8d8437"
+  },
+  "limitations": [
+    "No hardware calibration or physical chip runtime.",
+    "No learning quality or steady-state benchmark.",
+    "No optimal wafer/GPU mapping search.",
+    "GPU-favoring settings are sensitivity, not physical FP32 peak or rigorous runtime bound."
+  ]
+}

@@ -1,0 +1,11 @@
+diff --git a/astra-sim/network_frontend/analytical/congestion_aware/main.cc b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+--- a/astra-sim/network_frontend/analytical/congestion_aware/main.cc
++++ b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+@@ -15,0 +16,1 @@
++#include "astra-sim/workload/RlxyGpu.hh"
+@@ -65,3 +66,5 @@
+     const auto topology = rlxy_model && std::string(rlxy_model)=="mesh2d"
+         ? std::shared_ptr<Topology>(std::make_shared<rlxy::Mesh2D>(network_parser))
++        : rlxy_model && std::string(rlxy_model)=="gpu_cluster"
++        ? std::shared_ptr<Topology>(std::make_shared<rlxy::GpuCluster>(network_parser))
+         : construct_topology(network_parser);

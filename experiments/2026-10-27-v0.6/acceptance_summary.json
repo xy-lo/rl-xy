@@ -1,0 +1,477 @@
+{
+  "status": "PASS",
+  "started_at_utc": "2026-10-27T03:16:36.195940+00:00",
+  "finished_at_utc": "2026-10-27T03:44:33.750226+00:00",
+  "source_tree_sha256": "b095047bb4733cb40cffb46ee3f8665315c7b85c6d9923bf0eaf53d4a23cf379",
+  "image": "rlxy-astrasim:0.6.0",
+  "image_id": "sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+  "checks": [
+    {
+      "check": "frozen_control_already_valid",
+      "passed": true,
+      "evidence": "runs/wafer/wafer-20261027-final-matched"
+    },
+    {
+      "check": "wafer4_clock_unchanged",
+      "passed": true,
+      "evidence": "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer4"
+    },
+    {
+      "check": "both_GPU_runs_are_48devices_TP2_DP24_64real_lengths",
+      "passed": true,
+      "evidence": "complete same captured workload"
+    },
+    {
+      "check": "same_current_source_for_all_new_bundles",
+      "passed": true,
+      "evidence": "b095047bb4733cb40cffb46ee3f8665315c7b85c6d9923bf0eaf53d4a23cf379"
+    }
+  ],
+  "commands": [
+    {
+      "label": "build",
+      "argv": [
+        "docker",
+        "build",
+        "-t",
+        "rlxy-astrasim:0.6.0",
+        "-f",
+        "docker/Dockerfile.gpu",
+        "."
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/build.log",
+      "log_sha256": "44166553a8a5cef1689a70f51f8b67585da81dbaccc4319cf4917b9abe884f64"
+    },
+    {
+      "label": "create",
+      "argv": [
+        "bash",
+        "scripts/docker.sh",
+        "create-container",
+        "rlxy-astrasim:0.6.0"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/create.log",
+      "log_sha256": "9456152b0d58d202d9069c1de0f55e78044a4deae33e2522e1ae78dc75d01c9d"
+    },
+    {
+      "label": "unit_tests",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/unit_tests.log",
+      "log_sha256": "693d7e18eef0036f9d73f61c23fba5dc872396ad9951d6eaddf9d428d5dbc191"
+    },
+    {
+      "label": "gpu_network_fixtures",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/gpu_network_fixtures.py",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-native"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/gpu_network_fixtures.log",
+      "log_sha256": "c26de83abdc9496cd1301470918ec39ecca1cf389ef0ae1c6504da1800d1c431"
+    },
+    {
+      "label": "private_sram",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/private_sram_fixtures.py",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-private"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/private_sram.log",
+      "log_sha256": "8cd993de8b0afd730e7f0555c66730138af6dca0773a5a93c277f30aab973bf4"
+    },
+    {
+      "label": "old_native",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/integration_fixtures.py",
+        "--output",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-old-native"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/old_native.log",
+      "log_sha256": "14406ff96ebaeac4490da42f92f4a13730a069851d4fc1749d839e18f53804e7"
+    },
+    {
+      "label": "gpu4",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "-m",
+        "rl_xy.cli",
+        "run-gpu",
+        "--case",
+        "configs/wafer4_fixture/case.json",
+        "--scenario",
+        "configs/wafer4_fixture/wafer.json",
+        "--gpu-profile",
+        "acceptance/gpu-sim-20261027-adaptive-final/gpu4.json",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-gpu4"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/gpu4.log",
+      "log_sha256": "c8d8cba7a3c954d1ccb3ae624187cca476b5a36b8f20a1fa26f9a18edbbd5561"
+    },
+    {
+      "label": "early_gpu4_integrity",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/check_result.py",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-gpu4"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/early_gpu4_integrity.log",
+      "log_sha256": "4b15be690e3d3d5395f50fd7ba14d08670b1667675e9a38c1641ee80392eb785"
+    },
+    {
+      "label": "wafer4_regression",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "-m",
+        "rl_xy.cli",
+        "run-wafer",
+        "--case",
+        "configs/wafer4_fixture/case.json",
+        "--scenario",
+        "configs/wafer4_fixture/wafer.json",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer4"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/wafer4_regression.log",
+      "log_sha256": "f3b9154c00af277ab7fe134e8c34911a4fb548be0e56e47525f1b1f884221649"
+    },
+    {
+      "label": "early_wafer4_integrity",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/check_result.py",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer4"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/early_wafer4_integrity.log",
+      "log_sha256": "d65c958f6d2054ef46ae938ee1f5d1149a95efeb688e57051f13c789983c08e8"
+    },
+    {
+      "label": "reference",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "-m",
+        "rl_xy.cli",
+        "run-gpu",
+        "--case",
+        "runs/wafer/wafer-20261027-final-matched-case/case.json",
+        "--scenario",
+        "configs/wafer54_fixture/wafer.json",
+        "--gpu-profile",
+        "configs/gpu/a100_48_reference.json",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-reference"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/reference.log",
+      "log_sha256": "a79a6b0f65fb02dc75cfd548beae3267b32740d30139bf73f6dcb1ee149f4cbf"
+    },
+    {
+      "label": "optimistic",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "-m",
+        "rl_xy.cli",
+        "run-gpu",
+        "--case",
+        "runs/wafer/wafer-20261027-final-matched-case/case.json",
+        "--scenario",
+        "configs/wafer54_fixture/wafer.json",
+        "--gpu-profile",
+        "configs/gpu/a100_48_optimistic.json",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-optimistic"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/optimistic.log",
+      "log_sha256": "0b0ace687cd319ab35b09696ac45a6e38c8898817017eed92c8b3f7735c279cf"
+    },
+    {
+      "label": "wafer_rates",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "-m",
+        "rl_xy.cli",
+        "run-wafer",
+        "--case",
+        "runs/wafer/wafer-20261027-final-matched-case/case.json",
+        "--scenario",
+        "configs/gpu/wafer_typed_rate_sensitivity.json",
+        "--out",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer_rates"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/wafer_rates.log",
+      "log_sha256": "d73250289204a92ec536551d3027525d0f809dd896e559869574d731ed9356b1"
+    },
+    {
+      "label": "integrity_reference",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/check_result.py",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-reference"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/integrity_reference.log",
+      "log_sha256": "cef34f33b9c9489acaa93be2cc08dec14e45dd32ae10654a8d89e3065fcf4b58"
+    },
+    {
+      "label": "integrity_optimistic",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/check_result.py",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-optimistic"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/integrity_optimistic.log",
+      "log_sha256": "40dc23f0db96c0e17728f0d8aeeee5a2733d63c8cea5bd24ab31b0e0b8d05686"
+    },
+    {
+      "label": "integrity_wafer_rates",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/check_result.py",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer_rates"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/integrity_wafer_rates.log",
+      "log_sha256": "486e1660fbde9455e2ec85f689d1ff505c03c55b22a63b2e8523022a9accd7da"
+    },
+    {
+      "label": "compare_primary",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/compare_simulated_platforms.py",
+        "--wafer",
+        "runs/wafer/wafer-20261027-final-matched",
+        "--gpu",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-reference",
+        "--out",
+        "runs/sim_comparison/gpu-sim-20261027-adaptive-final-primary"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/compare_primary.log",
+      "log_sha256": "de9e8049c870482998a62fd7bbe7648b960332c2b3bdffae4eb3ac24f81449a6"
+    },
+    {
+      "label": "compare_gpu_favoring",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/compare_simulated_platforms.py",
+        "--wafer",
+        "runs/wafer/wafer-20261027-final-matched",
+        "--gpu",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-optimistic",
+        "--out",
+        "runs/sim_comparison/gpu-sim-20261027-adaptive-final-gpu_favoring"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/compare_gpu_favoring.log",
+      "log_sha256": "de9e8049c870482998a62fd7bbe7648b960332c2b3bdffae4eb3ac24f81449a6"
+    },
+    {
+      "label": "compare_wafer_rate_sensitivity",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/compare_simulated_platforms.py",
+        "--wafer",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer_rates",
+        "--gpu",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-reference",
+        "--out",
+        "runs/sim_comparison/gpu-sim-20261027-adaptive-final-wafer_rate_sensitivity"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/compare_wafer_rate_sensitivity.log",
+      "log_sha256": "de9e8049c870482998a62fd7bbe7648b960332c2b3bdffae4eb3ac24f81449a6"
+    },
+    {
+      "label": "compare_joint_sensitivity",
+      "argv": [
+        "docker",
+        "exec",
+        "-e",
+        "RLXY_IMAGE=rlxy-astrasim:0.6.0",
+        "-e",
+        "RLXY_IMAGE_ID=sha256:3dd80b1e6926bdbf03f2855997666ec26fec99b994add0f4b2df4dedca1608f6",
+        "rl-xy-gpu-sim-adaptive-final",
+        "python3",
+        "scripts/compare_simulated_platforms.py",
+        "--wafer",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-wafer_rates",
+        "--gpu",
+        "runs/gpu_sim/gpu-sim-20261027-adaptive-final-optimistic",
+        "--out",
+        "runs/sim_comparison/gpu-sim-20261027-adaptive-final-joint_sensitivity"
+      ],
+      "exit_status": 0,
+      "expected_exit": 0,
+      "log": "acceptance/gpu-sim-20261027-adaptive-final/compare_joint_sensitivity.log",
+      "log_sha256": "de9e8049c870482998a62fd7bbe7648b960332c2b3bdffae4eb3ac24f81449a6"
+    }
+  ],
+  "scope": "Selected fields from original acceptance; raw logs are not included in Git.",
+  "native_fixture_check_counts": {
+    "native_fixtures": 3,
+    "private_fixtures": 5,
+    "old_native_fixtures": 13
+  }
+}
