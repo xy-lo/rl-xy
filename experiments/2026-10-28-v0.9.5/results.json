@@ -1,0 +1,151 @@
+{
+  "status": "ACCEPTED_CONDITIONAL_3B_CONTROL",
+  "paper_main_ready": false,
+  "model_seconds": {
+    "GPU": 16.503233595006,
+    "WAFER": 19.176605455346
+  },
+  "GPU_over_WAFER_time": 0.8605920184067445,
+  "WAFER_minus_GPU_seconds": 2.673371860339998,
+  "WAFER_time_penalty_percent": 16.199079077139046,
+  "shared_policy": {
+    "prompt_batch_size": 384,
+    "responses_per_prompt": 8,
+    "ppo_mini_batch_prompts": 384,
+    "train_tp": 2,
+    "rollout_tp": 1,
+    "pipeline_parallel": 1,
+    "train_micro_batch_trajectories": 4,
+    "logprob_micro_batch_trajectories": 8,
+    "ppo_epochs": 1,
+    "balance_batch": false,
+    "shuffle": false,
+    "dynamic_batching": false,
+    "norm_adv_by_std": true,
+    "loss_aggregation": "token-mean",
+    "policy_loss": "vanilla",
+    "clip_ratio": 0.2,
+    "max_grad_norm": 1.0,
+    "use_kl_loss": true,
+    "use_kl_in_reward": false,
+    "kl_coefficient": 0.001,
+    "entropy_coefficient": 0.0,
+    "distributed_optimizer": true,
+    "offload": false,
+    "sequence_parallel": false,
+    "overlap_grad_reduce": false,
+    "overlap_param_gather": false,
+    "weight_sync": "naive_per_tensor_export_distinct_rollout",
+    "kv_sharding": "partition_no_replication"
+  },
+  "phase_envelopes_seconds": [
+    {
+      "stage": "权重重分片",
+      "GPU": 0.031726397018,
+      "WAFER": 0.012344050542,
+      "WAFER_minus_GPU": -0.019382346476
+    },
+    {
+      "stage": "切到推理",
+      "GPU": 1.6500322e-05,
+      "WAFER": 1.02405e-06,
+      "WAFER_minus_GPU": -1.5476272e-05
+    },
+    {
+      "stage": "生成：prefill＋decode",
+      "GPU": 5.151301700322,
+      "WAFER": 5.47743955205,
+      "WAFER_minus_GPU": 0.32613785172800025
+    },
+    {
+      "stage": "样本布局转换",
+      "GPU": 0.00033819677000000004,
+      "WAFER": 8.2789e-07,
+      "WAFER_minus_GPU": -0.00033736888000000006
+    },
+    {
+      "stage": "切到训练",
+      "GPU": 1.7502322e-05,
+      "WAFER": 1.02605e-06,
+      "WAFER_minus_GPU": -1.6476272e-05
+    },
+    {
+      "stage": "占位reward阶段",
+      "GPU": 2.0143734e-05,
+      "WAFER": 1.165306e-06,
+      "WAFER_minus_GPU": -1.8978428e-05
+    },
+    {
+      "stage": "old-policy logprob",
+      "GPU": 1.9928781536340001,
+      "WAFER": 2.498666726002,
+      "WAFER_minus_GPU": 0.5057885723679998
+    },
+    {
+      "stage": "Reference logprob",
+      "GPU": 1.9928781536340001,
+      "WAFER": 2.498666726002,
+      "WAFER_minus_GPU": 0.5057885723679998
+    },
+    {
+      "stage": "占位优势阶段",
+      "GPU": 1.9015734e-05,
+      "WAFER": 3.7306e-08,
+      "WAFER_minus_GPU": -1.8978428e-05
+    },
+    {
+      "stage": "训练微批前后向/累积",
+      "GPU": 7.241097199674,
+      "WAFER": 8.653544159898,
+      "WAFER_minus_GPU": 1.4124469602240008
+    },
+    {
+      "stage": "DP梯度同步",
+      "GPU": 0.065897080166,
+      "WAFER": 0.028078179898,
+      "WAFER_minus_GPU": -0.037818900268
+    },
+    {
+      "stage": "norm/clip",
+      "GPU": 0.000439786282,
+      "WAFER": 0.00038892237199999996,
+      "WAFER_minus_GPU": -5.0863910000000054e-05
+    },
+    {
+      "stage": "owned Adam",
+      "GPU": 0.001004915092,
+      "WAFER": 0.000979150064,
+      "WAFER_minus_GPU": -2.5765027999999964e-05
+    },
+    {
+      "stage": "参数AllGather",
+      "GPU": 0.025505348492,
+      "WAFER": 0.0064937486,
+      "WAFER_minus_GPU": -0.019011599892
+    },
+    {
+      "stage": "版本发布",
+      "GPU": 1.5501322e-05,
+      "WAFER": 2.505e-08,
+      "WAFER_minus_GPU": -1.5476272e-05
+    },
+    {
+      "stage": "状态清理",
+      "GPU": 7.104674937128,
+      "WAFER": 8.41604847066,
+      "WAFER_minus_GPU": 1.3113735335319996
+    },
+    {
+      "stage": "阶段边界barrier全步包络（非屏障服务时间）",
+      "GPU": 16.503233595006,
+      "WAFER": 19.176605455346,
+      "WAFER_minus_GPU": 2.673371860339998
+    }
+  ],
+  "strict_pair_report": "evidence/W1-strict-pair-a9/verification-a3.json",
+  "strict_pair_report_sha256": "284c4cf60cc80cf2bcbef1e2c98b79fc45a371749c19fbc556c98a886ee4f6bf",
+  "runtime_image": "rlxy-astrasim:0.9.5",
+  "runtime_image_id": "sha256:8847f0dec790d5349586bede4a7bd316ec831b79fe12a93b8f26dd8123f60101",
+  "source_tree_sha256": "ab3474916ca0d164f413d1ef2fd4011cddf947399fe8d58fea19d956010633ca",
+  "label_scope": "synthetic fixed-length controlled IR, canonical hot GEMM lookup on GPU and analytic H0 costs; no numerical training or full runtime calibration"
+}

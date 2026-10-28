@@ -1,0 +1,130 @@
+{
+  "schema_version": "rlxy.publication/1",
+  "date": "2026-10-28",
+  "scope": "Original small run/MVP/pair evidence copied byte-for-byte. Portable design metadata and compact derived execution history are explicitly labeled. Original full matrix/logs retained offline. Current Git source/docs differ from historical runtime snapshot.",
+  "raw_native_logs_distributed": false,
+  "raw_native_replay_performed_by_public_checker": false,
+  "paper_main_ready": false,
+  "files": {
+    "dataset_audit.json": {
+      "bytes": 10496,
+      "sha256": "ff570360554f5f2635539e5b7b995b107b09bac874b4c3f41d4948e98fdf1a6f"
+    },
+    "design_contract.json": {
+      "bytes": 35149,
+      "sha256": "4b2ae69834d1cf47b2f2684599a0adbdb853e6c8fdb2725a601ddccb9c1e88de"
+    },
+    "design_sources.json": {
+      "bytes": 23362,
+      "sha256": "bd4716b4e2cc5e488d58bbfe13fe3c4712866210067b0f09a334a31419d0305e"
+    },
+    "execution_history.json": {
+      "bytes": 140412,
+      "sha256": "c0a8595d1a24b0ae42695cf56b8d4ceae60f52108445cbf6abefba137088d913"
+    },
+    "gemm_error_audit.json": {
+      "bytes": 1579,
+      "sha256": "2491757c7dc1717e80e33f54c366cacfab77f0639790bf71d91a030d3fe088f4"
+    },
+    "gemm_measurement_verification.json": {
+      "bytes": 876,
+      "sha256": "77669c5925e22b145cf7ab0cc31e39fc3a0bfb897b5db7cde604349dca4a9e40"
+    },
+    "gpu/actual_gemm_census.json": {
+      "bytes": 305504,
+      "sha256": "4c3bfd1d319a46e5d5da2cd983d1ed9939d2879cdcac8b6622b8c021cbad452e"
+    },
+    "gpu/global_stage_times.json": {
+      "bytes": 2083,
+      "sha256": "5285f0f941d4f4752b015dc9120a75c0056eff3f5f3325569b8fb9bb5a75851e"
+    },
+    "gpu/manifest.json": {
+      "bytes": 42451,
+      "sha256": "e119147f84067a8157cde7469cd65359958770b2f2322b0818a5751c14956457"
+    },
+    "gpu/metrics.json": {
+      "bytes": 339307,
+      "sha256": "5c697a307fbbb5b40e9f419b27a728b3ee635ace78e0fed8eb2607065677c9f8"
+    },
+    "gpu/run.json": {
+      "bytes": 3288,
+      "sha256": "95b64e82f8edde9a06d8b799ddf7b94b0415b38f796cd290483221f1a22a4401"
+    },
+    "gpu/verification.json": {
+      "bytes": 10968,
+      "sha256": "1728950df6b2156a4ccf0434fdeb413ef918215bc70ed0aa71eaaf2b1741c76f"
+    },
+    "gpu/wallclock_timings.json": {
+      "bytes": 443,
+      "sha256": "e6d097d36d3f419a61656c1a4e675928316807645492dacf3355b77154da0ede"
+    },
+    "inputs/case.json": {
+      "bytes": 663648,
+      "sha256": "17760e03b8ab8408db2aad330cf15f70c1da7a6bd04412bf7f19409042f06b6d"
+    },
+    "inputs/model_config.json": {
+      "bytes": 661,
+      "sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b"
+    },
+    "inputs/policy.json": {
+      "bytes": 828,
+      "sha256": "c5911e4bbcec6558bba56c14fa49b00059487a60d9058480e37c2836712be8eb"
+    },
+    "inputs/workload_provenance.json": {
+      "bytes": 589,
+      "sha256": "cf3eedcaac7d8709581faa6af226d038910b9dbb6859a7f4504cfdc02805e672"
+    },
+    "native_equivalence.json": {
+      "bytes": 155181,
+      "sha256": "1d548e079a08429496db6d013fd8c61951d7a1df4c3b6c77ead57e2a904499a0"
+    },
+    "native_equivalence_run.json": {
+      "bytes": 1077,
+      "sha256": "f115e7e0ee2b66e4df0ee8e25ab49d477663cb5756f10e578d41853dc0420291"
+    },
+    "pair_analysis.json": {
+      "bytes": 497,
+      "sha256": "c70d2fa62a958490388a56ef748f6aabfa7ef9db9f208d03ef7310472f227d88"
+    },
+    "pair_verification.json": {
+      "bytes": 12209,
+      "sha256": "284c4cf60cc80cf2bcbef1e2c98b79fc45a371749c19fbc556c98a886ee4f6bf"
+    },
+    "results.json": {
+      "bytes": 4422,
+      "sha256": "ad34bf1a66d78783d722fcea0ca67f0d2f2e0023869cd976f8d7408626425522"
+    },
+    "source_freeze.json": {
+      "bytes": 36361,
+      "sha256": "a117ab178f5ea6f3159235ee48d2b77cb884b5f92086ff96c8afacb1705c9a86"
+    },
+    "wafer/actual_gemm_census.json": {
+      "bytes": 413272,
+      "sha256": "ed058165eb9649d701e2636006a5170ab9abc1a21b48ca6c4e4cb138bb9aefcb"
+    },
+    "wafer/global_stage_times.json": {
+      "bytes": 2154,
+      "sha256": "cd493cd1010e9e2af8c4fe586ba9a74213765f229ff6a0e5759aec94a6d08d3d"
+    },
+    "wafer/manifest.json": {
+      "bytes": 45581,
+      "sha256": "d4b5766b666232c330204526d8ef26272244f9155c02978f6cf0cb1698ede4d1"
+    },
+    "wafer/metrics.json": {
+      "bytes": 438680,
+      "sha256": "2e975dfbef24d930ecc240bac5c1aaf9d1840087e0795a229aac8bdcfa4b3994"
+    },
+    "wafer/run.json": {
+      "bytes": 3150,
+      "sha256": "5a59be073bf6bca38062aa4572eabc6eb399691379596c6d9e14b6be0ecd5ae3"
+    },
+    "wafer/verification.json": {
+      "bytes": 11774,
+      "sha256": "2e945858f5ad82b30e856cb882a3a8568b8817c90dc723b2ebf96653f681e33d"
+    },
+    "wafer/wallclock_timings.json": {
+      "bytes": 444,
+      "sha256": "23a260b3e2aa333586761e3a3a08a80d992faf8c703478bd51f3a6b632b607b7"
+    }
+  }
+}

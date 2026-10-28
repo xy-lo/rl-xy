@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <array>
 namespace rlxy {
 using json = nlohmann::json;
 struct State {
@@ -24,10 +25,14 @@ struct State {
     uint64_t private_capacity=0;
     uint64_t last_read_node=0;
     std::set<std::string> last_reads;
+    bool read_ids_interned=false;
+    std::vector<std::string> read_id_symbols;
     std::map<uint64_t,std::vector<std::string>> active_reads;
     uint64_t dram=0, capacity=0, sram=0, memory_owner=0;
     int64_t reserved=0;
+    std::array<char,65536> log_buffer;
     std::ofstream log;
+    bool eager_flush=[](){const auto* p=std::getenv("RLXY_RESOURCE_EAGER_FLUSH");return p && std::string(p)=="1";}();
     void record(const char* event,uint64_t node,uint64_t tick) {
         json row{{"event",event},{"node_id",node},{"tick",tick},{"dram_bytes",dram},
                   {"sram_bytes",sram},{"reserved_bytes",reserved},{"local_memory_owner",memory_owner}};
@@ -40,22 +45,49 @@ struct State {
             } else row["core_sram_bytes"]=core_used;
         }
         log<<row.dump()<<"\n";
-        log.flush();
+        // Successful process shutdown closes every stream before validation.
+        // Per-event flush affected only host I/O, never the simulated ticks.
+        if(eager_flush)log.flush();
     }
     const json& contract(uint64_t node) { return nodes.at(std::to_string(node)); }
     const json& workspace(const json& n) {
         if(n.contains("core_workspace_bytes"))return n.at("core_workspace_bytes");
         return core_profiles.at(n.at("core_workspace_profile").get<std::string>());
     }
+    void configure_read_id_symbols(const json& rank) {
+        read_ids_interned=rank.contains("read_id_symbols");
+        read_id_symbols.clear();
+        if(!read_ids_interned)return;
+        const auto& table=rank.at("read_id_symbols");
+        if(!table.is_array())throw std::runtime_error("rlxy read ID symbols must be an array");
+        std::set<std::string> seen;
+        read_id_symbols.reserve(table.size());
+        for(const auto& item:table) {
+            if(!item.is_string())throw std::runtime_error("rlxy read ID symbol must be a string");
+            const auto value=item.get<std::string>();
+            if(value.empty() || !seen.insert(value).second)throw std::runtime_error("rlxy empty/duplicate read ID symbol");
+            read_id_symbols.push_back(value);
+        }
+    }
+    std::string decode_read_id(const json& id) const {
+        if(!read_ids_interned)return id.get<std::string>();
+        // Test the JSON numeric category before conversion: get<uint64_t>()
+        // alone can coerce negative/signed/float values instead of rejecting.
+        if(!id.is_number_unsigned())throw std::runtime_error("rlxy read ID index must be unsigned integer");
+        const auto index=id.get<uint64_t>();
+        if(index>=read_id_symbols.size())throw std::runtime_error("rlxy read ID index out of range");
+        return read_id_symbols.at(static_cast<size_t>(index));
+    }
     std::vector<std::string> decode_reads(const json& n) {
         if(n.contains("reads"))return n.at("reads").get<std::vector<std::string>>();
         const auto& delta=n.at("read_delta");
         if(delta.at("base_node").get<uint64_t>()!=last_read_node)throw std::runtime_error("rlxy read delta order mismatch");
+        if(!delta.at("remove").is_array() || !delta.at("add").is_array())throw std::runtime_error("rlxy read delta IDs must be arrays");
         auto value=last_reads;
         for(const auto& id:delta.at("remove"))
-            if(!value.erase(id.get<std::string>()))throw std::runtime_error("rlxy invalid read delta removal");
+            if(!value.erase(decode_read_id(id)))throw std::runtime_error("rlxy invalid read delta removal");
         for(const auto& id:delta.at("add"))
-            if(!value.insert(id.get<std::string>()).second)throw std::runtime_error("rlxy duplicate read delta addition");
+            if(!value.insert(decode_read_id(id)).second)throw std::runtime_error("rlxy duplicate read delta addition");
         return std::vector<std::string>(value.begin(),value.end());
     }
     bool available(uint64_t node) {
@@ -180,6 +212,7 @@ inline void initialize_impl(int rank) {
     } else selected=root.at("ranks").at(std::to_string(rank));
     const auto& r=selected;
     auto s=std::make_unique<State>();s->capacity=r.at("dram_capacity").get<uint64_t>();s->nodes=r.at("nodes");
+    s->configure_read_id_symbols(r);
     if(r.contains("cores_per_die")) {
         const auto cores=r.at("cores_per_die").get<uint64_t>();
         s->private_capacity=r.at("sram_bytes_per_core").get<uint64_t>();
@@ -192,6 +225,7 @@ inline void initialize_impl(int rank) {
         if(bytes>s->capacity || s->dram>s->capacity-bytes)throw std::runtime_error("rlxy initial DRAM overflow");
         s->objects[it.key()]=bytes;s->ready.insert(it.key());s->dram+=bytes;
     }
+    s->log.rdbuf()->pubsetbuf(s->log_buffer.data(),s->log_buffer.size());
     s->log.open(root.at("log_prefix").get<std::string>()+"."+std::to_string(rank)+".jsonl");
     if(!s->log)throw std::runtime_error("rlxy resource log unavailable");
     s->record("initial",0,0);states()[rank]=std::move(s);

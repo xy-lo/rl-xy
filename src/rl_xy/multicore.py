@@ -37,7 +37,7 @@ def partition_matmul(problem, cores, capacity):
     return tuple(result)
 
 
-def estimate_multicore(spec, hardware, estimate_type):
+def estimate_multicore(spec, hardware, estimate_type, *, partitioner=None):
     cores=hardware.cores_per_die
     workspace=[0]*cores
     compute=[0]*cores
@@ -46,7 +46,7 @@ def estimate_multicore(spec, hardware, estimate_type):
     partitions=[]
     critical_ns=0
     for problem in spec.matmuls:
-        parts=partition_matmul(problem,cores,hardware.sram_bytes_per_core)
+        parts=(partitioner(problem,hardware) if partitioner else partition_matmul(problem,cores,hardware.sram_bytes_per_core))
         per_compute=[0]*cores
         per_memory=[0]*cores
         local_reads=local_writes=0
@@ -64,7 +64,7 @@ def estimate_multicore(spec, hardware, estimate_type):
         reads+=local_reads;writes+=local_writes
         mappings.append(max((p[2] for p in parts),key=lambda m:m.workspace_bytes))
         partitions.append({'policy':'N_then_M_then_batch_no_split_K','active_cores':len(parts),
-            'grid_n':min(problem.n,cores),'grid_m':min(problem.m,cores//min(problem.n,cores)),
+            'grid_n':len({p[1][4] for p in parts}),'grid_m':len({p[1][2] for p in parts}),
             'flops_sum':sum(p[2].flops for p in parts),'read_bytes_sum':local_reads,'write_bytes_sum':local_writes})
     active=min(cores,max(spec.vector_ops,spec.read_bytes+spec.write_bytes))
     if active:

@@ -25,6 +25,20 @@ def build_parser() -> argparse.ArgumentParser:
     gpu.add_argument('--scenario',required=True,type=Path,help='shared logical host and original wafer reference scenario')
     gpu.add_argument('--gpu-profile',required=True,type=Path)
     gpu.add_argument('--out',required=True,type=Path)
+    for command in (wafer,gpu):
+        command.add_argument('--colocation',type=Path,help='pinned global synchronous stage and TP-layout contract')
+
+    aligned=subparsers.add_parser('run-aligned',help='selected PP1 distributed-optimizer veRL protocol; conditional native evidence')
+    aligned.add_argument('--case',required=True,type=Path)
+    aligned.add_argument('--scenario',required=True,type=Path)
+    aligned.add_argument('--policy',required=True,type=Path)
+    aligned.add_argument('--gpu-profile',type=Path)
+    aligned.add_argument('--active',type=int,default=48)
+    aligned.add_argument('--out',required=True,type=Path)
+    aligned.add_argument('--contract-local-chains',action='store_true',help='whole-graph contraction is currently rejected; component contraction is enabled by default')
+    aligned.add_argument('--conservative-external-reads',action='store_true',help='diagnostic: retain redundant immutable carrier reads for exact native A/B')
+    aligned.add_argument('--uncontracted-components',action='store_true',help='diagnostic full component graph for native equivalence checks')
+    aligned.add_argument('--legacy-resource-read-ids',action='store_true',help='diagnostic: encode native read deltas with original string IDs for exact A/B')
 
     hardware = subparsers.add_parser("inspect-hardware", help="validate source-bearing H and report backend readiness")
     hardware.add_argument("--profile", required=True, type=Path)
@@ -78,9 +92,17 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command=='run-aligned':
+            from .aligned_run import run_aligned
+            output=run_aligned(args.case,args.scenario,args.policy,args.out,gpu_profile_path=args.gpu_profile,
+                active=args.active,contract_local_chains=args.contract_local_chains,compact_components=not args.uncontracted_components,conservative_bridge_reads=args.conservative_external_reads,
+                intern_resource_read_ids=not args.legacy_resource_read_ids)
+            print(f'rlxy: PASS: {output}')
+            return 0
         if args.command in ('run-wafer','run-gpu'):
             from .wafer_run import run_wafer
-            output=run_wafer(args.case,args.scenario,args.out,gpu_profile_path=args.gpu_profile if args.command=='run-gpu' else None)
+            output=run_wafer(args.case,args.scenario,args.out,gpu_profile_path=args.gpu_profile if args.command=='run-gpu' else None,
+                colocation_path=args.colocation)
             print(f'rlxy: PASS: {output}')
             return 0
         if args.command == "synthesize-workload":

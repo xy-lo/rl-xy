@@ -2,6 +2,7 @@
 from dataclasses import asdict, replace
 import hashlib
 import json
+import os
 from pathlib import Path
 
 from .astra_adapter import generate_traces, parse_astra_output, run_astrasim
@@ -111,7 +112,7 @@ def verify_wafer_graph(case,graph,events):
     return checks,snapshots,peaks
 
 
-def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
+def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None,colocation_path=None):
     case=load_case(case_path)
     case,scenario,source=effective_case(case,scenario_path)
     gpu=None;provider=None;network_model='mesh2d'
@@ -124,7 +125,7 @@ def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
     out=_prepare_output(out_path)
     try:
         copied=copy_inputs(case.source_path.parent,out,('case.json',))
-        optional=[name for name in ('model_config.json','compilation.json','gpu_provenance.json','H_SCOPE.md') if (case.source_path.parent/name).is_file()]
+        optional=[name for name in ('model_config.json','compilation.json','gpu_provenance.json','H_SCOPE.md','workload_provenance.json') if (case.source_path.parent/name).is_file()]
         if optional:copied.update(copy_inputs(case.source_path.parent,out,optional))
         inputs=out/'inputs'
         for name,path in [('wafer.json',Path(scenario_path)),('source_hardware.json',source)]:
@@ -133,8 +134,23 @@ def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
         if gpu is not None:
             import shutil
             shutil.copyfile(gpu_profile_path,inputs/'gpu_profile.json');copied['gpu_profile']=inputs/'gpu_profile.json'
-        graph=build_wafer_graph(case,scenario['mesh'],scenario['data_parallel'],str(out/'astra_logs/resources'),cost_provider=provider)
-        world=2*scenario['data_parallel']
+            if gpu.get('gemm_profile'):
+                gemm_source=(Path(gpu_profile_path).resolve().parent/gpu['gemm_profile']).resolve()
+                shutil.copyfile(gemm_source,inputs/'gemm_measurements.json');copied['gemm_measurements']=inputs/'gemm_measurements.json'
+        world=scenario['mesh'][0]*scenario['mesh'][1]
+        colocation=None
+        if colocation_path is not None:
+            from .colocation import load_colocation,build_colocated_graph
+            colocation=load_colocation(colocation_path,case,world)
+            import shutil
+            shutil.copyfile(colocation_path,inputs/'colocation.json');copied['colocation']=inputs/'colocation.json'
+            if gpu is None and colocation['mapping']=='capacity_aware':
+                from .capacity_mapping import CapacityAwareCostProvider
+                provider=CapacityAwareCostProvider()
+            graph=build_colocated_graph(case,world,colocation,str(out/'astra_logs/resources'),cost_provider=provider)
+            write_json(out/'colocation_contract.json',{'config':colocation,**graph.audit})
+        else:
+            graph=build_wafer_graph(case,scenario['mesh'],scenario['data_parallel'],str(out/'astra_logs/resources'),cost_provider=provider)
         write_json(out/'resolved_config.json',{'case':case.resolved,'effective_hardware':asdict(case.hardware),'scenario':scenario,
             'gpu_profile':gpu,'gpu_rates_authoritative_from_profile_not_rounded_per_sm_fields':gpu is not None})
         write_json(out/'placement.json',graph.placements)
@@ -164,7 +180,7 @@ def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
         copied['network']=inputs/'astra_network.yml'
         write_json(inputs/'astra_remote_memory.json',{'memory-type':'NO_MEMORY_EXPANSION'});copied['remote']=inputs/'astra_remote_memory.json'
         write_json(out/'astra_config_contract.json',{'backend':'congestion_aware','topology':network_model,
-            'dimensions':scenario['mesh'],'placement':'DP replicas, TP2 adjacent linear ranks',
+            'dimensions':scenario['mesh'],'placement':'selected train TP groups; strided rollout TP; explicit standby ranks' if colocation else 'DP replicas, TP2 adjacent linear ranks',
             'logical_vs_transport_padding':'explicit per-operation transport_payload_bytes',
             'physical_geometry_validated':False,'assumptions':scenario['assumptions']})
         traces=generate_traces(graph.plan.operations,inputs/'workload',ranks=world,astra_time_scale=1000,comm_groups=graph.groups)
@@ -172,9 +188,14 @@ def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
         execution=run_astrasim(trace_prefix=inputs/'workload',system_config=copied['system'],network_config=copied['network'],
             remote_memory_config=copied['remote'],output_dir=out,resource_contract=copied['resource_index'],
             binary='/opt/astra-sim/build/astra_analytical/build/bin/AstraSim_Analytical_Congestion_Aware',
-            network_model=network_model,comm_groups=copied['groups'],timeout_seconds=1200)
+            network_model=network_model,comm_groups=copied['groups'],
+            timeout_seconds=int(os.environ.get('RLXY_ASTRA_TIMEOUT_SECONDS','1200')))
         events,summaries=parse_astra_output(execution,graph.plan.operations,ranks=world,astra_time_scale=1000)
-        checks,snapshots,peaks=verify_wafer_graph(case,graph,events)
+        if colocation is None:checks,snapshots,peaks=verify_wafer_graph(case,graph,events)
+        else:
+            from .colocation_validation import validate_colocation
+            checks,snapshots,peaks,stage_times=validate_colocation(case,graph,events)
+            write_json(out/'global_stage_times.json',stage_times)
         objects=[ObjectRecord(t['storage_id'],t['tensor_id'],t['kind'],f'd{t["rank"]}.dram',t['nbytes'],
             str(t['dtype_bytes'])+'B',None,str(t['created_node']),str(t['ready_node']),str(t['released_node']),
             None if t['released_node'] is None else str(t['released_node']),t['persistent'],t['rank']) for t in graph.plan.tensors]
@@ -187,8 +208,9 @@ def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
                 profiles[key]=estimate;meta['cost_profile_sha256']=key
             exported.append(replace(op,metadata=meta))
         write_json(out/'cost_profiles.json',profiles)
+        display_case=replace(case,strategy=replace(case.strategy,tensor_parallel=colocation['train_tp'])) if colocation else case
         write_tables(out,operations=exported,events=events,summaries=summaries,objects=objects,
-            snapshots=snapshots,transfers=_transfers(graph.plan.operations),checks=checks,parameters=enumerate_parameters(case))
+            snapshots=snapshots,transfers=_transfers(graph.plan.operations),checks=checks,parameters=enumerate_parameters(display_case))
         _check_or_fail(out,checks)
         metrics={'metric_scope':'uncalibrated_wafer_scenario_not_numeric_training','total_simulated_time_ns':max(e.callback_tick for e in events)/1000,
             'rounds':case.rounds,'dies':world,'cores_per_die':case.hardware.cores_per_die,'tensor_parallel':2,
@@ -204,11 +226,17 @@ def run_wafer(case_path,scenario_path,out_path,*,gpu_profile_path=None):
                 device_count=world,sms_per_gpu=gpu['sms_per_gpu'],
                 gpu_profile=gpu,assumptions={'gpu':gpu['provenance'],'shared_host':scenario['assumptions']},
                 native_topology='gpu_node_switch_shared_uplink_spine')
+        if colocation is not None:
+            metrics.update(tensor_parallel=colocation['train_tp'],data_parallel=graph.audit['train_dp'],
+                rollout_tensor_parallel=colocation['rollout_tp'],rollout_data_parallel=graph.audit['rollout_dp'],
+                active_devices=graph.audit['active_devices'],colocation=graph.audit,
+                metric_scope='pinned_verl_sync_colocation_protocol_analytic_kernels_uncalibrated')
         write_json(out/'metrics.json',metrics)
         _write_summary_json(out,metrics,checks,evidence_kind=case.evidence_kind)
         write_summary_markdown(out,title='GPU SM/CTA与节点交换网络执行' if gpu else 'DP×TP2多核晶圆mesh执行',metrics=metrics,checks=checks)
         _success(out)
-        write_manifest(out,case_id=case.case_id,evidence_kind=case.evidence_kind,run_kind='gpu_dp_tp2' if gpu else 'wafer_dp_tp2',
+        write_manifest(out,case_id=case.case_id,evidence_kind=case.evidence_kind,
+            run_kind=('gpu_verl_sync' if gpu else 'wafer_verl_sync') if colocation else ('gpu_dp_tp2' if gpu else 'wafer_dp_tp2'),
             workflow_scope='native GPU node-switch-spine; separate CTA/SM cost; uncalibrated' if gpu else 'native 2D mesh; DP gradient SUM after global token normalization; private multicore SRAM; uncalibrated scenario',
             execution=execution,metrics=metrics,checks=checks,input_paths=copied)
         return out

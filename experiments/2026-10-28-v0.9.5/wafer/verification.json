@@ -1,0 +1,327 @@
+{
+  "schema_version": "rlxy.aligned_result_check/1",
+  "status": "PASS",
+  "run_dir": "/Users/xy/Documents/ChatGPT/RL Infra/outputs/rl-xy-paper-experiment-20261028/evidence/W1-wafer-a9-independent/raw/result",
+  "manifest_sha256": "d4b5766b666232c330204526d8ef26272244f9155c02978f6cf0cb1698ede4d1",
+  "checker_source_sha256": "f8921b2d72d64de7bd24f8d9f83ebaec357a0e0fe657b0de7cb402d280f855db",
+  "checker_scope": "MVP independent artifact/encoding/metadata/native-exit/event-index/dependency checks; not a new simulation or paper release.",
+  "checks": [
+    {
+      "check": "manifest_all_artifact_and_input_SHA",
+      "status": "PASS",
+      "detail": {
+        "artifacts": 233,
+        "inputs": 119
+      }
+    },
+    {
+      "check": "status_native_exit_checks_and_metrics",
+      "status": "PASS",
+      "detail": {
+        "checks": 1647,
+        "paper_performance_ready": false
+      }
+    },
+    {
+      "check": "table_stored_uncompressed_SHA_bytes_rows",
+      "status": "PASS",
+      "detail": {
+        "astra_rank_summary.csv": 54,
+        "checks.csv": 1647,
+        "events.jsonl": 754590,
+        "memory.csv": 3018468,
+        "objects.csv": 54174,
+        "operations.jsonl": 381908,
+        "parameters.csv": 182,
+        "transfers.csv": 180533
+      }
+    },
+    {
+      "check": "gzip_unified_and_per_rank_semantic_SHA",
+      "status": "PASS",
+      "detail": {
+        "ranks": 54,
+        "streamed_unified_contract": true,
+        "unified_expanded_bytes": 572015032,
+        "largest_decoded_value_bytes": 11928419,
+        "max_single_value_bytes": 536870912,
+        "canonical_semantic_sha256": "78671c0b5e0815c5792a6041bcca8791160614a90bc36275a41b1eb40e8e037f",
+        "top_level_keys": [
+          "log_prefix",
+          "policy",
+          "ranks",
+          "schema_version"
+        ],
+        "semantic_SHA_reencoded_from_all_top_fields": true
+      }
+    },
+    {
+      "check": "policy_FP_counts_and_final_versions",
+      "status": "PASS",
+      "detail": {
+        "policy_sha256": "4231fd1af2aebb07b086155b3da65d34405ce064e706a60ca9be3a7a5532633e",
+        "trajectories": 3072,
+        "response_tokens": 393216
+      }
+    },
+    {
+      "check": "streamed_operation_event_coverage_compute_ticks_dependencies",
+      "status": "PASS",
+      "detail": {
+        "operations": 381908,
+        "rank_events": 754590,
+        "max_callback_tick": 19176605455346
+      }
+    },
+    {
+      "check": "template_signature_guard_and_every_invocation_clock_flags",
+      "status": "PASS",
+      "detail": {
+        "distinct_semantic_signatures": 7,
+        "contraction_instances": 7,
+        "producer_unique_templates_field_scope": "contraction object instance count; historical producer name",
+        "invocations": 1632,
+        "full": 7,
+        "reused": 1625
+      }
+    },
+    {
+      "check": "artifacts_unchanged_after_verification",
+      "status": "PASS",
+      "detail": 233
+    },
+    {
+      "check": "manifest_and_checker_source_bindings_unchanged",
+      "status": "PASS",
+      "detail": true
+    }
+  ],
+  "input_path_remaps": [
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.0.json",
+      "local": "inputs/resources.0.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.1.json",
+      "local": "inputs/resources.1.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.10.json",
+      "local": "inputs/resources.10.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.11.json",
+      "local": "inputs/resources.11.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.12.json",
+      "local": "inputs/resources.12.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.13.json",
+      "local": "inputs/resources.13.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.14.json",
+      "local": "inputs/resources.14.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.15.json",
+      "local": "inputs/resources.15.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.16.json",
+      "local": "inputs/resources.16.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.17.json",
+      "local": "inputs/resources.17.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.18.json",
+      "local": "inputs/resources.18.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.19.json",
+      "local": "inputs/resources.19.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.2.json",
+      "local": "inputs/resources.2.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.20.json",
+      "local": "inputs/resources.20.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.21.json",
+      "local": "inputs/resources.21.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.22.json",
+      "local": "inputs/resources.22.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.23.json",
+      "local": "inputs/resources.23.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.24.json",
+      "local": "inputs/resources.24.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.25.json",
+      "local": "inputs/resources.25.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.26.json",
+      "local": "inputs/resources.26.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.27.json",
+      "local": "inputs/resources.27.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.28.json",
+      "local": "inputs/resources.28.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.29.json",
+      "local": "inputs/resources.29.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.3.json",
+      "local": "inputs/resources.3.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.30.json",
+      "local": "inputs/resources.30.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.31.json",
+      "local": "inputs/resources.31.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.32.json",
+      "local": "inputs/resources.32.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.33.json",
+      "local": "inputs/resources.33.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.34.json",
+      "local": "inputs/resources.34.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.35.json",
+      "local": "inputs/resources.35.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.36.json",
+      "local": "inputs/resources.36.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.37.json",
+      "local": "inputs/resources.37.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.38.json",
+      "local": "inputs/resources.38.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.39.json",
+      "local": "inputs/resources.39.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.4.json",
+      "local": "inputs/resources.4.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.40.json",
+      "local": "inputs/resources.40.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.41.json",
+      "local": "inputs/resources.41.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.42.json",
+      "local": "inputs/resources.42.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.43.json",
+      "local": "inputs/resources.43.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.44.json",
+      "local": "inputs/resources.44.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.45.json",
+      "local": "inputs/resources.45.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.46.json",
+      "local": "inputs/resources.46.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.47.json",
+      "local": "inputs/resources.47.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.48.json",
+      "local": "inputs/resources.48.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.49.json",
+      "local": "inputs/resources.49.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.5.json",
+      "local": "inputs/resources.5.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.50.json",
+      "local": "inputs/resources.50.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.51.json",
+      "local": "inputs/resources.51.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.52.json",
+      "local": "inputs/resources.52.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.53.json",
+      "local": "inputs/resources.53.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.6.json",
+      "local": "inputs/resources.6.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.7.json",
+      "local": "inputs/resources.7.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.8.json",
+      "local": "inputs/resources.8.json"
+    },
+    {
+      "declared": "/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/resources.9.json",
+      "local": "inputs/resources.9.json"
+    }
+  ],
+  "paper_performance_ready_from_input": false,
+  "pinned_input_policy_defaults_applied": {},
+  "paper_readiness_promoted_by_checker": false,
+  "max_single_JSON_bytes": 536870912,
+  "not_independently_recomputed": [
+    "raw rotated debug issue/callback records vs exported event rows",
+    "full object alloc/read/READY/free/private-SRAM ledger",
+    "logical component source IR or original native macro event stream SHA; guard records/certificates are cross-checked,not substituted for source reconstruction",
+    "cost calibration,model numerical training,learning quality,or paper readiness"
+  ]
+}

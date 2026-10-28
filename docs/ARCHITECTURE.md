@@ -1,136 +1,60 @@
-# 架构与端到端数据流
+# 架构与执行合同
 
-0.2扩展：在原操作DAG与Chakra之间插入typed mapping/cost、通信端点lowering和tensor/resource合同；Workload hook在原生issue/callback时执行真实准入，Python独立重放其日志。详见 [mapped_costs](components/mapped_costs.md)、[tensor_resources](components/tensor_resources.md)、[network](components/network.md)。下文保留0.1接口背景；旧ledger只跟踪persistent/KV，不替代新的全声明对象计划。
+当前主入口是 `rl_xy.cli run-aligned`。历史 `run`、`run-wafer`、`run-colocated` 保留用于兼容；它们的旧协议和性能数字不能替代本版控制。逐文件职责见 [FILE_MAP](FILE_MAP.md)，命令见 [REPRODUCING](REPRODUCING.md)。
 
-## 1. 目标与原则
+## 分层与模块
 
-这个 MVP 的目标不是堆叠功能，而是建立一条可审计的最短闭环：同一份配置经过严格解析后，生成工作负载操作、资源生命周期和每 rank Chakra trace；AstraSim 执行 trace；解析器把原始输出还原为事件和指标；验证器再用相互独立的合同检查判断这次运行能否被接受。
+| 层 | 主要文件 | 输入、功能与输出 |
+|---|---|---|
+| 输入/能力合同 | `config.py`、`baseline_contract.py`、`model.py`、`hardware.py` | 校验模型、完整轨迹、batch/并行组、H0 来源及实现能力；配置合法不等于已经实现或成本可信 |
+| 同步协议 | `colocation.py`、`colocation_validation.py` | 全局阶段边界、训练/生成 TP 布局、权重重分片、行为/Actor/Reference 版本 |
+| 真实微批/DO | `training_batching.py`、`distributed_optimizer.py`、`aligned_graph.py` | 聚合真实形状，保留轨迹/causal attention/有效token分母，RS→owned Adam→AG 与状态生命周期 |
+| 推理生命周期 | `uniform_generation.py`、`inference_lifetimes.py` | 固定长度生成、KV 预留/增长/回收、最后 hidden row 的 sampling LM head；不复制实际 server router |
+| 算子与硬件成本 | `operator_ir.py`、`mapped_costs.py`、`gpu_model.py`、`mapping.py`、`multicore.py` | typed GEMM/向量/读写；GPU SM/CTA/标签或 wafer tile/核私有 SRAM、共享 DRAM 服务 |
+| 成本域与缓存 | `gemm_census.py`、`memoized_costs.py` | 按实际调用次数列精确逻辑签名，查表缺域拒绝，完整 shape/precision/cache 口径不得以统一倍数替代 |
+| 张量/资源 | `tensor_plan.py`、`resource_encoding.py`、`resource_validation.py` | alloc/read/READY/free、持久状态、workspace、私有 SRAM、DRAM/NIC、完整生命周期和峰值 |
+| 原生适配 | `communication_lowering.py`、`astra_adapter/`、`docker/astrasim/` | 每 rank Chakra ET、通信端点与资源 hook；原生网络排队和 issue/callback 时钟 |
+| 等价执行优化 | `local_chain_contraction.py`、`component_proof_cache.py`、`evidence_io.py` | 严格串行本地链精确收缩、不可变组件证明复用、流式证据；不删通信或资源验证 |
+| 运行/证据 | `aligned_run.py`、`reporting.py`；`scripts/bounded_run.py` | 预算、退出、镜像/源/输入身份、原始日志、SHA、指标与失败保留 |
+| 独立分析 | `scripts/check_aligned_result.py`、`compare_aligned_results.py`、`compare_native_replay.py` | 绑定实际 manifest 与工具 SHA；单包、同策略、原生等价分别检查，不提升硬件精度 |
 
-核心原则如下：
+## 一次同步更新
 
-1. **W/H/S 分离**：工作负载、硬件假设和映射/调度策略各有独立配置语义，避免把算法逻辑写死在硬件模型中。
-2. **AstraSim 是时序真源**：规划器提供工作量与依赖，不能以 Python 估算完成时间冒充 AstraSim 输出。
-3. **对象先于内存数字**：当前为参数、梯度、优化器状态和 rollout KV 记录身份、版本、位置及生命周期；内存指标只覆盖这些已建模对象，不把未实现的激活 tape 或 SRAM 工作区当成零占用。
-4. **失败关闭**：二进制退出异常、rank 不完整、event 缺失、容量越界、版本错误或 hash 不一致均使 run 失败。
-5. **证据不越级**：synthetic fixture 只证明框架闭环，不自动升级为硬件校准或真实训练证据。
+1. 持久 Actor/Reference/DO 状态准入；按所选 naive 路径导出推理权重并计重分片通信和本地读写。
+2. 经过阶段屏障，执行 prefill 与逐 token decode；Transformer/KV 处理全 P，普通 sampling 只对每请求最后 hidden row 做 LM head。
+3. 搬运样本、回收生成状态、切回训练；执行 reward、old-policy logprob、冻结 Reference、GRPO group 优势阶段。
+4. 执行真实训练 microbatch 的 forward/backward 与梯度累积；teacher 使用完整 S=P+R−1，不把采样剪枝套到训练。
+5. DP 梯度 ReduceScatter、唯一参数所有权的 norm/clip、owned FP32 Adam 更新、BF16 参数 AllGather。
+6. Actor 版本发布和清理。当前一次更新 Actor0→1，Reference0→0；下一轮不能提前读取未发布版本。
 
-## 2. 分层
+W1 训练 DP 连续分配完整 group；训练 TP 块内生成使用 `local[j::micro]` 静态交错，回收后按源 owner 显式搬运。每生成 replica 收到16个group各4条，不能误写成8个完整group。两侧 mapping/dispatch 相同，但这不是 veRL 实际 worker/server 路由、continuous batching 或 cache 实现。算法 oracle 及合成输入不等于执行数值 LLM 训练。
 
-### 2.1 合同层
+## 内存、通信与资源准入
 
-`config.py` 读取 `case.json`，要求字段集合完全匹配 schema，并完成跨字段约束。例如，当前 MVP 要求一 die 对应一个 TP rank、`PP=1`、`DP=1`、两个 trajectory、每个训练 microbatch 一条 trajectory，以及严格同步调度。
+对象可先分配、后 READY；读必须满足生产依赖，free 必须晚于最后消费。KV、保守激活 tape、反向 partial、FP32 主梯度/master/moments、通信 staging 和外层样本 carrier 均有生命周期。DO 只分片归属状态，不把所有内存免费除 DP。arena 是原逻辑对象/预留的保守准入峰值，不是新算法节约；它不是生产 veRL 的显存严格下界。
 
-输出是冻结 dataclass，而不是在后续阶段继续修改的自由字典。解析后的配置另存为 `resolved_config.json`，作为本次运行的实际输入。
+GROUP AllGather 的 `comm_size` 是每 rank 输入 shard，ReduceScatter 是每 rank 完整输入；输出空间、端点读写、ring SUM 和 staging 分别保留。Astra 内部高 `local-mem-bw` 仅禁用重复 memory proxy，真实本地成本由显式服务给出，不是芯片带宽。操作级 payload 之和不等于 ring/链路 wire traffic。
 
-### 2.2 模型与成本层
+`RlxyResources.hh` 在原生 issue/callback 执行准入/释放并输出实际快照。统一合同和逐 rank 合同必须能完整解码、语义和 SHA 对齐。read-ID 字典仅压缩重复 storage 字符串，非法类型/索引被拒绝；完整向量值缓存仍验证每行快照和私有容量；64 KiB 日志缓冲只改变宿主 I/O，kill 后的部分日志仍是失败。
 
-`model.py` 枚举 toy Transformer 参数，明确 unique element、每 die 本地 element、复制参数和 TP 分片布局；同时给出 actor、reference、master、gradient 与 Adam 状态的字节账。
+严格本地链只合并没有中间竞争边界的串行 compute，保留整数服务总和；通信、全局边界和 cleanup 不免费消失。原始逻辑对象在实际 native macro 时钟上回放。宏内推导事件不能冒称每个算子都有独立 native callback。组件实例证明和语义签名去重分开，不能以字典去重省掉 invocation 覆盖。
 
-`costs.py` 把 FLOP、vector op 和局部 DMA 字节映射为合成时长。局部 DMA 公式目前用于独立 transfer fixture，主 toy 不展开逐 tile 的本地搬运。这里的速率来自 fixture 配置，只用于构造可追踪工作量，不是测得的芯片性能。
+## 硬件与单位
 
-### 2.3 工作流层
+| 参数 | GPU 模型 | H0 晶圆模型 |
+|---|---|---|
+| 分配/活动 | 48/48，6节点×8 A100-SXM80GB | 54/48，6×9逻辑mesh，256核/die |
+| 名义 FP16/BF16 算力 | 312TFLOPS/卡；14.976PFLOPS合计 | FP16 1.02TFLOPS/核；active12.53376PF，allocated14.10048PF；BF16同率是假设 |
+| 主存 | 80GB/卡，2.039TB/s | 64GB/die，2TB/s |
+| 片上 | 164KiB/SM参考预算，不是实测cuBLAS occupancy | 1.25MB/core私有SRAM；容量不当带宽 |
+| 网络主场景 | NVLink300GB/s/方向；节点uplink400GB/s/方向共享 | D2D2TB/s/edge/方向的执行口径假设 |
 
-`workflow.py` 把一轮同步 GRPO 展开为细粒度 `Operation`：
+H0 来源保留于 `configs/hardware/`；用户原表/论文值、单位解释、执行假设分别记录。WSC-LLM Fig.3 模板几何与 Case3 54die 资源不能直接拼成已验证封装；不缩小计算die掩盖布局问题。NoC/SRAM带宽、FP32/向量率、D2D方向/延迟、NIC/host等未定项不能冒充论文实测。细粒度 NoC/DMA、有限 NIC 队列与物理布局未完整校准。主参数和引用见[实验设计](EXPERIMENT_DESIGN.md)。
 
-- `compute`：含持续时间、FLOP、vector op、tensor bytes 与语义元数据；
-- `collective`：含 collective 类型与 payload；
-- `p2p`：含源/目的 rank 与 payload。
+模型成本用 ns，当前 native tick 每1000tick对应1model ns；日志和 manifest 保存缩放。以真实完成 callback 还原时钟，程序墙钟另记。阶段表是全 rank 最早 issue 到最晚 callback 的 envelope；barrier 的全步包络不是屏障服务时间，阶段跨度不能直接相加。
 
-每个 operation 有稳定的 `node_id`、`op_id`、phase、`participant_ranks` 和 `dependencies_by_rank`。首个调度策略在**每个参与 rank 内**把节点连接为确定性的本地严格依赖链；collective 与 p2p 通信节点负责 rank 间显式同步。未参与某个操作的 rank 不产生节点，也不承担虚构时长。数据结构保留 rank-local 依赖边，后续可以换成更宽松的 DAG 调度器，而无需改 W/H 合同或结果格式。
+## 证据能支持什么
 
-### 2.4 对象与资源层
+每个 run 保存实际 argv、模型/数据/算法/硬件/策略、源树与镜像/二进制、输入/产物 SHA、退出/OOM、预算、原始事件/资源与检查。失败保留；超时或超容量不填性能数值，不从多次尝试拼出伪单次成功。
 
-账本为持久状态和 rollout KV allocation increment 记录：存储身份、逻辑 tensor 身份、dtype、字节数、版本、位置、创建/就绪/最后消费/释放时点、是否持久以及所有 rank。快照核对已跟踪的 DRAM、KV reservation 与计划 p2p NIC 容量。主 toy 未展开所有中间张量、激活 tape、collective 临时缓冲、SRAM tile 工作区或资源锁；报告中的 DRAM 峰值是已跟踪小计，不是全轮或全设备峰值。独立 transfer fixture 单独验证 SRAM 生命周期与容量负例。
-
-这个层回答“什么数据在何时存在于哪里”，不负责决定 AstraSim 网络完成时间。
-
-### 2.5 AstraSim 适配层
-
-适配器把统一 operation 序列降为两个 rank 的 Chakra ET：
-
-- compute 映射为计算节点；
-- collective 映射为 AstraSim 支持的 collective；
-- p2p 在源 rank 生成 send、目的 rank 生成 receive，并共享匹配 tag；
-- 每个 trace 只包含该 rank 实际参与的节点，`ctrl_deps` 来自该 rank 的本地前驱；host/reward/advantage 等 rank0 synthetic replay 不在 rank1 镜像；
-- collective 覆盖两个 TP rank，p2p 覆盖其源/目的 rank，二者都是本地依赖链之间的显式同步点。
-
-适配器随后使用固定的 system、network、remote-memory 配置调用 official AstraSim analytical binary，并保存命令、stdout、stderr 和退出状态。解析器只消费本次进程真实产生的输出；没有静默 fallback。当前 binary 是 `congestion_unaware`：它不会模拟多流共享链路时的争用或排队，通信结果只适用于无拥塞 analytical 假设。
-
-### 2.6 验证与报告层
-
-验证器从四类彼此可交叉核对的证据做门禁：
-
-- 配置与公式推导的不变量；
-- planner 产生的 operation 和对象生命周期；
-- AstraSim issue/callback、rank completion 与统计输出；
-- 报告文件本身的完整性和 hash。
-
-reporter 在验证结束后生成不可混淆的 run bundle。`summary.json` 是索引，不是原始证据的替代品。
-
-## 3. 2-die 同步 GRPO 时序
-
-```text
-actor v0
-  │
-  ├─ 输入 prompt 到 rank0，再复制到 rank1
-  ├─ trajectory A/B rollout：prefill + decode + TP collective + token p2p
-  ├─ response 回 host，规则 reward
-  ├─ reference 只读 teacher-forcing log-prob
-  ├─ actor v0 只读 old-policy log-prob
-  ├─ 组内 advantage：A=+0.5，B=-0.5
-  ├─ 清零本轮梯度缓冲；train_A forward/loss/loss_backward/model_backward，梯度累积
-  ├─ train_B forward/loss/backward，梯度累积
-  ├─ 全局梯度范数、clip
-  ├─ shape-only AdamW：actor v0 → v1
-  ├─ 全分片更新 barrier
-  └─ 发布 v1，释放本轮临时对象；reference 仍为 v0
-```
-
-由于 `DP=1`，不会存在数据并行梯度 all-reduce。TP collectives、分布式 log-softmax reductions、全局 norm 标量 reduction 和 publish barrier 必须按其各自语义区分，不能都笼统记为“同步通信”。
-
-publish barrier 后的 `publish_actor_version` 和 cleanup 的 `release_round_temporaries` 各自带 `control_marker_ns=1`。这两个 1 ns 是为了让控制事件在 trace 中可见而显式加入的 synthetic control cost，不是测量出的版本切换或内存释放硬件时延。
-
-## 4. 时间编码
-
-Chakra compute duration 的字段粒度是微秒，而 toy fixture 的合同以整数纳秒表达。为保留小整数例子的可手算性，配置固定：
-
-```text
-astra_time_scale = 1000
-```
-
-编码规则是：
-
-- 合同中的 `1 ns` 以 Chakra `1 µs` 写入，即 AstraSim 时间轴放大 1000 倍；
-- D2D 网络按相同时间倍率缩放。analytical backend 会把配置中的 GiB/s 换算为 B/ns，因此合同的 `8 B/ns` 写成 `0.007450580596923828`，换算后正好是 `0.008 B/ns`；transfer fixture 的本地 DMA 显式降低为 COMP，不由 Astra 的 `local-mem-bw` 重复计费；主 toy 尚未逐 tile 展开本地 DMA；
-- 链路时延乘以 1000，例如合同的 `1 ns` 写成 `1000 ns`；
-- 解析后的 AstraSim tick/cycle 再除以 1000，恢复 fixture 的合同 ns。
-
-这是一种确定性整数编码技巧，不是单位校准，也不允许据此推断真实硬件频率。
-
-AstraSim stdout 中名为 `GPU time` 的原始计数在报告中统一改称 **compute-lane occupancy**。它包含 trace 中建模为 COMP 的 synthetic host/local-control replay，因此既不是实体 GPU 利用率，也不是 accelerator kernel profiler 时间。类似地，`COMM_RECV` 从 issue 到 callback 可能含接收方提前 posted 后等待发送方的时间；T01 transfer fixture 的链路服务时延必须用 rank0 `COMM_SEND` 的 issue→callback 计算，不能用 rank1 `COMM_RECV` 的完整驻留时间。
-
-## 5. 关键接口
-
-| 边界 | 输入 | 输出 | 主要不变量 |
-|---|---|---|---|
-| 配置 → 规划 | `CaseConfig` | `Operation[]` | 字段完整、跨字段合法、phase 齐全 |
-| 配置 → 模型 | model/strategy | `ParameterRow[]` | unique/local/replicated 一致 |
-| 规划 → 账本 | operations + case | object/snapshot/transfer | 生命周期闭合、容量不越界 |
-| 规划 → adapter | operations + Astra config | 每 rank `.et` | ID、依赖、collective、p2p 匹配 |
-| AstraSim → parser | stdout/stderr/trace log | events + rank statistics | 每个参与 rank/node 的 issue/callback 成对 |
-| 全部 → validation | config/ops/ledger/events | checks | 任一必需检查失败则 run 失败 |
-| 全部 → reporting | 证据记录 | run bundle | 命令、退出码、hash、原始日志齐全 |
-
-## 6. 明确不做的事
-
-- 不模拟真实神经网络数值、采样随机性或学习收敛。
-- 不声称 analytical backend 等价于具体晶圆产品。
-- 不把 rank0 的 synthetic host/control replay 当成实体 accelerator kernel，也不在未参与 rank 上镜像这些节点。
-- 不模拟链路争用；`congestion_unaware` 结果不能用于拥塞敏感结论。
-- 不在第一版引入流水并行、数据并行、MoE、异步 rollout、KV 共享或抢占。
-- 不从参考仓库继承路径、容器、结果文件或凭据。
-
-## 7. 扩展方向
-
-后续扩展应保持现有合同与证据格式：先增加新的策略实现和相应验证，再引入 PP/DP、多 prompt、动态 batching、KV 共享、异步 actor 或真实硬件校准。任何 calibrated 配置都需要单独的数据来源、拟合过程、误差和适用范围，不能直接修改 synthetic fixture 的标签。
-
+单测/数学 oracle/守恒/原生小例证明工程一致性；热GEMM标签只覆盖指定调用协议，不证明真实layout/fusion/网络/host或整步校准；仿真吞吐不证明学习质量。当前 `hardware_calibrated=false`、`full_verl_runtime_reproduced=false`、`paper_performance_ready=false`。G7受限3B控制已通过，G8强GPU/四模型/代表性负载仍未放行，详见[结果](RESULTS.md)。

@@ -1,0 +1,15 @@
+{
+  "origin": "fixed_length_synthetic_control",
+  "W": "W1",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "numeric_training": false,
+  "prompt_ids_and_rewards_known": false,
+  "learning_quality_claimed": false,
+  "legacy_schema_fields": "demean_only/adamw_shape_only fields are legacy schema placeholders; run-aligned policy.json governs std-normalized GRPO/DO cost graph",
+  "prompt_batch": 384,
+  "responses_per_prompt": 8,
+  "trajectories": 3072,
+  "prompt_tokens": 512,
+  "response_tokens": 128,
+  "source_case_sha256": "e8e76ab5e1e3bcb2e264d1aa04b9c2716c17be8d7a7742670e3bafbf9db8dce7"
+}

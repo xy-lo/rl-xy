@@ -23,13 +23,15 @@ class TensorPlan:
     preflight_peaks: dict[str, int]
 
 
-def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix: str) -> TensorPlan:
+def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix: str, *, inference_layer_scope: bool = False) -> TensorPlan:
     m, h = case.model, case.hardware
     tensors: dict[str, dict] = {}
     rank_contract = {}
     alive = {r: set() for r in range(h.dies)}
     groups: dict[tuple, list[str]] = {}
     kv: dict[tuple, list[str]] = {}
+    kv_by_layer={};storage_layers={};storage_names={};storage_prefixes={}
+    layer_pattern=re.compile(r"\.layer(\d+)\.")
     payloads: dict[tuple, list[str]] = {}
     probabilities = {}
     backward = {}
@@ -37,6 +39,11 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
     nodes = {}
     pending = {}
     roles = {}
+    # Only these transient kinds participate in cross-stage payload reads.
+    # Index them separately so every kernel need not scan all persistent
+    # weights/optimizer objects and its entire retained activation tape.
+    payload_kinds = frozenset(("token", "trajectory", "reward", "advantage", "log_prob"))
+    round_payloads: dict[tuple[int, int], set[str]] = {}
     trajectories = {t.trajectory_id: t for t in case.workload.trajectories}
     parameter_rows = enumerate_parameters(case)
     kv_producer = ".rope_apply" if m.rotary_embedding else ".qkv_bias_add" if m.qkv_bias else ".qkv"
@@ -71,6 +78,10 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
             meta['masked_prompt_logits_gradient']=True
             op=replace(op,tensor_bytes=elements*4,vector_ops=op.vector_ops+elements,metadata=meta)
         prefix=meta.get("forward_prefix")
+        layer_match=layer_pattern.search(op.name);current_layer=int(layer_match[1]) if layer_match else None
+        scoped=inference_layer_scope and bool(prefix) and not meta.get('save_tape')
+        if inference_layer_scope and (meta.get('save_tape') or meta.get('backward_prefix')):
+            raise ValueError('inference-only early liveness scope cannot compile training')
         is_backward=bool(meta.get("backward_prefix"))
         if prefix and op.name.endswith(kv_producer) and op.phase=="rollout":
             copy_bytes=2*meta["tokens"]*kv_width*m.actor_dtype_bytes
@@ -100,16 +111,22 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
                 tensors[sid]={"storage_id":sid,"tensor_id":sid,"shape":list(shape),"dtype_bytes":width,
                     "nbytes":size,"rank":rank,"kind":kind,"round_id":op.round_id,
                     "created_node":op.node_id,"released_node":None,"persistent":False}
+                storage_layers[sid]=current_layer;storage_names[sid]=op.name;storage_prefixes[sid]=prefix
                 alive[rank].add(sid);allocations[sid]=size;outputs.append(sid)
+                if kind in payload_kinds:
+                    round_payloads.setdefault((rank, op.round_id), set()).add(sid)
                 return sid
 
             def release(ids):
                 for sid in dict.fromkeys(ids):
                     if sid in alive[rank] and not tensors[sid]["persistent"]:
                         alive[rank].remove(sid);frees.append(sid);tensors[sid]["released_node"]=op.node_id
+                        if tensors[sid]["kind"] in payload_kinds:
+                            round_payloads[rank, tensors[sid]["round_id"]].discard(sid)
 
-            round_payload=[sid for sid in alive[rank] if tensors[sid]["round_id"]==op.round_id
-                           and tensors[sid]["kind"] in ("token","trajectory","reward","advantage","log_prob")]
+            # Preserve the original start-of-node snapshot: add()/release()
+            # below may change the index while this node is being planned.
+            round_payload=tuple(round_payloads.get((rank, op.round_id), ()))
             if op.kind=="compute" and meta.get("local_transfer"):
                 if is_backward:read.update(backward.get((rank,op.round_id,op.phase),[]))
                 if meta["local_transfer"]=="write":
@@ -124,12 +141,16 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
                     read.update(round_payload)
                     if op.phase=="rollout":
                         trajectory=next(t for t in trajectories if prefix.startswith(f"rollout_{t}_"))
-                        read.update(kv.get((rank,op.round_id,trajectory),[]))
+                        read.update(kv_by_layer.get((rank,op.round_id,trajectory,current_layer),[]) if scoped else kv.get((rank,op.round_id,trajectory),[]))
                         if (rank,op.round_id) not in reserve_started:
                             before=sum(len(prompt_for(case, t))+case.workload.max_response_length-1
                                        for t in trajectories.values())*kv_bytes_per_processed_token_per_die(case)
                             reserve_started.add((rank,op.round_id))
-                    if op.name.endswith(".sample_on_rank0"):
+                    if meta.get('single_rank_collective'):
+                        if op.name.endswith('.logsoftmax_target_logit'):
+                            sid=add('local_target_logprob',op.tensor_bytes,'log_prob')
+                            probabilities[rank,op.round_id,prefix]=sid
+                    elif op.name.endswith(".sample_on_rank0"):
                         add("sampled_token",4,"token")
                     elif op.kernel_spec and op.kernel_spec.matmuls:
                         for i,p in enumerate(op.kernel_spec.matmuls):
@@ -144,7 +165,7 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
                         size=2*meta["tokens"]*kv_width*2
                         sid=add("kv_increment",size,"kv",2,
                                 (2,meta["tokens"],m.kv_heads//case.strategy.tensor_parallel,m.head_dim))
-                        kv.setdefault((rank,op.round_id,trajectory),[]).append(sid);before-=size
+                        kv.setdefault((rank,op.round_id,trajectory),[]).append(sid);kv_by_layer.setdefault((rank,op.round_id,trajectory,current_layer),[]).append(sid);before-=size
                 elif is_backward:
                     fkey=(rank,op.round_id,f"{op.phase}_forward")
                     read.update(groups.get(fkey,[]))
@@ -221,11 +242,12 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
                 tape.extend(sid for sid in outputs if sid in allocations and tensors[sid]["kind"] not in ("kv","token"))
                 terminal_name=meta.get("parent_name",op.name) if meta.get("local_transfer")=="write" else op.name
                 eligible=(not meta.get("endpoints_lowered") or (op.kind=="p2p" and rank==op.src_rank))
-                terminal=eligible and (terminal_name.endswith(".sample_token_rank0_to_rank1") or terminal_name.endswith(".logsoftmax_target_logit"))
+                terminal=eligible and (meta.get('local_transfer')!='read' and rank in meta['terminal_ranks'] if 'terminal_ranks' in meta else
+                    (terminal_name.endswith(".sample_token_rank0_to_rank1") or terminal_name.endswith(".logsoftmax_target_logit")))
                 if terminal and not meta.get("save_tape"):
                     release([sid for sid in tape if tensors[sid]["kind"]!="log_prob"])
                     groups[key]=[]
-                if op.phase=="rollout" and terminal and terminal_name.endswith(".sample_token_rank0_to_rank1"):
+                if op.phase=="rollout" and terminal and (meta.get('sampling_terminal') or terminal_name.endswith(".sample_token_rank0_to_rank1")):
                     trajectory=next(t for t in trajectories if prefix.startswith(f"rollout_{t}_"))
                     response_len=len(trajectories[trajectory].response_token_ids)
                     final=prefix.endswith("_prefill") if response_len==1 else prefix.endswith(f"_decode{response_len-1}")
@@ -236,6 +258,20 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
                         after=-(case.workload.max_response_length+prompt_length-1-processed)*kv_bytes_per_processed_token_per_die(case)
             # Requiring all pinned tensors live is conservative. It is not a
             # claim that every kernel physically rereads every byte of the tape.
+            if scoped:
+                def relevant(sid):
+                    t=tensors[sid]
+                    if t['persistent']:
+                        pid=sid.split('.',2)[2]
+                        return pid.startswith(f'layer{current_layer}.') if current_layer is not None else not pid.startswith('layer')
+                    if t['kind']=='norm_statistics':return False
+                    oldlayer=storage_layers.get(sid);name=storage_names.get(sid,'')
+                    if t['kind']=='kv':return oldlayer==current_layer and current_layer is not None
+                    if storage_prefixes.get(sid)!=prefix or t['kind'] in ('token','trajectory','log_prob'):return True
+                    if current_layer is not None:
+                        return oldlayer==current_layer or (oldlayer==current_layer-1 and '.residual_ffn' in name) or '.rope_table' in name or (current_layer==0 and '.embedding' in name)
+                    return oldlayer is None or (oldlayer==m.layers-1 and '.residual_ffn' in name)
+                read={sid for sid in read if relevant(sid)}
             read.difference_update(allocations)
             if op.kind!="compute" and meta.get("endpoints_lowered") and outputs:
                 pending[rank,op.op_id]=list(outputs)
@@ -249,6 +285,7 @@ def build_tensor_plan(case: CaseConfig, operations: list[Operation], log_prefix:
     contract={"schema_version":"1.0","policy":"conservative_out_of_place_no_recompute",
               "log_prefix":log_prefix,"ranks":rank_contract}
     for tensor in tensors.values():tensor.setdefault('ready_node',tensor['created_node'])
+    if inference_layer_scope:contract['early_inference_layer_scope']=True
     return TensorPlan(contract,list(tensors.values()),result,{})
 
 
@@ -272,14 +309,16 @@ def preflight_contract(contract: dict) -> dict[str,int]:
     peaks={}
     for rank,r in contract["ranks"].items():
         live=dict(r["initial_objects"]);ready=set(live);reserved=0
-        peak=sum(live.values())
+        used=sum(live.values());peak=used
         if peak>r["dram_capacity"]:raise ValueError("initial DRAM overflow")
         for node,n in sorted(r["nodes"].items(),key=lambda row:int(row[0])):
-            if set(n["reads"])-ready:raise ValueError(f"rank{rank}/node{node}: read absent/not ready")
-            if set(n["allocations"]) & set(live):raise ValueError("duplicate allocation")
+            if not ready.issuperset(n["reads"]):raise ValueError(f"rank{rank}/node{node}: read absent/not ready")
+            if any(sid in live for sid in n["allocations"]):raise ValueError("duplicate allocation")
             reserved+=n["reserve_before"]
             if reserved<0:raise ValueError("KV reservation consumed twice")
-            live.update(n["allocations"]);used=sum(live.values())
+            # Duplicate identities have already been rejected, so these
+            # deltas equal sum(live.values()) without rescanning every object.
+            live.update(n["allocations"]);used+=sum(n["allocations"].values())
             if used+reserved>r["dram_capacity"]:raise ValueError(f"DRAM admission overflow rank{rank}/node{node}")
             if 'core_workspace_bytes' in n:
                 values=n['core_workspace_bytes']
@@ -288,12 +327,12 @@ def preflight_contract(contract: dict) -> dict[str,int]:
                     raise ValueError('private SRAM overflow/invalid mapping')
             elif n["workspace_bytes"]>n["sram_capacity"]:raise ValueError("SRAM overflow")
             peak=max(peak,used)
-            if set(n["ready_outputs"])-set(live):raise ValueError("READY without storage")
+            if any(sid not in live for sid in n["ready_outputs"]):raise ValueError("READY without storage")
             if any('.reference.' in sid for sid in n['ready_outputs']):raise ValueError('immutable reference write')
             ready.update(n["ready_outputs"])
             for sid in n["frees"]:
                 if sid not in live:raise ValueError("double free")
-                del live[sid];ready.discard(sid)
+                used-=live.pop(sid);ready.discard(sid)
             reserved+=n["reserve_after"]
             if reserved<0:raise ValueError("invalid reservation release")
         if live!=r["initial_objects"] or reserved:raise ValueError("temporary/reservation leak")

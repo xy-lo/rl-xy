@@ -1,0 +1,22 @@
+{
+  "status": "PASS_BOUNDED_CANONICAL_GEMM_LABELS",
+  "required_and_new_signatures": 291,
+  "all_required_shapes_equal": true,
+  "source_shapes_sha256": "b535368328dda74027e4629e588e9fae07034ca5bf74d4b0f5829791ecb5123b",
+  "measurements_sha256": "86cb29557ca820ec118d80e570f976a0c7e2afe4cc5cfe796103a114fe3d07f4",
+  "outer_wall_seconds": 90.53693920746446,
+  "exit_status": 0,
+  "OOMKilled": false,
+  "allocated_peak_bytes": 1894617088,
+  "reserved_peak_bytes": 2059403264,
+  "repeat_difference": {
+    "median": 0.0006406259361921076,
+    "p95": 0.007298637805716434,
+    "max": 0.063612816000338
+  },
+  "numeric_fixture_count": 3,
+  "scope": "canonical contiguous NN CUDAgraph hot GEMM, logical dimensions; not actual backend layout/fusion/whole-step calibration",
+  "paper_performance_ready": false,
+  "no_seed_argument": true,
+  "current_W1_native_pair_complete": false
+}

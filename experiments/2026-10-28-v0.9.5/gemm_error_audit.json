@@ -1,0 +1,44 @@
+{
+  "status": "DIAGNOSTIC_ONLY",
+  "scope": "rank-local summed GEMM service vs canonical hot labels, not end-to-end step error",
+  "profile_domain": 291,
+  "no_fitting_or_rescaling": true,
+  "stage_statistics": {
+    "all": {
+      "occurrences": 2666496,
+      "sum_predicted_service_ns": 771005062272,
+      "sum_observed_hot_service_ns": 529377513792,
+      "occurrence_weighted_WAPE": 0.685381640532921,
+      "summed_predicted_over_observed": 1.456437121307232
+    },
+    "rollout": {
+      "occurrences": 1333248,
+      "sum_predicted_service_ns": 165328252032,
+      "sum_observed_hot_service_ns": 130748749632,
+      "occurrence_weighted_WAPE": 0.6534431000561539,
+      "summed_predicted_over_observed": 1.2644729108104362
+    },
+    "train_T0": {
+      "occurrences": 999936,
+      "sum_predicted_service_ns": 371359526400,
+      "sum_observed_hot_service_ns": 262676958720,
+      "occurrence_weighted_WAPE": 0.5736794628288286,
+      "summed_predicted_over_observed": 1.4137499086695684
+    },
+    "old_policy": {
+      "occurrences": 166656,
+      "sum_predicted_service_ns": 117158641920,
+      "sum_observed_hot_service_ns": 67975902720,
+      "occurrence_weighted_WAPE": 0.9319213054210985,
+      "summed_predicted_over_observed": 1.7235319757736642
+    },
+    "reference": {
+      "occurrences": 166656,
+      "sum_predicted_service_ns": 117158641920,
+      "sum_observed_hot_service_ns": 67975902720,
+      "occurrence_weighted_WAPE": 0.9319213054210985,
+      "summed_predicted_over_observed": 1.7235319757736642
+    }
+  },
+  "paper_performance_ready": false
+}

@@ -1,0 +1,1078 @@
+{
+  "schema_version": "rlxy.paper_experiment_candidate/1",
+  "date": "2026-10-28",
+  "parent_task": "T42",
+  "status": "LOCKED_FOR_STAGED_CONDITIONAL_3B_CONTROL",
+  "runtime_executable_config": false,
+  "new_large_runs_performed": false,
+  "final_models": [
+    "3B",
+    "7B",
+    "14B",
+    "32B"
+  ],
+  "current_model": "Qwen/Qwen2.5-3B-Instruct",
+  "model_reference": "R19",
+  "upstream_verl_commit": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+  "algorithm": {
+    "name": "verl_v0.9.1_synchronous_outcome_GRPO_token_mean",
+    "critic": false,
+    "norm_adv_by_std": true,
+    "advantage_std": "torchsample_std_pinned_semantics",
+    "advantage_epsilon": 1e-06,
+    "policy_loss": "vanilla",
+    "clip_ratio_low": 0.2,
+    "clip_ratio_high": 0.2,
+    "dual_clip_c": 3.0,
+    "use_kl_loss": true,
+    "kl_loss_coef": 0.001,
+    "kl_loss_type": "low_var_kl_k3",
+    "use_kl_in_reward": false,
+    "reference": "frozen_initial_actor",
+    "entropy_coefficient": 0.0,
+    "ppo_epochs": 1,
+    "shuffle": false,
+    "dynamic_group_filtering": false,
+    "DAPO_overlong_shaping": false
+  },
+  "optimizer": {
+    "backend": "Megatron_Core_distributed_optimizer",
+    "use_distributed_optimizer": true,
+    "algorithm": "adam_with_explicit_decoupled_weight_decay_semantics",
+    "learning_rate": 1e-06,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "weight_decay": 0.01,
+    "max_gradient_norm": 1.0,
+    "actor_parameter_dtype": "BF16",
+    "reference_parameter_dtype": "BF16",
+    "GEMM_input_dtype": "BF16",
+    "GEMM_accumulator_dtype": "FP32",
+    "main_gradient_dtype": "FP32",
+    "master_dtype": "FP32",
+    "Adam_m_dtype": "FP32",
+    "Adam_v_dtype": "FP32",
+    "precision_aware_optimizer": false,
+    "overlap_grad_reduce": false,
+    "overlap_param_gather": false,
+    "offload": false,
+    "sequence_parallel": false,
+    "sequence_parallel_scope": "explicit restricted baseline override, not claimed upstreamdefault/optimal; TP2 SPtrue isnot covereduntil IRverified"
+  },
+  "workloads": [
+    {
+      "id": "W0_engineering_probe",
+      "origin": "fixed_length_synthetic_control",
+      "classification": "engineering_not_paper_main",
+      "model": "3B",
+      "prompt_batch": 48,
+      "responses_per_prompt": 2,
+      "trajectory_batch": 96,
+      "prompt_tokens": 512,
+      "response_tokens": 128,
+      "mini_batch_prompt_equivalent": 48,
+      "mini_batch_trajectories": 96,
+      "optimizer_updates_per_rollout": 1,
+      "status": "not_run_pending_preflight",
+      "legal_static_batch_candidates": [
+        {
+          "train_TP": 1,
+          "train_DP": 48,
+          "global_trajectory_batch": 96,
+          "mini_batch_prompt_equivalent": 48,
+          "mini_batch_trajectories": 96,
+          "local_trajectory_minibatch": 2,
+          "train_microbatch_candidates": [
+            1,
+            2
+          ],
+          "logprob_microbatch_candidates": [
+            1,
+            2
+          ],
+          "gradient_accumulation_steps_by_microbatch": {
+            "1": 2,
+            "2": 1
+          }
+        },
+        {
+          "train_TP": 2,
+          "train_DP": 24,
+          "global_trajectory_batch": 96,
+          "mini_batch_prompt_equivalent": 48,
+          "mini_batch_trajectories": 96,
+          "local_trajectory_minibatch": 4,
+          "train_microbatch_candidates": [
+            1,
+            2,
+            4
+          ],
+          "logprob_microbatch_candidates": [
+            1,
+            2,
+            4
+          ],
+          "gradient_accumulation_steps_by_microbatch": {
+            "1": 4,
+            "2": 2,
+            "4": 1
+          }
+        }
+      ],
+      "token_values_scope": "shape driven control, notactual sampledresponses orqualityevaluation"
+    },
+    {
+      "id": "W1_3b_first_control",
+      "origin": "fixed_length_synthetic_control",
+      "classification": "conditional_model_comparison_pending_budget",
+      "model": "3B",
+      "prompt_batch": 384,
+      "responses_per_prompt": 8,
+      "trajectory_batch": 3072,
+      "prompt_tokens": 512,
+      "response_tokens": 128,
+      "mini_batch_prompt_equivalent": 384,
+      "mini_batch_trajectories": 3072,
+      "optimizer_updates_per_rollout": 1,
+      "status": "not_run_pending_preflight",
+      "legal_static_batch_candidates": [
+        {
+          "train_TP": 1,
+          "train_DP": 48,
+          "global_trajectory_batch": 3072,
+          "mini_batch_prompt_equivalent": 384,
+          "mini_batch_trajectories": 3072,
+          "local_trajectory_minibatch": 64,
+          "train_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "logprob_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "gradient_accumulation_steps_by_microbatch": {
+            "1": 64,
+            "2": 32,
+            "4": 16,
+            "8": 8,
+            "16": 4
+          }
+        },
+        {
+          "train_TP": 2,
+          "train_DP": 24,
+          "global_trajectory_batch": 3072,
+          "mini_batch_prompt_equivalent": 384,
+          "mini_batch_trajectories": 3072,
+          "local_trajectory_minibatch": 128,
+          "train_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "logprob_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "gradient_accumulation_steps_by_microbatch": {
+            "1": 128,
+            "2": 64,
+            "4": 32,
+            "8": 16,
+            "16": 8
+          }
+        }
+      ],
+      "token_values_scope": "shape driven control, notactual sampledresponses orqualityevaluation"
+    },
+    {
+      "id": "W2_paper_fixed_control",
+      "origin": "fixed_length_synthetic_control",
+      "classification": "paper_fixed_control_pending_all_gates",
+      "model": "3B",
+      "prompt_batch": 384,
+      "responses_per_prompt": 8,
+      "trajectory_batch": 3072,
+      "prompt_tokens": 1024,
+      "response_tokens": 1024,
+      "mini_batch_prompt_equivalent": 384,
+      "mini_batch_trajectories": 3072,
+      "optimizer_updates_per_rollout": 1,
+      "status": "not_run_pending_preflight",
+      "legal_static_batch_candidates": [
+        {
+          "train_TP": 1,
+          "train_DP": 48,
+          "global_trajectory_batch": 3072,
+          "mini_batch_prompt_equivalent": 384,
+          "mini_batch_trajectories": 3072,
+          "local_trajectory_minibatch": 64,
+          "train_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "logprob_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "gradient_accumulation_steps_by_microbatch": {
+            "1": 64,
+            "2": 32,
+            "4": 16,
+            "8": 8,
+            "16": 4
+          }
+        },
+        {
+          "train_TP": 2,
+          "train_DP": 24,
+          "global_trajectory_batch": 3072,
+          "mini_batch_prompt_equivalent": 384,
+          "mini_batch_trajectories": 3072,
+          "local_trajectory_minibatch": 128,
+          "train_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "logprob_microbatch_candidates": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "gradient_accumulation_steps_by_microbatch": {
+            "1": 128,
+            "2": 64,
+            "4": 32,
+            "8": 16,
+            "16": 8
+          }
+        }
+      ],
+      "token_values_scope": "shape driven control, notactual sampledresponses orqualityevaluation"
+    },
+    {
+      "id": "W3_reasoning_length_distribution",
+      "origin": "pending_verified_public_distribution_or_explicit_synthetic_stress",
+      "classification": "required_final_reasoning_coverage_not_yet_materialized",
+      "prompt_batch": 384,
+      "responses_per_prompt": 8,
+      "trajectory_batch": 3072,
+      "prompt_length": "fixed1024or2048, laterseparateaxis",
+      "response_cap_tokens": 8192,
+      "required_tail_coverage": "mustinclude verifiednonzero8K-class tail, capaloneisnotcoverage",
+      "fallback_synthetic_distribution": {
+        "buckets_tokens": [
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096,
+          6144,
+          8192
+        ],
+        "project_proposed_mass": [
+          0.1,
+          0.15,
+          0.2,
+          0.2,
+          0.15,
+          0.1,
+          0.05,
+          0.05
+        ],
+        "status": "hypothetical stress distribution, notfrompaperor3Btrace; rootlockseed/countmanifestbeforegeneration"
+      },
+      "status": "not_run_pending_source_budget_andlongcontext_cost_validation"
+    }
+  ],
+  "policy_candidates": [
+    {
+      "id": "TP1_to_1_PP1",
+      "train_TP": 1,
+      "rollout_TP": 1,
+      "PP": 1,
+      "CP": 1,
+      "train_DP": 48,
+      "rollout_DP": 48,
+      "KV_layout": "partition_without_replication",
+      "SP": false,
+      "overlap": false,
+      "status": "candidate_arithmetic_legal_not_runtime_ready",
+      "runtime_note": "requiresDO/SPoverride/batching/GRPOIR/nativeadmissionbeforetiming"
+    },
+    {
+      "id": "TP1_to_2_PP1",
+      "train_TP": 1,
+      "rollout_TP": 2,
+      "PP": 1,
+      "CP": 1,
+      "train_DP": 48,
+      "rollout_DP": 24,
+      "KV_layout": "partition_without_replication",
+      "SP": false,
+      "overlap": false,
+      "status": "candidate_arithmetic_legal_not_runtime_ready",
+      "runtime_note": "trainTP1_to_rolloutTP2requiresgeneralresharding; unsupportedmustbeexplicitlyreported"
+    },
+    {
+      "id": "TP2_to_1_PP1",
+      "train_TP": 2,
+      "rollout_TP": 1,
+      "PP": 1,
+      "CP": 1,
+      "train_DP": 24,
+      "rollout_DP": 48,
+      "KV_layout": "partition_without_replication",
+      "SP": false,
+      "overlap": false,
+      "status": "candidate_arithmetic_legal_not_runtime_ready",
+      "runtime_note": "requiresDO/SPoverride/batching/GRPOIR/nativeadmissionbeforetiming"
+    },
+    {
+      "id": "TP2_to_2_PP1",
+      "train_TP": 2,
+      "rollout_TP": 2,
+      "PP": 1,
+      "CP": 1,
+      "train_DP": 24,
+      "rollout_DP": 24,
+      "KV_layout": "partition_without_replication",
+      "SP": false,
+      "overlap": false,
+      "status": "candidate_arithmetic_legal_not_runtime_ready",
+      "runtime_note": "requiresDO/SPoverride/batching/GRPOIR/nativeadmissionbeforetiming"
+    }
+  ],
+  "placement": {
+    "logical_world_size": 48,
+    "GPU": {
+      "devices": 48,
+      "nodes": 6,
+      "devices_per_node": 8,
+      "SKU": "A10080GBSXM",
+      "dense_BF16_TFLOPS_per_device": 312,
+      "FP32_TFLOPS_per_device": 19.5,
+      "HBM_GB_per_device": 80,
+      "HBM_GBps_per_device": 2039,
+      "NVLink_GBps_per_direction": 300,
+      "NVLink_scope": "600GBpsaggregateinterpretedas300perdirectionassumption",
+      "node_uplink_GBps_per_direction": 400,
+      "node_uplink_scope": "WSCpaper-caliber sharednodeuplinkscenario, notmeasuredphysicalcluster",
+      "node_uplink_sensitivity_GBps": [
+        25,
+        400
+      ],
+      "sensitivity_25GBps_source": "HybridFlow200Gbps scenario; do notrenameasbit-byteunitfix",
+      "cluster_BF16_PFLOPS": 14.976,
+      "cluster_HBM_TB": 3.84,
+      "cluster_HBM_TBps": 97.872,
+      "FP32_vector_andlaunch": "additionalcostassumptionsrequireaudit"
+    },
+    "wafer_direct": {
+      "allocated_dies": 54,
+      "active_dies": 48,
+      "idle_dies": 6,
+      "cores_per_die": 256,
+      "dram_bytes_per_die": 64000000000,
+      "sram_bytes_per_core": 1250000,
+      "dram_Bps_per_die": 2000000000000,
+      "d2d_Bps_per_edge_per_direction": 2000000000000,
+      "d2d_scope": "paper-number direction interpretation is declaredscenario assumption",
+      "BF16_flops_per_second_per_core": 1020000000000,
+      "BF16_scope": "assumed equal topaperFP16 nothardwareverified",
+      "allocated_BF16_PFLOPS": 14.10048,
+      "active_BF16_PFLOPS": 12.533760000000001,
+      "allocated_DRAM_TB": 3.456,
+      "active_DRAM_TB": 3.072,
+      "physical_geometry": "reference resource template, notvalidatedCase3layout",
+      "active_mapping": [
+        {
+          "logical_rank": 0,
+          "physical_die": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "logical_rank": 1,
+          "physical_die": 1,
+          "x": 1,
+          "y": 0
+        },
+        {
+          "logical_rank": 2,
+          "physical_die": 2,
+          "x": 2,
+          "y": 0
+        },
+        {
+          "logical_rank": 3,
+          "physical_die": 3,
+          "x": 3,
+          "y": 0
+        },
+        {
+          "logical_rank": 4,
+          "physical_die": 4,
+          "x": 4,
+          "y": 0
+        },
+        {
+          "logical_rank": 5,
+          "physical_die": 5,
+          "x": 5,
+          "y": 0
+        },
+        {
+          "logical_rank": 6,
+          "physical_die": 6,
+          "x": 0,
+          "y": 1
+        },
+        {
+          "logical_rank": 7,
+          "physical_die": 7,
+          "x": 1,
+          "y": 1
+        },
+        {
+          "logical_rank": 8,
+          "physical_die": 8,
+          "x": 2,
+          "y": 1
+        },
+        {
+          "logical_rank": 9,
+          "physical_die": 9,
+          "x": 3,
+          "y": 1
+        },
+        {
+          "logical_rank": 10,
+          "physical_die": 10,
+          "x": 4,
+          "y": 1
+        },
+        {
+          "logical_rank": 11,
+          "physical_die": 11,
+          "x": 5,
+          "y": 1
+        },
+        {
+          "logical_rank": 12,
+          "physical_die": 12,
+          "x": 0,
+          "y": 2
+        },
+        {
+          "logical_rank": 13,
+          "physical_die": 13,
+          "x": 1,
+          "y": 2
+        },
+        {
+          "logical_rank": 14,
+          "physical_die": 14,
+          "x": 2,
+          "y": 2
+        },
+        {
+          "logical_rank": 15,
+          "physical_die": 15,
+          "x": 3,
+          "y": 2
+        },
+        {
+          "logical_rank": 16,
+          "physical_die": 16,
+          "x": 4,
+          "y": 2
+        },
+        {
+          "logical_rank": 17,
+          "physical_die": 17,
+          "x": 5,
+          "y": 2
+        },
+        {
+          "logical_rank": 18,
+          "physical_die": 18,
+          "x": 0,
+          "y": 3
+        },
+        {
+          "logical_rank": 19,
+          "physical_die": 19,
+          "x": 1,
+          "y": 3
+        },
+        {
+          "logical_rank": 20,
+          "physical_die": 20,
+          "x": 2,
+          "y": 3
+        },
+        {
+          "logical_rank": 21,
+          "physical_die": 21,
+          "x": 3,
+          "y": 3
+        },
+        {
+          "logical_rank": 22,
+          "physical_die": 22,
+          "x": 4,
+          "y": 3
+        },
+        {
+          "logical_rank": 23,
+          "physical_die": 23,
+          "x": 5,
+          "y": 3
+        },
+        {
+          "logical_rank": 24,
+          "physical_die": 24,
+          "x": 0,
+          "y": 4
+        },
+        {
+          "logical_rank": 25,
+          "physical_die": 25,
+          "x": 1,
+          "y": 4
+        },
+        {
+          "logical_rank": 26,
+          "physical_die": 26,
+          "x": 2,
+          "y": 4
+        },
+        {
+          "logical_rank": 27,
+          "physical_die": 27,
+          "x": 3,
+          "y": 4
+        },
+        {
+          "logical_rank": 28,
+          "physical_die": 28,
+          "x": 4,
+          "y": 4
+        },
+        {
+          "logical_rank": 29,
+          "physical_die": 29,
+          "x": 5,
+          "y": 4
+        },
+        {
+          "logical_rank": 30,
+          "physical_die": 30,
+          "x": 0,
+          "y": 5
+        },
+        {
+          "logical_rank": 31,
+          "physical_die": 31,
+          "x": 1,
+          "y": 5
+        },
+        {
+          "logical_rank": 32,
+          "physical_die": 32,
+          "x": 2,
+          "y": 5
+        },
+        {
+          "logical_rank": 33,
+          "physical_die": 33,
+          "x": 3,
+          "y": 5
+        },
+        {
+          "logical_rank": 34,
+          "physical_die": 34,
+          "x": 4,
+          "y": 5
+        },
+        {
+          "logical_rank": 35,
+          "physical_die": 35,
+          "x": 5,
+          "y": 5
+        },
+        {
+          "logical_rank": 36,
+          "physical_die": 36,
+          "x": 0,
+          "y": 6
+        },
+        {
+          "logical_rank": 37,
+          "physical_die": 37,
+          "x": 1,
+          "y": 6
+        },
+        {
+          "logical_rank": 38,
+          "physical_die": 38,
+          "x": 2,
+          "y": 6
+        },
+        {
+          "logical_rank": 39,
+          "physical_die": 39,
+          "x": 3,
+          "y": 6
+        },
+        {
+          "logical_rank": 40,
+          "physical_die": 40,
+          "x": 4,
+          "y": 6
+        },
+        {
+          "logical_rank": 41,
+          "physical_die": 41,
+          "x": 5,
+          "y": 6
+        },
+        {
+          "logical_rank": 42,
+          "physical_die": 42,
+          "x": 0,
+          "y": 7
+        },
+        {
+          "logical_rank": 43,
+          "physical_die": 43,
+          "x": 1,
+          "y": 7
+        },
+        {
+          "logical_rank": 44,
+          "physical_die": 44,
+          "x": 2,
+          "y": 7
+        },
+        {
+          "logical_rank": 45,
+          "physical_die": 45,
+          "x": 3,
+          "y": 7
+        },
+        {
+          "logical_rank": 46,
+          "physical_die": 46,
+          "x": 4,
+          "y": 7
+        },
+        {
+          "logical_rank": 47,
+          "physical_die": 47,
+          "x": 5,
+          "y": 7
+        }
+      ],
+      "idle_physical_dies": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "idle_semantics": "notmembersoflogicalTP/DPgroups; explicit tracecompletionmarkers only"
+    },
+    "strict_transfer_invariants": [
+      "algorithm",
+      "model",
+      "workload",
+      "optimizer_precision_andsharding",
+      "train_rolloutTP_PP_DP_SP",
+      "microbatch_accumulation",
+      "collective_algorithm_andgroup_membership",
+      "weight_reshard_policy",
+      "dispatch_andpadding",
+      "activation_checkpointing",
+      "overlap_flags"
+    ],
+    "permitted_platform_differences": [
+      "device_costprovider",
+      "physicalnetworktopologyandlinkrates",
+      "locallegalmappingprovider",
+      "capacityadmission_result"
+    ]
+  },
+  "candidate_policy_selection": {
+    "objective": "minimum modelstep time among supported andadmittedGPUcandidates",
+    "not_global_optimum": true,
+    "selection_before_wafer_run": true,
+    "capacity_failure_is_result": true,
+    "wafer_policy_retuning_in_direct_transfer": false
+  },
+  "gates": [
+    {
+      "id": "G0_design_lock",
+      "criterion": "Root locks modelrevision/W/algorithm/policy/costregimes/resourcebudget; unresolvedchoices failclosed",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G1_algorithm_IR",
+      "criterion": "std/zero variance,clip/KL/reduction oracleAND actual DAG inputs/version/reward/reference wiring; nooracle-onlyrelease",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G2_optimizer_batching",
+      "criterion": "trueDO RS and AG withtypedstate/buckets/TPowner norm; realtrain/logprobmicrobatch execution; SPfalse explicitlycharged notfakeSPtrue",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G3_logical_transfer",
+      "criterion": "same48activeranks andpolicy/case hashes,logicalTP/DPgroups andsampledispatch; noextra6diecomputing in directtransfer",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G4_cost_domain",
+      "criterion": "alltargetmatmul/vector/layout/cachefusionsignaturescovered; nohotGEMM-to-wholeGPUcalibrationclaim; missingdomainsunsupported",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G5_resource_budget",
+      "criterion": "dry-countoperators/edges/buffers/ETbytes/estimatedplannerRSS/IObudget beforefullmaterialization;limits/swap/PID/time/diskstored; nobudgetgatebypass",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G6_native_regression",
+      "criterion": "smallTP1/TP2/idle/nativegroups cases andmulti-round pass;event/clock/resourceequivalence afterengineoptimizations",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G7_3b_conditional_baseline",
+      "criterion": "fullchosen3Bcontrol pairednative PASS, completeartifacts,independentreplay andcapacity/versions; reportrestrictedSPfalse/no-overlap scope",
+      "status": "pending_currentimplementationevidence"
+    },
+    {
+      "id": "G8_paper_main",
+      "criterion": "strongGPUsubsetanduncoveredoptimizationdisclosure; targetcostvalidation/error/sensitivity; sameW3/7/14/32 and8Kdistribution,budgetadmission,negativeresultskept; noentityhardware/qualityclaim",
+      "status": "pending_currentimplementationevidence"
+    }
+  ],
+  "stop_conditions": [
+    "anygateunsupportedorhashmismatch",
+    "OOM/swap/PID/time/disklimit",
+    "missingnativecallbacksorresourcepeaks",
+    "changeW/dropgroups/unaccountedpadding",
+    "outofdomaincostsilentfallback",
+    "modifyconstantsafterwinnerseen",
+    "claimcompletebeforeartifactsandreplay"
+  ],
+  "references": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28",
+    "R29"
+  ],
+  "approved_execution_budget_required_before_run": {
+    "status": "locked_by_parent_T42_for_initial_engineering_runs_not_runtime_guarantee",
+    "reason": "finite-cost engineering limits on a shared server; not a measured guarantee that the workload fits",
+    "max_concurrent_runs": 1,
+    "GPU_devices_exposed": 0,
+    "CPUs": 4,
+    "container_memory_bytes": 8589934592,
+    "container_memory_swap_bytes": 8589934592,
+    "additional_swap_bytes": 0,
+    "PID_limit": 512,
+    "planner_timeout_seconds": 180,
+    "encode_timeout_seconds": 180,
+    "native_timeout_seconds": 300,
+    "postprocess_timeout_seconds": 180,
+    "total_command_timeout_seconds": 900,
+    "max_artifact_bytes_per_candidate": 2147483648,
+    "max_artifact_bytes_all_T42_runs": 12884901888,
+    "minimum_start_free_disk_bytes": 25769803776,
+    "minimum_preserved_free_disk_bytes": 21474836480,
+    "execution_order": "W0 full3B first; W1/W2 only after count/RSS/disk dry-run is admitted",
+    "if_W0_fails_budget": "optimize IR and execution under the same workload and limits; do not expand workloads",
+    "over_limit_status": "budget_failed",
+    "include_over_limit_candidate_as_performance_sample": false,
+    "forbidden_automatic_recovery": [
+      "increase resources",
+      "shorten P/R",
+      "reduce B/G",
+      "drop samples",
+      "restart an additional concurrent run"
+    ],
+    "source_reference": "R21",
+    "new_large_runs_authorized_by_this_file": false,
+    "startup_free_disk_revision": {
+      "id": "R21-engineering-budget-v2",
+      "old_minimum_GiB": 30,
+      "new_minimum_GiB": 24,
+      "reason": "Parent observed sharedNVMe free capacity decreased51GiB→26GiB while T42owned1.7GiB; old30GiB startup gate correctly blocked tiny admission. New24=2GiB candidate cap+20GiB always-preserved dynamic reserve+2GiB margin.",
+      "evidence_status": "Parent-reported current server snapshot; raw snapshot is in root logs and will be archived by root,not remeasured by design subtask.",
+      "hardware_or_algorithm_changed": false,
+      "RAM_time_output_limits_changed": false,
+      "dynamic_reserve_action": "If free disk falls below20GiB,stop only this task own run;do not delete other users files or historical evidence.",
+      "effective_scope": "new prospective run admissions; old30GiB-blocked attempts and command records remain unchanged"
+    }
+  },
+  "revision_history": [
+    {
+      "date": "2026-10-28",
+      "scope": "initialT42design candidate; SPfalse andoverlapfalseexplicit restrictedoverrides; native execution gated"
+    },
+    {
+      "date": "2026-10-28",
+      "scope": "final design audit adds locked finite-cost engineering limits; no new performance result or runtime release"
+    },
+    {
+      "date": "2026-10-28",
+      "scope": "Parent-requested GSM8K semantic anchor source snapshot/preprocess/tokenizer/chat-template and train/tuning/test identity split locked; W0–W2 remain synthetic; no numerical training or quality result."
+    },
+    {
+      "date": "2026-10-28",
+      "scope": "R28 source-backed prefill logits correction:select one hidden row perrequest before rollout LMhead;explicit BF16selection IO;teacher fullS unchanged;old all-prefill engineering runs retained,not paper baseline."
+    },
+    {
+      "date": "2026-10-28",
+      "scope": "ExplicitR21 engineering revision30→24GiB startup free-disk threshold after parent shareddisk observation51→26GiB;20GiB dynamicreserve and allCPU/RAM/timeout/outputcaps unchanged;not hardware or algorithm change."
+    },
+    {
+      "date": "2026-10-28",
+      "revision": "R29_reference_registration",
+      "change": "Register current MD/reference-manifest R29 for static interleaving versus upstream worker chunk/server routing boundary; no locked numerical algorithm/workload/hardware/budget values changed."
+    }
+  ],
+  "semantic_quality_anchor": {
+    "dataset_id": "openai/gsm8k",
+    "subset": "main",
+    "revision": "740312add88f781978c0658806c59bc2815b9866",
+    "license": "MIT",
+    "official_source_rows": {
+      "train": 7473,
+      "test": 1319
+    },
+    "references": [
+      "R22",
+      "R23",
+      "R24",
+      "R25",
+      "R26"
+    ],
+    "role": "First locked semantic/quality anchor for future actual tokenization/generation/evaluation; not used to relabel W0/W1/W2",
+    "source_files": {
+      "gsm8k-main-train.parquet": {
+        "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/main/train-00000-of-00001.parquet",
+        "sha256": "ea82612ea9582142387730c793eb67d3b12849002bc0b7fa6f8efafa7351419d",
+        "bytes": 2306545
+      },
+      "gsm8k-main-test.parquet": {
+        "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/main/test-00000-of-00001.parquet",
+        "sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59",
+        "bytes": 419088
+      }
+    },
+    "derived_split": {
+      "train_rows_before_semantic_dedup": 6973,
+      "tuning_rows_before_semantic_dedup": 500,
+      "final_test_rows": 1319,
+      "split_seed": 42,
+      "split_recipe": "sort all train indices i ascending by (SHA256(UTF8(\"gsm8k-split-v1|42|\"+str(i))),i); first500 tuning,next6973 train",
+      "source_row_identity_manifest": "raw/gsm8k-split-indices.json",
+      "source_row_identity_manifest_sha256": "0520d542fc84f13ab8fe7ce6b91e5e06f1ed003420b21004508ffaf8891257ef",
+      "semantic_dedup_status": "pending_preprocess_gate_not_claimed_clean",
+      "leakage_policy": "IDs disjoint by construction. NFKC+whitespace-normalized question fingerprint audit must remove/quarantine duplicate/overlap train rows and save resulting counts before use; final test never tunes algorithms/parallelism/length distribution/cost constants."
+    },
+    "preprocessing": {
+      "source_revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "source_path": "examples/data_preprocess/gsm8k.py",
+      "source_sha256": "b67a4b58eb97a1a8c5f4157072296798668af13d2db0958b921cfff1f4938975",
+      "input": "raw question only",
+      "prompt_format": "one user message with raw question + single ASCII space + official instruction suffix",
+      "instruction_suffix": "Let's think step by step and output the final answer after \"####\".",
+      "target": "answer field is separate rule ground_truth/metadata,never assistant prompt or a generated response",
+      "retained_fields": [
+        "dataset_id",
+        "revision",
+        "official_split",
+        "original_row_index",
+        "question_sha256",
+        "group_id",
+        "trajectory_id",
+        "tokenizer_revision",
+        "prompt_token_ids/length",
+        "generated_response_ids/length",
+        "finish_reason",
+        "actor_version",
+        "reference_version",
+        "sampling_seed"
+      ],
+      "prompt_length_cap_tokens": 1024,
+      "overlength_prompt_policy": "reject_and_count_no_silent_truncation; materialized sample counts must be recomputed",
+      "status": "source and contract locked; full tokenization/semantic dedup not executed"
+    },
+    "tokenizer": {
+      "model": "Qwen/Qwen2.5-3B-Instruct",
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "tokenizer_json_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+      "chat_template_utf8_sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+      "apply_chat_template": {
+        "messages": "single user message,no explicit custom system/no tools",
+        "add_generation_prompt": true,
+        "tokenize": true,
+        "use_fast": true
+      },
+      "default_system": "the pinned Qwen template inserts its declared default system message; not silently removed",
+      "software_versions": "record exact transformers/tokenizers/Jinja versions and rendered-token fixture before actual preprocessing; none claimed executed here"
+    },
+    "prompt_sampling": {
+      "seed": 42,
+      "recipe": "sort derived train indices i by (SHA256(UTF8(\"gsm8k-prompt-order-v1|42|\"+str(i))),i); use without replacement",
+      "without_replacement": true,
+      "cross_model_same_source_IDs": true,
+      "tail_policy": "keep/rebatch or explicit padding with masks/accounting; never silently drop source rows"
+    },
+    "future_actual_rollout": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": -1,
+      "seed": 42,
+      "responses_per_prompt": 8,
+      "max_response_length": 8192,
+      "EOS_enabled": true,
+      "actual_response_length": "Only from actual generation or independently sourced per-response records; not teacher answer length,means,or max_response_length",
+      "not_a_runtime_authorization": true
+    },
+    "future_quality_eval": {
+      "official_test_rows": 1319,
+      "decoding": "greedy one response per question",
+      "temperature": 0.0,
+      "responses_per_prompt": 1,
+      "max_response_length": 8192,
+      "EOS_enabled": true,
+      "metric": "strict_source_pinned_rule_correct_fraction_on_all1319; also report format failure/empty/truncation counts",
+      "reward_source": "verl/utils/reward_score/gsm8k.py at pinned commit",
+      "reward_source_sha256": "497c6e32b708d0bc8803b5a048ca5983de7756eb9c146abdc56e6f5d28767189",
+      "method": "strict",
+      "format_score": 0.0,
+      "correct_score": 1.0,
+      "quality_training_budget": "not part of this simulation round; no accuracy/reward learning curve promised",
+      "status": "protocol locked,not executed"
+    },
+    "W0_W1_W2_remain_fixed_length_synthetic": true,
+    "uniform_RL_minimum_trajectory_count_claimed": false
+  },
+  "later_reasoning_dataset": {
+    "dataset": "BytedTsinghua-SIA/DAPO-Math-17k",
+    "revision": "65877096c24ffa7abc4e4fa5edb95cf3413a5674",
+    "reference": "R27",
+    "role": "later3/7/14/32 reasoning supplement; separate dataset/W axis,not automatic algorithm replacement",
+    "status": "metadata pinned;299MB parquet not downloaded;row/unique/repetition counts and decontamination required before use",
+    "algorithm_remains_selected_GRPO": true,
+    "not_a_public_execution_trace": true
+  },
+  "rollout_operator_contract": {
+    "id": "vllm_0.10.1_selected_sampling_logits_rows_v1",
+    "reference": "R28",
+    "vllm_tag": "v0.10.1",
+    "vllm_commit": "aab549870df50edf0512f0a59b574f692f546465",
+    "scope": "ordinary single-token sampling;prompt_logprobs=None;no speculative/multitoken decode or beam;current no-chunked-prefill control",
+    "logits_as_input": false,
+    "prune_hidden_states": true,
+    "selected_token_indices_present": true,
+    "prompt_logprobs_requested": false,
+    "prefill_transformer_hidden_and_KV_rows": "P per independent request,unchanged",
+    "prefill_lm_head_rows_per_request": 1,
+    "decode_lm_head_rows_per_request": 1,
+    "homogeneous_batch_N_requests_lm_head_M": "N for both ordinary prefill sample and one-token decode",
+    "row_selection": {
+      "dtype": "BF16",
+      "input": "last row of each request final hidden states",
+      "output": "explicit selected hidden buffer before LMhead",
+      "logical_read_bytes_per_request": "2*H",
+      "logical_write_bytes_per_request": "2*H",
+      "no_free_alias_assumed": true,
+      "scope": "explicit local selection copy;not a claimed measured fusedvLLM kernel"
+    },
+    "teacher_forcing_old_policy_reference_train": {
+      "lm_head_rows": "full declaredS,unchanged",
+      "R_only_pruning_adopted": false,
+      "reason": "Inference sampling row selection does not establish response-only teacher logits support;preserve current graph until separate source/IR/cost validation."
+    },
+    "both_platforms_same_operator_contract": true,
+    "legacy_all_prefill_LM_head_results": {
+      "classification": "engineering_history_old_all_prefill_logits_contract",
+      "raw_artifacts_unchanged": true,
+      "not_eligible_for_new_paper_baseline_or_cross_revision_speedup": true
+    },
+    "runtime_admission": "pending source/IR/census/native evidence;this design update alone doesnotclaim implementation PASS",
+    "required_gates": [
+      "Actualsubmitted graph showsBF16selected-row read/write before LMhead.",
+      "Prefill M=1 perrequest/M=N after batch;transformer P/KV lengths unchanged;decode remainsone perrequest.",
+      "old/ref/train fullS,lossmask/denominator andG/trajectory counts unchanged.",
+      "Both GPU and wafer use sameoperator contract/source revision;policyFP alone cannot distinguish old/new operator code.",
+      "Regenerate exactGEMM census/cost-domain coverage and rerun pairednative;do not reuse old all-prefill-row timing as corrected baseline."
+    ]
+  },
+  "root_approval": "../../docs/RESULTS.md",
+  "execution_state_source": "results.json",
+  "artifact_location_policy": "Dedicated ROOT/runs-home-T42 on rootFS is allowed with the same 24GiB startup/20GiB dynamic reserve/2GiB candidate/12GiB total guards; default historical ROOT/runs symlink is unchanged",
+  "publication_copy": {
+    "original_sha256": "7df44a1678fd5999729bab134f1f18910211e1fd4d0222cfa1802f2779451e89",
+    "changes": "Navigation fields only; all numerical design parameters preserved; initial candidate execution status is historical, current result in results.json."
+  }
+}

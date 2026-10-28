@@ -396,6 +396,8 @@ def write_manifest(
             if Path('/opt/astra-sim/.rlxy-resource-patch').is_file() else None,
             "astrasim_multicore_patch": Path('/opt/astra-sim/.rlxy-multicore-patch').read_text()
             if Path('/opt/astra-sim/.rlxy-multicore-patch').is_file() else None,
+            "astrasim_read_id_patch": Path('/opt/astra-sim/.rlxy-read-id-patch').read_text()
+            if Path('/opt/astra-sim/.rlxy-read-id-patch').is_file() else None,
             "astrasim_gpu_patch": Path('/opt/astra-sim/.rlxy-gpu-patch').read_text()
             if Path('/opt/astra-sim/.rlxy-gpu-patch').is_file() else None,
             "astrasim_binary": str(execution.binary_path),

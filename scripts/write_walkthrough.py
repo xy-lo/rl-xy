@@ -113,6 +113,42 @@ for _name in ("case.json", "compilation.json", "gpu_provenance.json", "model_con
     FILE_INFO[f"experiments/2026-10-27-v0.6/inputs/{_name}"] = "原实验逐字节复制的结构/长度/来源输入。"
 
 
+
+# 0.7 protocol layer: every added source/config/result has one documented owner.
+FILE_INFO.update({
+    "src/rl_xy/colocation.py":"固定veRL同步协议、连续TP训推切换、全局屏障、权重/样本重分片和驻留账本。",
+    "src/rl_xy/colocation_validation.py":"从native实际事件校验全局阶段屏障、版本与完整资源生命周期。",
+    "src/rl_xy/batching.py":"同一步独立生成请求线性GEMM打包、ragged注意力隔离、FLOP/样本守恒。",
+    "src/rl_xy/capacity_mapping.py":"按真实容量与声明成本搜索合法多核输出网格和OS分块，不使用最终胜负。",
+    "scripts/prepare_colocation_cases.py":"从官方模型结构和显式长度生成三模型控制，记录真实/合成来源。",
+    "scripts/collect_gemm_shapes.py":"枚举精确BF16 GEMM签名，采集标签前固定问题域。",
+    "scripts/benchmark_gemm.py":"受限单GPU cuBLAS热GEMM微基准、数值fixture与重复性；不代表全框架校准。",
+    "scripts/compare_colocated_platforms.py":"同模型/负载/协议/源码门禁与两侧时长、近预算和局限对照。",
+    "scripts/colocation_acceptance.py":"唯一ID下原生小例/多轮/TP4/idle与三模型双平台运行，保存退出与日志SHA。",
+    "scripts/write_colocation_report.py":"从PASS验收生成0.7轻量实验摘要、JSON及HTML，明确未校准边界。",
+    "docker/Dockerfile.colocation":"基于0.6固定原生后端添加0.7Python协议层，不修改native网络实现。",
+    "tests/test_colocation.py":"全局依赖、多轮无泄漏、连续TP4、打包生成隔离与合法映射检查。",
+    "configs/colocation/tp2_to_tp1.json":"0.5B/3B训练TP2到生成TP1的固定协议与假设。",
+    "configs/colocation/tp4_to_tp2.json":"7B训练TP4到生成TP2的固定协议与假设。",
+    "configs/colocation/sources.json":"上游veRL固定commit和官方模型配置revision/URL/SHA。",
+    "configs/models/qwen25_3b.json":"官方Qwen2.5-3B结构原样配置，SHA与来源独立记录。",
+    "configs/models/qwen25_7b.json":"官方Qwen2.5-7B结构原样配置，SHA与来源独立记录。",
+    "docs/components/colocation.md":"0.7各模块职责、完整流程、切分、硬件、局限和后续实验矩阵。",
+})
+for _base in ("configs/verl_sync_cases","configs/verl_sync_standard"):
+    for _model in ("qwen05b","qwen3b","qwen7b"):
+        for _name,_desc in {"case.json":"模型结构/逐轨迹长度/同步更新输入；真实和合成性质见相邻来源。",
+            "model_config.json":"所选模型官方结构配置。","workload_provenance.json":"长度来源、结构反事实和非数值训练边界。",
+            "astra_system.json":"原生通信和trace系统输入。","astra_network.yml":"案例默认网络模板，运行时按平台显式生成native拓扑。",
+            "astra_remote_memory.json":"关闭隐式远端内存扩展。"}.items():FILE_INFO[f"{_base}/{_model}/{_name}"]=_desc
+for _name,_desc in {"实验结果.md":"0.7真实完成的协议模型对比、来源、命令、结果和论文使用边界。",
+    "预览.html":"0.7实验Markdown轻量阅读预览。","results.json":"各bundle原生时间/检查/manifest/input hash与完整比较。",
+    "acceptance.json":"本轮所有命令、退出状态、日志hash、源与镜像身份。"}.items():
+    FILE_INFO[f"experiments/2026-10-27-v0.7/{_name}"]=_desc
+
+
+FILE_INFO.update({'src/rl_xy/baseline_contract.py': '区分官方batch/切分合法性、IR能力和严格迁移身份，不把候选合法当作最优或已实现。', 'src/rl_xy/grpo_math.py': '独立小型GRPO数学oracle：sample-std、PPO双clip、k3 KL、mask与DP归约；不执行模型训练。', 'src/rl_xy/training_batching.py': '训练microbatch能力门禁；mb1保持原计划，未实现的聚合梯度合同先拒绝mb>1。', 'scripts/baseline_preflight.py': 'CPU生成3B候选策略卡与容量/对齐缺口，不选赢家、不启动完整仿真。', 'scripts/validate_gpu_costs.py': 'CPU逐签名对比解析GPU服务与独立热GEMM标签，报告覆盖、失配与cache边界。', 'scripts/bounded_run.py': '专用无GPU/无网络Docker执行器，限制memory/swap/CPU/pids/timeout并保存OOM和退出证据。', 'tests/test_baseline_contract.py': 'prompt/trajectory单位、整除、软件fingerprint、DO未实现、成本覆盖与诚实门禁负例。', 'tests/test_runtime_efficiency.py': '增量账本、编码往返、完整资源回放及坏输入拒绝的等价检查。', 'tests/test_training_batching.py': '同形状/变长训练批处理未实现时先拒绝，mb1对象与梯度/lifetime不变。', 'tests/test_grpo_math.py': '手算组标准差、双clip/KL、mask和DP均值不变性，不验证LLM学习效果。', 'docker/Dockerfile.alignment': '保留0.7原生后端，添加0.8对齐门禁与资源安全工程层。', 'docs/components/baseline_alignment.md': '严格基线范围、公开trace复用、实现/成本门禁、内存控制与尚未放行项。'})
+
 def project_files(root: Path) -> list[str]:
     excluded = {".git", ".deps", ".venv", "__pycache__", "runs", "acceptance", "build_logs", "build", "dist"}
     paths = {

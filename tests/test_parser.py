@@ -67,6 +67,20 @@ class ParserTest(unittest.TestCase):
             self.assertEqual(events[-1].callback_ns, 7)
             self.assertEqual([row.wall_cycles for row in summaries], [7000, 7000])
 
+    def test_only_explicit_idle_rank_can_omit_zero_communication_stat(self):
+        from dataclasses import replace
+        with tempfile.TemporaryDirectory() as directory:
+            result,operations=self._run(Path(directory))
+            operations=[replace(operations[0],participant_ranks=(0,1),metadata={'idle_rank_marker':True})]
+            text=result.stdout_path.read_text()
+            text='\n'.join(x.replace('7000','2000').replace('5000','0') for x in text.splitlines() if 'Comm time' not in x)
+            result.stdout_path.write_text(text)
+            result.debug_log_path.write_text('\n'.join(x for x in result.debug_log_path.read_text().splitlines() if 'node->id=1,' in x))
+            with self.assertRaises(AstraParseError):parse_astra_output(result,operations,ranks=2,astra_time_scale=1000)
+            events,summaries=parse_astra_output(result,operations,ranks=2,astra_time_scale=1000,inactive_ranks=(0,1))
+            self.assertEqual([s.communication_cycles for s in summaries],[0,0])
+            with self.assertRaises(AstraParseError):parse_astra_output(result,[replace(operations[0],metadata={})],ranks=2,astra_time_scale=1000,inactive_ranks=(0,1))
+
     def test_missing_callback_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             result, operations = self._run(Path(directory), missing_callback=True)

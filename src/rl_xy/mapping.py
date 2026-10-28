@@ -42,7 +42,7 @@ def choose_os_mapping(problem: Matmul, capacity: int, max_tile: int = 32) -> Map
     if max_tile <= 0:
         raise ValueError("max_tile must be positive")
     # Bounded deterministic candidates include ragged/full small dimensions.
-    choices = [sorted({min(dim, x) for x in (1, 2, 4, 8, 16, max_tile) if x <= max_tile})
+    choices = [sorted({min(dim, x) for x in (1, 2, 4, 8, 16, 32, 64, 128, 256, max_tile) if x <= max_tile})
                for dim in (problem.m, problem.n, problem.k)]
     legal = []
     for tile in product(*choices):

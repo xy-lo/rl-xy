@@ -60,6 +60,7 @@ def parse_astra_output(
     *,
     ranks: int,
     astra_time_scale: int,
+    inactive_ranks: Iterable[int] = (),
 ) -> tuple[list[AstraEvent], list[AstraRankSummary]]:
     """Return paired events and rank summaries, rejecting partial success."""
 
@@ -90,12 +91,24 @@ def parse_astra_output(
         if key in stats:
             raise AstraParseError(f"duplicate statistic {key}")
         stats[key] = int(match.group("cycles"))
+    ops = list(operations)
+    inactive=set(inactive_ranks)
+    if not inactive <= expected_ranks:
+        raise AstraParseError('inactive rank outside world')
+    for rank in inactive:
+        local=[o for o in ops if rank in (o.participant_ranks or tuple(range(ranks)))]
+        if not local or any(o.kind!='compute' or not o.metadata.get('idle_rank_marker') for o in local):
+            raise AstraParseError(f'inactive rank {rank} has non-marker work')
+        # The pinned binary omits Comm statistics when no communication was
+        # submitted on an explicit standby rank. Active-rank coverage is strict.
+        stats.setdefault((rank,'Comm'),0)
+        if stats[rank,'Comm']!=0:
+            raise AstraParseError(f'inactive rank {rank} has communication time')
     required_stats = {(rank, kind) for rank in expected_ranks for kind in ("Wall", "GPU", "Comm")}
     missing_stats = sorted(required_stats - set(stats))
     if missing_stats:
         raise AstraParseError(f"missing AstraSim statistics: {missing_stats}")
 
-    ops = list(operations)
     op_by_id = {op.node_id: op for op in ops}
     if len(op_by_id) != len(ops):
         raise AstraParseError("operation node IDs are not unique")

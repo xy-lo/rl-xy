@@ -1,0 +1,23 @@
+{
+  "schema_version": "rlxy.colocation/1",
+  "reference": "verl_v0.9.1_megatron_naive_sync",
+  "train_tp": 2,
+  "rollout_tp": 1,
+  "pipeline_parallel": 1,
+  "weight_sync": "per_tensor_full_export_distinct_rollout",
+  "engine_switch_ns": 1000,
+  "offload": false,
+  "mapping": "capacity_aware",
+  "training_precision": "bf16_mixed_fp32_accumulation",
+  "provenance": {
+    "scope": "dense PP1 Megatron, naive synchronous weight update, no LoRA/offload; protocol model not runtime reproduction",
+    "worker": "https://github.com/verl-project/verl/blob/v0.9.1/verl/workers/engine_workers.py#L650-L749",
+    "exporter": "https://github.com/verl-project/verl/blob/v0.9.1/verl/workers/engine/megatron/transformer_impl.py#L943-L972",
+    "scheduler": "https://github.com/verl-project/verl/blob/v0.9.1/verl/trainer/ppo/ray_trainer.py",
+    "engine_switch_ns": "test_assumption identical on both platforms; not a measured resume/sleep latency",
+    "export_materialization": "conservative full per-tensor TP gather followed by inference shard load; exact Bridge/vLLM conversion kernels not calibrated",
+    "batching": "packed linear GEMMs per prefill/decode frame; ragged unfused attention; no exact vLLM fusion or continuous admission claim",
+    "dispatch": "group-preserving LPT common controlled restriction; default veRL trajectory balancing and padding not reproduced",
+    "rank_mesh": "contiguous TP; engine_workers.py init_device_mesh(dp,infer_tp,infer_pp), PP1"
+  }
+}

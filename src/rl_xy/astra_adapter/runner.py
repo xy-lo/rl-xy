@@ -163,6 +163,10 @@ def run_astrasim(
         stderr_path.write_text(stderr, encoding="utf-8")
         raise AstraExecutionError(f"AstraSim launch failed: {exc}") from exc
     finished = _utc_now()
+    (out / 'astra_command.json').write_text(json.dumps({
+        'argv': list(command), 'exit_status': completed.returncode,
+        'started_at_utc': started, 'finished_at_utc': finished,
+    }, indent=2) + '\n', encoding='utf-8')
     stdout_path.write_text(completed.stdout, encoding="utf-8")
     stderr_path.write_text(completed.stderr, encoding="utf-8")
     result = AstraRunResult(

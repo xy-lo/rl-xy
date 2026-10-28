@@ -1,4 +1,6 @@
 import copy
+import hashlib,json
+from dataclasses import asdict
 from dataclasses import replace
 from pathlib import Path
 import unittest
@@ -59,3 +61,10 @@ class GPUModelTest(unittest.TestCase):
         self.assertGreater(a['gpu_minus_wafer_percent']['bf16_peak_flops_per_ns'],6)
         self.assertLess(a['gpu_minus_wafer_percent']['dram_bandwidth_bytes_per_ns'],0)
         self.assertLess(a['gpu_minus_wafer_percent']['private_sram_capacity_bytes'],0)
+    def test_measured_gemm_has_no_second_hbm_charge_and_domain_is_closed(self):
+        mat=Matmul(64,128,256);key=hashlib.sha256(json.dumps(asdict(mat),sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        p={**self.p,'gemm_measurements':{key:{'duration_ns':5000}}}
+        e=GPUCostProvider(p).estimate(KernelSpec('measured',matmuls=(mat,)),self.case.hardware)
+        self.assertEqual(e.local_memory_ns,0)
+        self.assertEqual(e.duration_ns,5000+self.p['kernel_launch_ns'])
+        with self.assertRaises(ValueError):GPUCostProvider(p).estimate(KernelSpec('unseen',matmuls=(Matmul(65,128,256),)),self.case.hardware)

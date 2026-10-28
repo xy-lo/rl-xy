@@ -9,6 +9,7 @@ from dataclasses import replace
 from functools import lru_cache
 import json
 from pathlib import Path
+import hashlib
 from .cost_model import CostEstimate
 from .mapping import ceildiv
 
@@ -37,6 +38,22 @@ class GPUCostProvider:
     def __init__(self,profile):self.p=profile
 
     def estimate(self,spec,hardware):
+        measured=self.p.get('gemm_measurements')
+        if measured and spec.matmuls:
+            from dataclasses import asdict
+            keys=[hashlib.sha256(json.dumps(asdict(m),sort_keys=True,separators=(',',':')).encode()).hexdigest() for m in spec.matmuls]
+            missing=[k for k in keys if k not in measured]
+            if missing:raise ValueError('GEMM outside exact measured profile domain: '+str(missing))
+            reference=GPUCostProvider({k:v for k,v in self.p.items() if k!='gemm_measurements'})
+            quota=reference.estimate(spec,hardware)
+            extra=reference.estimate(replace(spec,matmuls=()),hardware)
+            # cuBLAS CUDA-event kernel duration already includes its device
+            # memory service. Charge only additional vector/KV memory here.
+            compute=sum(measured[k]['duration_ns'] for k in keys)+extra.compute_ns
+            return replace(quota,duration_ns=max(1,compute+extra.local_memory_ns),compute_ns=compute,
+                local_memory_ns=extra.local_memory_ns,core_compute_ns=tuple(0 for _ in quota.core_compute_ns),
+                source='measured_hot_cublas_GEMM_plus_analytic_vector_v1',
+                timing_contract='inclusive_measured_GEMM_no_second_HBM_charge; reference_CTA_workspace_not_measured_occupancy')
         p=self.p;sms=p['sms_per_gpu'];workspace=[0]*sms;core=[0]*sms
         reads=writes=compute=memory=0;partitions=[]
         if spec.execution_domain!='device' or hardware.cores_per_die!=sms:
@@ -98,6 +115,14 @@ def load_gpu_profile(path):
         raise ValueError('GPU precision policy must be explicit')
     if p['precision_mode']=='optimistic_tensorcore_sensitivity' and p['physical_sku_prediction']:
         raise ValueError('optimistic FP32-to-TC rate is not a physical SKU prediction')
+    if 'gemm_profile' in p:
+        profile=(Path(path).resolve().parent/p['gemm_profile']).resolve()
+        data=json.loads(profile.read_text())
+        if data['schema_version']!='rlxy.gemm_measurements/1' or data['status']!='PASS':raise ValueError('incomplete GEMM profile')
+        if not all(c['passed'] for c in data['numeric_fixture_checks']):raise ValueError('GPU GEMM numeric fixture failed')
+        if data['device']!='NVIDIA A100-SXM4-80GB':raise ValueError('measured GPU model does not match profile')
+        p.update(gemm_profile_sha256=hashlib.sha256(profile.read_bytes()).hexdigest(),gemm_measurements=data['measurements'],
+            gemm_measurement_scope=data['scope'],gemm_measurement_source_shapes_sha256=data['source_shapes_sha256'])
     return p
 
 

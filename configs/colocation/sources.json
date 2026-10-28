@@ -1,0 +1,27 @@
+{
+  "engine_workers.py": {
+    "url": "https://raw.githubusercontent.com/verl-project/verl/v0.9.1/verl/workers/engine_workers.py",
+    "sha256": "ff9a0ebd003e52a4c6d9c14d853df8d624dd6f5f514b456ca0ccc09510e31265"
+  },
+  "megatron_transformer_impl.py": {
+    "url": "https://raw.githubusercontent.com/verl-project/verl/v0.9.1/verl/workers/engine/megatron/transformer_impl.py",
+    "sha256": "02e59909dfb33b109e38dece65021b2445aafe2ec1031624481c2b5600fddfb7"
+  },
+  "ray_trainer.py": {
+    "url": "https://raw.githubusercontent.com/verl-project/verl/v0.9.1/verl/trainer/ppo/ray_trainer.py",
+    "sha256": "eb41f99ccc66976eab14ebe35aa1aa5b7318e02469240ef1569ac4c884c94312"
+  },
+  "qwen25_3b.json": {
+    "url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct/raw/main/config.json",
+    "sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+    "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+    "pinned_url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct/raw/aa8e72537993ba99e69dfaafa59ed015b17504d1/config.json"
+  },
+  "qwen25_7b.json": {
+    "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/main/config.json",
+    "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "pinned_url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/raw/a09a35458c702b33eeacc393d103063234e8bc28/config.json"
+  },
+  "verl_reference_commit": "1876b06d0a3e4e71e06230be10af14492ca8a75b"
+}

@@ -1,0 +1,7 @@
+FROM rlxy-astrasim:0.8.0
+COPY docker/astrasim/RlxyResources.hh /opt/astra-sim/astra-sim/workload/RlxyResources.hh
+RUN cd /opt/astra-sim \
+    && cmake --build build/astra_analytical/build --parallel 2 \
+    && sha256sum astra-sim/workload/RlxyResources.hh > /opt/astra-sim/.rlxy-read-id-patch
+COPY . /workspace/rl-xy/
+LABEL io.rlxy.version="0.9.5" io.rlxy.scope="selected-PP1-DO-protocol-conditional-simulation"

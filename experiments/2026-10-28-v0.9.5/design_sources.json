@@ -1,0 +1,483 @@
+{
+  "schema_version": "rlxy.design_references/1",
+  "date": "2026-10-28",
+  "scope": "T42design; references support stated facts, not successful execution orcalibration",
+  "academic_workflow": "inheritT40WF1andT38primary-sourceaudit; no newperformance run",
+  "references": {
+    "R01": {
+      "title": "DeepSeekMath / GRPO",
+      "url": "https://arxiv.org/html/2402.03300v3",
+      "kind": "primary_paper",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "dfcd357c9f12643480ea44356c4206965a4cc8fd7128d5739f4e4d37937afc04",
+      "revision": "2402.03300v3",
+      "locator": "4.1–4.2",
+      "supports": [
+        "group normalized advantage",
+        "clipped policy objective",
+        "KL loss",
+        "one policy update/exploration example"
+      ],
+      "material_retained_offline": true
+    },
+    "R02": {
+      "title": "DAPO",
+      "url": "https://arxiv.org/html/2503.14476v2",
+      "kind": "primary_paper",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "eecec377627988d871263e7c26e912fdc8458eebe215d25059e4084263651458",
+      "revision": "2503.14476v2",
+      "locator": "3–4",
+      "supports": [
+        "algorithm differences from GRPO",
+        "long response training precedent; not adopted algorithm"
+      ],
+      "material_retained_offline": true
+    },
+    "R03": {
+      "title": "HybridFlow",
+      "url": "https://arxiv.org/html/2409.19256v2",
+      "kind": "primary_paper",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "0cf65d89509a3034b84a8f2629cce9f7106de98c6af68caf227de494d6e4109f",
+      "revision": "2409.19256v2",
+      "locator": "5–6,8.1",
+      "supports": [
+        "controlled P1024/R1024 methodology",
+        "parallelism strategy search",
+        "BF16/FP32 precision",
+        "200Gbps alternative GPU-network scenario"
+      ],
+      "material_retained_offline": true
+    },
+    "R04": {
+      "title": "actor.yaml",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/trainer/config/actor/actor.yaml",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "2bee6d8c6eac6097648ddc974f463531b741488b6ca0c896c4cbed1664520495",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "actor settings",
+      "supports": [
+        "token-mean default",
+        "clip .2",
+        "one ppo epoch",
+        "KL loss settings"
+      ],
+      "material_retained_offline": true
+    },
+    "R05": {
+      "title": "ray_trainer.py",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/trainer/ppo/ray_trainer.py",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "eb41f99ccc66976eab14ebe35aa1aa5b7318e02469240ef1569ac4c884c94312",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "1352–1368;balance_batch",
+      "supports": [
+        "mini prompt-equivalent units multiplied by rollout.n",
+        "selected stage/dispatch semantics"
+      ],
+      "material_retained_offline": true
+    },
+    "R06": {
+      "title": "core_algos.py",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/trainer/ppo/core_algos.py",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "a54b6d812db4441e8b0989ae69d2c46b0a0a7b584296f73d8316f264462c37cb",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "compute_grpo_outcome_advantage;policy loss",
+      "supports": [
+        "sample-std andzero variance semantics",
+        "CPU mathematical oracle reference"
+      ],
+      "material_retained_offline": true
+    },
+    "R07": {
+      "title": "megatron.yaml",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/trainer/config/engine/megatron.yaml",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "9253bee68d0a9e8d8cd7ecd323285853ac82c6fb9d073902f8d89f4c2708eb3d",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "Megatron engine",
+      "supports": [
+        "distributed_optimizer defaulttrue",
+        "sequence_parallel defaulttrue; project explicitly overridesSPfalse",
+        "BF16 andoffload settings"
+      ],
+      "material_retained_offline": true
+    },
+    "R08": {
+      "title": "megatron.yaml",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/trainer/config/optim/megatron.yaml",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "cca1710923436974bc297377404df5ddf805dc854c136b68576318623e2b3faf",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "optimizer settings",
+      "supports": [
+        "Adam betas .9/.999",
+        "clip1",
+        "FP32 main gradients/moments",
+        "wd .01; examplelr overrides needed"
+      ],
+      "material_retained_offline": true
+    },
+    "R09": {
+      "title": "run_qwen2-7b_math_megatron_fsdp.sh",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/examples/grpo_trainer/run_qwen2-7b_math_megatron_fsdp.sh",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "773dd0634de30f3ae46bae602d4cbbfcb477732e21458bf6c9218c957673d5bb",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "DATA/ACTOR/ROLLOUT",
+      "supports": [
+        "official example vs project adaptation",
+        "lr1e-6,KL.001",
+        "not3B48GPU optimalstrategy proof"
+      ],
+      "material_retained_offline": true
+    },
+    "R10": {
+      "title": "perf_tuning.rst",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/docs/perf/perf_tuning.rst",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "367e35b71fad468c1d75b60ad1ccb6dde038cd0f41a2c1c54ae1cd6124f344bf",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "locator": "performance tuning",
+      "supports": [
+        "microbatch/token budgets andfusion tuning; no universal fastestcut"
+      ],
+      "material_retained_offline": true
+    },
+    "R11": {
+      "title": "RollPacker",
+      "url": "https://arxiv.org/abs/2509.21009",
+      "kind": "primary_pdf_inherited_verified_T38",
+      "sha256": "56cbf28f9f1c3aded31f096565c584a8b884c225a609d498c7991f32a736cf68",
+      "locator": "PDF10§6",
+      "supports": [
+        "Qwen7/14/32B precedent",
+        "G8 and8K+ response limits; sourceB128not copied into48GPU"
+      ],
+      "status": "source_fields_inherited_from_T38_not_replicated_experiment",
+      "material_retained_offline": true
+    },
+    "R12": {
+      "title": "Weave",
+      "url": "https://www.usenix.org/conference/osdi26/presentation/wu-tianyuan",
+      "kind": "primary_pdf_inherited_verified_T38",
+      "sha256": "eb8ce1c9fe00e6fe4165e2784e76ce63f02199b1f4b9fe529c2b4bf02465631e",
+      "locator": "PDF10Table3/6.1",
+      "supports": [
+        "7/14/32B and8K output precedent; no publicly recovered3B trace claimed"
+      ],
+      "status": "source_fields_inherited_from_T38_not_replicated_experiment",
+      "material_retained_offline": true
+    },
+    "R13": {
+      "title": "WSC-LLM",
+      "url": "https://doi.org/10.1145/3695053.3731101",
+      "kind": "primary_pdf_inherited_verified_T38",
+      "sha256": "4f51336206aca77867ddf87f0285c2b6f42fc9e3483849c5c8cab6843868ec3c",
+      "locator": "Table1Case3;5.3",
+      "supports": [
+        "54die resources",
+        "48A100 paper-caliber comparison scenario"
+      ],
+      "status": "source_fields_inherited_from_T38_not_replicated_experiment",
+      "material_retained_offline": true
+    },
+    "R14": {
+      "title": "WATOS",
+      "url": "https://arxiv.org/abs/2512.12279",
+      "kind": "primary_pdf_inherited_verified_T38",
+      "sha256": "7a9be62cf38c34719e015969fc774a1920598448ea8a8c7ff0625f2eb289d1e3",
+      "locator": "PDF10V-A/TableII",
+      "supports": [
+        "wafertraining co-exploration methodology; not H0hardware calibration"
+      ],
+      "status": "source_fields_inherited_from_T38_not_replicated_experiment",
+      "material_retained_offline": true
+    },
+    "R15": {
+      "title": "NVIDIA A10080GB datasheet",
+      "url": "https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet-nvidia-us-2188504-web.pdf",
+      "kind": "official_hardware_document",
+      "status": "verified_source_not_experiment_result",
+      "locator": "PDF1specifications",
+      "supports": [
+        "dense BF16312TFLOPS",
+        "80GB",
+        "SXM HBM2039GB/s",
+        "NVLink600GB/s aggregate; direction interpretation is a scenario assumption"
+      ]
+    },
+    "R16": {
+      "title": "Publictrace audit T40",
+      "url": "../experiments/2026-10-28-v0.9.5/design_sources.json",
+      "kind": "project_source_audit",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "91d2e393811a4613e2be404663f193d26b0a22dfd1a4fc0e38ce78a1bfb69857",
+      "locator": "boundedofficialsourceaudit",
+      "supports": [
+        "no directly reusable dense3B48A100 trace found",
+        "public7B aggregate logs vs per-trajectory trace distinction"
+      ],
+      "material_retained_offline": true,
+      "original_workspace_reference": "../../rl-xy-aligned-baseline-20261028/research/公开trace与可复用材料核查.md",
+      "scope": "Project audit provenance retained offline; source SHA preserved; primary references and current public inputs/results are provided separately."
+    },
+    "R17": {
+      "title": "v0.8 engineering evidence",
+      "url": "../experiments/2026-10-28-v0.9.5/design_sources.json",
+      "kind": "project_evidence",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "9fe13ff63d5d3bebb793e34c1aef1f990222590ed52d52cde426105892e3d168",
+      "supports": [
+        "150Docker checks andsmallnative regressions",
+        "formal3B runtime notready at T40 handoff",
+        "local optimization is not fullmodel scalability proof"
+      ],
+      "material_retained_offline": true,
+      "original_workspace_reference": "../../rl-xy-aligned-baseline-20261028/README.md",
+      "scope": "Project audit provenance retained offline; source SHA preserved; primary references and current public inputs/results are provided separately."
+    },
+    "R18": {
+      "title": "ISCA evidence inventory andparameter table",
+      "url": "../experiments/2026-10-28-v0.9.5/design_sources.json",
+      "kind": "project_source_audit",
+      "status": "verified_source_not_experiment_result",
+      "sha256": "669af83cfa0f0c876215ddab660a97f6102cf914f5045e2389ecf2e7c82e7ecc",
+      "supports": [
+        "sourcefacts vs proposals separated",
+        "reasoninglength andmodels precedents; table hasdifferent hardware/batch scopes"
+      ],
+      "material_retained_offline": true,
+      "original_workspace_reference": "../../rl-wafer-isca-evidence-20261028/论文参数证据表.md",
+      "scope": "Project audit provenance retained offline; source SHA preserved; primary references and current public inputs/results are provided separately."
+    },
+    "R19": {
+      "title": "Qwen2.5-3B-Instruct config",
+      "kind": "pinned_official_model_config",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct/raw/aa8e72537993ba99e69dfaafa59ed015b17504d1/config.json",
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+      "supports": [
+        "36layers/H2048/Hq16/Hkv2/FFN11008",
+        "exact3,085,938,688parameters inproject enumeration"
+      ],
+      "status": "modelstructureverified_notnumericaltraining"
+    },
+    "R20": {
+      "title": "vLLM KVhead replication implementation",
+      "url": "https://github.com/vllm-project/vllm/blob/v0.8.5/vllm/model_executor/layers/linear.py#L713-L765",
+      "kind": "pinned_official_code",
+      "status": "verified_source_not_experiment_result",
+      "revision": "v0.8.5",
+      "supports": [
+        "KVhead count is not a universal physicalTPupper bound; current no-replication contract is restricted"
+      ]
+    },
+    "R21": {
+      "title": "T42初轮共享服务器资源预算",
+      "url": "parameter_contract.json",
+      "kind": "parent_task_locked_project_engineering_limit",
+      "date": "2026-10-28",
+      "supports": [
+        "one CPU-only Docker run at a time",
+        "4CPU/8GiB/no extra swap/PID512",
+        "stage and total timeouts",
+        "artifact and free-disk limits",
+        "budget_failed is not a performance sample",
+        "Explicitstartupfree-disk revision30→24GiB,not a silent historical rewrite",
+        "24GiB=2GiBcandidate cap+20GiBdynamic reserve+2GiBmargin",
+        "Below20GiB stops only own run;other limits unchanged"
+      ],
+      "status": "accepted_engineering_policy_not_paper_value_not_runtime_guarantee",
+      "revision_history": [
+        {
+          "version": "initial",
+          "minimum_start_free_GiB": 30,
+          "status": "superseded_for_new_admissions_only"
+        },
+        {
+          "version": "engineering-budget-v2",
+          "minimum_start_free_GiB": 24,
+          "always_preserved_dynamic_reserve_GiB": 20,
+          "reason": "Parent observed sharedNVMe free capacity decreased51GiB→26GiB while T42owned1.7GiB; old30GiB startup gate correctly blocked tiny admission. New24=2GiB candidate cap+20GiB always-preserved dynamic reserve+2GiB margin.",
+          "evidence_status": "Parent-reported current server snapshot; raw snapshot is in root logs and will be archived by root,not remeasured by design subtask.",
+          "hardware_or_algorithm_changed": false
+        },
+        {
+          "version": "engineering-budget-v3-evidence-disclosure",
+          "thresholds_changed": false,
+          "candidate_monitor_threshold_GiB": 2,
+          "total_budget_GiB": 12,
+          "observation": "a7 retained2.416GB after guard; not a filesystem quota and not successful performance",
+          "immediate_own_container_kill_for_new_attempts": true,
+          "alternative_artifact_root": "ROOT/runs-home-T42 on rootFS; oldNVMe symlink unchanged"
+        }
+      ]
+    },
+    "R22": {
+      "title": "openai/gsm8k main official dataset snapshot",
+      "url": "https://huggingface.co/datasets/openai/gsm8k/tree/740312add88f781978c0658806c59bc2815b9866",
+      "kind": "official_dataset_card_and_snapshot",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "sha256": "a17e882503578c9e324560630e31017617714ee025c87cf4fea6fd916895f3c1",
+      "supports": [
+        "main train7473/test1319 source rows",
+        "MIT license",
+        "dataset structure; not actual3B rollouts"
+      ],
+      "source_files": {
+        "gsm8k-main-train.parquet": {
+          "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/main/train-00000-of-00001.parquet",
+          "sha256": "ea82612ea9582142387730c793eb67d3b12849002bc0b7fa6f8efafa7351419d",
+          "bytes": 2306545
+        },
+        "gsm8k-main-test.parquet": {
+          "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/main/test-00000-of-00001.parquet",
+          "sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59",
+          "bytes": 419088
+        }
+      },
+      "status": "snapshot files fetched and SHA verified;tokenization/semantic dedup pending",
+      "material_retained_offline": true
+    },
+    "R23": {
+      "title": "Training Verifiers to Solve Math Word Problems",
+      "url": "https://arxiv.org/abs/2110.14168v2",
+      "kind": "primary_paper",
+      "revision": "2110.14168v2",
+      "supports": [
+        "GSM8K task/dataset provenance; not this project train/tuning split,GRPO setting,or universal trajectory threshold"
+      ],
+      "status": "official arXiv abstract/source metadata checked,not replicated experiment"
+    },
+    "R24": {
+      "title": "veRL official GSM8K preprocessing",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/examples/data_preprocess/gsm8k.py",
+      "kind": "pinned_official_code",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "sha256": "b67a4b58eb97a1a8c5f4157072296798668af13d2db0958b921cfff1f4938975",
+      "supports": [
+        "question+instruction user prompt",
+        "answer-derived rule target stays separate",
+        "official train/test source handling; project adds independent tuning holdout"
+      ],
+      "status": "fetched source verified,preprocessing not executed",
+      "material_retained_offline": true
+    },
+    "R25": {
+      "title": "Qwen2.5-3B-Instruct pinned tokenizer/chat template",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct/blob/aa8e72537993ba99e69dfaafa59ed015b17504d1/tokenizer_config.json",
+      "kind": "pinned_official_tokenizer_config",
+      "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+      "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+      "tokenizer_json": {
+        "local_path": "outputs/rl-xy-paper-experiment-20261028/design/raw/qwen3b-tokenizer.json",
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+      },
+      "chat_template_utf8_sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+      "supports": [
+        "exact tokenizer files and chat template",
+        "single-user/default-system generation-prompt semantics; no tools"
+      ],
+      "status": "files fetched and hashed;no actual tokenization or sampled3B answers claimed",
+      "material_retained_offline": true
+    },
+    "R26": {
+      "title": "veRL official GSM8K strict reward",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/utils/reward_score/gsm8k.py",
+      "kind": "pinned_official_code",
+      "revision": "1876b06d0a3e4e71e06230be10af14492ca8a75b",
+      "sha256": "497c6e32b708d0bc8803b5a048ca5983de7756eb9c146abdc56e6f5d28767189",
+      "supports": [
+        "strict final-answer extraction and exact string rule match",
+        "format_score0/correct1",
+        "not numerical quality evidence without generated outputs"
+      ],
+      "status": "source fetched and read;no quality evaluation performed",
+      "material_retained_offline": true
+    },
+    "R27": {
+      "title": "DAPO-Math-17k official future supplement artifact metadata",
+      "url": "https://huggingface.co/datasets/BytedTsinghua-SIA/DAPO-Math-17k/tree/65877096c24ffa7abc4e4fa5edb95cf3413a5674",
+      "kind": "official_dataset_metadata_only",
+      "revision": "65877096c24ffa7abc4e4fa5edb95cf3413a5674",
+      "sha256": "cde433ea1bd70765ecef484ddeff63c2dffa4548739a09e19e75daccff78449e",
+      "supports": [
+        "official artifact identity and299MB parquet existence",
+        "later reasoning dataset source,not a per-trajectory execution trace or proof of unique row count"
+      ],
+      "status": "metadata fetched only;full data/unique row count/repetition/decontamination not yet audited",
+      "material_retained_offline": true
+    },
+    "R28": {
+      "title": "vLLM v0.10.1 sampling-logits row selection before LMhead",
+      "url": "https://github.com/vllm-project/vllm/blob/aab549870df50edf0512f0a59b574f692f546465/vllm/model_executor/layers/logits_processor.py",
+      "kind": "pinned_official_code_operator_contract",
+      "tag": "v0.10.1",
+      "revision": "aab549870df50edf0512f0a59b574f692f546465",
+      "sha256": "e038b71e0c4c0962822f3036cf0655db00aa2a52062843436dee2e86aec94fc5",
+      "locator": "LogitsProcessor.forwardL56–72;_prune_hidden_statesL129–140;sampling_metadataL279–318",
+      "supplemental_sources": [
+        {
+          "name": "vllm-v0.10.1-sampling_metadata.py",
+          "url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.10.1/vllm/model_executor/sampling_metadata.py",
+          "bytes": 23013,
+          "sha256": "eae73ba5a8641727a2d9cfb8327d235f5d0c40540a28a866ed52540b145b43c4",
+          "tag": "v0.10.1",
+          "commit": "aab549870df50edf0512f0a59b574f692f546465",
+          "pinned_url": "https://raw.githubusercontent.com/vllm-project/vllm/aab549870df50edf0512f0a59b574f692f546465/vllm/model_executor/sampling_metadata.py",
+          "tag_and_commit_content_SHA_equal": true
+        }
+      ],
+      "tag_resolution": "raw/vllm-v0.10.1-resolution.json",
+      "official_API_docs": "https://docs.vllm.ai/en/v0.10.1/api/vllm/model_executor/layers/logits_processor.html",
+      "supports": [
+        "Prune selectedhiddenstates before_get_logits on selected guardedpath.",
+        "Ordinaryprefill do_sample has num_prefill_sample==1;withoutprompt_logprobs only that sample indexisselected.",
+        "Ordinarydecode defaultquery_len1;not a universal assertion forspeculative/multitoken orprompt-logprob requests."
+      ],
+      "does_not_support": [
+        "EntireveRL/vLLM runtime or hardware calibration.",
+        "R-only teacher-forcing/logprob/training LMhead optimization.",
+        "Measured timing benefit or retroactive validity ofold all-prefill runs."
+      ],
+      "status": "tag/fullcommit source bytes independentlyfetched andsameSHA;source review only,newIR/nativegates pending",
+      "material_retained_offline": true
+    },
+    "R29": {
+      "title": "Pinned veRL sample repeat, worker chunking and server routing boundaries",
+      "url": "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/experimental/agent_loop/agent_loop.py",
+      "primary_sources": [
+        "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/trainer/ppo/ray_trainer.py",
+        "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/protocol.py",
+        "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/experimental/agent_loop/agent_loop.py",
+        "https://github.com/verl-project/verl/blob/1876b06d0a3e4e71e06230be10af14492ca8a75b/verl/workers/rollout/llm_server.py"
+      ],
+      "status": "official_pinned_source_verified_online_20261028",
+      "supports": [
+        "DataProto.chunk uses contiguous equal chunks",
+        "agent-worker chunk is not a guarantee of server replica ownership",
+        "LLMServerClient global routing; current simulator staticinterleaving is declaredprojectoverride",
+        "host advantage executes on trainer driver, not calibratedby8ns placeholder"
+      ],
+      "not_claimed": [
+        "defaultveRL runtime reproduced",
+        "actual server assignment equals static localj stride",
+        "async request API implies async RL updates"
+      ]
+    }
+  },
+  "publication_copy": {
+    "original_sha256": "91bab03dc2614a44af3b04cddea8b3b973b3861fcc005a3b3c956f36a324e59c",
+    "scope": "Portable reference index; no paper PDFs, local absolute paths or upstream fulltext redistributed."
+  }
+}

@@ -1,0 +1,781 @@
+{
+  "artifact_sha256": {
+    "SUMMARY.md": "b4c20fb7cfcbc7f3baca33caf87b3335d2d01fc9e0bccc63f2aeccfad2ae1ee5",
+    "actual_gemm_census.json": "ed058165eb9649d701e2636006a5170ab9abc1a21b48ca6c4e4cb138bb9aefcb",
+    "aligned_contract.json": "1fc4044038eaa93310c7cbac011e1afe4622aaa0a41a9fa12c54093aefd2c6f5",
+    "astra_command.json": "45b1f4ff281140bec9b13c34ae36be96dbadcf8fe5e0e37801567a62f76b0538",
+    "astra_config_contract.json": "fa07b6eb25d29680fdcd09c856df944ca637b6bba08d83c5f94a6fb11d4db0d8",
+    "astra_logs/err.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "astra_logs/log.1.log": "9bc8563475e1b5c17a99f8414906c30d18c765b1a7c717b1fbe6c63ae3725e13",
+    "astra_logs/log.10.log": "05e5d25afae89b1d5bca22a0f3aaead6033097acdb9f3022c1dc2f8b65264b66",
+    "astra_logs/log.11.log": "1699765a5debaa415f142a99805de748225a05154521ad801aca2914771c36fa",
+    "astra_logs/log.12.log": "404f4017f71a93ccb48718578e6ac8f2c549a635b29da7a19817a245c52a1c01",
+    "astra_logs/log.13.log": "924b70e29aa739b4496a8775116f9b5a1d6a0c27d40047d3347fb888b5287760",
+    "astra_logs/log.14.log": "595ad7cb2e9569e76aa16920e90ad9e2433cc9118eb12b3766bd28db45a5ca72",
+    "astra_logs/log.15.log": "15b4161f13c37aec2091a3d352e26b5a92be7665eab3cdf0d1210d13d0367484",
+    "astra_logs/log.16.log": "91efe4cd75da23350b4768aec8d27fba67d4e2bea298ef224855fdd2b243e927",
+    "astra_logs/log.17.log": "78a70f48f7378df51606419d3521504a28e8762577e1bc5cfb39aa2c520a35a6",
+    "astra_logs/log.18.log": "92a8cbc3dbedd8f8d333a07dea7925bcbbd097e1fe6722b65092472957cc9b01",
+    "astra_logs/log.19.log": "1d62926c9d5620920890761bd5545d917f309642b146960af8d8dfa89d9c80e0",
+    "astra_logs/log.2.log": "59a76f59f912dfdbc202f89383d04c2b2a94561fed4dc99a95300d5eaf077c1c",
+    "astra_logs/log.20.log": "45ffce318c913c60b28c0395fa799a21586fbc08a4221374072c16bee02d66c8",
+    "astra_logs/log.21.log": "cac9783c8bed82bc1f5c28b5ec6249f8472246059ea52c3faa7e8f7994628b18",
+    "astra_logs/log.22.log": "8e11749dca99cb0cf288fd8cf0aa54ba343d4c32e487c45c1dd2d324a916b51e",
+    "astra_logs/log.23.log": "c1d5ddaf9db01a4c825e502aa158fb6e97b41052302615361809df327870c147",
+    "astra_logs/log.24.log": "4a88b361be63c39a995d872dde41849138edc1756fa00e2b37bec8427696d361",
+    "astra_logs/log.25.log": "9a39ce04f3acc6b0842424371d130999d3d694d82e7eca5d1f36299bf5cd9b0c",
+    "astra_logs/log.26.log": "c1d412a792dbf4ef9cf194815df297696ac35648d4552f1bed4ded9b48ad6bea",
+    "astra_logs/log.3.log": "57ccba2f11d0e8123657b2d1034f494f74047d7a86b82e3c85f38f9a97a265b4",
+    "astra_logs/log.4.log": "37033fc4886c89927287d7f5ec94a162709dee341a8d9b35d86476766ca37eea",
+    "astra_logs/log.5.log": "31106fe1af8f2b36b63fe56ae7adf09cb29f2221e7b727bd261632b24f42c8ab",
+    "astra_logs/log.6.log": "d47148575cb16915514d77ea5919fd33cd93cf000ae2eeb01cfb07b12021de0e",
+    "astra_logs/log.7.log": "79671d2b6cc4aa1f2a0fe0d02fcb99bbf27d861463796ce48798a6a0f2553dd7",
+    "astra_logs/log.8.log": "26fe7405f18efb3616de5d876a04970505cd612deb0d928126a38f894f703e05",
+    "astra_logs/log.9.log": "c84a6daecb8f3757b0548f48bd57ef747196ad4c6dff38e2a94bd9ab9deb6b41",
+    "astra_logs/log.log": "7c36b4c7df54df26d7b51deac1299c1405f943c1c20c139e8258cd6d49ea3e9a",
+    "astra_logs/resources.0.jsonl": "a394dbb7892ad9e1e6b407d6bcf485690f3e4e8fdc50875da532081a6c3f2825",
+    "astra_logs/resources.1.jsonl": "e4dba98615f437157973d3e143eb5f68cad8cfe09f92d61748916c8ac10c3bcc",
+    "astra_logs/resources.10.jsonl": "5cf59c932da0c2042a7f7d2c7bf363666bb7c706ea6239697d4fa05d0544091c",
+    "astra_logs/resources.11.jsonl": "a9c111b3ec90c8a7ee0e846b8f887c3a7851211bb26921af8d5239e04e440f4f",
+    "astra_logs/resources.12.jsonl": "7b3f075dc607822e41ca18a97154df888ba7b38009c80e3dd88bd74c9ef178e6",
+    "astra_logs/resources.13.jsonl": "d65e8f5f552b4c9185680ff53f4d33fbf00b724ebac81fbed67eb97e1e5dfb7a",
+    "astra_logs/resources.14.jsonl": "a0fdbd4eb426533a86e0b3dc9ef32d6c428361f1559cc8462a26d4e8046fa511",
+    "astra_logs/resources.15.jsonl": "1336814d3b9a9d9015677c470c98436d3aa485e5e47069766fb07ef5abe5fba9",
+    "astra_logs/resources.16.jsonl": "26a0053ffc1e1a2d9be5c511a5629a1fee6700f89b380cf36bfc7d6883eba3b2",
+    "astra_logs/resources.17.jsonl": "b14fff64793e099121b1c3c9a8d9a2d2b6f9c84d31ef56d9c9691f05c3805785",
+    "astra_logs/resources.18.jsonl": "c9ca85a7252c9645d9ca9cdba62e1838455a16e676389be7e06edf735ea48e61",
+    "astra_logs/resources.19.jsonl": "2d70cfb906dfc44be006ab83b97b96e962fb158f71b971c5b9aedf2be13a5c92",
+    "astra_logs/resources.2.jsonl": "cad48f699f2d3a7e7e5a6d58c46dce5d830e74fa54f0ba57ab78002895ed4b47",
+    "astra_logs/resources.20.jsonl": "4fd44e9287619ab456a505cb6c1a7e0dd9bfdff37c4000bbb060877f1f62a26a",
+    "astra_logs/resources.21.jsonl": "258ad155e812f59dcc3268c2949b9c9065c3dc39c322820bb955ff1dc58530a1",
+    "astra_logs/resources.22.jsonl": "739a1c5a0e1c9bd152343e9f7dfb104cf67bd08ea8af8dd24545a4bfb5517f63",
+    "astra_logs/resources.23.jsonl": "67d31f905ae66de28265f61334c247c0c6072ebf0845948e55dc990d9a333368",
+    "astra_logs/resources.24.jsonl": "1ebccc0df75a633b53ac5f4188f9842a2d78cb2671787a78b4aaa5bc5f073d41",
+    "astra_logs/resources.25.jsonl": "fbe5c19972d79e55170b7f5a7c04742d477a3ce1ae6329bea39be6748f17ca1b",
+    "astra_logs/resources.26.jsonl": "35d41010443f2b36b4dfbb18e9b5647e00d5300b5ef93d9f4fc96a2aff2d7012",
+    "astra_logs/resources.27.jsonl": "90adb2beac5807a72ba218ec002efa1ea24ebcb72bba902254eb4095cfef6a5c",
+    "astra_logs/resources.28.jsonl": "4ef242fcd798cdd18227f537a43576c39bfcaeea6c403467d66dc4a99730fe51",
+    "astra_logs/resources.29.jsonl": "7433089eb88d3e556c7b6eacd2835e8bec385e5c12e85e03fcadda1aae863066",
+    "astra_logs/resources.3.jsonl": "cfb363423771c922a6034b712b4fd7f313730d8221015164661f294545f32d72",
+    "astra_logs/resources.30.jsonl": "7272c9dff78be5b9bd9dae8e24fb26ca2e79a8a628ae416e086683788c8e44f3",
+    "astra_logs/resources.31.jsonl": "ca5bfda328ab9411e60dad6ec90171f4464fd6bf8d36698a8d613c78850fb75f",
+    "astra_logs/resources.32.jsonl": "13dc3c27c1c03425a96c6c7000ee87edb5fc1c4072d63ee26218505962771a61",
+    "astra_logs/resources.33.jsonl": "eca5890f9318cc96bc1f0ce10273f8263fb7cb42ecae2ada1e94ed8227b47724",
+    "astra_logs/resources.34.jsonl": "a3a1afc0c2e14049ecc3ac5e568af022a671e7c2588933754983505c935e9d07",
+    "astra_logs/resources.35.jsonl": "a4ba98b50416692283491cab87af68c65f95ad7019a5fe73d724752664b59d1b",
+    "astra_logs/resources.36.jsonl": "5329bcaf2e4972dd7a8b9bac120d84e89c3edb744519c5519e59d34976931a4b",
+    "astra_logs/resources.37.jsonl": "9be8e614eba5913095dcfcb9f3c1699957af7a932bd271c212695fa5d5f14396",
+    "astra_logs/resources.38.jsonl": "b7b824c059b226087e61ab96547e79bede124cabf0a27e464af06635c7980e85",
+    "astra_logs/resources.39.jsonl": "fd15a00f398bfd2fa00832abc6a636a430e81fe13d40e2d83bc68d40c9399d94",
+    "astra_logs/resources.4.jsonl": "0eee7d0df839ebe6c9414ced975f1611b46db2b9d6d00d100058abdd78cf7cf5",
+    "astra_logs/resources.40.jsonl": "cde2f53c276903e38e332940c712af8ac0bbec1e11ff2e5a020fe0e0007cb93a",
+    "astra_logs/resources.41.jsonl": "24fa0625c51956056026de75111db5c086c081ba3d6edfc7ea527ef731b8e2df",
+    "astra_logs/resources.42.jsonl": "090bb983b36fbcdc615ab836e5bc577fad802b54ef1b7f13e76aac1451b7d1d5",
+    "astra_logs/resources.43.jsonl": "3340e5b5f739b52348288e9a153c5da0122f990f4613f6bcdbd9bd5d92c49827",
+    "astra_logs/resources.44.jsonl": "973d137b8da6d9eb6ac5266b485d64cc63f17ea3bfd018324f1b71e8adeeda80",
+    "astra_logs/resources.45.jsonl": "0a79105d5495a81a9c8301c6c75005bf35740d4a6228dbfd3e2885a4ab53e472",
+    "astra_logs/resources.46.jsonl": "b7a740c489dfe532c7adc3db62138f72bcecd7e2594eca3f8fa2044f32562d06",
+    "astra_logs/resources.47.jsonl": "35ed39d40aabcced1e3a14fdec6336537367558c023e0dfa5dd4c7b8cdc34b6a",
+    "astra_logs/resources.48.jsonl": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+    "astra_logs/resources.49.jsonl": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+    "astra_logs/resources.5.jsonl": "578b81db00da43f97cb44b651ad355ac605f003af9c862b60297cce59cc17540",
+    "astra_logs/resources.50.jsonl": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+    "astra_logs/resources.51.jsonl": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+    "astra_logs/resources.52.jsonl": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+    "astra_logs/resources.53.jsonl": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+    "astra_logs/resources.6.jsonl": "97dd86cda6eb7c227a4cf9bbf02434ae9d4bf42d95ca48b797601ff75b548813",
+    "astra_logs/resources.7.jsonl": "1b08821aa003cbff50481de3348dbd79ee39d1125c62840aabb49b54abc6cff8",
+    "astra_logs/resources.8.jsonl": "29f2cde21c0e5f0360deb4b9839539e2f0dab067813354d9b898675dc5bfe7da",
+    "astra_logs/resources.9.jsonl": "b07af4f0c833e38ec83d00b2a6b155cab417c369d76850e409d8294284dcc1ff",
+    "astra_rank_summary.csv": "b8acacc408575fc4f12b6e65f8abe098d92bd7268fd944f130b59096176d31c4",
+    "astra_stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "astra_stdout.log": "d016902662b8158c64498ac7163d0d2b6a7567e88107e94f707f1e547315b71c",
+    "checks.csv": "618119bfe5c41a5e195f7566bbc503aeafae3fe52ec9e11f1a5b4c60831ee5bc",
+    "checks.json": "54a6f9b83e1cf361671b524a701d53ba5013107e2df853cd09fe86b77c11022c",
+    "component_logical_proofs.json": "c27feee4185690489beeb3601f3ab420d62b2245ef0bed48d41b28ec3cd9cee5",
+    "component_template_signature_guard.json": "41f3ec0e72b2a1d2265439722d211955f3546977c0866b9ce75ce0e01cf5bc33",
+    "cost_profiles.json": "71bd1035d0b6f1ea01d1095a76c7b41d92494c6d8f12245c8ec80f8941c0c8a9",
+    "events.jsonl.gz": "f3e8d88c4536a71170f97e534d054be2d42e88e1899536672c86850b815afd28",
+    "global_stage_times.json": "cd493cd1010e9e2af8c4fe586ba9a74213765f229ff6a0e5759aec94a6d08d3d",
+    "inputs/astra_network.yml": "635816c020e01f9385a4967fe54e51ba6b498d0afcd70eb4bfe3191b2cd7fe74",
+    "inputs/astra_remote_memory.json": "a4d8229c75a6425ca081d9dfe77c09cfafd922dbf99d8a72fbb759e115b394c1",
+    "inputs/astra_system.json": "f6cae23c15bcacbded15dc13488fd1f3ce1a251a06c7760f58dde4022546734a",
+    "inputs/case.json": "17760e03b8ab8408db2aad330cf15f70c1da7a6bd04412bf7f19409042f06b6d",
+    "inputs/groups.json": "1fcb1f296cb70d8089680d40ec64844e43045ecf907fbc8088c0b27c3a92115e",
+    "inputs/model_config.json": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+    "inputs/policy.json": "c5911e4bbcec6558bba56c14fa49b00059487a60d9058480e37c2836712be8eb",
+    "inputs/resource_index.json": "079bb50d7f376f29b583c3a7a44387ccc9009262f3b632874e052c1148d3bfd6",
+    "inputs/resources.0.json": "ad0a174d9ef03d0e9332649b4b38b7491421a80fae5eef9531d4ca39c6a72f78",
+    "inputs/resources.1.json": "93931e58ba3afa0cec443d0bd973c9e7521e7731a45fc3d4edde203eb4e3e26f",
+    "inputs/resources.10.json": "218ae63b9941a388758d76f989a85f878347ce6a5f21ed8dae9a53cd22385436",
+    "inputs/resources.11.json": "6f8f543e01f6038ad9213c985a9dd233a59c6de168303f3496baa03187756ac1",
+    "inputs/resources.12.json": "274dcc1beb7e1b77a9e351aa52147fc0a679d374598f61b793b419da3e4dca7c",
+    "inputs/resources.13.json": "4289bab3ee4b9525a374c5e7f69f142adddf09ddf70189237cd5bca5ec5b3f6d",
+    "inputs/resources.14.json": "3c26a246d339952b75bb86c3d16a68b4f2ca86c0fcde7ed91fb1f3d92b382441",
+    "inputs/resources.15.json": "a6afa681a4a08a1a5a6de166e96dc013f5db0a63046435d6a97bf4dacf666461",
+    "inputs/resources.16.json": "e00573ec55d07d437d042fd3de4832215236b556b6448f1ecf1b2a4bfbf057f7",
+    "inputs/resources.17.json": "7589f3adefaaecbfdaab221743da5a0bf0854ed595a2df70969811268cb88dcb",
+    "inputs/resources.18.json": "07d92eb81c5db10a7a500ed9154c946a858d98d1a345a1748dafebc4394e7edd",
+    "inputs/resources.19.json": "0139059fdefad20e21db35e9d92018d93e221f12f94e6608cfa4bdf5b5e9dfc5",
+    "inputs/resources.2.json": "7701d9d649cfe1dced48375d7f7479ba14b9ae854ba7a1223d121b988e45b34e",
+    "inputs/resources.20.json": "8b0ec4ae58794abe11dd93982e178a5cec3cca7aec8a1da7b73ff448c2650de9",
+    "inputs/resources.21.json": "65113e9905f9cfbb8a6f7177b68e9ccf794b5a2c8126d6a4f8e73865878309f8",
+    "inputs/resources.22.json": "e49e8bd2f3046ef6cfee9247213a0f97a30d7ad5f98db869632d2915aac35bd0",
+    "inputs/resources.23.json": "6c6db227634ab92264f0f111cb41bdc43a49ef8bca7062be99619568a19cdf65",
+    "inputs/resources.24.json": "921b38d5d37f234b1404019e26328d454c2cf6c8902311a9f4e20af22d56d5a7",
+    "inputs/resources.25.json": "e60262d80f1b4e8ac014b297d594c2092177959461cf5858f599f42de7ba249c",
+    "inputs/resources.26.json": "3b02c56ae9fbb4d2d54aacf76f6ceafeb16e1bb4637c5c8eec4c75605a1551e8",
+    "inputs/resources.27.json": "63e1922d85cfcecc3d1fdfcb809277d5ec6ebfb3c089a2e9a1e0a644e85c0d37",
+    "inputs/resources.28.json": "17cf917f72844dfa5cd749786fb13a3816bc9dd1e9ce1aab35654ca5d4d9ba51",
+    "inputs/resources.29.json": "b71bfc8b5d672497b4536ae4bcccf9321f6effddf08f2148190ac67eb83d9517",
+    "inputs/resources.3.json": "bf308f10991e157926091e4e01754c23100fdbf16f19c2165b16a930e84551d8",
+    "inputs/resources.30.json": "555c004bda21cc6ef69689be4a331b52da195d08888981aa53bf6189e5aab8a2",
+    "inputs/resources.31.json": "5a2a7bb388d920ce7b43cd3104db738a56fcadc4a2dbf926cbc2dd5ef4f140c0",
+    "inputs/resources.32.json": "182b72f2976ac0499e7bbb092bbfd6745aef83fed27cef69f41fae0874d192c3",
+    "inputs/resources.33.json": "002d0addc7f3ae465f13a16bbc7c5e0ef7cd539cc5431667bb484fd7cde31909",
+    "inputs/resources.34.json": "5f7db9e78f686c4df7d34e184b5be4097d26577f8d64608a968439b9f8fb493c",
+    "inputs/resources.35.json": "583d9d096d5cd5ded6604283fbc024f0433a63f27a57873584317daa0ade6b0e",
+    "inputs/resources.36.json": "0cf8109593a195b0ec84f51a41f0e08641aa826b1e0512cd54b5f29bd3f79fca",
+    "inputs/resources.37.json": "cd4d5f01cd9f841327f7918b0a8e99116e86fb4bc699606c97b4dce567150c76",
+    "inputs/resources.38.json": "59caee0a04c122a5339f8553d8dff082ea9a9abe0b917fe1f8e8e411262caa45",
+    "inputs/resources.39.json": "0c2911dddbd869a0a93a054a28f6e0f4d6e639422a52a887fec50a3d5c3ed4a2",
+    "inputs/resources.4.json": "d0d2eae040d505f1969f77080128e21d4425d8c8f9a34c55e334d323376affe0",
+    "inputs/resources.40.json": "ece52d890752005aac1554979675c245ad3a7df12ee7df3a00a58a18331dd519",
+    "inputs/resources.41.json": "c45ca8dca109112002d67e3988b246b2ba1589ef8f9879f20f19313dd67f179c",
+    "inputs/resources.42.json": "e59450ac72bf2153ff3a6f3101e5295f277154c74fe9ce8e52694340387b7a5e",
+    "inputs/resources.43.json": "1cd91d7e8b08e45069733c12983fb36656bfe3129213cb0eb90a69568f93a343",
+    "inputs/resources.44.json": "51ac87033601ce21c561d85610ee10523aaee7c7ed6457d6efae142ae1748d2b",
+    "inputs/resources.45.json": "eda454e7380823e661744233ce1640f39da665f859bc80e2af5bce2159d23448",
+    "inputs/resources.46.json": "a8dfc2eabf0735bfc64fefe48108524d59f81aa0f8920667ea3f83cf5cb1a11e",
+    "inputs/resources.47.json": "a474051287a1903b6488b9ebf6305c85196ba5d5161a3e16f98f3466b2d346a1",
+    "inputs/resources.48.json": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+    "inputs/resources.49.json": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+    "inputs/resources.5.json": "bddb890815bad23a6ffab7297cb2a5e6774d43a23a96a0ba59a62e1930adcde1",
+    "inputs/resources.50.json": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+    "inputs/resources.51.json": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+    "inputs/resources.52.json": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+    "inputs/resources.53.json": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+    "inputs/resources.6.json": "f59777d8fe2c3f4dca1f854b7d6c4d0655e0720b0f34a25ec420dc42354161e3",
+    "inputs/resources.7.json": "28c2a2d328a2ce62d588b1dac959461320cc3ee85f04ea883b5f45a14f946b19",
+    "inputs/resources.8.json": "12a698ac643262c03128193a46c64b73851249c984e6e5f3db1aae64e7a4450b",
+    "inputs/resources.9.json": "dc43e2063431096739246ff04e0122bb7e6d50c397df5d6530e400d3a1fa3e6a",
+    "inputs/source_hardware.json": "616eee5df1dd53cf277fa85b10909cb302faedabe99bbf8997adbc69849a565d",
+    "inputs/wafer.json": "bc57e30e9e9e709b43b96f9afa68d34f076105f44354d465d8d9048e6f76f7a3",
+    "inputs/workload.0.et": "0cd09c2d604458d07ca9b197aa944e62244f19d340bb9fa5e6bbfab89f3b3d09",
+    "inputs/workload.1.et": "2336dbfb819e7ecd8f68ca4797ac4016aa8e8f18dca4d9a9e12308a13881f09a",
+    "inputs/workload.10.et": "3b0f48d826a6b72f2f14a586d24e13e8d17c1eef6b653392c8d3968819857d93",
+    "inputs/workload.11.et": "608feb56e1bbd88db2fccf4e887a913b86a63a7ed72c94f46d8000ea8f7a3681",
+    "inputs/workload.12.et": "65053143dad8e1386f516047abe3bdea099f5bc6c566f6a4bedf35ff7292e179",
+    "inputs/workload.13.et": "3fe158b6ef011a7221df472eb69247fe85e77d2b2081bbfca8f3d3b4bd2cdc7f",
+    "inputs/workload.14.et": "7879073eba3f540248ca9ef05f7590403f51f07602de0fcacab7378825958ede",
+    "inputs/workload.15.et": "94bc2a97997716c4ee73b259b6c31b2436f794a48bf69b82bc27638a679522ba",
+    "inputs/workload.16.et": "c94872ce0f71eea1d84ddb7d3dd54d46bf1eeed0bc2f94cd41973c8dacc4cbe5",
+    "inputs/workload.17.et": "71c0c9c5ed15a2d585e08afd3a82165cc7efbd3d3eb62547be6002f098440f16",
+    "inputs/workload.18.et": "bde2096f4045359563155a8c0dfa1471effaf8dcd8192fc0abbe63cf914ee691",
+    "inputs/workload.19.et": "a210306de3efb55d9a8b0c7ec1802d48ae957773d40349d700d94b26540688e1",
+    "inputs/workload.2.et": "550397792e6971841031405cde6058fa682cddb254333f62f6e7483e6d591a46",
+    "inputs/workload.20.et": "50ed6113b8502518bc78c68f4fd1276813dd023627467602216104021b20dfc3",
+    "inputs/workload.21.et": "0298c99bb36e7f30e462e60336f8981ca9eccabab20077423705cc6fb55f4f82",
+    "inputs/workload.22.et": "b13c434e3188e52d7fa0c4ec872c2a5de4459620ce5b1a28f5c8be3a9e43a355",
+    "inputs/workload.23.et": "1b3d586c07e7ee47add56ffcfb6f8671affb68e8a5c38757ca0a1fa153cc97ff",
+    "inputs/workload.24.et": "1bb2f2d24b06b21dc17664ea01f33df34fed53d80f5e6d260435710e1ac574aa",
+    "inputs/workload.25.et": "6e9b9fb11deb5565e46459d9bda07db6b26ca5bd8c3b6f7e523ffadcec68b2db",
+    "inputs/workload.26.et": "a66f83b8053919a9c39e3acb9e4da91829d5f79d421e626abf8a80964eb3cb00",
+    "inputs/workload.27.et": "d9b491c92c5dbf7e6f6144a9285dcbb07ebf6065e7a3eb887e287f691f60172a",
+    "inputs/workload.28.et": "9b95e769aa57e20ac06dff8f548b519b96ccf76eb69c673f362f6f5f0eca8ff2",
+    "inputs/workload.29.et": "275a5ec2a434e03e22b3b1cd795ab406996c6dbbf271d7e22e7df5ac407b2577",
+    "inputs/workload.3.et": "ba04217d8faa2fbc147d3b635012477df57df3279728dced8b217ae0c186382c",
+    "inputs/workload.30.et": "9b5ff1e8884aab30e998bcce10579824a8b101754a3279208a512f0a661f2c1b",
+    "inputs/workload.31.et": "b54fbd63c82ca589b430c837c8c8fca55c1b01045984c15b7ebed54a5048017e",
+    "inputs/workload.32.et": "554cfaf953e50704349b397b19cda1c2440c199991f75f8f9f30325b1b019cb4",
+    "inputs/workload.33.et": "18a66bb85abbe9ac0f3b566cf24a9d7d121c4e308991ffb9524e3b8e35e74102",
+    "inputs/workload.34.et": "d4f0701e995443ca05d31163ca5bbf0b4db6238fa09d54c8fd5019f51e34e948",
+    "inputs/workload.35.et": "22b6db13b96734a836d5f4fe2456b0a15d01ede38035b565a53b393e1fa98592",
+    "inputs/workload.36.et": "caad54070ac4c80c420e2052d86b325a01fcbb27a8a8e748d6e115647a9fccaf",
+    "inputs/workload.37.et": "7560e31f48b542c5f76aa16af2af3867cc1ee9f5695557b0c2a6fdeed60a5794",
+    "inputs/workload.38.et": "7399ab08caad55fe7849c3c269c9b8878068964904c59d1727df0e621dea8aa2",
+    "inputs/workload.39.et": "5417aabc93f95f2ce589e0fc161dd370bf6b744bf31050bb01fe32627912d6f9",
+    "inputs/workload.4.et": "b39df42f6e013c9206eab155e5bf0be54b0e0139962d11a4dce868bbec0b2c56",
+    "inputs/workload.40.et": "5420a32b6bc8b4ce932fcf590a55993d30e734efb20bc69714063703a0d0519c",
+    "inputs/workload.41.et": "b0cd5c7a2ceb6add88caceffd04433ad4d55ea02ab5d6eba3f45b1675dbb753c",
+    "inputs/workload.42.et": "2cf6c8e4dabef2624889d8b7d539c80f3b6124086b592196340955b7c94e2b09",
+    "inputs/workload.43.et": "d9706a21085ef9d17d1c41749817e62dc8f2e5797f1ef6c5eaa2b39619b79e8c",
+    "inputs/workload.44.et": "725c9bf928b60490b8f6aa333b2cd3ee021d6b6c9c3c2c13dd6abcc5591debb2",
+    "inputs/workload.45.et": "deae9f7eb736662759cbcb2f2735a718cb95bdc64e651788ac8b062434092c24",
+    "inputs/workload.46.et": "90743579ff8ad741b7e7b3d2915e5a7c464ff93c1f23527a43fcf7f32de5adb2",
+    "inputs/workload.47.et": "543d77cebefb02de1cf8fb30150fe9dc37d191455adbc38c7eab87fcb23261bc",
+    "inputs/workload.48.et": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6",
+    "inputs/workload.49.et": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6",
+    "inputs/workload.5.et": "af8b8a6a188a7a10c34e8217b9bf22adfa8c3ec1993cfeb13ba327ce26598a82",
+    "inputs/workload.50.et": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6",
+    "inputs/workload.51.et": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6",
+    "inputs/workload.52.et": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6",
+    "inputs/workload.53.et": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6",
+    "inputs/workload.6.et": "2bd11a5b8bfb1802fa2c7ca195cd24c241531b78751b17bc57edfa7e1536c3bb",
+    "inputs/workload.7.et": "52787b4f8a7979e9a0b25e273b2a7d4060154b5ab3613e48ec7d86f7ad417f68",
+    "inputs/workload.8.et": "6f50f4eda6cb65507357143eece5ad96d0569384c336eb71a8d2acb1b4cc6d31",
+    "inputs/workload.9.et": "6826ceb7313b9239c31017c9701fdb0034e2bcb97f3d0de999be989977d74178",
+    "inputs/workload_provenance.json": "cf3eedcaac7d8709581faa6af226d038910b9dbb6859a7f4504cfdc02805e672",
+    "memory.csv.gz": "0def66723cdf85f533ea0e4fb2cc9fcae01692399d29605e37ec86640559b244",
+    "metrics.json": "2e975dfbef24d930ecc240bac5c1aaf9d1840087e0795a229aac8bdcfa4b3994",
+    "objects.csv.gz": "9b099c28f3080e4afe0c948f621bbc09b6fc7cae78ce777b2e5b7ad489e43acd",
+    "operations.jsonl.gz": "c260c0acb366a0c135671c5679e63fe40763bfbcbf7c6e5b750715a85130bddc",
+    "parameters.csv": "04d8a9ca1ddfdacfef41087f4948f470480001a72b3c4c1f76abc0c57f77d9c5",
+    "phase_deadlines.json": "c432cc8f71806ab44f44839cbe12f4592368b0297f635ccbcaf0b885f988f314",
+    "placement.json": "9cba451a25c46076380e4c2fabcf0eeabc9ec6dc06e3cabcdd9d594f6ba084f3",
+    "policy_preflight.json": "dcd16654564f82d14e88a04a9ee872fbf4f0430654a630636284613894b2aacc",
+    "resolved_config.json": "cd5b8c12f2b06370cd683dc535e64fbfdd5359071e751c900d1718f56c45f223",
+    "resource_contract.json.gz": "addb22205808c49909aecd6524182518d94b947a3c245069eb62a45eeb25718b",
+    "resource_contract_format.json": "a7410113cc2d72c26d4fb4f8823b553dfbcd75641b22a40dfa62c79f4050738c",
+    "status.json": "ae7799b926e6ce1cab9cc9095a67cf88121b98485944c6d57cdafd50f173ae53",
+    "summary.json": "ba4b9acd97521efbf0252bc7afd0c807de8393a663caad84c2805dd2bd422d1d",
+    "table_format.json": "1e7ebc5f90f5fc66da949f5905b3c84ecf4095996d4bc46dc1bd760cd5515a22",
+    "tensor_specs.json": "103657060c67d9ba98e9515919c5b8c25a565b3c2087c137911a4c8b47c4b980",
+    "transfers.csv.gz": "3925b2b1fda180f571b763dfdecc9ae7d2689342d8568dfdb5ff386d318af0b5",
+    "wallclock_timings.json": "23a260b3e2aa333586761e3a3a08a80d992faf8c703478bd51f3a6b632b607b7"
+  },
+  "case_id": "aligned_qwen25_3b_W1",
+  "checks_failed": 0,
+  "checks_passed": 1647,
+  "command": [
+    "/opt/astra-sim/build/astra_analytical/build/bin/AstraSim_Analytical_Congestion_Aware",
+    "--workload-configuration=/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/workload",
+    "--system-configuration=/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/astra_system.json",
+    "--network-configuration=/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/astra_network.yml",
+    "--remote-memory-configuration=/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/astra_remote_memory.json",
+    "--logging-folder=/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/astra_logs",
+    "--comm-group-configuration=/workspace/rl-xy/runs/T42/W1-wafer-mb4-a9/result/inputs/groups.json"
+  ],
+  "evidence_kind": "synthetic_fixture",
+  "execution_host": {
+    "cpu_count": 128,
+    "gpu_used_by_simulator": false,
+    "inside_docker": true,
+    "machine": "x86_64",
+    "memory_total_bytes": 1081799446528,
+    "platform": "Linux-6.8.0-41-generic-x86_64-with-glibc2.39"
+  },
+  "exit_status": 0,
+  "finished_at_utc": "2026-10-28T07:53:14.948992Z",
+  "headline_metrics": {
+    "operation_count": 381908,
+    "total_simulated_time_ns": 19176605455.346
+  },
+  "inputs": {
+    "case.json": {
+      "path": "inputs/case.json",
+      "sha256": "17760e03b8ab8408db2aad330cf15f70c1da7a6bd04412bf7f19409042f06b6d"
+    },
+    "groups": {
+      "path": "inputs/groups.json",
+      "sha256": "1fcb1f296cb70d8089680d40ec64844e43045ecf907fbc8088c0b27c3a92115e"
+    },
+    "model_config.json": {
+      "path": "inputs/model_config.json",
+      "sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b"
+    },
+    "network": {
+      "path": "inputs/astra_network.yml",
+      "sha256": "635816c020e01f9385a4967fe54e51ba6b498d0afcd70eb4bfe3191b2cd7fe74"
+    },
+    "policy.json": {
+      "path": "inputs/policy.json",
+      "sha256": "c5911e4bbcec6558bba56c14fa49b00059487a60d9058480e37c2836712be8eb"
+    },
+    "remote": {
+      "path": "inputs/astra_remote_memory.json",
+      "sha256": "a4d8229c75a6425ca081d9dfe77c09cfafd922dbf99d8a72fbb759e115b394c1"
+    },
+    "resource_index": {
+      "path": "inputs/resource_index.json",
+      "sha256": "079bb50d7f376f29b583c3a7a44387ccc9009262f3b632874e052c1148d3bfd6"
+    },
+    "resources.0": {
+      "path": "inputs/resources.0.json",
+      "sha256": "ad0a174d9ef03d0e9332649b4b38b7491421a80fae5eef9531d4ca39c6a72f78"
+    },
+    "resources.1": {
+      "path": "inputs/resources.1.json",
+      "sha256": "93931e58ba3afa0cec443d0bd973c9e7521e7731a45fc3d4edde203eb4e3e26f"
+    },
+    "resources.10": {
+      "path": "inputs/resources.10.json",
+      "sha256": "218ae63b9941a388758d76f989a85f878347ce6a5f21ed8dae9a53cd22385436"
+    },
+    "resources.11": {
+      "path": "inputs/resources.11.json",
+      "sha256": "6f8f543e01f6038ad9213c985a9dd233a59c6de168303f3496baa03187756ac1"
+    },
+    "resources.12": {
+      "path": "inputs/resources.12.json",
+      "sha256": "274dcc1beb7e1b77a9e351aa52147fc0a679d374598f61b793b419da3e4dca7c"
+    },
+    "resources.13": {
+      "path": "inputs/resources.13.json",
+      "sha256": "4289bab3ee4b9525a374c5e7f69f142adddf09ddf70189237cd5bca5ec5b3f6d"
+    },
+    "resources.14": {
+      "path": "inputs/resources.14.json",
+      "sha256": "3c26a246d339952b75bb86c3d16a68b4f2ca86c0fcde7ed91fb1f3d92b382441"
+    },
+    "resources.15": {
+      "path": "inputs/resources.15.json",
+      "sha256": "a6afa681a4a08a1a5a6de166e96dc013f5db0a63046435d6a97bf4dacf666461"
+    },
+    "resources.16": {
+      "path": "inputs/resources.16.json",
+      "sha256": "e00573ec55d07d437d042fd3de4832215236b556b6448f1ecf1b2a4bfbf057f7"
+    },
+    "resources.17": {
+      "path": "inputs/resources.17.json",
+      "sha256": "7589f3adefaaecbfdaab221743da5a0bf0854ed595a2df70969811268cb88dcb"
+    },
+    "resources.18": {
+      "path": "inputs/resources.18.json",
+      "sha256": "07d92eb81c5db10a7a500ed9154c946a858d98d1a345a1748dafebc4394e7edd"
+    },
+    "resources.19": {
+      "path": "inputs/resources.19.json",
+      "sha256": "0139059fdefad20e21db35e9d92018d93e221f12f94e6608cfa4bdf5b5e9dfc5"
+    },
+    "resources.2": {
+      "path": "inputs/resources.2.json",
+      "sha256": "7701d9d649cfe1dced48375d7f7479ba14b9ae854ba7a1223d121b988e45b34e"
+    },
+    "resources.20": {
+      "path": "inputs/resources.20.json",
+      "sha256": "8b0ec4ae58794abe11dd93982e178a5cec3cca7aec8a1da7b73ff448c2650de9"
+    },
+    "resources.21": {
+      "path": "inputs/resources.21.json",
+      "sha256": "65113e9905f9cfbb8a6f7177b68e9ccf794b5a2c8126d6a4f8e73865878309f8"
+    },
+    "resources.22": {
+      "path": "inputs/resources.22.json",
+      "sha256": "e49e8bd2f3046ef6cfee9247213a0f97a30d7ad5f98db869632d2915aac35bd0"
+    },
+    "resources.23": {
+      "path": "inputs/resources.23.json",
+      "sha256": "6c6db227634ab92264f0f111cb41bdc43a49ef8bca7062be99619568a19cdf65"
+    },
+    "resources.24": {
+      "path": "inputs/resources.24.json",
+      "sha256": "921b38d5d37f234b1404019e26328d454c2cf6c8902311a9f4e20af22d56d5a7"
+    },
+    "resources.25": {
+      "path": "inputs/resources.25.json",
+      "sha256": "e60262d80f1b4e8ac014b297d594c2092177959461cf5858f599f42de7ba249c"
+    },
+    "resources.26": {
+      "path": "inputs/resources.26.json",
+      "sha256": "3b02c56ae9fbb4d2d54aacf76f6ceafeb16e1bb4637c5c8eec4c75605a1551e8"
+    },
+    "resources.27": {
+      "path": "inputs/resources.27.json",
+      "sha256": "63e1922d85cfcecc3d1fdfcb809277d5ec6ebfb3c089a2e9a1e0a644e85c0d37"
+    },
+    "resources.28": {
+      "path": "inputs/resources.28.json",
+      "sha256": "17cf917f72844dfa5cd749786fb13a3816bc9dd1e9ce1aab35654ca5d4d9ba51"
+    },
+    "resources.29": {
+      "path": "inputs/resources.29.json",
+      "sha256": "b71bfc8b5d672497b4536ae4bcccf9321f6effddf08f2148190ac67eb83d9517"
+    },
+    "resources.3": {
+      "path": "inputs/resources.3.json",
+      "sha256": "bf308f10991e157926091e4e01754c23100fdbf16f19c2165b16a930e84551d8"
+    },
+    "resources.30": {
+      "path": "inputs/resources.30.json",
+      "sha256": "555c004bda21cc6ef69689be4a331b52da195d08888981aa53bf6189e5aab8a2"
+    },
+    "resources.31": {
+      "path": "inputs/resources.31.json",
+      "sha256": "5a2a7bb388d920ce7b43cd3104db738a56fcadc4a2dbf926cbc2dd5ef4f140c0"
+    },
+    "resources.32": {
+      "path": "inputs/resources.32.json",
+      "sha256": "182b72f2976ac0499e7bbb092bbfd6745aef83fed27cef69f41fae0874d192c3"
+    },
+    "resources.33": {
+      "path": "inputs/resources.33.json",
+      "sha256": "002d0addc7f3ae465f13a16bbc7c5e0ef7cd539cc5431667bb484fd7cde31909"
+    },
+    "resources.34": {
+      "path": "inputs/resources.34.json",
+      "sha256": "5f7db9e78f686c4df7d34e184b5be4097d26577f8d64608a968439b9f8fb493c"
+    },
+    "resources.35": {
+      "path": "inputs/resources.35.json",
+      "sha256": "583d9d096d5cd5ded6604283fbc024f0433a63f27a57873584317daa0ade6b0e"
+    },
+    "resources.36": {
+      "path": "inputs/resources.36.json",
+      "sha256": "0cf8109593a195b0ec84f51a41f0e08641aa826b1e0512cd54b5f29bd3f79fca"
+    },
+    "resources.37": {
+      "path": "inputs/resources.37.json",
+      "sha256": "cd4d5f01cd9f841327f7918b0a8e99116e86fb4bc699606c97b4dce567150c76"
+    },
+    "resources.38": {
+      "path": "inputs/resources.38.json",
+      "sha256": "59caee0a04c122a5339f8553d8dff082ea9a9abe0b917fe1f8e8e411262caa45"
+    },
+    "resources.39": {
+      "path": "inputs/resources.39.json",
+      "sha256": "0c2911dddbd869a0a93a054a28f6e0f4d6e639422a52a887fec50a3d5c3ed4a2"
+    },
+    "resources.4": {
+      "path": "inputs/resources.4.json",
+      "sha256": "d0d2eae040d505f1969f77080128e21d4425d8c8f9a34c55e334d323376affe0"
+    },
+    "resources.40": {
+      "path": "inputs/resources.40.json",
+      "sha256": "ece52d890752005aac1554979675c245ad3a7df12ee7df3a00a58a18331dd519"
+    },
+    "resources.41": {
+      "path": "inputs/resources.41.json",
+      "sha256": "c45ca8dca109112002d67e3988b246b2ba1589ef8f9879f20f19313dd67f179c"
+    },
+    "resources.42": {
+      "path": "inputs/resources.42.json",
+      "sha256": "e59450ac72bf2153ff3a6f3101e5295f277154c74fe9ce8e52694340387b7a5e"
+    },
+    "resources.43": {
+      "path": "inputs/resources.43.json",
+      "sha256": "1cd91d7e8b08e45069733c12983fb36656bfe3129213cb0eb90a69568f93a343"
+    },
+    "resources.44": {
+      "path": "inputs/resources.44.json",
+      "sha256": "51ac87033601ce21c561d85610ee10523aaee7c7ed6457d6efae142ae1748d2b"
+    },
+    "resources.45": {
+      "path": "inputs/resources.45.json",
+      "sha256": "eda454e7380823e661744233ce1640f39da665f859bc80e2af5bce2159d23448"
+    },
+    "resources.46": {
+      "path": "inputs/resources.46.json",
+      "sha256": "a8dfc2eabf0735bfc64fefe48108524d59f81aa0f8920667ea3f83cf5cb1a11e"
+    },
+    "resources.47": {
+      "path": "inputs/resources.47.json",
+      "sha256": "a474051287a1903b6488b9ebf6305c85196ba5d5161a3e16f98f3466b2d346a1"
+    },
+    "resources.48": {
+      "path": "inputs/resources.48.json",
+      "sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9"
+    },
+    "resources.49": {
+      "path": "inputs/resources.49.json",
+      "sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9"
+    },
+    "resources.5": {
+      "path": "inputs/resources.5.json",
+      "sha256": "bddb890815bad23a6ffab7297cb2a5e6774d43a23a96a0ba59a62e1930adcde1"
+    },
+    "resources.50": {
+      "path": "inputs/resources.50.json",
+      "sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9"
+    },
+    "resources.51": {
+      "path": "inputs/resources.51.json",
+      "sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9"
+    },
+    "resources.52": {
+      "path": "inputs/resources.52.json",
+      "sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9"
+    },
+    "resources.53": {
+      "path": "inputs/resources.53.json",
+      "sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9"
+    },
+    "resources.6": {
+      "path": "inputs/resources.6.json",
+      "sha256": "f59777d8fe2c3f4dca1f854b7d6c4d0655e0720b0f34a25ec420dc42354161e3"
+    },
+    "resources.7": {
+      "path": "inputs/resources.7.json",
+      "sha256": "28c2a2d328a2ce62d588b1dac959461320cc3ee85f04ea883b5f45a14f946b19"
+    },
+    "resources.8": {
+      "path": "inputs/resources.8.json",
+      "sha256": "12a698ac643262c03128193a46c64b73851249c984e6e5f3db1aae64e7a4450b"
+    },
+    "resources.9": {
+      "path": "inputs/resources.9.json",
+      "sha256": "dc43e2063431096739246ff04e0122bb7e6d50c397df5d6530e400d3a1fa3e6a"
+    },
+    "source_hardware.json": {
+      "path": "inputs/source_hardware.json",
+      "sha256": "616eee5df1dd53cf277fa85b10909cb302faedabe99bbf8997adbc69849a565d"
+    },
+    "system": {
+      "path": "inputs/astra_system.json",
+      "sha256": "f6cae23c15bcacbded15dc13488fd1f3ce1a251a06c7760f58dde4022546734a"
+    },
+    "wafer.json": {
+      "path": "inputs/wafer.json",
+      "sha256": "bc57e30e9e9e709b43b96f9afa68d34f076105f44354d465d8d9048e6f76f7a3"
+    },
+    "workload_provenance.json": {
+      "path": "inputs/workload_provenance.json",
+      "sha256": "cf3eedcaac7d8709581faa6af226d038910b9dbb6859a7f4504cfdc02805e672"
+    },
+    "workload_rank0": {
+      "path": "inputs/workload.0.et",
+      "sha256": "0cd09c2d604458d07ca9b197aa944e62244f19d340bb9fa5e6bbfab89f3b3d09"
+    },
+    "workload_rank1": {
+      "path": "inputs/workload.1.et",
+      "sha256": "2336dbfb819e7ecd8f68ca4797ac4016aa8e8f18dca4d9a9e12308a13881f09a"
+    },
+    "workload_rank10": {
+      "path": "inputs/workload.10.et",
+      "sha256": "3b0f48d826a6b72f2f14a586d24e13e8d17c1eef6b653392c8d3968819857d93"
+    },
+    "workload_rank11": {
+      "path": "inputs/workload.11.et",
+      "sha256": "608feb56e1bbd88db2fccf4e887a913b86a63a7ed72c94f46d8000ea8f7a3681"
+    },
+    "workload_rank12": {
+      "path": "inputs/workload.12.et",
+      "sha256": "65053143dad8e1386f516047abe3bdea099f5bc6c566f6a4bedf35ff7292e179"
+    },
+    "workload_rank13": {
+      "path": "inputs/workload.13.et",
+      "sha256": "3fe158b6ef011a7221df472eb69247fe85e77d2b2081bbfca8f3d3b4bd2cdc7f"
+    },
+    "workload_rank14": {
+      "path": "inputs/workload.14.et",
+      "sha256": "7879073eba3f540248ca9ef05f7590403f51f07602de0fcacab7378825958ede"
+    },
+    "workload_rank15": {
+      "path": "inputs/workload.15.et",
+      "sha256": "94bc2a97997716c4ee73b259b6c31b2436f794a48bf69b82bc27638a679522ba"
+    },
+    "workload_rank16": {
+      "path": "inputs/workload.16.et",
+      "sha256": "c94872ce0f71eea1d84ddb7d3dd54d46bf1eeed0bc2f94cd41973c8dacc4cbe5"
+    },
+    "workload_rank17": {
+      "path": "inputs/workload.17.et",
+      "sha256": "71c0c9c5ed15a2d585e08afd3a82165cc7efbd3d3eb62547be6002f098440f16"
+    },
+    "workload_rank18": {
+      "path": "inputs/workload.18.et",
+      "sha256": "bde2096f4045359563155a8c0dfa1471effaf8dcd8192fc0abbe63cf914ee691"
+    },
+    "workload_rank19": {
+      "path": "inputs/workload.19.et",
+      "sha256": "a210306de3efb55d9a8b0c7ec1802d48ae957773d40349d700d94b26540688e1"
+    },
+    "workload_rank2": {
+      "path": "inputs/workload.2.et",
+      "sha256": "550397792e6971841031405cde6058fa682cddb254333f62f6e7483e6d591a46"
+    },
+    "workload_rank20": {
+      "path": "inputs/workload.20.et",
+      "sha256": "50ed6113b8502518bc78c68f4fd1276813dd023627467602216104021b20dfc3"
+    },
+    "workload_rank21": {
+      "path": "inputs/workload.21.et",
+      "sha256": "0298c99bb36e7f30e462e60336f8981ca9eccabab20077423705cc6fb55f4f82"
+    },
+    "workload_rank22": {
+      "path": "inputs/workload.22.et",
+      "sha256": "b13c434e3188e52d7fa0c4ec872c2a5de4459620ce5b1a28f5c8be3a9e43a355"
+    },
+    "workload_rank23": {
+      "path": "inputs/workload.23.et",
+      "sha256": "1b3d586c07e7ee47add56ffcfb6f8671affb68e8a5c38757ca0a1fa153cc97ff"
+    },
+    "workload_rank24": {
+      "path": "inputs/workload.24.et",
+      "sha256": "1bb2f2d24b06b21dc17664ea01f33df34fed53d80f5e6d260435710e1ac574aa"
+    },
+    "workload_rank25": {
+      "path": "inputs/workload.25.et",
+      "sha256": "6e9b9fb11deb5565e46459d9bda07db6b26ca5bd8c3b6f7e523ffadcec68b2db"
+    },
+    "workload_rank26": {
+      "path": "inputs/workload.26.et",
+      "sha256": "a66f83b8053919a9c39e3acb9e4da91829d5f79d421e626abf8a80964eb3cb00"
+    },
+    "workload_rank27": {
+      "path": "inputs/workload.27.et",
+      "sha256": "d9b491c92c5dbf7e6f6144a9285dcbb07ebf6065e7a3eb887e287f691f60172a"
+    },
+    "workload_rank28": {
+      "path": "inputs/workload.28.et",
+      "sha256": "9b95e769aa57e20ac06dff8f548b519b96ccf76eb69c673f362f6f5f0eca8ff2"
+    },
+    "workload_rank29": {
+      "path": "inputs/workload.29.et",
+      "sha256": "275a5ec2a434e03e22b3b1cd795ab406996c6dbbf271d7e22e7df5ac407b2577"
+    },
+    "workload_rank3": {
+      "path": "inputs/workload.3.et",
+      "sha256": "ba04217d8faa2fbc147d3b635012477df57df3279728dced8b217ae0c186382c"
+    },
+    "workload_rank30": {
+      "path": "inputs/workload.30.et",
+      "sha256": "9b5ff1e8884aab30e998bcce10579824a8b101754a3279208a512f0a661f2c1b"
+    },
+    "workload_rank31": {
+      "path": "inputs/workload.31.et",
+      "sha256": "b54fbd63c82ca589b430c837c8c8fca55c1b01045984c15b7ebed54a5048017e"
+    },
+    "workload_rank32": {
+      "path": "inputs/workload.32.et",
+      "sha256": "554cfaf953e50704349b397b19cda1c2440c199991f75f8f9f30325b1b019cb4"
+    },
+    "workload_rank33": {
+      "path": "inputs/workload.33.et",
+      "sha256": "18a66bb85abbe9ac0f3b566cf24a9d7d121c4e308991ffb9524e3b8e35e74102"
+    },
+    "workload_rank34": {
+      "path": "inputs/workload.34.et",
+      "sha256": "d4f0701e995443ca05d31163ca5bbf0b4db6238fa09d54c8fd5019f51e34e948"
+    },
+    "workload_rank35": {
+      "path": "inputs/workload.35.et",
+      "sha256": "22b6db13b96734a836d5f4fe2456b0a15d01ede38035b565a53b393e1fa98592"
+    },
+    "workload_rank36": {
+      "path": "inputs/workload.36.et",
+      "sha256": "caad54070ac4c80c420e2052d86b325a01fcbb27a8a8e748d6e115647a9fccaf"
+    },
+    "workload_rank37": {
+      "path": "inputs/workload.37.et",
+      "sha256": "7560e31f48b542c5f76aa16af2af3867cc1ee9f5695557b0c2a6fdeed60a5794"
+    },
+    "workload_rank38": {
+      "path": "inputs/workload.38.et",
+      "sha256": "7399ab08caad55fe7849c3c269c9b8878068964904c59d1727df0e621dea8aa2"
+    },
+    "workload_rank39": {
+      "path": "inputs/workload.39.et",
+      "sha256": "5417aabc93f95f2ce589e0fc161dd370bf6b744bf31050bb01fe32627912d6f9"
+    },
+    "workload_rank4": {
+      "path": "inputs/workload.4.et",
+      "sha256": "b39df42f6e013c9206eab155e5bf0be54b0e0139962d11a4dce868bbec0b2c56"
+    },
+    "workload_rank40": {
+      "path": "inputs/workload.40.et",
+      "sha256": "5420a32b6bc8b4ce932fcf590a55993d30e734efb20bc69714063703a0d0519c"
+    },
+    "workload_rank41": {
+      "path": "inputs/workload.41.et",
+      "sha256": "b0cd5c7a2ceb6add88caceffd04433ad4d55ea02ab5d6eba3f45b1675dbb753c"
+    },
+    "workload_rank42": {
+      "path": "inputs/workload.42.et",
+      "sha256": "2cf6c8e4dabef2624889d8b7d539c80f3b6124086b592196340955b7c94e2b09"
+    },
+    "workload_rank43": {
+      "path": "inputs/workload.43.et",
+      "sha256": "d9706a21085ef9d17d1c41749817e62dc8f2e5797f1ef6c5eaa2b39619b79e8c"
+    },
+    "workload_rank44": {
+      "path": "inputs/workload.44.et",
+      "sha256": "725c9bf928b60490b8f6aa333b2cd3ee021d6b6c9c3c2c13dd6abcc5591debb2"
+    },
+    "workload_rank45": {
+      "path": "inputs/workload.45.et",
+      "sha256": "deae9f7eb736662759cbcb2f2735a718cb95bdc64e651788ac8b062434092c24"
+    },
+    "workload_rank46": {
+      "path": "inputs/workload.46.et",
+      "sha256": "90743579ff8ad741b7e7b3d2915e5a7c464ff93c1f23527a43fcf7f32de5adb2"
+    },
+    "workload_rank47": {
+      "path": "inputs/workload.47.et",
+      "sha256": "543d77cebefb02de1cf8fb30150fe9dc37d191455adbc38c7eab87fcb23261bc"
+    },
+    "workload_rank48": {
+      "path": "inputs/workload.48.et",
+      "sha256": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6"
+    },
+    "workload_rank49": {
+      "path": "inputs/workload.49.et",
+      "sha256": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6"
+    },
+    "workload_rank5": {
+      "path": "inputs/workload.5.et",
+      "sha256": "af8b8a6a188a7a10c34e8217b9bf22adfa8c3ec1993cfeb13ba327ce26598a82"
+    },
+    "workload_rank50": {
+      "path": "inputs/workload.50.et",
+      "sha256": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6"
+    },
+    "workload_rank51": {
+      "path": "inputs/workload.51.et",
+      "sha256": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6"
+    },
+    "workload_rank52": {
+      "path": "inputs/workload.52.et",
+      "sha256": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6"
+    },
+    "workload_rank53": {
+      "path": "inputs/workload.53.et",
+      "sha256": "0d3d2d71020224b3ff926b48d17cc48abe340ea7e32b2a230e8fd6b2ea750ab6"
+    },
+    "workload_rank6": {
+      "path": "inputs/workload.6.et",
+      "sha256": "2bd11a5b8bfb1802fa2c7ca195cd24c241531b78751b17bc57edfa7e1536c3bb"
+    },
+    "workload_rank7": {
+      "path": "inputs/workload.7.et",
+      "sha256": "52787b4f8a7979e9a0b25e273b2a7d4060154b5ab3613e48ec7d86f7ad417f68"
+    },
+    "workload_rank8": {
+      "path": "inputs/workload.8.et",
+      "sha256": "6f50f4eda6cb65507357143eece5ad96d0569384c336eb71a8d2acb1b4cc6d31"
+    },
+    "workload_rank9": {
+      "path": "inputs/workload.9.et",
+      "sha256": "6826ceb7313b9239c31017c9701fdb0034e2bcb97f3d0de999be989977d74178"
+    }
+  },
+  "metrics_file": "metrics.json",
+  "metrics_sha256": "2e975dfbef24d930ecc240bac5c1aaf9d1840087e0795a229aac8bdcfa4b3994",
+  "raw_logs": {
+    "debug": "astra_logs/log.log",
+    "stderr": "astra_stderr.log",
+    "stdout": "astra_stdout.log"
+  },
+  "run_id": "result",
+  "run_kind": "wafer_verl_aligned",
+  "schema_version": "1.0",
+  "scope": {
+    "not_claimed": [
+      "real model training",
+      "learning quality",
+      "hardware-calibrated wafer throughput",
+      "contention-accurate full-wafer performance"
+    ],
+    "simulator": "pinned AstraSim analytical congestion-aware backend with rl-xy mesh/GPU/resource patches",
+    "workflow": "selected PP1 DO protocol; native macro resources plus clock-bound component logical replay; uncalibrated"
+  },
+  "simulator_finished_at_utc": "2026-10-28T07:50:20.275762Z",
+  "software": {
+    "astrasim_binary": "/opt/astra-sim/build/astra_analytical/build/bin/AstraSim_Analytical_Congestion_Aware",
+    "astrasim_binary_sha256": "d883a8f8e98beb197b15897e823c4e2afd0ac99ca6ee6eb97053fb06d4ef594f",
+    "astrasim_commit": "4ce9ecfe746a3ee5fe47559a11d91644d641fa7f",
+    "astrasim_gpu_patch": "3c75e1273c67ad70317056f88b020d6f1eae8cba3d4febf5e278cadd75cdf84c  /tmp/rlxy-gpu.patch\nd3280e421dde3c9a729c3ca81aa8102b27cfcbeab31713866937ebfa4d2f5313  astra-sim/workload/RlxyGpu.hh\n",
+    "astrasim_local_resource_patches": "0e3207349f4794babae36fa53fcfe54a592d679c66345367980dbddf25f9dabe  /tmp/rlxy-workload.patch\n99ebfc23971fd3428c97d1129e9811ed73d84043ce84e4575ad6049095a76bb6  /tmp/rlxy-statistics.patch\n4cd1f2b31ec3741bd9cd612a42827d27f5e6426e2ea9e4ade6f00b77550e8741  /tmp/rlxy-mesh.patch\n39b20524334ced6e82ef05c50abb76fad67cd05622df2cc6aef6d53ceda5848c  astra-sim/workload/RlxyResources.hh\n6a6d4cdc084c0ae4e704abb57453f1951719cc1f33919b3bfb21e273b813425c  astra-sim/workload/RlxyMesh.hh\n",
+    "astrasim_multicore_patch": "4f0e2d2cce9eaff84f097f960046a0d42ac2d6120a4e454c97e8d843093063bb  astra-sim/workload/RlxyResources.hh\n6a6d4cdc084c0ae4e704abb57453f1951719cc1f33919b3bfb21e273b813425c  astra-sim/workload/RlxyMesh.hh\neab86c32de467a0bfe3ead33ac13995744f08eb725608b1670318efaff3cbb1b  astra-sim/common/Logging.cc\n",
+    "astrasim_read_id_patch": "871d9c8a528388d416db4c243339bac77b29b1233efb0a3a93393dbcaba83c9e  astra-sim/workload/RlxyResources.hh\n",
+    "container_image_id": "sha256:8847f0dec790d5349586bede4a7bd316ec831b79fe12a93b8f26dd8123f60101",
+    "container_image_tag": "rlxy-astrasim:0.9.5",
+    "python": "3.12.3",
+    "rl_xy_git_revision": null,
+    "rl_xy_source_tree_hash_scope": "source/config/tests/scripts/manual docs; excludes four generated v0.1/v0.2 walkthrough artifacts, caches and execution outputs",
+    "rl_xy_source_tree_sha256": "ab3474916ca0d164f413d1ef2fd4011cddf947399fe8d58fea19d956010633ca",
+    "rl_xy_version": "0.9.5"
+  },
+  "started_at_utc": "2026-10-28T07:46:10.485805Z",
+  "status": "success"
+}

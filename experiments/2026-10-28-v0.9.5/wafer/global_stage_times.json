@@ -1,0 +1,92 @@
+{
+  "r1.advantage": {
+    "end_tick": 10487121212354,
+    "span_model_ns": 37.306,
+    "start_tick": 10487121175048
+  },
+  "r1.barrier": {
+    "end_tick": 19176605455346,
+    "span_model_ns": 19176605455.346,
+    "start_tick": 0
+  },
+  "r1.cleanup": {
+    "end_tick": 19176605413260,
+    "span_model_ns": 8416048470.66,
+    "start_tick": 10760556942600
+  },
+  "r1.clip": {
+    "end_tick": 19169132529632,
+    "span_model_ns": 388922.372,
+    "start_tick": 19168743607260
+  },
+  "r1.data_redistribution": {
+    "end_tick": 5489785486594,
+    "span_model_ns": 827.89,
+    "start_tick": 5489784658704
+  },
+  "r1.dp_sync": {
+    "end_tick": 19168743588222,
+    "span_model_ns": 28078179.898,
+    "start_tick": 19140665408324
+  },
+  "r1.generation": {
+    "end_tick": 5489784640668,
+    "span_model_ns": 5477439552.05,
+    "start_tick": 12345088618
+  },
+  "r1.old_policy": {
+    "end_tick": 7988454412974,
+    "span_model_ns": 2498666726.002,
+    "start_tick": 5489787686972
+  },
+  "r1.optimizer": {
+    "end_tick": 19170111648632,
+    "span_model_ns": 979150.064,
+    "start_tick": 19169132498568
+  },
+  "r1.optimizer_sync": {
+    "end_tick": 19176605366168,
+    "span_model_ns": 6493748.6,
+    "start_tick": 19170111617568
+  },
+  "r1.publish": {
+    "end_tick": 19176605412260,
+    "span_model_ns": 25.05,
+    "start_tick": 19176605387210
+  },
+  "r1.reference": {
+    "end_tick": 10487121157012,
+    "span_model_ns": 2498666726.002,
+    "start_tick": 7988454431010
+  },
+  "r1.reward": {
+    "end_tick": 5489787669936,
+    "span_model_ns": 1165.306,
+    "start_tick": 5489786504630
+  },
+  "r1.standby": {
+    "end_tick": 1000,
+    "span_model_ns": 1.0,
+    "start_tick": 0
+  },
+  "r1.switch_to_rollout": {
+    "end_tick": 1045092,
+    "span_model_ns": 1024.05,
+    "start_tick": 21042
+  },
+  "r1.switch_to_train": {
+    "end_tick": 5489786486594,
+    "span_model_ns": 1026.05,
+    "start_tick": 5489785460544
+  },
+  "r1.train": {
+    "end_tick": 19140665389288,
+    "span_model_ns": 8653544159.898,
+    "start_tick": 10487121229390
+  },
+  "r1.weight_reshard": {
+    "end_tick": 12345071584,
+    "span_model_ns": 12344050.542,
+    "start_tick": 1021042
+  }
+}

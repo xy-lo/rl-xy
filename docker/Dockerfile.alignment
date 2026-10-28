@@ -1,0 +1,4 @@
+FROM rlxy-astrasim:0.7.0
+COPY pyproject.toml /workspace/rl-xy/pyproject.toml
+COPY src /workspace/rl-xy/src
+LABEL io.rlxy.version="0.8.0" io.rlxy.scope="alignment-gates-and-resource-safe-engineering-not-formal-performance"

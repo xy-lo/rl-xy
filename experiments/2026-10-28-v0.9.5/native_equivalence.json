@@ -1,0 +1,3008 @@
+{
+  "schema_version": "rlxy.observed_native_replay_equivalence/1",
+  "status": "PASS_OBSERVED_NATIVE_REPLAY_EQUIVALENCE",
+  "checker_source_sha256": "2afcbd350d46ef6be13d04d529398c2c2b5209a9864ec9cc62347006c355fb6d",
+  "checked_at_utc": "2026-10-28T07:52:10.375082+00:00",
+  "ranks": 48,
+  "expected_paired_rank_events": 754584,
+  "checks": [
+    {
+      "check": "same_selected_input_semantics",
+      "status": "PASS",
+      "detail": "87a1168c3750f6d9bd0b7b2e501c7eb5bf30e34566248feb6e216cea10050742"
+    },
+    {
+      "check": "all_rank_resource_raw_bytes_SHA_equal",
+      "status": "PASS",
+      "detail": {
+        "0": {
+          "left_sha256": "c947e024c456b23bbba8393880b60f0202351ab8c77565f96a996b6c6e4c71a3",
+          "right_sha256": "c947e024c456b23bbba8393880b60f0202351ab8c77565f96a996b6c6e4c71a3"
+        },
+        "1": {
+          "left_sha256": "66fad40f19215ce8cf30289cf9223ea84e75a844be089606e22acff7243308ea",
+          "right_sha256": "66fad40f19215ce8cf30289cf9223ea84e75a844be089606e22acff7243308ea"
+        },
+        "2": {
+          "left_sha256": "ccb394291e89914ba89f665050d21a8985b6a367fbb1a33f0da8a1e91f9c8e62",
+          "right_sha256": "ccb394291e89914ba89f665050d21a8985b6a367fbb1a33f0da8a1e91f9c8e62"
+        },
+        "3": {
+          "left_sha256": "f1ccda397a9b4e71b2e5a9d2d740ba3ddefb2de367d1d8349358fc02edb6ec5d",
+          "right_sha256": "f1ccda397a9b4e71b2e5a9d2d740ba3ddefb2de367d1d8349358fc02edb6ec5d"
+        },
+        "4": {
+          "left_sha256": "97a0657174a382561e7088df8a362153a40de1877c7f061572ffe9978881f65d",
+          "right_sha256": "97a0657174a382561e7088df8a362153a40de1877c7f061572ffe9978881f65d"
+        },
+        "5": {
+          "left_sha256": "bac63289fff61f9e4db041fcc8918349fa983741f9b5c4aec742bf0e01d56a3c",
+          "right_sha256": "bac63289fff61f9e4db041fcc8918349fa983741f9b5c4aec742bf0e01d56a3c"
+        },
+        "6": {
+          "left_sha256": "3a01cad3437a84e31e86cf49cad8b86f2369db08ab0f8b84ddcbefe4d86d6a7c",
+          "right_sha256": "3a01cad3437a84e31e86cf49cad8b86f2369db08ab0f8b84ddcbefe4d86d6a7c"
+        },
+        "7": {
+          "left_sha256": "3b2c5b17d4d37b0e1f8c16d436e56d3558caf5d0430a948521e12fd92d340e33",
+          "right_sha256": "3b2c5b17d4d37b0e1f8c16d436e56d3558caf5d0430a948521e12fd92d340e33"
+        },
+        "8": {
+          "left_sha256": "81ddd2812685c8007d274b71e1fc5c80fec370e0aa057215eb86aeb6d4460377",
+          "right_sha256": "81ddd2812685c8007d274b71e1fc5c80fec370e0aa057215eb86aeb6d4460377"
+        },
+        "9": {
+          "left_sha256": "a3d3746e079dd49254676202a1a0a379e5d13a412ec5b9e8f08b88e83d352331",
+          "right_sha256": "a3d3746e079dd49254676202a1a0a379e5d13a412ec5b9e8f08b88e83d352331"
+        },
+        "10": {
+          "left_sha256": "0db990cc61d8b8834bfe3e4954215051ac57fab72a5fac81e54940db4008d944",
+          "right_sha256": "0db990cc61d8b8834bfe3e4954215051ac57fab72a5fac81e54940db4008d944"
+        },
+        "11": {
+          "left_sha256": "c0a07852ba2391016622c097e021697a051093e13f6e35400b17f3b15eb02b6f",
+          "right_sha256": "c0a07852ba2391016622c097e021697a051093e13f6e35400b17f3b15eb02b6f"
+        },
+        "12": {
+          "left_sha256": "aa5a838f2ad64337de77d8de08697d2de09ec72a7d1306962d3f3464dab796fd",
+          "right_sha256": "aa5a838f2ad64337de77d8de08697d2de09ec72a7d1306962d3f3464dab796fd"
+        },
+        "13": {
+          "left_sha256": "852a3f56d6b27ad8c13937ed70d83748331b744901b6b38e3a0451b923526c47",
+          "right_sha256": "852a3f56d6b27ad8c13937ed70d83748331b744901b6b38e3a0451b923526c47"
+        },
+        "14": {
+          "left_sha256": "58d8a56a2070dc12e90791825e5885ed330d97ba843c1fc5e63e9c1a6b5a6939",
+          "right_sha256": "58d8a56a2070dc12e90791825e5885ed330d97ba843c1fc5e63e9c1a6b5a6939"
+        },
+        "15": {
+          "left_sha256": "88a58971fe07b9b306fc67feb301a55b13d1cdd6b756e0eb5a4bb8f4f6dd6082",
+          "right_sha256": "88a58971fe07b9b306fc67feb301a55b13d1cdd6b756e0eb5a4bb8f4f6dd6082"
+        },
+        "16": {
+          "left_sha256": "301b2a841468c088bef435e1aae36dd6faa79966577f5b221b6d6cbc1e8d9911",
+          "right_sha256": "301b2a841468c088bef435e1aae36dd6faa79966577f5b221b6d6cbc1e8d9911"
+        },
+        "17": {
+          "left_sha256": "7d4943e4e97f4f154b990ecf0c0cc9e6672e8301435e634043408a5c7969eaa9",
+          "right_sha256": "7d4943e4e97f4f154b990ecf0c0cc9e6672e8301435e634043408a5c7969eaa9"
+        },
+        "18": {
+          "left_sha256": "658fe3e8af02071bd802ba95f51a975f4af50ba8bee226a35d01abca41a1e46a",
+          "right_sha256": "658fe3e8af02071bd802ba95f51a975f4af50ba8bee226a35d01abca41a1e46a"
+        },
+        "19": {
+          "left_sha256": "85ed16035a7f70a96c68441b9293f558ea9334af82e3dc8985fc12daa6b77868",
+          "right_sha256": "85ed16035a7f70a96c68441b9293f558ea9334af82e3dc8985fc12daa6b77868"
+        },
+        "20": {
+          "left_sha256": "6b1360f55c1809151b3c2a62023d3c267b1521b18cc6654547a77e547b1c886b",
+          "right_sha256": "6b1360f55c1809151b3c2a62023d3c267b1521b18cc6654547a77e547b1c886b"
+        },
+        "21": {
+          "left_sha256": "919158354a1706fbc3bcbabe034a2bbe8ead8934b070df03272c1b3bd27a576a",
+          "right_sha256": "919158354a1706fbc3bcbabe034a2bbe8ead8934b070df03272c1b3bd27a576a"
+        },
+        "22": {
+          "left_sha256": "6be248a02faa9804d9c38bf4df90442cb80eb683ead1e683f6787d9e3139f865",
+          "right_sha256": "6be248a02faa9804d9c38bf4df90442cb80eb683ead1e683f6787d9e3139f865"
+        },
+        "23": {
+          "left_sha256": "0650262e26ec02c310e58584437b65f53a2487ea9e21086d3e0c60bb569791e5",
+          "right_sha256": "0650262e26ec02c310e58584437b65f53a2487ea9e21086d3e0c60bb569791e5"
+        },
+        "24": {
+          "left_sha256": "745152963fd79bafa1a616d7f19d22372adf2e5672d1b695ec9ed9b07d43872e",
+          "right_sha256": "745152963fd79bafa1a616d7f19d22372adf2e5672d1b695ec9ed9b07d43872e"
+        },
+        "25": {
+          "left_sha256": "7f529b1ceda23579d043dd2f4ef77317ceb2fe34283fcd6ffe455185212ce976",
+          "right_sha256": "7f529b1ceda23579d043dd2f4ef77317ceb2fe34283fcd6ffe455185212ce976"
+        },
+        "26": {
+          "left_sha256": "4f4446e6bc700daac2471e50060db83e8cd358729f2ce371d4b60faeb47a0ef8",
+          "right_sha256": "4f4446e6bc700daac2471e50060db83e8cd358729f2ce371d4b60faeb47a0ef8"
+        },
+        "27": {
+          "left_sha256": "6a1a18cddb4474800931b2f97018f02795e0702c49b2f72f75e3ceeb86efb88a",
+          "right_sha256": "6a1a18cddb4474800931b2f97018f02795e0702c49b2f72f75e3ceeb86efb88a"
+        },
+        "28": {
+          "left_sha256": "ef47941f50f9e208533b35d0ae7f110d337ffc8a40ffd8e0fdc12bb782755c3e",
+          "right_sha256": "ef47941f50f9e208533b35d0ae7f110d337ffc8a40ffd8e0fdc12bb782755c3e"
+        },
+        "29": {
+          "left_sha256": "9bc3383b7296a86cd71d00de1db6ca6b74721e16e325e930d1f1d3a666993083",
+          "right_sha256": "9bc3383b7296a86cd71d00de1db6ca6b74721e16e325e930d1f1d3a666993083"
+        },
+        "30": {
+          "left_sha256": "2899a450a2564c201c508a82d51e45b81d66d0c83232f2469642780f322cf1e5",
+          "right_sha256": "2899a450a2564c201c508a82d51e45b81d66d0c83232f2469642780f322cf1e5"
+        },
+        "31": {
+          "left_sha256": "80aaf60bae2e149b0e7b84b022f3835852c61f0f8a75bfa7318619a20ec5e72d",
+          "right_sha256": "80aaf60bae2e149b0e7b84b022f3835852c61f0f8a75bfa7318619a20ec5e72d"
+        },
+        "32": {
+          "left_sha256": "06466ea1739483364bbeebc138468de97bdd911ca9b80fcbc2c83b34468963bf",
+          "right_sha256": "06466ea1739483364bbeebc138468de97bdd911ca9b80fcbc2c83b34468963bf"
+        },
+        "33": {
+          "left_sha256": "51a20d639080a5c8c3123b0c4f37c65da9235c58e8caef4e9d9f2c6a301b4fea",
+          "right_sha256": "51a20d639080a5c8c3123b0c4f37c65da9235c58e8caef4e9d9f2c6a301b4fea"
+        },
+        "34": {
+          "left_sha256": "731b25f370e944eeababac41505626db3e7f509aa42cabb55aae2ed53a7483f3",
+          "right_sha256": "731b25f370e944eeababac41505626db3e7f509aa42cabb55aae2ed53a7483f3"
+        },
+        "35": {
+          "left_sha256": "8bd8b84d61b8114b35be13079e622abece17eeb6905e28315f3b1a3d25eaaa8a",
+          "right_sha256": "8bd8b84d61b8114b35be13079e622abece17eeb6905e28315f3b1a3d25eaaa8a"
+        },
+        "36": {
+          "left_sha256": "f8deff7cfe314c89f658596f26bdcc813dcf1fb1ad99fa89d4da2e819a726e69",
+          "right_sha256": "f8deff7cfe314c89f658596f26bdcc813dcf1fb1ad99fa89d4da2e819a726e69"
+        },
+        "37": {
+          "left_sha256": "1c45d81201c61707d94d6d3b5b05cd3ad3db9f82e6013f3479c287c8d4828d8e",
+          "right_sha256": "1c45d81201c61707d94d6d3b5b05cd3ad3db9f82e6013f3479c287c8d4828d8e"
+        },
+        "38": {
+          "left_sha256": "b53a2f42357d07749d25ef61a7838bc7158624b7b72b40e30dc19b63fe524c7a",
+          "right_sha256": "b53a2f42357d07749d25ef61a7838bc7158624b7b72b40e30dc19b63fe524c7a"
+        },
+        "39": {
+          "left_sha256": "c601a4d360de0a2f8f769240e5df258b5a645c1ecda9a07b65ab65146db2efe9",
+          "right_sha256": "c601a4d360de0a2f8f769240e5df258b5a645c1ecda9a07b65ab65146db2efe9"
+        },
+        "40": {
+          "left_sha256": "115361f549036c99d9b52a067ac835e0d3ad68745e7e4df52a04163182718b9b",
+          "right_sha256": "115361f549036c99d9b52a067ac835e0d3ad68745e7e4df52a04163182718b9b"
+        },
+        "41": {
+          "left_sha256": "3f7b2a4f02a848338addf57438c886e572dbd5524489999935219345fea02e4e",
+          "right_sha256": "3f7b2a4f02a848338addf57438c886e572dbd5524489999935219345fea02e4e"
+        },
+        "42": {
+          "left_sha256": "43f07539c30a285f7f1b378a3be458b1984b31f0a6e03aa58516eb59bc1ca79a",
+          "right_sha256": "43f07539c30a285f7f1b378a3be458b1984b31f0a6e03aa58516eb59bc1ca79a"
+        },
+        "43": {
+          "left_sha256": "4a93584ed8a849f47cdcdc200c11a1611bfe1eadf92e0aa7437ee2ad67608bc1",
+          "right_sha256": "4a93584ed8a849f47cdcdc200c11a1611bfe1eadf92e0aa7437ee2ad67608bc1"
+        },
+        "44": {
+          "left_sha256": "a33285ee4afcc9d98336ff797c47773056e56ad6432ed2f3c9c3a782e12b93bd",
+          "right_sha256": "a33285ee4afcc9d98336ff797c47773056e56ad6432ed2f3c9c3a782e12b93bd"
+        },
+        "45": {
+          "left_sha256": "78cdd33afae6cf5053bef8939f63ebbaea73d50cb87ac0102174ebb891668a12",
+          "right_sha256": "78cdd33afae6cf5053bef8939f63ebbaea73d50cb87ac0102174ebb891668a12"
+        },
+        "46": {
+          "left_sha256": "f48f0db37fc4a700127e8d29684b45d1d7f60a4e80f6a8dab9699291b174589a",
+          "right_sha256": "f48f0db37fc4a700127e8d29684b45d1d7f60a4e80f6a8dab9699291b174589a"
+        },
+        "47": {
+          "left_sha256": "bf925a4fd0eb36cd3932f4fd56519c30368d0e485611a0066498ad6febfb83ef",
+          "right_sha256": "bf925a4fd0eb36cd3932f4fd56519c30368d0e485611a0066498ad6febfb83ef"
+        }
+      }
+    },
+    {
+      "check": "complete_fixed_matrix_and_ordered_per_rank_events_equal",
+      "status": "PASS",
+      "detail": {
+        "per_rank": {
+          "0": {
+            "record_count": 31446,
+            "issues": 15723,
+            "callbacks": 15723,
+            "max_callback_tick": 16503218094684,
+            "ordered_canonical_event_sha256": "180f8f7bb3ba1802967cde35ee25187ab5883051f134fd37c1a1381657583ec2"
+          },
+          "1": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503218594710,
+            "ordered_canonical_event_sha256": "f28bb42a6d3270f8abc42f8e7947e49a2c64ce1c70659a96839db80b240ffb6b"
+          },
+          "2": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503219094736,
+            "ordered_canonical_event_sha256": "7ed9b7fcc04dc01289f2375c9f1d62d5882b08efdd94a72767013d75e22a4804"
+          },
+          "3": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503221094776,
+            "ordered_canonical_event_sha256": "2012be9ef3f7ce6cad593a4afd980a7353ca2396b90987727c3da1c1f89f0d8e"
+          },
+          "4": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503223594812,
+            "ordered_canonical_event_sha256": "8d5f9e1be7e5bcfddb37812f09246399a7258065df47fc7939eec3f961e02c7c"
+          },
+          "5": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503223594802,
+            "ordered_canonical_event_sha256": "29ab40513bb4a23a55c758dd0666fb17e5da639209165bd644bde0106b24cbc1"
+          },
+          "6": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503224094828,
+            "ordered_canonical_event_sha256": "eb79299994330bd0d39709157098d45fc4f240c00aa93e620d9fa25e745c6cf6"
+          },
+          "7": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503223594832,
+            "ordered_canonical_event_sha256": "a8e8ce7c801b60d6da7b6feb021cd0736fe30a18ba91f151409bcc437d5fb418"
+          },
+          "8": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503226094888,
+            "ordered_canonical_event_sha256": "ecd219d726b2f6d5fb53908b744a6b27e10058030d032f236e8e664caf097741"
+          },
+          "9": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503226094878,
+            "ordered_canonical_event_sha256": "a14353d253e8801a78cbde7773adf3fed99682418e784074b84bdbf0d4fdea62"
+          },
+          "10": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503228594914,
+            "ordered_canonical_event_sha256": "8232d15575192045dcc4d1325080c9296d2a52cc928f12bb8b47fb94866b4bcb"
+          },
+          "11": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503226094858,
+            "ordered_canonical_event_sha256": "119f6330a51fbce8291010292676225a6e1e0f38e33affb2af313b7930fa9e40"
+          },
+          "12": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503228594894,
+            "ordered_canonical_event_sha256": "dee99b6afcdcb22026ab335bec2fd525c57e2ace2b645fe1823d6f3a67818c8e"
+          },
+          "13": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503226594884,
+            "ordered_canonical_event_sha256": "0df3f0ba3973c3b0e2e13e374ea5f2d1d57a17a9271addd46ed2377c21323677"
+          },
+          "14": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503229094920,
+            "ordered_canonical_event_sha256": "745d12880075a92eebe9252510302a76026b1549da433ad225a7a890dec37ef4"
+          },
+          "15": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503226094898,
+            "ordered_canonical_event_sha256": "5d1f3d5e0f2124c34e0a9e41fd6ad53b9f83017fcb3a5dc7627a4cf004592c26"
+          },
+          "16": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503228594944,
+            "ordered_canonical_event_sha256": "5dfea37939a650b56d48be49f359b17063c0557965262609b39029af3c93039d"
+          },
+          "17": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503228594924,
+            "ordered_canonical_event_sha256": "bc01747b115de45d209fac7a7cdb6f369bc75865b9c31ec6eac99764c05c6c97"
+          },
+          "18": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503231095000,
+            "ordered_canonical_event_sha256": "c91ed625e416f108a27e558adf4c1951ea3e06578b767e69a199cfbdd3042c77"
+          },
+          "19": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503228594904,
+            "ordered_canonical_event_sha256": "c5bc6c05ede193201ca13aec3dc4edef3835d191bbc5f5f804b7a1bb3b23d421"
+          },
+          "20": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503231094980,
+            "ordered_canonical_event_sha256": "5fc17abf1ca5be1f0794797199cec0486de15c69361ccff91185fa89b0d2b6e1"
+          },
+          "21": {
+            "record_count": 31488,
+            "issues": 15744,
+            "callbacks": 15744,
+            "max_callback_tick": 16503231094970,
+            "ordered_canonical_event_sha256": "60def43c511e9f05d23bef339d91b1dafd88974b078fb345cc938e4ae8b54c84"
+          },
+          "22": {
+            "record_count": 31494,
+            "issues": 15747,
+            "callbacks": 15747,
+            "max_callback_tick": 16503233595006,
+            "ordered_canonical_event_sha256": "d7bb3d297916a96db7cc45b0d6302cb0a19009c002cdf83f095bf812afcba985"
+          },
+          "23": {
+            "record_count": 31440,
+            "issues": 15720,
+            "callbacks": 15720,
+            "max_callback_tick": 16503226094848,
+            "ordered_canonical_event_sha256": "1eda0f0057252d8c324e97693bd23054d6a03c7b2f7284209b907778d68d68aa"
+          },
+          "24": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503226094858,
+            "ordered_canonical_event_sha256": "8a64f61a7cb788efd54c38e50a8bbba99b17d58afb718840a00c333583c5c6a4"
+          },
+          "25": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503226094848,
+            "ordered_canonical_event_sha256": "6fda8e75e4d5c7067a3fab8b7bf36f6b99eccee47aea7734ec76ea2778275e66"
+          },
+          "26": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503228594894,
+            "ordered_canonical_event_sha256": "37b229e0a670ee0f4ff4244deda27c98116fe40fc8167b5be541efc5ed167ae8"
+          },
+          "27": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503224094828,
+            "ordered_canonical_event_sha256": "c03164ebd21867ec7eea879d22b51aca6a735dae74b304b14dad08e1ffe305d9"
+          },
+          "28": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503226594884,
+            "ordered_canonical_event_sha256": "682006f1f6de553918bfa4ff77f453af6723b3a8e797430dc6de36c6c8c72a6d"
+          },
+          "29": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503226594874,
+            "ordered_canonical_event_sha256": "5f6a89b67489fbebd77bd628dd3c24a65c59eca3de12097e47c908a59320ef8b"
+          },
+          "30": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503229094920,
+            "ordered_canonical_event_sha256": "bfb6f17cff08f9408734276a3c6086a1fac5e13991b9eb2110187a5a5883d56e"
+          },
+          "31": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503223594832,
+            "ordered_canonical_event_sha256": "57969366ffc8c591c9370eaecde568ac40d40ee5f7ba46785aedf6a28508b455"
+          },
+          "32": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503226094898,
+            "ordered_canonical_event_sha256": "7414400bfed4d22abdd7961a49328b5459da17bd87bd05e6f527f02a71a32675"
+          },
+          "33": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503226094878,
+            "ordered_canonical_event_sha256": "e0a7f45a9c32d36f1ff2ae964776836329f37ffd4406cdaf31d50492664544b5"
+          },
+          "34": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503228594944,
+            "ordered_canonical_event_sha256": "bdb4bae392bdbbe215d33685029e2fba0bb83ac4acc61cae8aad73bc3efb6fff"
+          },
+          "35": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503226094868,
+            "ordered_canonical_event_sha256": "c578deeab24ca9e3d32070c780b565cd19654e0a8581fbb61b7a0cd2e6875bdc"
+          },
+          "36": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503228594924,
+            "ordered_canonical_event_sha256": "9435f148df75076b7b103244c7f450a34caca8de01c6df84deabcce485f34c95"
+          },
+          "37": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503228594954,
+            "ordered_canonical_event_sha256": "61534c69612880055c0855d1f2e2ef24eca6e38192bfe352ea41807474f9c037"
+          },
+          "38": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503231095000,
+            "ordered_canonical_event_sha256": "981967552329fa99d3890791e0dfd2a330ab487a6a0c64846016d8af44fb12fd"
+          },
+          "39": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503226094858,
+            "ordered_canonical_event_sha256": "935dd8406ebcbfaab741bd4614cc38428c5d6d1a109943f4aa01b2449d09b58d"
+          },
+          "40": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503228594904,
+            "ordered_canonical_event_sha256": "f139136ff1f88070747ce57aa371db0f87901cb026682fbee86c6925f7398949"
+          },
+          "41": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503228594934,
+            "ordered_canonical_event_sha256": "4003ed0c300bc14d19d626c7bd698832ac6afd579b5a6bbc0df5fcb618cbc0f5"
+          },
+          "42": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503231094980,
+            "ordered_canonical_event_sha256": "0be256e06b16cb40e3e53d5827800cf1cec7a2bf927dfb1f4920e901b15904eb"
+          },
+          "43": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503228594914,
+            "ordered_canonical_event_sha256": "55108e9ce0acf3aa8ad2eb33e5ac5444b2ebbf990c0b01142250ded12711176f"
+          },
+          "44": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503231094970,
+            "ordered_canonical_event_sha256": "f52ece9788ad52c687b1d05d1f7bc9074109bcfbb6829a87050ea7a67374a69c"
+          },
+          "45": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503231094960,
+            "ordered_canonical_event_sha256": "45e5a57e9de864d24ea811ae9b78eeb140de83a821e4dc16b008ae7d78652faa"
+          },
+          "46": {
+            "record_count": 31398,
+            "issues": 15699,
+            "callbacks": 15699,
+            "max_callback_tick": 16503233595006,
+            "ordered_canonical_event_sha256": "6272d53e0831815aa04a50f5ffe9e3571a14c2458158c23dd5b4ebb89dd363f4"
+          },
+          "47": {
+            "record_count": 31392,
+            "issues": 15696,
+            "callbacks": 15696,
+            "max_callback_tick": 16503226094848,
+            "ordered_canonical_event_sha256": "45a8f3f51bf340ca51b2d552d5d3209c3817a9b87dfb1be54a56cc748f212595"
+          }
+        },
+        "total_raw_records": 1509168
+      }
+    }
+  ],
+  "paper_performance_ready": false,
+  "performance_ratio_published": false,
+  "scope": "observed same-workload native event/resource equivalence only; no wrapper/fullworkflow/hardware/numerical-quality release",
+  "provenance": {
+    "left": {
+      "bundle": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result",
+      "original_manifest": null,
+      "manifest_declared_status": null,
+      "native_command": {
+        "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_command.json",
+        "bytes": 856,
+        "raw_sha256": "6f5fe042a8a8a41fba897c19454fc6e473f5a5f1f5b56512ae3ffb1ec7e65d3f",
+        "semantic_sha256": "068b0d51764eeb214f142642c11bf9dde1f4f26e455932b0a8c60b6f49dfdc85"
+      },
+      "outer_report": {
+        "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/report.json",
+        "bytes": 3288,
+        "raw_sha256": "d28fa666a6ffc3a244f8c9f190252e5a3fc03d139ce8c1275f29091d1c8dc65b",
+        "semantic_sha256": "2495e215df1bd57090df947e39c8188f88bb4d143ea4d648cde54d26dacf4163",
+        "status": "FAIL",
+        "exit_status": 2,
+        "OOMKilled": false
+      }
+    },
+    "right": {
+      "bundle": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result",
+      "original_manifest": {
+        "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/manifest.json",
+        "bytes": 42451,
+        "raw_sha256": "e119147f84067a8157cde7469cd65359958770b2f2322b0818a5751c14956457",
+        "semantic_sha256": "01e01e423ae5455fb5e5b00df31a520b5ee127a68802fbe470c8cb4e043ca81a"
+      },
+      "manifest_declared_status": "success",
+      "native_command": {
+        "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_command.json",
+        "bytes": 856,
+        "raw_sha256": "78c8774fb7221b191ccad5347893aaade4ce3c950d057da043b864ae6c44375c",
+        "semantic_sha256": "f0a864dcb487e966cd0d1ee3d64fa01f1b69f529bcaf358044bc583d230bfcf2"
+      },
+      "outer_report": {
+        "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/report.json",
+        "bytes": 3288,
+        "raw_sha256": "95b64e82f8edde9a06d8b799ddf7b94b0415b38f796cd290483221f1a22a4401",
+        "semantic_sha256": "2b15621174aa975612a7019e5c229f0443441e66eece823542e30180a8406698",
+        "status": "PASS",
+        "exit_status": 0,
+        "OOMKilled": false
+      }
+    }
+  },
+  "declared_native_binary_sha256": {
+    "left": null,
+    "right": "d883a8f8e98beb197b15897e823c4e2afd0ac99ca6ee6eb97053fb06d4ef594f",
+    "independently_measured_by_this_tool": false,
+    "both_available_and_equal": false
+  },
+  "inputs": {
+    "left": {
+      "records": {
+        "system": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_system.json",
+          "bytes": 571,
+          "raw_sha256": "f6cae23c15bcacbded15dc13488fd1f3ce1a251a06c7760f58dde4022546734a",
+          "semantic_sha256": "24e3a35b75ea18036f50f0bcdf75208ed5490abef51fdca94b60b8eb243cfb03"
+        },
+        "network": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_network.yml",
+          "raw_sha256": "a161f26c4cea5a4d3de5fd7a564a605965b5bfbe2def869a8232d3922317ad1e",
+          "semantic_sha256": "8c1508dac35b62361f96b32caaa9a84abb4b979a36c75cf2c7070104ebd0edc0",
+          "semantic_scope": "strict pinned flat network schema; no general YAML parser"
+        },
+        "remote_memory": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_remote_memory.json",
+          "bytes": 43,
+          "raw_sha256": "a4d8229c75a6425ca081d9dfe77c09cfafd922dbf99d8a72fbb759e115b394c1",
+          "semantic_sha256": "515c10a979b6445ca062c29f29a82d6e221a1e0d40cbf3fc9a05b617e09c7e0e"
+        },
+        "groups": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/groups.json",
+          "bytes": 1494,
+          "raw_sha256": "1fcb1f296cb70d8089680d40ec64844e43045ecf907fbc8088c0b27c3a92115e",
+          "semantic_sha256": "817eb71e355872b4126ea4405e3b2714eeff9e668b2e4abb406af5d96aafeb0f"
+        },
+        "case.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/case.json",
+          "bytes": 663648,
+          "raw_sha256": "17760e03b8ab8408db2aad330cf15f70c1da7a6bd04412bf7f19409042f06b6d",
+          "semantic_sha256": "550266fe9bf576322219b68d36de6e85ac1419edb2fb78884346ea79bccbadfd"
+        },
+        "model_config.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/model_config.json",
+          "bytes": 661,
+          "raw_sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+          "semantic_sha256": "f06301ad8f3800238ef469c3a7a1e308227a6a7be8da4e06cbd12fbacb6ab4a1"
+        },
+        "policy.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/policy.json",
+          "bytes": 828,
+          "raw_sha256": "c5911e4bbcec6558bba56c14fa49b00059487a60d9058480e37c2836712be8eb",
+          "semantic_sha256": "4231fd1af2aebb07b086155b3da65d34405ce064e706a60ca9be3a7a5532633e"
+        },
+        "workload_provenance.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/workload_provenance.json",
+          "bytes": 589,
+          "raw_sha256": "cf3eedcaac7d8709581faa6af226d038910b9dbb6859a7f4504cfdc02805e672",
+          "semantic_sha256": "cbb0e289a92f7b7f3727be35433be1b84a923313783418cee49e3887c37de7db"
+        },
+        "source_hardware.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/source_hardware.json",
+          "bytes": 8081,
+          "raw_sha256": "616eee5df1dd53cf277fa85b10909cb302faedabe99bbf8997adbc69849a565d",
+          "semantic_sha256": "5829fb10b6814b4722c66ca71482bac0324eb00c46a9d8d01d5fabc4e6134903"
+        },
+        "wafer.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/wafer.json",
+          "bytes": 2661,
+          "raw_sha256": "bc57e30e9e9e709b43b96f9afa68d34f076105f44354d465d8d9048e6f76f7a3",
+          "semantic_sha256": "e924b8d1599d2105395acdd9b21b5ff6f99a8dadeebf97438a7166c6c87d3668"
+        },
+        "gemm_measurements.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/gemm_measurements.json",
+          "bytes": 143021,
+          "raw_sha256": "86cb29557ca820ec118d80e570f976a0c7e2afe4cc5cfe796103a114fe3d07f4",
+          "semantic_sha256": "972e2353362ca563ad423ed206c91892cb3df769cd3df90eb7add7d935f3362a"
+        },
+        "gpu_profile.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/gpu_profile.json",
+          "bytes": 2331,
+          "raw_sha256": "14416905ee7bf76ff2628df5d080841eefd71cfabc63d94481253950131b22a6",
+          "semantic_sha256": "dd45a3ed15eee445d171c74a5eac91e132e27bf9a06d58b5f98bc92c1c0b00ec"
+        },
+        "actual_gemm_census.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/actual_gemm_census.json",
+          "bytes": 305504,
+          "raw_sha256": "4c3bfd1d319a46e5d5da2cd983d1ed9939d2879cdcac8b6622b8c021cbad452e",
+          "semantic_sha256": "8c0113b0e6a6d1fe2dfa92ba201a285a6404172293784997e0ffd8e12e279dcc"
+        },
+        "resource_index.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resource_index.json",
+          "bytes": 4395,
+          "raw_sha256": "2f977cb90b3d0c491fb9b2011fd60f2f198b3d8bd2d623e25b24c9e40e6e343f",
+          "semantic_sha256": "e427e264b0094de18169e4bfd5d1a472f49c9dcc65a176045228421a71b0da08"
+        },
+        "resource_rank0": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.0.json",
+          "bytes": 11867786,
+          "raw_sha256": "416afff4a4d00a9d8e85d9ae41e14a421ab21967fd44638fbd90e70dcf0fca7a",
+          "semantic_sha256": "416afff4a4d00a9d8e85d9ae41e14a421ab21967fd44638fbd90e70dcf0fca7a"
+        },
+        "resource_rank1": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.1.json",
+          "bytes": 11874150,
+          "raw_sha256": "4c8514c2f577cdae12078105c246420bc6dad599e39487350aa76316ebb75aef",
+          "semantic_sha256": "4c8514c2f577cdae12078105c246420bc6dad599e39487350aa76316ebb75aef"
+        },
+        "resource_rank2": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.2.json",
+          "bytes": 11877560,
+          "raw_sha256": "6383353cd50256c25f93f14a646336f168a857156a8b2625b8144b924f0cd8c7",
+          "semantic_sha256": "6383353cd50256c25f93f14a646336f168a857156a8b2625b8144b924f0cd8c7"
+        },
+        "resource_rank3": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.3.json",
+          "bytes": 11876624,
+          "raw_sha256": "db8ba0788c468e8caacc0ee422233514c6bc61b243d98e1c58cf24525a5d8e1d",
+          "semantic_sha256": "db8ba0788c468e8caacc0ee422233514c6bc61b243d98e1c58cf24525a5d8e1d"
+        },
+        "resource_rank4": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.4.json",
+          "bytes": 11877838,
+          "raw_sha256": "dad0770aaaed1ad4870c49b293fef6660400ce4a02a2f87d2e846cb29aba66b3",
+          "semantic_sha256": "dad0770aaaed1ad4870c49b293fef6660400ce4a02a2f87d2e846cb29aba66b3"
+        },
+        "resource_rank5": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.5.json",
+          "bytes": 11876902,
+          "raw_sha256": "7a77655f9aa541bca624e7671c58134abbd1fd04bfdc965ddaa9f10d3df04374",
+          "semantic_sha256": "7a77655f9aa541bca624e7671c58134abbd1fd04bfdc965ddaa9f10d3df04374"
+        },
+        "resource_rank6": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.6.json",
+          "bytes": 11877821,
+          "raw_sha256": "7e323daa9b004c70bd765d3a6682b4f4e3e84ddd29eef63cbef197a987830629",
+          "semantic_sha256": "7e323daa9b004c70bd765d3a6682b4f4e3e84ddd29eef63cbef197a987830629"
+        },
+        "resource_rank7": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.7.json",
+          "bytes": 11876895,
+          "raw_sha256": "3b36131e44f0ba0036ca297625ea12dd9b6b5fcf7fed0d94e4153eb9a94c0823",
+          "semantic_sha256": "3b36131e44f0ba0036ca297625ea12dd9b6b5fcf7fed0d94e4153eb9a94c0823"
+        },
+        "resource_rank8": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.8.json",
+          "bytes": 11882764,
+          "raw_sha256": "0013611f29ae3ac9aeccca75d88d9a41c26f5a57e0f12866619bc384cce7aada",
+          "semantic_sha256": "0013611f29ae3ac9aeccca75d88d9a41c26f5a57e0f12866619bc384cce7aada"
+        },
+        "resource_rank9": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.9.json",
+          "bytes": 11881832,
+          "raw_sha256": "54cd2d79a8f2c137e3092de00d249cee151aa0da308fadbd8fcbe63fae99b95f",
+          "semantic_sha256": "54cd2d79a8f2c137e3092de00d249cee151aa0da308fadbd8fcbe63fae99b95f"
+        },
+        "resource_rank10": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.10.json",
+          "bytes": 11892312,
+          "raw_sha256": "3d98b1c7a33de2b8510db38cbf2bf07c1f914a19a9fdb301bacefae68f69331f",
+          "semantic_sha256": "3d98b1c7a33de2b8510db38cbf2bf07c1f914a19a9fdb301bacefae68f69331f"
+        },
+        "resource_rank11": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.11.json",
+          "bytes": 11891380,
+          "raw_sha256": "5be62edd9bb479fe68bc7fa13641857262a362de659bb377e29fc3c70fb17a98",
+          "semantic_sha256": "5be62edd9bb479fe68bc7fa13641857262a362de659bb377e29fc3c70fb17a98"
+        },
+        "resource_rank12": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.12.json",
+          "bytes": 11890278,
+          "raw_sha256": "b12bf474c305372a3ec576373f7fb4b999edeb39d6a0f9b47759606fd7f991ab",
+          "semantic_sha256": "b12bf474c305372a3ec576373f7fb4b999edeb39d6a0f9b47759606fd7f991ab"
+        },
+        "resource_rank13": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.13.json",
+          "bytes": 11889354,
+          "raw_sha256": "49a7494e42d988bf466418e07f2b13b4a414f66d969245c678afa5d0537f980a",
+          "semantic_sha256": "49a7494e42d988bf466418e07f2b13b4a414f66d969245c678afa5d0537f980a"
+        },
+        "resource_rank14": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.14.json",
+          "bytes": 11892411,
+          "raw_sha256": "e4ad8a90f12cc2405cab537a9fbd1b7dd04527c6b9a61abe28f7b0f88dec20b3",
+          "semantic_sha256": "e4ad8a90f12cc2405cab537a9fbd1b7dd04527c6b9a61abe28f7b0f88dec20b3"
+        },
+        "resource_rank15": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.15.json",
+          "bytes": 11891479,
+          "raw_sha256": "a9888add3ceee70fcac0a3f7b463f3675567252242bc2c9ace33fbe9840af7e4",
+          "semantic_sha256": "a9888add3ceee70fcac0a3f7b463f3675567252242bc2c9ace33fbe9840af7e4"
+        },
+        "resource_rank16": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.16.json",
+          "bytes": 11892824,
+          "raw_sha256": "76affd7408ca65d239376f003900312d612f6f89bfc6233cfd0b07b184f398bb",
+          "semantic_sha256": "76affd7408ca65d239376f003900312d612f6f89bfc6233cfd0b07b184f398bb"
+        },
+        "resource_rank17": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.17.json",
+          "bytes": 11891892,
+          "raw_sha256": "e0a783d0ef785b46f5c7ae190cea9ad3eec3613e5ddab20340c4fdb174350501",
+          "semantic_sha256": "e0a783d0ef785b46f5c7ae190cea9ad3eec3613e5ddab20340c4fdb174350501"
+        },
+        "resource_rank18": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.18.json",
+          "bytes": 11890790,
+          "raw_sha256": "0bf9a14c14f7e9346d0a8d3d38932b1c84ff4d15161534f7b957115c4f1a89a2",
+          "semantic_sha256": "0bf9a14c14f7e9346d0a8d3d38932b1c84ff4d15161534f7b957115c4f1a89a2"
+        },
+        "resource_rank19": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.19.json",
+          "bytes": 11889862,
+          "raw_sha256": "a1b56a0375857e7ac8b8c4afe7455ddb391bcb540552e0667d74e9bdc825fda9",
+          "semantic_sha256": "a1b56a0375857e7ac8b8c4afe7455ddb391bcb540552e0667d74e9bdc825fda9"
+        },
+        "resource_rank20": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.20.json",
+          "bytes": 11893227,
+          "raw_sha256": "440451dc3af00dc37320f9da37aa1857391bc97671a6807af635d5a37ec8a25f",
+          "semantic_sha256": "440451dc3af00dc37320f9da37aa1857391bc97671a6807af635d5a37ec8a25f"
+        },
+        "resource_rank21": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.21.json",
+          "bytes": 11892295,
+          "raw_sha256": "2123831b36db5a0a75144f7beaadcc0dbb8735b12d99ef855e2267bd0d8b405e",
+          "semantic_sha256": "2123831b36db5a0a75144f7beaadcc0dbb8735b12d99ef855e2267bd0d8b405e"
+        },
+        "resource_rank22": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.22.json",
+          "bytes": 11893224,
+          "raw_sha256": "bfc9ff1690ec105d5fa1350a27595874027f719a8fc5d05339a59ca3f52fbb04",
+          "semantic_sha256": "bfc9ff1690ec105d5fa1350a27595874027f719a8fc5d05339a59ca3f52fbb04"
+        },
+        "resource_rank23": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.23.json",
+          "bytes": 11884986,
+          "raw_sha256": "e69df432fc37382a4525cf5e5917829c030c3e68c63629f68a4064b8e38beae6",
+          "semantic_sha256": "e69df432fc37382a4525cf5e5917829c030c3e68c63629f68a4064b8e38beae6"
+        },
+        "resource_rank24": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.24.json",
+          "bytes": 11876606,
+          "raw_sha256": "3fd85075866250208baace9888ffeef400907e2d677f24eb1beb67803c497f92",
+          "semantic_sha256": "3fd85075866250208baace9888ffeef400907e2d677f24eb1beb67803c497f92"
+        },
+        "resource_rank25": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.25.json",
+          "bytes": 11875682,
+          "raw_sha256": "2208dc503d9a1628b670922f7f6aa90a098781d5e961b8c7e7fa919131b1c986",
+          "semantic_sha256": "2208dc503d9a1628b670922f7f6aa90a098781d5e961b8c7e7fa919131b1c986"
+        },
+        "resource_rank26": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.26.json",
+          "bytes": 11880141,
+          "raw_sha256": "38b3b14c65c2431964e330c7a922c46ef40b66b52e991e31a996460d55bb3a38",
+          "semantic_sha256": "38b3b14c65c2431964e330c7a922c46ef40b66b52e991e31a996460d55bb3a38"
+        },
+        "resource_rank27": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.27.json",
+          "bytes": 11879209,
+          "raw_sha256": "ad4ac230c4de47e0f79ca691ec30c5cbb7d928ae6eeee10fa1633c835408d1de",
+          "semantic_sha256": "ad4ac230c4de47e0f79ca691ec30c5cbb7d928ae6eeee10fa1633c835408d1de"
+        },
+        "resource_rank28": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.28.json",
+          "bytes": 11880132,
+          "raw_sha256": "d1ab607f4243a18f219def5212d1e5bad43348577df19f8b93e15099d37dd3ab",
+          "semantic_sha256": "d1ab607f4243a18f219def5212d1e5bad43348577df19f8b93e15099d37dd3ab"
+        },
+        "resource_rank29": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.29.json",
+          "bytes": 11879200,
+          "raw_sha256": "1b3085eeced7faab18d181ff75f8d6941ebb2d2b250892d5c2e64e4b37754edf",
+          "semantic_sha256": "1b3085eeced7faab18d181ff75f8d6941ebb2d2b250892d5c2e64e4b37754edf"
+        },
+        "resource_rank30": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.30.json",
+          "bytes": 11878068,
+          "raw_sha256": "e29e7609310699822c130f5d6fec7543fe3b2743f7de7d51c9b5518baad0d037",
+          "semantic_sha256": "e29e7609310699822c130f5d6fec7543fe3b2743f7de7d51c9b5518baad0d037"
+        },
+        "resource_rank31": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.31.json",
+          "bytes": 11877142,
+          "raw_sha256": "8331182be9c11eec212245daa8eadd693bf4cea6e5d74e8eb1fdaf528f4fb729",
+          "semantic_sha256": "8331182be9c11eec212245daa8eadd693bf4cea6e5d74e8eb1fdaf528f4fb729"
+        },
+        "resource_rank32": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.32.json",
+          "bytes": 11880031,
+          "raw_sha256": "af8dab82536b9352a661e07397b1866a11150e3edeb9244248851c4a36f28b98",
+          "semantic_sha256": "af8dab82536b9352a661e07397b1866a11150e3edeb9244248851c4a36f28b98"
+        },
+        "resource_rank33": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.33.json",
+          "bytes": 11879095,
+          "raw_sha256": "21598243ddb0a6aaf6a9e906417b7a20a59e9e0497534e437e3fd82b36442cb8",
+          "semantic_sha256": "21598243ddb0a6aaf6a9e906417b7a20a59e9e0497534e437e3fd82b36442cb8"
+        },
+        "resource_rank34": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.34.json",
+          "bytes": 11880028,
+          "raw_sha256": "8aa306c32070eb6067b4a48a23b7599bc43ab1deba4af12e88c89ecab3bd3c72",
+          "semantic_sha256": "8aa306c32070eb6067b4a48a23b7599bc43ab1deba4af12e88c89ecab3bd3c72"
+        },
+        "resource_rank35": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.35.json",
+          "bytes": 11879092,
+          "raw_sha256": "fa3fe8971f43c405ab3514f7809c73037bc6a3880b894c3d4940062dc07a3daf",
+          "semantic_sha256": "fa3fe8971f43c405ab3514f7809c73037bc6a3880b894c3d4940062dc07a3daf"
+        },
+        "resource_rank36": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.36.json",
+          "bytes": 11878044,
+          "raw_sha256": "482743cc01d08dfb84b6d17794de06e66ccab1d468e0331d98bbb66716afb6bc",
+          "semantic_sha256": "482743cc01d08dfb84b6d17794de06e66ccab1d468e0331d98bbb66716afb6bc"
+        },
+        "resource_rank37": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.37.json",
+          "bytes": 11877118,
+          "raw_sha256": "2e885a0fb288490f4ddbb75c13987c5c852e7f1ec1a5d8e08f246bc6bebe7b7b",
+          "semantic_sha256": "2e885a0fb288490f4ddbb75c13987c5c852e7f1ec1a5d8e08f246bc6bebe7b7b"
+        },
+        "resource_rank38": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.38.json",
+          "bytes": 11880019,
+          "raw_sha256": "03710c6f9b64a3748920a25df8f0474af7a590835e9947d7e2760f39722f7d0f",
+          "semantic_sha256": "03710c6f9b64a3748920a25df8f0474af7a590835e9947d7e2760f39722f7d0f"
+        },
+        "resource_rank39": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.39.json",
+          "bytes": 11879083,
+          "raw_sha256": "81508d54e9b296e0700bb1a0b920c214c477a729bff268267a5d412c5a3cacbd",
+          "semantic_sha256": "81508d54e9b296e0700bb1a0b920c214c477a729bff268267a5d412c5a3cacbd"
+        },
+        "resource_rank40": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.40.json",
+          "bytes": 11879976,
+          "raw_sha256": "7499f9e1c268df4e77bd026e623e3b3939bd5271d3b3dca2038daed6a3ee1d82",
+          "semantic_sha256": "7499f9e1c268df4e77bd026e623e3b3939bd5271d3b3dca2038daed6a3ee1d82"
+        },
+        "resource_rank41": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.41.json",
+          "bytes": 11879044,
+          "raw_sha256": "6c83621be303f791f0584947590f6b7bb981596949d423575ce5a6c95da91529",
+          "semantic_sha256": "6c83621be303f791f0584947590f6b7bb981596949d423575ce5a6c95da91529"
+        },
+        "resource_rank42": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.42.json",
+          "bytes": 11877247,
+          "raw_sha256": "d89d31fc049f399ad67ea2e1a2fa0e053fa4939defc336f21c14dbc207883faf",
+          "semantic_sha256": "d89d31fc049f399ad67ea2e1a2fa0e053fa4939defc336f21c14dbc207883faf"
+        },
+        "resource_rank43": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.43.json",
+          "bytes": 11876331,
+          "raw_sha256": "23165f916ed70f08cd4823bdb109ad1b870ac6171d35e1b29a3227da107b9482",
+          "semantic_sha256": "23165f916ed70f08cd4823bdb109ad1b870ac6171d35e1b29a3227da107b9482"
+        },
+        "resource_rank44": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.44.json",
+          "bytes": 11876107,
+          "raw_sha256": "2c176d19a63ff47008c9d74d36ad3b783969317a4af7af02177f288e716816b1",
+          "semantic_sha256": "2c176d19a63ff47008c9d74d36ad3b783969317a4af7af02177f288e716816b1"
+        },
+        "resource_rank45": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.45.json",
+          "bytes": 11875191,
+          "raw_sha256": "99d001a465a2d98eb75fdabd474801aa383fcb07cdf590e7163763cbb31c8370",
+          "semantic_sha256": "99d001a465a2d98eb75fdabd474801aa383fcb07cdf590e7163763cbb31c8370"
+        },
+        "resource_rank46": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.46.json",
+          "bytes": 11876107,
+          "raw_sha256": "66095d8e564c2ac97df3f94964ff2a830da4e223e6d3747d4db317f9ef1cc359",
+          "semantic_sha256": "66095d8e564c2ac97df3f94964ff2a830da4e223e6d3747d4db317f9ef1cc359"
+        },
+        "resource_rank47": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.47.json",
+          "bytes": 11875191,
+          "raw_sha256": "d355bb650a50f525460e9ee9a89668405da8771064e5bb6529b942a30a52e660",
+          "semantic_sha256": "d355bb650a50f525460e9ee9a89668405da8771064e5bb6529b942a30a52e660"
+        }
+      },
+      "tool_computed_selected_input_manifest_sha256": "4d475f393717b98e90ad2902636bcafef56331f179b27aff3d74df4826bb7523",
+      "normalized_contract_sha256": "87a1168c3750f6d9bd0b7b2e501c7eb5bf30e34566248feb6e216cea10050742",
+      "explicit_path_normalizations": [
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_system.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_system.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_network.yml",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_network.yml",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_remote_memory.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/astra_remote_memory.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/groups.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/groups.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "json_file": "gpu_profile.json",
+          "key": "gemm_profile",
+          "declared": "../../calibration/20261028/W1-mb4-a100-hot.json",
+          "normalized": "copied gemm_measurements.json",
+          "rule": "copied full measurement semantics are compared independently"
+        },
+        {
+          "json_file": "resource_index.json",
+          "key": "log_prefix",
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/astra_logs/resources",
+          "normalized": "<BUNDLE>/astra_logs/resources"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.0.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.0.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.1.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.1.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.2.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.2.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.3.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.3.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.4.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.4.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.5.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.5.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.6.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.6.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.7.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.7.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.8.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.8.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.9.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.9.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.10.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.10.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.11.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.11.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.12.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.12.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.13.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.13.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.14.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.14.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.15.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.15.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.16.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.16.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.17.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.17.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.18.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.18.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.19.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.19.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.20.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.20.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.21.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.21.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.22.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.22.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.23.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.23.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.24.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.24.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.25.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.25.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.26.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.26.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.27.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.27.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.28.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.28.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.29.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.29.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.30.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.30.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.31.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.31.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.32.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.32.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.33.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.33.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.34.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.34.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.35.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.35.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.36.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.36.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.37.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.37.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.38.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.38.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.39.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.39.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.40.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.40.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.41.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.41.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.42.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.42.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.43.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.43.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.44.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.44.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.45.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.45.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.46.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.46.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.47.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/inputs/resources.47.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a8/result/inputs/workload",
+          "normalized": "<BUNDLE>/inputs/workload",
+          "rule": "ET prefix path only;protobuf semantics not decoded"
+        }
+      ]
+    },
+    "right": {
+      "records": {
+        "system": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_system.json",
+          "bytes": 571,
+          "raw_sha256": "f6cae23c15bcacbded15dc13488fd1f3ce1a251a06c7760f58dde4022546734a",
+          "semantic_sha256": "24e3a35b75ea18036f50f0bcdf75208ed5490abef51fdca94b60b8eb243cfb03"
+        },
+        "network": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_network.yml",
+          "raw_sha256": "a161f26c4cea5a4d3de5fd7a564a605965b5bfbe2def869a8232d3922317ad1e",
+          "semantic_sha256": "8c1508dac35b62361f96b32caaa9a84abb4b979a36c75cf2c7070104ebd0edc0",
+          "semantic_scope": "strict pinned flat network schema; no general YAML parser"
+        },
+        "remote_memory": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_remote_memory.json",
+          "bytes": 43,
+          "raw_sha256": "a4d8229c75a6425ca081d9dfe77c09cfafd922dbf99d8a72fbb759e115b394c1",
+          "semantic_sha256": "515c10a979b6445ca062c29f29a82d6e221a1e0d40cbf3fc9a05b617e09c7e0e"
+        },
+        "groups": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/groups.json",
+          "bytes": 1494,
+          "raw_sha256": "1fcb1f296cb70d8089680d40ec64844e43045ecf907fbc8088c0b27c3a92115e",
+          "semantic_sha256": "817eb71e355872b4126ea4405e3b2714eeff9e668b2e4abb406af5d96aafeb0f"
+        },
+        "case.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/case.json",
+          "bytes": 663648,
+          "raw_sha256": "17760e03b8ab8408db2aad330cf15f70c1da7a6bd04412bf7f19409042f06b6d",
+          "semantic_sha256": "550266fe9bf576322219b68d36de6e85ac1419edb2fb78884346ea79bccbadfd"
+        },
+        "model_config.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/model_config.json",
+          "bytes": 661,
+          "raw_sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+          "semantic_sha256": "f06301ad8f3800238ef469c3a7a1e308227a6a7be8da4e06cbd12fbacb6ab4a1"
+        },
+        "policy.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/policy.json",
+          "bytes": 828,
+          "raw_sha256": "c5911e4bbcec6558bba56c14fa49b00059487a60d9058480e37c2836712be8eb",
+          "semantic_sha256": "4231fd1af2aebb07b086155b3da65d34405ce064e706a60ca9be3a7a5532633e"
+        },
+        "workload_provenance.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/workload_provenance.json",
+          "bytes": 589,
+          "raw_sha256": "cf3eedcaac7d8709581faa6af226d038910b9dbb6859a7f4504cfdc02805e672",
+          "semantic_sha256": "cbb0e289a92f7b7f3727be35433be1b84a923313783418cee49e3887c37de7db"
+        },
+        "source_hardware.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/source_hardware.json",
+          "bytes": 8081,
+          "raw_sha256": "616eee5df1dd53cf277fa85b10909cb302faedabe99bbf8997adbc69849a565d",
+          "semantic_sha256": "5829fb10b6814b4722c66ca71482bac0324eb00c46a9d8d01d5fabc4e6134903"
+        },
+        "wafer.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/wafer.json",
+          "bytes": 2661,
+          "raw_sha256": "bc57e30e9e9e709b43b96f9afa68d34f076105f44354d465d8d9048e6f76f7a3",
+          "semantic_sha256": "e924b8d1599d2105395acdd9b21b5ff6f99a8dadeebf97438a7166c6c87d3668"
+        },
+        "gemm_measurements.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/gemm_measurements.json",
+          "bytes": 143021,
+          "raw_sha256": "86cb29557ca820ec118d80e570f976a0c7e2afe4cc5cfe796103a114fe3d07f4",
+          "semantic_sha256": "972e2353362ca563ad423ed206c91892cb3df769cd3df90eb7add7d935f3362a"
+        },
+        "gpu_profile.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/gpu_profile.json",
+          "bytes": 2331,
+          "raw_sha256": "14416905ee7bf76ff2628df5d080841eefd71cfabc63d94481253950131b22a6",
+          "semantic_sha256": "dd45a3ed15eee445d171c74a5eac91e132e27bf9a06d58b5f98bc92c1c0b00ec"
+        },
+        "actual_gemm_census.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/actual_gemm_census.json",
+          "bytes": 305504,
+          "raw_sha256": "4c3bfd1d319a46e5d5da2cd983d1ed9939d2879cdcac8b6622b8c021cbad452e",
+          "semantic_sha256": "8c0113b0e6a6d1fe2dfa92ba201a285a6404172293784997e0ffd8e12e279dcc"
+        },
+        "resource_index.json": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resource_index.json",
+          "bytes": 4395,
+          "raw_sha256": "483940eeb269ea206b00f6e0d0c4a1bce223ac591811f3589870ed0ced801a5c",
+          "semantic_sha256": "f5252a48123c28e33ab4cb26d0e0a348a2452daa6b49eecb3e4a0ae4f823208d"
+        },
+        "resource_rank0": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.0.json",
+          "bytes": 11867786,
+          "raw_sha256": "416afff4a4d00a9d8e85d9ae41e14a421ab21967fd44638fbd90e70dcf0fca7a",
+          "semantic_sha256": "416afff4a4d00a9d8e85d9ae41e14a421ab21967fd44638fbd90e70dcf0fca7a"
+        },
+        "resource_rank1": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.1.json",
+          "bytes": 11874150,
+          "raw_sha256": "4c8514c2f577cdae12078105c246420bc6dad599e39487350aa76316ebb75aef",
+          "semantic_sha256": "4c8514c2f577cdae12078105c246420bc6dad599e39487350aa76316ebb75aef"
+        },
+        "resource_rank2": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.2.json",
+          "bytes": 11877560,
+          "raw_sha256": "6383353cd50256c25f93f14a646336f168a857156a8b2625b8144b924f0cd8c7",
+          "semantic_sha256": "6383353cd50256c25f93f14a646336f168a857156a8b2625b8144b924f0cd8c7"
+        },
+        "resource_rank3": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.3.json",
+          "bytes": 11876624,
+          "raw_sha256": "db8ba0788c468e8caacc0ee422233514c6bc61b243d98e1c58cf24525a5d8e1d",
+          "semantic_sha256": "db8ba0788c468e8caacc0ee422233514c6bc61b243d98e1c58cf24525a5d8e1d"
+        },
+        "resource_rank4": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.4.json",
+          "bytes": 11877838,
+          "raw_sha256": "dad0770aaaed1ad4870c49b293fef6660400ce4a02a2f87d2e846cb29aba66b3",
+          "semantic_sha256": "dad0770aaaed1ad4870c49b293fef6660400ce4a02a2f87d2e846cb29aba66b3"
+        },
+        "resource_rank5": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.5.json",
+          "bytes": 11876902,
+          "raw_sha256": "7a77655f9aa541bca624e7671c58134abbd1fd04bfdc965ddaa9f10d3df04374",
+          "semantic_sha256": "7a77655f9aa541bca624e7671c58134abbd1fd04bfdc965ddaa9f10d3df04374"
+        },
+        "resource_rank6": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.6.json",
+          "bytes": 11877821,
+          "raw_sha256": "7e323daa9b004c70bd765d3a6682b4f4e3e84ddd29eef63cbef197a987830629",
+          "semantic_sha256": "7e323daa9b004c70bd765d3a6682b4f4e3e84ddd29eef63cbef197a987830629"
+        },
+        "resource_rank7": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.7.json",
+          "bytes": 11876895,
+          "raw_sha256": "3b36131e44f0ba0036ca297625ea12dd9b6b5fcf7fed0d94e4153eb9a94c0823",
+          "semantic_sha256": "3b36131e44f0ba0036ca297625ea12dd9b6b5fcf7fed0d94e4153eb9a94c0823"
+        },
+        "resource_rank8": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.8.json",
+          "bytes": 11882764,
+          "raw_sha256": "0013611f29ae3ac9aeccca75d88d9a41c26f5a57e0f12866619bc384cce7aada",
+          "semantic_sha256": "0013611f29ae3ac9aeccca75d88d9a41c26f5a57e0f12866619bc384cce7aada"
+        },
+        "resource_rank9": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.9.json",
+          "bytes": 11881832,
+          "raw_sha256": "54cd2d79a8f2c137e3092de00d249cee151aa0da308fadbd8fcbe63fae99b95f",
+          "semantic_sha256": "54cd2d79a8f2c137e3092de00d249cee151aa0da308fadbd8fcbe63fae99b95f"
+        },
+        "resource_rank10": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.10.json",
+          "bytes": 11892312,
+          "raw_sha256": "3d98b1c7a33de2b8510db38cbf2bf07c1f914a19a9fdb301bacefae68f69331f",
+          "semantic_sha256": "3d98b1c7a33de2b8510db38cbf2bf07c1f914a19a9fdb301bacefae68f69331f"
+        },
+        "resource_rank11": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.11.json",
+          "bytes": 11891380,
+          "raw_sha256": "5be62edd9bb479fe68bc7fa13641857262a362de659bb377e29fc3c70fb17a98",
+          "semantic_sha256": "5be62edd9bb479fe68bc7fa13641857262a362de659bb377e29fc3c70fb17a98"
+        },
+        "resource_rank12": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.12.json",
+          "bytes": 11890278,
+          "raw_sha256": "b12bf474c305372a3ec576373f7fb4b999edeb39d6a0f9b47759606fd7f991ab",
+          "semantic_sha256": "b12bf474c305372a3ec576373f7fb4b999edeb39d6a0f9b47759606fd7f991ab"
+        },
+        "resource_rank13": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.13.json",
+          "bytes": 11889354,
+          "raw_sha256": "49a7494e42d988bf466418e07f2b13b4a414f66d969245c678afa5d0537f980a",
+          "semantic_sha256": "49a7494e42d988bf466418e07f2b13b4a414f66d969245c678afa5d0537f980a"
+        },
+        "resource_rank14": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.14.json",
+          "bytes": 11892411,
+          "raw_sha256": "e4ad8a90f12cc2405cab537a9fbd1b7dd04527c6b9a61abe28f7b0f88dec20b3",
+          "semantic_sha256": "e4ad8a90f12cc2405cab537a9fbd1b7dd04527c6b9a61abe28f7b0f88dec20b3"
+        },
+        "resource_rank15": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.15.json",
+          "bytes": 11891479,
+          "raw_sha256": "a9888add3ceee70fcac0a3f7b463f3675567252242bc2c9ace33fbe9840af7e4",
+          "semantic_sha256": "a9888add3ceee70fcac0a3f7b463f3675567252242bc2c9ace33fbe9840af7e4"
+        },
+        "resource_rank16": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.16.json",
+          "bytes": 11892824,
+          "raw_sha256": "76affd7408ca65d239376f003900312d612f6f89bfc6233cfd0b07b184f398bb",
+          "semantic_sha256": "76affd7408ca65d239376f003900312d612f6f89bfc6233cfd0b07b184f398bb"
+        },
+        "resource_rank17": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.17.json",
+          "bytes": 11891892,
+          "raw_sha256": "e0a783d0ef785b46f5c7ae190cea9ad3eec3613e5ddab20340c4fdb174350501",
+          "semantic_sha256": "e0a783d0ef785b46f5c7ae190cea9ad3eec3613e5ddab20340c4fdb174350501"
+        },
+        "resource_rank18": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.18.json",
+          "bytes": 11890790,
+          "raw_sha256": "0bf9a14c14f7e9346d0a8d3d38932b1c84ff4d15161534f7b957115c4f1a89a2",
+          "semantic_sha256": "0bf9a14c14f7e9346d0a8d3d38932b1c84ff4d15161534f7b957115c4f1a89a2"
+        },
+        "resource_rank19": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.19.json",
+          "bytes": 11889862,
+          "raw_sha256": "a1b56a0375857e7ac8b8c4afe7455ddb391bcb540552e0667d74e9bdc825fda9",
+          "semantic_sha256": "a1b56a0375857e7ac8b8c4afe7455ddb391bcb540552e0667d74e9bdc825fda9"
+        },
+        "resource_rank20": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.20.json",
+          "bytes": 11893227,
+          "raw_sha256": "440451dc3af00dc37320f9da37aa1857391bc97671a6807af635d5a37ec8a25f",
+          "semantic_sha256": "440451dc3af00dc37320f9da37aa1857391bc97671a6807af635d5a37ec8a25f"
+        },
+        "resource_rank21": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.21.json",
+          "bytes": 11892295,
+          "raw_sha256": "2123831b36db5a0a75144f7beaadcc0dbb8735b12d99ef855e2267bd0d8b405e",
+          "semantic_sha256": "2123831b36db5a0a75144f7beaadcc0dbb8735b12d99ef855e2267bd0d8b405e"
+        },
+        "resource_rank22": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.22.json",
+          "bytes": 11893224,
+          "raw_sha256": "bfc9ff1690ec105d5fa1350a27595874027f719a8fc5d05339a59ca3f52fbb04",
+          "semantic_sha256": "bfc9ff1690ec105d5fa1350a27595874027f719a8fc5d05339a59ca3f52fbb04"
+        },
+        "resource_rank23": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.23.json",
+          "bytes": 11884986,
+          "raw_sha256": "e69df432fc37382a4525cf5e5917829c030c3e68c63629f68a4064b8e38beae6",
+          "semantic_sha256": "e69df432fc37382a4525cf5e5917829c030c3e68c63629f68a4064b8e38beae6"
+        },
+        "resource_rank24": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.24.json",
+          "bytes": 11876606,
+          "raw_sha256": "3fd85075866250208baace9888ffeef400907e2d677f24eb1beb67803c497f92",
+          "semantic_sha256": "3fd85075866250208baace9888ffeef400907e2d677f24eb1beb67803c497f92"
+        },
+        "resource_rank25": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.25.json",
+          "bytes": 11875682,
+          "raw_sha256": "2208dc503d9a1628b670922f7f6aa90a098781d5e961b8c7e7fa919131b1c986",
+          "semantic_sha256": "2208dc503d9a1628b670922f7f6aa90a098781d5e961b8c7e7fa919131b1c986"
+        },
+        "resource_rank26": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.26.json",
+          "bytes": 11880141,
+          "raw_sha256": "38b3b14c65c2431964e330c7a922c46ef40b66b52e991e31a996460d55bb3a38",
+          "semantic_sha256": "38b3b14c65c2431964e330c7a922c46ef40b66b52e991e31a996460d55bb3a38"
+        },
+        "resource_rank27": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.27.json",
+          "bytes": 11879209,
+          "raw_sha256": "ad4ac230c4de47e0f79ca691ec30c5cbb7d928ae6eeee10fa1633c835408d1de",
+          "semantic_sha256": "ad4ac230c4de47e0f79ca691ec30c5cbb7d928ae6eeee10fa1633c835408d1de"
+        },
+        "resource_rank28": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.28.json",
+          "bytes": 11880132,
+          "raw_sha256": "d1ab607f4243a18f219def5212d1e5bad43348577df19f8b93e15099d37dd3ab",
+          "semantic_sha256": "d1ab607f4243a18f219def5212d1e5bad43348577df19f8b93e15099d37dd3ab"
+        },
+        "resource_rank29": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.29.json",
+          "bytes": 11879200,
+          "raw_sha256": "1b3085eeced7faab18d181ff75f8d6941ebb2d2b250892d5c2e64e4b37754edf",
+          "semantic_sha256": "1b3085eeced7faab18d181ff75f8d6941ebb2d2b250892d5c2e64e4b37754edf"
+        },
+        "resource_rank30": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.30.json",
+          "bytes": 11878068,
+          "raw_sha256": "e29e7609310699822c130f5d6fec7543fe3b2743f7de7d51c9b5518baad0d037",
+          "semantic_sha256": "e29e7609310699822c130f5d6fec7543fe3b2743f7de7d51c9b5518baad0d037"
+        },
+        "resource_rank31": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.31.json",
+          "bytes": 11877142,
+          "raw_sha256": "8331182be9c11eec212245daa8eadd693bf4cea6e5d74e8eb1fdaf528f4fb729",
+          "semantic_sha256": "8331182be9c11eec212245daa8eadd693bf4cea6e5d74e8eb1fdaf528f4fb729"
+        },
+        "resource_rank32": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.32.json",
+          "bytes": 11880031,
+          "raw_sha256": "af8dab82536b9352a661e07397b1866a11150e3edeb9244248851c4a36f28b98",
+          "semantic_sha256": "af8dab82536b9352a661e07397b1866a11150e3edeb9244248851c4a36f28b98"
+        },
+        "resource_rank33": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.33.json",
+          "bytes": 11879095,
+          "raw_sha256": "21598243ddb0a6aaf6a9e906417b7a20a59e9e0497534e437e3fd82b36442cb8",
+          "semantic_sha256": "21598243ddb0a6aaf6a9e906417b7a20a59e9e0497534e437e3fd82b36442cb8"
+        },
+        "resource_rank34": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.34.json",
+          "bytes": 11880028,
+          "raw_sha256": "8aa306c32070eb6067b4a48a23b7599bc43ab1deba4af12e88c89ecab3bd3c72",
+          "semantic_sha256": "8aa306c32070eb6067b4a48a23b7599bc43ab1deba4af12e88c89ecab3bd3c72"
+        },
+        "resource_rank35": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.35.json",
+          "bytes": 11879092,
+          "raw_sha256": "fa3fe8971f43c405ab3514f7809c73037bc6a3880b894c3d4940062dc07a3daf",
+          "semantic_sha256": "fa3fe8971f43c405ab3514f7809c73037bc6a3880b894c3d4940062dc07a3daf"
+        },
+        "resource_rank36": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.36.json",
+          "bytes": 11878044,
+          "raw_sha256": "482743cc01d08dfb84b6d17794de06e66ccab1d468e0331d98bbb66716afb6bc",
+          "semantic_sha256": "482743cc01d08dfb84b6d17794de06e66ccab1d468e0331d98bbb66716afb6bc"
+        },
+        "resource_rank37": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.37.json",
+          "bytes": 11877118,
+          "raw_sha256": "2e885a0fb288490f4ddbb75c13987c5c852e7f1ec1a5d8e08f246bc6bebe7b7b",
+          "semantic_sha256": "2e885a0fb288490f4ddbb75c13987c5c852e7f1ec1a5d8e08f246bc6bebe7b7b"
+        },
+        "resource_rank38": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.38.json",
+          "bytes": 11880019,
+          "raw_sha256": "03710c6f9b64a3748920a25df8f0474af7a590835e9947d7e2760f39722f7d0f",
+          "semantic_sha256": "03710c6f9b64a3748920a25df8f0474af7a590835e9947d7e2760f39722f7d0f"
+        },
+        "resource_rank39": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.39.json",
+          "bytes": 11879083,
+          "raw_sha256": "81508d54e9b296e0700bb1a0b920c214c477a729bff268267a5d412c5a3cacbd",
+          "semantic_sha256": "81508d54e9b296e0700bb1a0b920c214c477a729bff268267a5d412c5a3cacbd"
+        },
+        "resource_rank40": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.40.json",
+          "bytes": 11879976,
+          "raw_sha256": "7499f9e1c268df4e77bd026e623e3b3939bd5271d3b3dca2038daed6a3ee1d82",
+          "semantic_sha256": "7499f9e1c268df4e77bd026e623e3b3939bd5271d3b3dca2038daed6a3ee1d82"
+        },
+        "resource_rank41": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.41.json",
+          "bytes": 11879044,
+          "raw_sha256": "6c83621be303f791f0584947590f6b7bb981596949d423575ce5a6c95da91529",
+          "semantic_sha256": "6c83621be303f791f0584947590f6b7bb981596949d423575ce5a6c95da91529"
+        },
+        "resource_rank42": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.42.json",
+          "bytes": 11877247,
+          "raw_sha256": "d89d31fc049f399ad67ea2e1a2fa0e053fa4939defc336f21c14dbc207883faf",
+          "semantic_sha256": "d89d31fc049f399ad67ea2e1a2fa0e053fa4939defc336f21c14dbc207883faf"
+        },
+        "resource_rank43": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.43.json",
+          "bytes": 11876331,
+          "raw_sha256": "23165f916ed70f08cd4823bdb109ad1b870ac6171d35e1b29a3227da107b9482",
+          "semantic_sha256": "23165f916ed70f08cd4823bdb109ad1b870ac6171d35e1b29a3227da107b9482"
+        },
+        "resource_rank44": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.44.json",
+          "bytes": 11876107,
+          "raw_sha256": "2c176d19a63ff47008c9d74d36ad3b783969317a4af7af02177f288e716816b1",
+          "semantic_sha256": "2c176d19a63ff47008c9d74d36ad3b783969317a4af7af02177f288e716816b1"
+        },
+        "resource_rank45": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.45.json",
+          "bytes": 11875191,
+          "raw_sha256": "99d001a465a2d98eb75fdabd474801aa383fcb07cdf590e7163763cbb31c8370",
+          "semantic_sha256": "99d001a465a2d98eb75fdabd474801aa383fcb07cdf590e7163763cbb31c8370"
+        },
+        "resource_rank46": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.46.json",
+          "bytes": 11876107,
+          "raw_sha256": "66095d8e564c2ac97df3f94964ff2a830da4e223e6d3747d4db317f9ef1cc359",
+          "semantic_sha256": "66095d8e564c2ac97df3f94964ff2a830da4e223e6d3747d4db317f9ef1cc359"
+        },
+        "resource_rank47": {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.47.json",
+          "bytes": 11875191,
+          "raw_sha256": "d355bb650a50f525460e9ee9a89668405da8771064e5bb6529b942a30a52e660",
+          "semantic_sha256": "d355bb650a50f525460e9ee9a89668405da8771064e5bb6529b942a30a52e660"
+        }
+      },
+      "tool_computed_selected_input_manifest_sha256": "4168e246d4724d9840d5c66a2602f3f5d637f6a0fc49dfa503dbf50ea9209a3d",
+      "normalized_contract_sha256": "87a1168c3750f6d9bd0b7b2e501c7eb5bf30e34566248feb6e216cea10050742",
+      "explicit_path_normalizations": [
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_system.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_system.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_network.yml",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_network.yml",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_remote_memory.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/astra_remote_memory.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/groups.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/groups.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "json_file": "gpu_profile.json",
+          "key": "gemm_profile",
+          "declared": "../../calibration/20261028/W1-mb4-a100-hot.json",
+          "normalized": "copied gemm_measurements.json",
+          "rule": "copied full measurement semantics are compared independently"
+        },
+        {
+          "json_file": "resource_index.json",
+          "key": "log_prefix",
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/astra_logs/resources",
+          "normalized": "<BUNDLE>/astra_logs/resources"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.0.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.0.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.1.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.1.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.2.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.2.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.3.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.3.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.4.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.4.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.5.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.5.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.6.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.6.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.7.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.7.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.8.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.8.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.9.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.9.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.10.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.10.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.11.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.11.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.12.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.12.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.13.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.13.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.14.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.14.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.15.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.15.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.16.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.16.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.17.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.17.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.18.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.18.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.19.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.19.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.20.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.20.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.21.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.21.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.22.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.22.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.23.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.23.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.24.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.24.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.25.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.25.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.26.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.26.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.27.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.27.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.28.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.28.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.29.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.29.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.30.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.30.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.31.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.31.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.32.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.32.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.33.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.33.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.34.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.34.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.35.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.35.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.36.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.36.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.37.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.37.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.38.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.38.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.39.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.39.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.40.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.40.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.41.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.41.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.42.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.42.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.43.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.43.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.44.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.44.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.45.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.45.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.46.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.46.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.47.json",
+          "local": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/inputs/resources.47.json",
+          "rule": "same bundle input basename; original paths retained"
+        },
+        {
+          "declared": "/workspace/rl-xy/runs/T42/W1-gpu-hot-mb4-a9/result/inputs/workload",
+          "normalized": "<BUNDLE>/inputs/workload",
+          "rule": "ET prefix path only;protobuf semantics not decoded"
+        }
+      ]
+    }
+  },
+  "ET_bytes": {
+    "left": {
+      "0": "ff6dc9c7cf895c0ff9561e49f98aa579d78ad68dbc977889b69a4518f05f9ce7",
+      "1": "fff037eb27de49f386e6802f565d9ea094d6a83cc3103bfb6e7c5c7750e8e2fb",
+      "2": "959f419871d0291fcd49394c33e2247e9546b62ef5672abb6f857515cf453fb6",
+      "3": "e8173b98a8e51ca40a4dde49ca2f371c1c76e070e182124559e64af5f9b1746f",
+      "4": "7e5c167e25f977e4686424f0608078b9da4269fa9819eff045428a3d801c34b6",
+      "5": "8cbd22855f67a58821b3d2e621dfac47f235653aa2cb0a4f6bd6b6d4d3cc4ecf",
+      "6": "30854ca13b8f5b07e21ffa6b4d2610a2e8303518e1be267cc43f590e1e653b5d",
+      "7": "4df40b2bae0af3fbf290c49151f8cd2366a907d867db8dc5f2d3eb173b5d7207",
+      "8": "b7cf435676ef62e5ca44cfbe1bec46ca777e996b4d05aa2cfd2ffe6da48fa526",
+      "9": "93a087ede6c00dfc897d1a704db935c60c3fce3b782125fbd50448862aab70b5",
+      "10": "c035d8401c11c60863542ba5e946634d3873820aa44dd91a87786ce06e510988",
+      "11": "ab738a149ce42d6a7f731ee9bb6f391ba15a1b6dac3edd72fc0f2ce684048334",
+      "12": "3fd92e00417213909ffec63d7023e0f994912a4f2c451e6bdf30f02b6094046e",
+      "13": "41474d8e6030981f16658dc4e535cef4e12979222e261de4b2d2011b8a19d80e",
+      "14": "8d59fa7f109564920417ca76d7f2847977facf19f5d7acd67023e8032be2d4a2",
+      "15": "f4fc1f9a20deddfa5ad166cd96b82f3f7b8d7ec209ca2619c62c1c8836ff8ca4",
+      "16": "7fe3980f0fb56301c90b567c4ac3263ccf753935d75e57e485d349e7428bbcb6",
+      "17": "2d8ef064c2e591d05edc0ece26408e36b401605228e75137ed0af1b8cb39e7cd",
+      "18": "692a70d03286274c60832830d39423a36a1ca9a1549dbe385c7d71c86c85e25d",
+      "19": "129ab21bec6a6f9b2b79d8c79b6b33501264ae675dd1a01591a9c67e4ecf4f38",
+      "20": "a72081d8e44dfffd0a540027de0905d3da9dacb819f19b6146e018da2aef0ada",
+      "21": "6307792b7448fdaf0bfa4837ee6843116cc8f55c7018b6c593c7e6bc5b383d6f",
+      "22": "6071a89acf2e2d441b83ea9ecfc8e91be1802f7841e61e9983daab8c609109b2",
+      "23": "f7591b3762e5bd0c27355490ac5b6128b7d032ce1c57ffa5a11d54f4408310a5",
+      "24": "bb90cf1d4e4371ad80e13bbc43800483a06af526705a307491dd2e94e71463b6",
+      "25": "6d407930d30a8ec411220a541130a25d488e6850c74288d4384597f680234db7",
+      "26": "1635318b2cf4097754b10b4eca2552ce2264d3019d995cd8eec4bc5710c7fa3a",
+      "27": "9dd255fff734ac8cfdeb46b339bff33cad2f318d07673c03b15725ddf3437ee3",
+      "28": "14d5c67edc0f7ed93751164adbfe6ca1c60fe7ed6434972e917e2e47505309eb",
+      "29": "89ac15b1deffe54897d3218653209ab21d8666718ea55ffffa619a9f005b9136",
+      "30": "05043a91465d0bc3349432e5c6278cb792040a234f1520d9c0ea155b05a27dab",
+      "31": "d7eb56b6a41d26b81c43d4861447d2166f8b4536e6fb6234d5bbfbde6cf183f6",
+      "32": "c73f7dfe3dee1328b1d3bcd944c60cf85c73dc90275a29ac5f85d5ed3526de0c",
+      "33": "975a7082a9f5081b97f8b5f2de00124695be710a5b4d28b411bcc7c2effa7155",
+      "34": "6c99858c391911712c2069fcaa0071143d6eee3c5dad84209660c9663de08e02",
+      "35": "3b64dee1db7ff6d31bd5f0df22b5296f4f0542256366031010be4492459aed5e",
+      "36": "d2183e1c85e0c2a0b74636a44823f14caf5b38091940995a2ef595b118c281a4",
+      "37": "0277ea28abd7f2a0f50cb92ff07e552716f8d23da95d569963bd44daad88a679",
+      "38": "c029768bbaeda0603e0d3a6e7779d3a794e447822e6ea3a5a62d38476c7790e8",
+      "39": "2d269005fb91fc57992c5fde0e05bb929c68e40390fca244e9529f8731bed693",
+      "40": "b599cf06379ea3dba46d80abd4b5968dd7c8f69135ce5dedf6d2be3d678531df",
+      "41": "837d4bfcbd7fcff203c330263ad9e178ca9633cc7ef9bf7c007dab06adb9e798",
+      "42": "a510cb79c1e6a333981fb9deabfa5b5c339732404fa5eef56fd21bd0d1193105",
+      "43": "664ff8e0d0ba3d285219f58b9deea3ca71b0376bf170bdcc24e63f6bed29ec14",
+      "44": "79d99444e5d099b4a4fb3e8f2da69ef306960e2fe22ddbf8756741bcb28c50c3",
+      "45": "242aff3cd6b6a45f87beee5573a11f389db4febd41e8a614e3e14a0521a751b8",
+      "46": "76959d407c938efa6c5a931a108373440cf5653e7ed0f83bf8ebcac7147eded4",
+      "47": "f9277cdb109d849eea9d9cf16de75d7942e0cabf04760dd77518864d7ef79122"
+    },
+    "right": {
+      "0": "ff6dc9c7cf895c0ff9561e49f98aa579d78ad68dbc977889b69a4518f05f9ce7",
+      "1": "fff037eb27de49f386e6802f565d9ea094d6a83cc3103bfb6e7c5c7750e8e2fb",
+      "2": "959f419871d0291fcd49394c33e2247e9546b62ef5672abb6f857515cf453fb6",
+      "3": "e8173b98a8e51ca40a4dde49ca2f371c1c76e070e182124559e64af5f9b1746f",
+      "4": "7e5c167e25f977e4686424f0608078b9da4269fa9819eff045428a3d801c34b6",
+      "5": "8cbd22855f67a58821b3d2e621dfac47f235653aa2cb0a4f6bd6b6d4d3cc4ecf",
+      "6": "30854ca13b8f5b07e21ffa6b4d2610a2e8303518e1be267cc43f590e1e653b5d",
+      "7": "4df40b2bae0af3fbf290c49151f8cd2366a907d867db8dc5f2d3eb173b5d7207",
+      "8": "b7cf435676ef62e5ca44cfbe1bec46ca777e996b4d05aa2cfd2ffe6da48fa526",
+      "9": "93a087ede6c00dfc897d1a704db935c60c3fce3b782125fbd50448862aab70b5",
+      "10": "c035d8401c11c60863542ba5e946634d3873820aa44dd91a87786ce06e510988",
+      "11": "ab738a149ce42d6a7f731ee9bb6f391ba15a1b6dac3edd72fc0f2ce684048334",
+      "12": "3fd92e00417213909ffec63d7023e0f994912a4f2c451e6bdf30f02b6094046e",
+      "13": "41474d8e6030981f16658dc4e535cef4e12979222e261de4b2d2011b8a19d80e",
+      "14": "8d59fa7f109564920417ca76d7f2847977facf19f5d7acd67023e8032be2d4a2",
+      "15": "f4fc1f9a20deddfa5ad166cd96b82f3f7b8d7ec209ca2619c62c1c8836ff8ca4",
+      "16": "7fe3980f0fb56301c90b567c4ac3263ccf753935d75e57e485d349e7428bbcb6",
+      "17": "2d8ef064c2e591d05edc0ece26408e36b401605228e75137ed0af1b8cb39e7cd",
+      "18": "692a70d03286274c60832830d39423a36a1ca9a1549dbe385c7d71c86c85e25d",
+      "19": "129ab21bec6a6f9b2b79d8c79b6b33501264ae675dd1a01591a9c67e4ecf4f38",
+      "20": "a72081d8e44dfffd0a540027de0905d3da9dacb819f19b6146e018da2aef0ada",
+      "21": "6307792b7448fdaf0bfa4837ee6843116cc8f55c7018b6c593c7e6bc5b383d6f",
+      "22": "6071a89acf2e2d441b83ea9ecfc8e91be1802f7841e61e9983daab8c609109b2",
+      "23": "f7591b3762e5bd0c27355490ac5b6128b7d032ce1c57ffa5a11d54f4408310a5",
+      "24": "bb90cf1d4e4371ad80e13bbc43800483a06af526705a307491dd2e94e71463b6",
+      "25": "6d407930d30a8ec411220a541130a25d488e6850c74288d4384597f680234db7",
+      "26": "1635318b2cf4097754b10b4eca2552ce2264d3019d995cd8eec4bc5710c7fa3a",
+      "27": "9dd255fff734ac8cfdeb46b339bff33cad2f318d07673c03b15725ddf3437ee3",
+      "28": "14d5c67edc0f7ed93751164adbfe6ca1c60fe7ed6434972e917e2e47505309eb",
+      "29": "89ac15b1deffe54897d3218653209ab21d8666718ea55ffffa619a9f005b9136",
+      "30": "05043a91465d0bc3349432e5c6278cb792040a234f1520d9c0ea155b05a27dab",
+      "31": "d7eb56b6a41d26b81c43d4861447d2166f8b4536e6fb6234d5bbfbde6cf183f6",
+      "32": "c73f7dfe3dee1328b1d3bcd944c60cf85c73dc90275a29ac5f85d5ed3526de0c",
+      "33": "975a7082a9f5081b97f8b5f2de00124695be710a5b4d28b411bcc7c2effa7155",
+      "34": "6c99858c391911712c2069fcaa0071143d6eee3c5dad84209660c9663de08e02",
+      "35": "3b64dee1db7ff6d31bd5f0df22b5296f4f0542256366031010be4492459aed5e",
+      "36": "d2183e1c85e0c2a0b74636a44823f14caf5b38091940995a2ef595b118c281a4",
+      "37": "0277ea28abd7f2a0f50cb92ff07e552716f8d23da95d569963bd44daad88a679",
+      "38": "c029768bbaeda0603e0d3a6e7779d3a794e447822e6ea3a5a62d38476c7790e8",
+      "39": "2d269005fb91fc57992c5fde0e05bb929c68e40390fca244e9529f8731bed693",
+      "40": "b599cf06379ea3dba46d80abd4b5968dd7c8f69135ce5dedf6d2be3d678531df",
+      "41": "837d4bfcbd7fcff203c330263ad9e178ca9633cc7ef9bf7c007dab06adb9e798",
+      "42": "a510cb79c1e6a333981fb9deabfa5b5c339732404fa5eef56fd21bd0d1193105",
+      "43": "664ff8e0d0ba3d285219f58b9deea3ca71b0376bf170bdcc24e63f6bed29ec14",
+      "44": "79d99444e5d099b4a4fb3e8f2da69ef306960e2fe22ddbf8756741bcb28c50c3",
+      "45": "242aff3cd6b6a45f87beee5573a11f389db4febd41e8a614e3e14a0521a751b8",
+      "46": "76959d407c938efa6c5a931a108373440cf5653e7ed0f83bf8ebcac7147eded4",
+      "47": "f9277cdb109d849eea9d9cf16de75d7942e0cabf04760dd77518864d7ef79122"
+    },
+    "differing_ranks": [],
+    "semantic_equality_independently_checked": false,
+    "scope": "raw ET bytes only; differences do not establish an operation difference without Chakra protobuf decoding"
+  },
+  "native_logs": {
+    "left": {
+      "raw_segments": [
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.26.log",
+          "sha256": "7b6ecb5d1f971d383d478862a84564e3e8ed9ad66c47916861d3659fb16d73ba",
+          "bytes": 10485650
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.25.log",
+          "sha256": "472bdffe9812b028943767f41b38a76c08e68ec2b8a07bf21ea64f08e1bcd400",
+          "bytes": 10485679
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.24.log",
+          "sha256": "fd0531a45d725ad5df1b3e5ebfedca7be5445ca1f091e332cbc802187209da6d",
+          "bytes": 10485749
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.23.log",
+          "sha256": "6ffbef1696103554ef293c7a83a72b9051b89f572e638622f22cbee60bd37941",
+          "bytes": 10485623
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.22.log",
+          "sha256": "d789c12b047873e16b9e5cdc5e459a1be88749ef6ce61569bae566d971fb4eac",
+          "bytes": 10485672
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.21.log",
+          "sha256": "214410a68a26f92a4ea99078b8edceba19ce5d858c540e204c7aa12c79631f96",
+          "bytes": 10485704
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.20.log",
+          "sha256": "9598645d1b1080b40fa8638a977ef9d18b47d2f4659108e56d48a19fcd14205a",
+          "bytes": 10485693
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.19.log",
+          "sha256": "546b4b760bb5bff258e4b300eebaac77e251416acf949e3dafe07b6cd7e03e19",
+          "bytes": 10485689
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.18.log",
+          "sha256": "024ca8758ab393612362f59b310e35439f7eea72fa3d87c2e5b61cb28a0658dc",
+          "bytes": 10485759
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.17.log",
+          "sha256": "eececcafcedde4ee88dc7ebcb9d088b9b3b925d4ee881df09b05abca7fe2e351",
+          "bytes": 10485606
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.16.log",
+          "sha256": "49eabfb09a1cd65ac81ce5f16e1f8514143576aae99547af552fdd8fb910199f",
+          "bytes": 10485650
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.15.log",
+          "sha256": "41a4d1a1da4dd98e7d04163cf4c7bcef8df85594fbe8837983c16ac62db9721a",
+          "bytes": 10485713
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.14.log",
+          "sha256": "32c4308813be216fde528adc0ef0bb38f1bedcf807d477f795cc5f7710f7f28a",
+          "bytes": 10485710
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.13.log",
+          "sha256": "8e707e9c0557eb7dea81d4e802bf393e91aea2d550edd06a58249cfb036c86ad",
+          "bytes": 10485741
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.12.log",
+          "sha256": "0fb1c7c7466fa464ce26f9d8e13992c7a4ffbaea5d35319fe0429748f62dadc6",
+          "bytes": 10485654
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.11.log",
+          "sha256": "f4360360227605ae978ba1e5bbc28db237902eb791f6d5c19de838373bdfd072",
+          "bytes": 10485683
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.10.log",
+          "sha256": "fe3162d2369a781ce45381913522de770654d7d251b27554fa1fabb330b4ef22",
+          "bytes": 10485599
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.9.log",
+          "sha256": "8ff04a0f41cc44defc59069af9bf84e6c6627c35c4719f9563b8f126ef1c70d8",
+          "bytes": 10485756
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.8.log",
+          "sha256": "0aa6a1bcaba62f34de441e7657c9c7bf0a35137e96c9e1a6199ad1f7f0a01cb9",
+          "bytes": 10485616
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.7.log",
+          "sha256": "907917e26e676e87cc3abd6c0b400250fa0fa1ebfd242ccd8c983edad2ac3fcb",
+          "bytes": 10485631
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.6.log",
+          "sha256": "6925b5e255efb1647ecf524ee2ac1ecf0d36b5bf78d0fc38909d2b5cec99f251",
+          "bytes": 10485605
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.5.log",
+          "sha256": "5bb72b142e49bb6a5565515e16245c5674da8813f607abffa0b247e1e75ccb18",
+          "bytes": 10485754
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.4.log",
+          "sha256": "978b7bf81259f8f2ace54bb2b66354e5987903107b5d3e5c65f02afd37d5fc0c",
+          "bytes": 10485743
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.3.log",
+          "sha256": "216c97799b204790da9ddaea404b43c947ecb93cbd853fb76c9aff65191a0aa1",
+          "bytes": 10485597
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.2.log",
+          "sha256": "71bc4885822035fbe353e0c74fc75dbd49ebec4872bff329f85e4fd51ddff9ba",
+          "bytes": 10485610
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.1.log",
+          "sha256": "b7b7ef1423d2549247363bc91ca98bf8a77253f42d23c54d3aa5f5f0fb396b84",
+          "bytes": 10485644
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result/astra_logs/log.log",
+          "sha256": "578da9c96f5cd016fdc7def347246da7e7e573969f8d1d6829b7707ab7f9a7d1",
+          "bytes": 6707771
+        }
+      ],
+      "per_rank": {
+        "0": {
+          "record_count": 31446,
+          "issues": 15723,
+          "callbacks": 15723,
+          "max_callback_tick": 16503218094684,
+          "ordered_canonical_event_sha256": "180f8f7bb3ba1802967cde35ee25187ab5883051f134fd37c1a1381657583ec2"
+        },
+        "1": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503218594710,
+          "ordered_canonical_event_sha256": "f28bb42a6d3270f8abc42f8e7947e49a2c64ce1c70659a96839db80b240ffb6b"
+        },
+        "2": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503219094736,
+          "ordered_canonical_event_sha256": "7ed9b7fcc04dc01289f2375c9f1d62d5882b08efdd94a72767013d75e22a4804"
+        },
+        "3": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503221094776,
+          "ordered_canonical_event_sha256": "2012be9ef3f7ce6cad593a4afd980a7353ca2396b90987727c3da1c1f89f0d8e"
+        },
+        "4": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503223594812,
+          "ordered_canonical_event_sha256": "8d5f9e1be7e5bcfddb37812f09246399a7258065df47fc7939eec3f961e02c7c"
+        },
+        "5": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503223594802,
+          "ordered_canonical_event_sha256": "29ab40513bb4a23a55c758dd0666fb17e5da639209165bd644bde0106b24cbc1"
+        },
+        "6": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503224094828,
+          "ordered_canonical_event_sha256": "eb79299994330bd0d39709157098d45fc4f240c00aa93e620d9fa25e745c6cf6"
+        },
+        "7": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503223594832,
+          "ordered_canonical_event_sha256": "a8e8ce7c801b60d6da7b6feb021cd0736fe30a18ba91f151409bcc437d5fb418"
+        },
+        "8": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503226094888,
+          "ordered_canonical_event_sha256": "ecd219d726b2f6d5fb53908b744a6b27e10058030d032f236e8e664caf097741"
+        },
+        "9": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226094878,
+          "ordered_canonical_event_sha256": "a14353d253e8801a78cbde7773adf3fed99682418e784074b84bdbf0d4fdea62"
+        },
+        "10": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503228594914,
+          "ordered_canonical_event_sha256": "8232d15575192045dcc4d1325080c9296d2a52cc928f12bb8b47fb94866b4bcb"
+        },
+        "11": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226094858,
+          "ordered_canonical_event_sha256": "119f6330a51fbce8291010292676225a6e1e0f38e33affb2af313b7930fa9e40"
+        },
+        "12": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503228594894,
+          "ordered_canonical_event_sha256": "dee99b6afcdcb22026ab335bec2fd525c57e2ace2b645fe1823d6f3a67818c8e"
+        },
+        "13": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226594884,
+          "ordered_canonical_event_sha256": "0df3f0ba3973c3b0e2e13e374ea5f2d1d57a17a9271addd46ed2377c21323677"
+        },
+        "14": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503229094920,
+          "ordered_canonical_event_sha256": "745d12880075a92eebe9252510302a76026b1549da433ad225a7a890dec37ef4"
+        },
+        "15": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226094898,
+          "ordered_canonical_event_sha256": "5d1f3d5e0f2124c34e0a9e41fd6ad53b9f83017fcb3a5dc7627a4cf004592c26"
+        },
+        "16": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503228594944,
+          "ordered_canonical_event_sha256": "5dfea37939a650b56d48be49f359b17063c0557965262609b39029af3c93039d"
+        },
+        "17": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503228594924,
+          "ordered_canonical_event_sha256": "bc01747b115de45d209fac7a7cdb6f369bc75865b9c31ec6eac99764c05c6c97"
+        },
+        "18": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503231095000,
+          "ordered_canonical_event_sha256": "c91ed625e416f108a27e558adf4c1951ea3e06578b767e69a199cfbdd3042c77"
+        },
+        "19": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503228594904,
+          "ordered_canonical_event_sha256": "c5bc6c05ede193201ca13aec3dc4edef3835d191bbc5f5f804b7a1bb3b23d421"
+        },
+        "20": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503231094980,
+          "ordered_canonical_event_sha256": "5fc17abf1ca5be1f0794797199cec0486de15c69361ccff91185fa89b0d2b6e1"
+        },
+        "21": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503231094970,
+          "ordered_canonical_event_sha256": "60def43c511e9f05d23bef339d91b1dafd88974b078fb345cc938e4ae8b54c84"
+        },
+        "22": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503233595006,
+          "ordered_canonical_event_sha256": "d7bb3d297916a96db7cc45b0d6302cb0a19009c002cdf83f095bf812afcba985"
+        },
+        "23": {
+          "record_count": 31440,
+          "issues": 15720,
+          "callbacks": 15720,
+          "max_callback_tick": 16503226094848,
+          "ordered_canonical_event_sha256": "1eda0f0057252d8c324e97693bd23054d6a03c7b2f7284209b907778d68d68aa"
+        },
+        "24": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503226094858,
+          "ordered_canonical_event_sha256": "8a64f61a7cb788efd54c38e50a8bbba99b17d58afb718840a00c333583c5c6a4"
+        },
+        "25": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094848,
+          "ordered_canonical_event_sha256": "6fda8e75e4d5c7067a3fab8b7bf36f6b99eccee47aea7734ec76ea2778275e66"
+        },
+        "26": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594894,
+          "ordered_canonical_event_sha256": "37b229e0a670ee0f4ff4244deda27c98116fe40fc8167b5be541efc5ed167ae8"
+        },
+        "27": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503224094828,
+          "ordered_canonical_event_sha256": "c03164ebd21867ec7eea879d22b51aca6a735dae74b304b14dad08e1ffe305d9"
+        },
+        "28": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503226594884,
+          "ordered_canonical_event_sha256": "682006f1f6de553918bfa4ff77f453af6723b3a8e797430dc6de36c6c8c72a6d"
+        },
+        "29": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226594874,
+          "ordered_canonical_event_sha256": "5f6a89b67489fbebd77bd628dd3c24a65c59eca3de12097e47c908a59320ef8b"
+        },
+        "30": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503229094920,
+          "ordered_canonical_event_sha256": "bfb6f17cff08f9408734276a3c6086a1fac5e13991b9eb2110187a5a5883d56e"
+        },
+        "31": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503223594832,
+          "ordered_canonical_event_sha256": "57969366ffc8c591c9370eaecde568ac40d40ee5f7ba46785aedf6a28508b455"
+        },
+        "32": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503226094898,
+          "ordered_canonical_event_sha256": "7414400bfed4d22abdd7961a49328b5459da17bd87bd05e6f527f02a71a32675"
+        },
+        "33": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094878,
+          "ordered_canonical_event_sha256": "e0a7f45a9c32d36f1ff2ae964776836329f37ffd4406cdaf31d50492664544b5"
+        },
+        "34": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594944,
+          "ordered_canonical_event_sha256": "bdb4bae392bdbbe215d33685029e2fba0bb83ac4acc61cae8aad73bc3efb6fff"
+        },
+        "35": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094868,
+          "ordered_canonical_event_sha256": "c578deeab24ca9e3d32070c780b565cd19654e0a8581fbb61b7a0cd2e6875bdc"
+        },
+        "36": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594924,
+          "ordered_canonical_event_sha256": "9435f148df75076b7b103244c7f450a34caca8de01c6df84deabcce485f34c95"
+        },
+        "37": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503228594954,
+          "ordered_canonical_event_sha256": "61534c69612880055c0855d1f2e2ef24eca6e38192bfe352ea41807474f9c037"
+        },
+        "38": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503231095000,
+          "ordered_canonical_event_sha256": "981967552329fa99d3890791e0dfd2a330ab487a6a0c64846016d8af44fb12fd"
+        },
+        "39": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094858,
+          "ordered_canonical_event_sha256": "935dd8406ebcbfaab741bd4614cc38428c5d6d1a109943f4aa01b2449d09b58d"
+        },
+        "40": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594904,
+          "ordered_canonical_event_sha256": "f139136ff1f88070747ce57aa371db0f87901cb026682fbee86c6925f7398949"
+        },
+        "41": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503228594934,
+          "ordered_canonical_event_sha256": "4003ed0c300bc14d19d626c7bd698832ac6afd579b5a6bbc0df5fcb618cbc0f5"
+        },
+        "42": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503231094980,
+          "ordered_canonical_event_sha256": "0be256e06b16cb40e3e53d5827800cf1cec7a2bf927dfb1f4920e901b15904eb"
+        },
+        "43": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503228594914,
+          "ordered_canonical_event_sha256": "55108e9ce0acf3aa8ad2eb33e5ac5444b2ebbf990c0b01142250ded12711176f"
+        },
+        "44": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503231094970,
+          "ordered_canonical_event_sha256": "f52ece9788ad52c687b1d05d1f7bc9074109bcfbb6829a87050ea7a67374a69c"
+        },
+        "45": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503231094960,
+          "ordered_canonical_event_sha256": "45e5a57e9de864d24ea811ae9b78eeb140de83a821e4dc16b008ae7d78652faa"
+        },
+        "46": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503233595006,
+          "ordered_canonical_event_sha256": "6272d53e0831815aa04a50f5ffe9e3571a14c2458158c23dd5b4ebb89dd363f4"
+        },
+        "47": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094848,
+          "ordered_canonical_event_sha256": "45a8f3f51bf340ca51b2d552d5d3209c3817a9b87dfb1be54a56cc748f212595"
+        }
+      },
+      "raw_event_count": 1509168,
+      "model_max_callback_tick": 16503233595006,
+      "stdout_sha256": "48d0db4aa088c03775df1e489b02f93ec804537b44136204d2aa51d5d1034fd2"
+    },
+    "right": {
+      "raw_segments": [
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.26.log",
+          "sha256": "da23d5d06fa84a0e727e7da7166c9350149732e58b7c32ab17d0428e41d75854",
+          "bytes": 10485650
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.25.log",
+          "sha256": "26babdfa7e52b864b48cf407640da510d9ebe322753733cfa03a316f916e7eb2",
+          "bytes": 10485679
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.24.log",
+          "sha256": "ec8bf09001c209eb703e841bdaf3942e46140b4470e378c82625ee7cc9ead747",
+          "bytes": 10485749
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.23.log",
+          "sha256": "5a18fee113d21c74e1a784de2abffd7f32c2191a92ddbc7767e411324ded23b2",
+          "bytes": 10485623
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.22.log",
+          "sha256": "fb07975e965ad3818ed140e658306daa58674b35f77289521186cec305e2de53",
+          "bytes": 10485672
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.21.log",
+          "sha256": "34efd3827c1976a5bd082bf0991df0f13c745f6cfb61883ec91a994a08deaaeb",
+          "bytes": 10485704
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.20.log",
+          "sha256": "f24757f5062a2577c54701ff9601a44b9ac7c120cad3e0ee9b9ef049a6863e18",
+          "bytes": 10485693
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.19.log",
+          "sha256": "6fccfcd3096911e55f51f9b266167ba9ad5ecd9e1a90cc4e17624c65c0363297",
+          "bytes": 10485689
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.18.log",
+          "sha256": "3d124251c877bb498973c914887fa2c652bbd2e774aacdcb1bac938c777e6175",
+          "bytes": 10485759
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.17.log",
+          "sha256": "20c540516c1410804e820be87225e3161ec5e3b4ce2db0e02a286be6db921249",
+          "bytes": 10485606
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.16.log",
+          "sha256": "1735048246337b43a360a3573d7af4f57c2efc807db4853be6a07ddd7469705a",
+          "bytes": 10485650
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.15.log",
+          "sha256": "4b0fa17cedb453cae0162d1cd19129b1b819696e89702685bc86ca79028846f7",
+          "bytes": 10485713
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.14.log",
+          "sha256": "bdf4af909b47555f52703e28c8fcdf5f18fe68176c821c274d8eb29ead10eeaa",
+          "bytes": 10485710
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.13.log",
+          "sha256": "9d6e05438a7e305d1a9e0002f6c36d4da0b21bfc0a020e3e0e5888b0518a0c92",
+          "bytes": 10485741
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.12.log",
+          "sha256": "c73e549246f05ae7ba452352e359fe3652e8aa543464b62ca17e86904cb00f68",
+          "bytes": 10485654
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.11.log",
+          "sha256": "982f21622d4e12949f736c5d665b780e75d61bf8a4576eb5d3c4d5858e147ce1",
+          "bytes": 10485683
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.10.log",
+          "sha256": "cba0d566e7de6b35452214e74180d2eededf35b6f12a9d8b4a8f046dc2f0c1bd",
+          "bytes": 10485599
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.9.log",
+          "sha256": "d9e6611aeb2e5487c9926a6063d1ebb50954b4325473c72bec980f51fb544799",
+          "bytes": 10485756
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.8.log",
+          "sha256": "ad5c21b1f810797a96897cd0df722c71614242975d8583e4cab76c5e723f2da4",
+          "bytes": 10485616
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.7.log",
+          "sha256": "5db8a6574799901aaf794a5e9c132f9699661a8fbe33840ae8732928da846937",
+          "bytes": 10485631
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.6.log",
+          "sha256": "7b75e73e3bc6a2afecd0856e2b4a07441690e920a8fd614908335461974226a0",
+          "bytes": 10485605
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.5.log",
+          "sha256": "1e4b3a1bb6ea8bc5d6b7a878b751243232462bee857c5d7ea6ffd3e5a277871f",
+          "bytes": 10485754
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.4.log",
+          "sha256": "803562cc6f0dc76129b2e28929cf7fd3ecbed4dac65c2f0f778c7cc0f53c0e37",
+          "bytes": 10485743
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.3.log",
+          "sha256": "516fb6d0692ad5c2bef7ad5aa1c0b2038a4f1f6c75114cd55eafab9b77987926",
+          "bytes": 10485597
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.2.log",
+          "sha256": "873b9b2a1dede9db67c29be78d85b7879cb9162e400912670dff88904e8cb74a",
+          "bytes": 10485610
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.1.log",
+          "sha256": "9df0766b7a76d683bdfaa4ac2e5ddf5c13eec3f7c6f6afb0d7bf7a59109d01a2",
+          "bytes": 10485644
+        },
+        {
+          "path": "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result/astra_logs/log.log",
+          "sha256": "6e62ec0a556e2ef5bcaaa70248506fbe44e199899877671ac9c4e8da27e9f837",
+          "bytes": 6707771
+        }
+      ],
+      "per_rank": {
+        "0": {
+          "record_count": 31446,
+          "issues": 15723,
+          "callbacks": 15723,
+          "max_callback_tick": 16503218094684,
+          "ordered_canonical_event_sha256": "180f8f7bb3ba1802967cde35ee25187ab5883051f134fd37c1a1381657583ec2"
+        },
+        "1": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503218594710,
+          "ordered_canonical_event_sha256": "f28bb42a6d3270f8abc42f8e7947e49a2c64ce1c70659a96839db80b240ffb6b"
+        },
+        "2": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503219094736,
+          "ordered_canonical_event_sha256": "7ed9b7fcc04dc01289f2375c9f1d62d5882b08efdd94a72767013d75e22a4804"
+        },
+        "3": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503221094776,
+          "ordered_canonical_event_sha256": "2012be9ef3f7ce6cad593a4afd980a7353ca2396b90987727c3da1c1f89f0d8e"
+        },
+        "4": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503223594812,
+          "ordered_canonical_event_sha256": "8d5f9e1be7e5bcfddb37812f09246399a7258065df47fc7939eec3f961e02c7c"
+        },
+        "5": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503223594802,
+          "ordered_canonical_event_sha256": "29ab40513bb4a23a55c758dd0666fb17e5da639209165bd644bde0106b24cbc1"
+        },
+        "6": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503224094828,
+          "ordered_canonical_event_sha256": "eb79299994330bd0d39709157098d45fc4f240c00aa93e620d9fa25e745c6cf6"
+        },
+        "7": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503223594832,
+          "ordered_canonical_event_sha256": "a8e8ce7c801b60d6da7b6feb021cd0736fe30a18ba91f151409bcc437d5fb418"
+        },
+        "8": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503226094888,
+          "ordered_canonical_event_sha256": "ecd219d726b2f6d5fb53908b744a6b27e10058030d032f236e8e664caf097741"
+        },
+        "9": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226094878,
+          "ordered_canonical_event_sha256": "a14353d253e8801a78cbde7773adf3fed99682418e784074b84bdbf0d4fdea62"
+        },
+        "10": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503228594914,
+          "ordered_canonical_event_sha256": "8232d15575192045dcc4d1325080c9296d2a52cc928f12bb8b47fb94866b4bcb"
+        },
+        "11": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226094858,
+          "ordered_canonical_event_sha256": "119f6330a51fbce8291010292676225a6e1e0f38e33affb2af313b7930fa9e40"
+        },
+        "12": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503228594894,
+          "ordered_canonical_event_sha256": "dee99b6afcdcb22026ab335bec2fd525c57e2ace2b645fe1823d6f3a67818c8e"
+        },
+        "13": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226594884,
+          "ordered_canonical_event_sha256": "0df3f0ba3973c3b0e2e13e374ea5f2d1d57a17a9271addd46ed2377c21323677"
+        },
+        "14": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503229094920,
+          "ordered_canonical_event_sha256": "745d12880075a92eebe9252510302a76026b1549da433ad225a7a890dec37ef4"
+        },
+        "15": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503226094898,
+          "ordered_canonical_event_sha256": "5d1f3d5e0f2124c34e0a9e41fd6ad53b9f83017fcb3a5dc7627a4cf004592c26"
+        },
+        "16": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503228594944,
+          "ordered_canonical_event_sha256": "5dfea37939a650b56d48be49f359b17063c0557965262609b39029af3c93039d"
+        },
+        "17": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503228594924,
+          "ordered_canonical_event_sha256": "bc01747b115de45d209fac7a7cdb6f369bc75865b9c31ec6eac99764c05c6c97"
+        },
+        "18": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503231095000,
+          "ordered_canonical_event_sha256": "c91ed625e416f108a27e558adf4c1951ea3e06578b767e69a199cfbdd3042c77"
+        },
+        "19": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503228594904,
+          "ordered_canonical_event_sha256": "c5bc6c05ede193201ca13aec3dc4edef3835d191bbc5f5f804b7a1bb3b23d421"
+        },
+        "20": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503231094980,
+          "ordered_canonical_event_sha256": "5fc17abf1ca5be1f0794797199cec0486de15c69361ccff91185fa89b0d2b6e1"
+        },
+        "21": {
+          "record_count": 31488,
+          "issues": 15744,
+          "callbacks": 15744,
+          "max_callback_tick": 16503231094970,
+          "ordered_canonical_event_sha256": "60def43c511e9f05d23bef339d91b1dafd88974b078fb345cc938e4ae8b54c84"
+        },
+        "22": {
+          "record_count": 31494,
+          "issues": 15747,
+          "callbacks": 15747,
+          "max_callback_tick": 16503233595006,
+          "ordered_canonical_event_sha256": "d7bb3d297916a96db7cc45b0d6302cb0a19009c002cdf83f095bf812afcba985"
+        },
+        "23": {
+          "record_count": 31440,
+          "issues": 15720,
+          "callbacks": 15720,
+          "max_callback_tick": 16503226094848,
+          "ordered_canonical_event_sha256": "1eda0f0057252d8c324e97693bd23054d6a03c7b2f7284209b907778d68d68aa"
+        },
+        "24": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503226094858,
+          "ordered_canonical_event_sha256": "8a64f61a7cb788efd54c38e50a8bbba99b17d58afb718840a00c333583c5c6a4"
+        },
+        "25": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094848,
+          "ordered_canonical_event_sha256": "6fda8e75e4d5c7067a3fab8b7bf36f6b99eccee47aea7734ec76ea2778275e66"
+        },
+        "26": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594894,
+          "ordered_canonical_event_sha256": "37b229e0a670ee0f4ff4244deda27c98116fe40fc8167b5be541efc5ed167ae8"
+        },
+        "27": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503224094828,
+          "ordered_canonical_event_sha256": "c03164ebd21867ec7eea879d22b51aca6a735dae74b304b14dad08e1ffe305d9"
+        },
+        "28": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503226594884,
+          "ordered_canonical_event_sha256": "682006f1f6de553918bfa4ff77f453af6723b3a8e797430dc6de36c6c8c72a6d"
+        },
+        "29": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226594874,
+          "ordered_canonical_event_sha256": "5f6a89b67489fbebd77bd628dd3c24a65c59eca3de12097e47c908a59320ef8b"
+        },
+        "30": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503229094920,
+          "ordered_canonical_event_sha256": "bfb6f17cff08f9408734276a3c6086a1fac5e13991b9eb2110187a5a5883d56e"
+        },
+        "31": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503223594832,
+          "ordered_canonical_event_sha256": "57969366ffc8c591c9370eaecde568ac40d40ee5f7ba46785aedf6a28508b455"
+        },
+        "32": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503226094898,
+          "ordered_canonical_event_sha256": "7414400bfed4d22abdd7961a49328b5459da17bd87bd05e6f527f02a71a32675"
+        },
+        "33": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094878,
+          "ordered_canonical_event_sha256": "e0a7f45a9c32d36f1ff2ae964776836329f37ffd4406cdaf31d50492664544b5"
+        },
+        "34": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594944,
+          "ordered_canonical_event_sha256": "bdb4bae392bdbbe215d33685029e2fba0bb83ac4acc61cae8aad73bc3efb6fff"
+        },
+        "35": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094868,
+          "ordered_canonical_event_sha256": "c578deeab24ca9e3d32070c780b565cd19654e0a8581fbb61b7a0cd2e6875bdc"
+        },
+        "36": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594924,
+          "ordered_canonical_event_sha256": "9435f148df75076b7b103244c7f450a34caca8de01c6df84deabcce485f34c95"
+        },
+        "37": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503228594954,
+          "ordered_canonical_event_sha256": "61534c69612880055c0855d1f2e2ef24eca6e38192bfe352ea41807474f9c037"
+        },
+        "38": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503231095000,
+          "ordered_canonical_event_sha256": "981967552329fa99d3890791e0dfd2a330ab487a6a0c64846016d8af44fb12fd"
+        },
+        "39": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094858,
+          "ordered_canonical_event_sha256": "935dd8406ebcbfaab741bd4614cc38428c5d6d1a109943f4aa01b2449d09b58d"
+        },
+        "40": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503228594904,
+          "ordered_canonical_event_sha256": "f139136ff1f88070747ce57aa371db0f87901cb026682fbee86c6925f7398949"
+        },
+        "41": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503228594934,
+          "ordered_canonical_event_sha256": "4003ed0c300bc14d19d626c7bd698832ac6afd579b5a6bbc0df5fcb618cbc0f5"
+        },
+        "42": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503231094980,
+          "ordered_canonical_event_sha256": "0be256e06b16cb40e3e53d5827800cf1cec7a2bf927dfb1f4920e901b15904eb"
+        },
+        "43": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503228594914,
+          "ordered_canonical_event_sha256": "55108e9ce0acf3aa8ad2eb33e5ac5444b2ebbf990c0b01142250ded12711176f"
+        },
+        "44": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503231094970,
+          "ordered_canonical_event_sha256": "f52ece9788ad52c687b1d05d1f7bc9074109bcfbb6829a87050ea7a67374a69c"
+        },
+        "45": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503231094960,
+          "ordered_canonical_event_sha256": "45e5a57e9de864d24ea811ae9b78eeb140de83a821e4dc16b008ae7d78652faa"
+        },
+        "46": {
+          "record_count": 31398,
+          "issues": 15699,
+          "callbacks": 15699,
+          "max_callback_tick": 16503233595006,
+          "ordered_canonical_event_sha256": "6272d53e0831815aa04a50f5ffe9e3571a14c2458158c23dd5b4ebb89dd363f4"
+        },
+        "47": {
+          "record_count": 31392,
+          "issues": 15696,
+          "callbacks": 15696,
+          "max_callback_tick": 16503226094848,
+          "ordered_canonical_event_sha256": "45a8f3f51bf340ca51b2d552d5d3209c3817a9b87dfb1be54a56cc748f212595"
+        }
+      },
+      "raw_event_count": 1509168,
+      "model_max_callback_tick": 16503233595006,
+      "stdout_sha256": "fb814fa20a58995b7a50ba621e7c3bb32ad5fc9dc233ff8faf96dd947570a64b"
+    }
+  },
+  "model_max_tick_equal": true,
+  "model_max_callback_tick": 16503233595006,
+  "wrapper_success_implied": false,
+  "limitations": [
+    "rank-local strict serial protocol and monotonically increasing node IDs required; not a generic overlapping-workload parser",
+    "only the declared flat four-key analytical network YAML schema is supported",
+    "ET protobuf semantics and full logical model IR not independently decoded",
+    "failed wrapper/post remains failed even when native streams match; no GPU/wafer ratio or paper release"
+  ]
+}

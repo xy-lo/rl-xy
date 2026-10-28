@@ -1,0 +1,342 @@
+{
+  "schema_version": "rlxy.strict_transfer_pair/1",
+  "status": "PASS_CONDITIONAL_PAIR",
+  "created_at_utc": "2026-10-28T08:25:53.800792+00:00",
+  "paper_performance_ready": false,
+  "paper_readiness_promoted_by_checker": false,
+  "conditional_ratio_released": true,
+  "conditional_gpu_time_over_wafer_time": 0.8605920184067444,
+  "checks": [
+    {
+      "check": "MVP_PASS_bound_to_each_manifest_and_new_operator_contract",
+      "status": "PASS",
+      "detail": "qwen2_PP1_GRPO_DO_last_row_sampling_full_teacher_logits_v1"
+    },
+    {
+      "check": "same_frozen_runtime_source_image_binary",
+      "status": "PASS",
+      "detail": "ab3474916ca0d164f413d1ef2fd4011cddf947399fe8d58fea19d956010633ca"
+    },
+    {
+      "check": "identical_case_model_workload_policy_input_SHA",
+      "status": "PASS",
+      "detail": {
+        "case.json": "17760e03b8ab8408db2aad330cf15f70c1da7a6bd04412bf7f19409042f06b6d",
+        "model_config.json": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+        "policy.json": "c5911e4bbcec6558bba56c14fa49b00059487a60d9058480e37c2836712be8eb",
+        "workload_provenance.json": "cf3eedcaac7d8709581faa6af226d038910b9dbb6859a7f4504cfdc02805e672"
+      }
+    },
+    {
+      "check": "same_policy_versions_counts_48active_48vs54allocated",
+      "status": "PASS",
+      "detail": "4231fd1af2aebb07b086155b3da65d34405ce064e706a60ca9be3a7a5532633e"
+    },
+    {
+      "check": "identical_actual_software_placement",
+      "status": "PASS",
+      "detail": {
+        "sequence_sha256": "9a8e522345cd1222a842d61eed5c869394b13c979f579a9684fcfc00eb46fe0e",
+        "replicas": 24,
+        "software_fields": [
+          "replica",
+          "tp_ranks",
+          "groups",
+          "trajectories",
+          "rollout_tp_groups",
+          "global_loss_denominator",
+          "distributed_optimizer_shard"
+        ],
+        "ignored_hardware_fields": {
+          "GPU": [],
+          "WAFER": []
+        }
+      }
+    },
+    {
+      "check": "identical_actual_ordered_source_dispatch_and_local_block_coverage",
+      "status": "PASS",
+      "detail": {
+        "component_invocations": 1632,
+        "full_source_UIDs": 3072,
+        "rounds": 1,
+        "training_epochs": 1,
+        "each_source_visits_per_phase_per_round": 1,
+        "phases": [
+          "generation",
+          "reward",
+          "old_policy",
+          "reference",
+          "advantage",
+          "training"
+        ],
+        "ordered_dispatch_sha256": "4b3cf252109a059123602ac171bb3db7847edd039cbc267fa5faf307f6ef32c1",
+        "software_placement_sha256": "9a8e522345cd1222a842d61eed5c869394b13c979f579a9684fcfc00eb46fe0e",
+        "local_block_coverage_sha256": "d0c2c6a6e477449603c469be0d46fc7d88ae5eb718aa11f9dd75d6d5377714ea",
+        "global_node_keys_cross_platform_compared": false,
+        "local_block_IDs_and_order_compared": true,
+        "ignored_hardware_placement_fields": []
+      }
+    },
+    {
+      "check": "identical_actual_GEMM_domain_counts_and_FLOPs",
+      "status": "PASS",
+      "detail": {
+        "component_invocations": 1632,
+        "component_templates": 7,
+        "global_noncomponent_operation_count": 32827,
+        "logical_matmul_occurrences": 1999872,
+        "rank_local_matmul_occurrences": 2666496,
+        "unique_signatures": 291,
+        "weighted_flops": 73863447095279616
+      }
+    },
+    {
+      "check": "same_ordered_active_network_semantics",
+      "status": "PASS",
+      "detail": {
+        "operations": 180533,
+        "sequence_sha256": "81a55842b8e49f2d1f60c57109e4e8937315923765d5609a199d24428f13ac48",
+        "summed_logical_payload_bytes": 3021457996896,
+        "summed_transport_payload_bytes": 3021457996896,
+        "byte_scope": "one count per operation, not ring wire traffic; p2p transport defaults to logical payload if undeclared"
+      }
+    },
+    {
+      "check": "only_declared_six_idle_wafer_standby_exception",
+      "status": "PASS",
+      "detail": {
+        "GPU": {
+          "envelopes": {},
+          "idle_ranks": [],
+          "marker_count": 0,
+          "idle_event_count": 0,
+          "zero_work_operations_verified": true,
+          "zero_resource_contracts_and_actual_logs_verified": true,
+          "resources": {},
+          "total_model_time_MAX_unchanged": true
+        },
+        "WAFER": {
+          "envelopes": {
+            "r1.standby": {
+              "end_tick": 1000,
+              "span_model_ns": 1.0,
+              "start_tick": 0
+            }
+          },
+          "idle_ranks": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53
+          ],
+          "marker_count": 1,
+          "idle_event_count": 6,
+          "zero_work_operations_verified": true,
+          "zero_resource_contracts_and_actual_logs_verified": true,
+          "resources": {
+            "48": {
+              "input_sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+              "raw_resource_sha256": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+              "resource_rows": 3
+            },
+            "49": {
+              "input_sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+              "raw_resource_sha256": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+              "resource_rows": 3
+            },
+            "50": {
+              "input_sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+              "raw_resource_sha256": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+              "resource_rows": 3
+            },
+            "51": {
+              "input_sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+              "raw_resource_sha256": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+              "resource_rows": 3
+            },
+            "52": {
+              "input_sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+              "raw_resource_sha256": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+              "resource_rows": 3
+            },
+            "53": {
+              "input_sha256": "ba92c970813c43af16128becf2687f4f2eef7c727bb781a71c1402a88ac869b9",
+              "raw_resource_sha256": "99c4719dadc6e7f723668fdd5672d2bec6ada09e9ff4bd2dce2f7a40b1ad850b",
+              "resource_rows": 3
+            }
+          },
+          "total_model_time_MAX_unchanged": true
+        },
+        "shared_software_stages": [
+          "r1.advantage",
+          "r1.barrier",
+          "r1.cleanup",
+          "r1.clip",
+          "r1.data_redistribution",
+          "r1.dp_sync",
+          "r1.generation",
+          "r1.old_policy",
+          "r1.optimizer",
+          "r1.optimizer_sync",
+          "r1.publish",
+          "r1.reference",
+          "r1.reward",
+          "r1.switch_to_rollout",
+          "r1.switch_to_train",
+          "r1.train",
+          "r1.weight_reshard"
+        ],
+        "unknown_stage_skipped": false
+      }
+    }
+  ],
+  "scope": "strict48-active transfer-control conditional simulation comparison; not hardware accuracy or strategy optimality",
+  "analysis_version": {
+    "pair_checker_source_sha256": "3737b452425299ca8f17e0be914e5f4a2b2dbcae0f6e4e49d4c1fb37b534c6a6"
+  },
+  "raw_bundles": {
+    "GPU": {
+      "manifest_sha256": "e119147f84067a8157cde7469cd65359958770b2f2322b0818a5751c14956457",
+      "source_tree_sha256": "ab3474916ca0d164f413d1ef2fd4011cddf947399fe8d58fea19d956010633ca",
+      "image_id": "sha256:8847f0dec790d5349586bede4a7bd316ec831b79fe12a93b8f26dd8123f60101",
+      "rl_xy_version": "0.9.5",
+      "MVP_verification_sha256": "1728950df6b2156a4ccf0434fdeb413ef918215bc70ed0aa71eaaf2b1741c76f",
+      "MVP_checker_source_sha256": "f8921b2d72d64de7bd24f8d9f83ebaec357a0e0fe657b0de7cb402d280f855db"
+    },
+    "WAFER": {
+      "manifest_sha256": "d4b5766b666232c330204526d8ef26272244f9155c02978f6cf0cb1698ede4d1",
+      "source_tree_sha256": "ab3474916ca0d164f413d1ef2fd4011cddf947399fe8d58fea19d956010633ca",
+      "image_id": "sha256:8847f0dec790d5349586bede4a7bd316ec831b79fe12a93b8f26dd8123f60101",
+      "rl_xy_version": "0.9.5",
+      "MVP_verification_sha256": "2e945858f5ad82b30e856cb882a3a8568b8817c90dc723b2ebf96653f681e33d",
+      "MVP_checker_source_sha256": "f8921b2d72d64de7bd24f8d9f83ebaec357a0e0fe657b0de7cb402d280f855db"
+    }
+  },
+  "GPU_minus_WAFER_model_time_ns": -2673371860.34,
+  "model_time_ns": {
+    "GPU": 16503233595.006,
+    "WAFER": 19176605455.346
+  },
+  "peaks": {
+    "GPU": {
+      "max_active_rank_DRAM_bytes": 49177503088,
+      "max_idle_rank_DRAM_bytes": 0,
+      "max_core_SRAM_bytes": 155648,
+      "scope": "native conservative component-arena reservations; exact component logical peaks in proof file"
+    },
+    "WAFER": {
+      "max_active_rank_DRAM_bytes": 49177503088,
+      "max_idle_rank_DRAM_bytes": 0,
+      "max_core_SRAM_bytes": 1179648,
+      "scope": "native conservative component-arena reservations; exact component logical peaks in proof file"
+    }
+  },
+  "stage_spans": {
+    "r1.advantage": {
+      "GPU_model_ns": 19015.734,
+      "WAFER_model_ns": 37.306,
+      "GPU_minus_WAFER_model_ns": 18978.428
+    },
+    "r1.barrier": {
+      "GPU_model_ns": 16503233595.006,
+      "WAFER_model_ns": 19176605455.346,
+      "GPU_minus_WAFER_model_ns": -2673371860.34
+    },
+    "r1.cleanup": {
+      "GPU_model_ns": 7104674937.128,
+      "WAFER_model_ns": 8416048470.66,
+      "GPU_minus_WAFER_model_ns": -1311373533.5319996
+    },
+    "r1.clip": {
+      "GPU_model_ns": 439786.282,
+      "WAFER_model_ns": 388922.372,
+      "GPU_minus_WAFER_model_ns": 50863.91000000003
+    },
+    "r1.data_redistribution": {
+      "GPU_model_ns": 338196.77,
+      "WAFER_model_ns": 827.89,
+      "GPU_minus_WAFER_model_ns": 337368.88
+    },
+    "r1.dp_sync": {
+      "GPU_model_ns": 65897080.166,
+      "WAFER_model_ns": 28078179.898,
+      "GPU_minus_WAFER_model_ns": 37818900.26800001
+    },
+    "r1.generation": {
+      "GPU_model_ns": 5151301700.322,
+      "WAFER_model_ns": 5477439552.05,
+      "GPU_minus_WAFER_model_ns": -326137851.72800064
+    },
+    "r1.old_policy": {
+      "GPU_model_ns": 1992878153.634,
+      "WAFER_model_ns": 2498666726.002,
+      "GPU_minus_WAFER_model_ns": -505788572.3679998
+    },
+    "r1.optimizer": {
+      "GPU_model_ns": 1004915.092,
+      "WAFER_model_ns": 979150.064,
+      "GPU_minus_WAFER_model_ns": 25765.027999999933
+    },
+    "r1.optimizer_sync": {
+      "GPU_model_ns": 25505348.492,
+      "WAFER_model_ns": 6493748.6,
+      "GPU_minus_WAFER_model_ns": 19011599.891999997
+    },
+    "r1.publish": {
+      "GPU_model_ns": 15501.322,
+      "WAFER_model_ns": 25.05,
+      "GPU_minus_WAFER_model_ns": 15476.272
+    },
+    "r1.reference": {
+      "GPU_model_ns": 1992878153.634,
+      "WAFER_model_ns": 2498666726.002,
+      "GPU_minus_WAFER_model_ns": -505788572.3679998
+    },
+    "r1.reward": {
+      "GPU_model_ns": 20143.734,
+      "WAFER_model_ns": 1165.306,
+      "GPU_minus_WAFER_model_ns": 18978.428
+    },
+    "r1.switch_to_rollout": {
+      "GPU_model_ns": 16500.322,
+      "WAFER_model_ns": 1024.05,
+      "GPU_minus_WAFER_model_ns": 15476.272
+    },
+    "r1.switch_to_train": {
+      "GPU_model_ns": 17502.322,
+      "WAFER_model_ns": 1026.05,
+      "GPU_minus_WAFER_model_ns": 16476.272
+    },
+    "r1.train": {
+      "GPU_model_ns": 7241097199.674,
+      "WAFER_model_ns": 8653544159.898,
+      "GPU_minus_WAFER_model_ns": -1412446960.224001
+    },
+    "r1.weight_reshard": {
+      "GPU_model_ns": 31726397.018,
+      "WAFER_model_ns": 12344050.542,
+      "GPU_minus_WAFER_model_ns": 19382346.476
+    }
+  },
+  "verified_standby_envelopes": {
+    "GPU": {},
+    "WAFER": {
+      "r1.standby": {
+        "end_tick": 1000,
+        "span_model_ns": 1.0,
+        "start_tick": 0
+      }
+    }
+  },
+  "total_model_time_includes_original_allocated_rank_MAX": true,
+  "stage_scope": "phase envelopes may overlap and must not be summed into step time",
+  "not_established": [
+    "physical GPU/wafer performance accuracy",
+    "numerical veRL or learning quality",
+    "GPU strategy optimum",
+    "paper readiness"
+  ]
+}

@@ -52,7 +52,7 @@ def apply_mapped_costs(case: CaseConfig, operations: list[Operation], *, provide
         typed_flops = sum(problem.flops for problem in spec.matmuls)
         meta["legacy_flops"] = op.flops
         meta["execution_domain"] = "device"
-        meta["cost_estimate"] = asdict(estimate)
+        meta["cost_estimate"] = provider.metadata_for(spec,case.hardware) if hasattr(provider,"metadata_for") else asdict(estimate)
         result.append(replace(op, duration_ns=estimate.duration_ns,
                               flops=typed_flops, kernel_spec=spec, metadata=meta))
     return result

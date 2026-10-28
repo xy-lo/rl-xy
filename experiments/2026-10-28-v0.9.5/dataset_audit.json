@@ -1,0 +1,237 @@
+{
+  "status": "PASS",
+  "scope": "Independent integrity/cardinality checks on saved CPU prompt audit; not semantics,RLtrace,quality,or hardware validation.",
+  "created_UTC": "2026-10-28T05:00:13.715072+00:00",
+  "audit_status": "PASS",
+  "audit_wall_seconds": 8.323906292003812,
+  "checks": [
+    {
+      "name": "saved_input_token_records_count_and_IDs",
+      "passed": true,
+      "detail": "One source row -> one actual input-prompt token record; no generated response records."
+    },
+    {
+      "name": "saved_token_arrays_match_lengths",
+      "passed": true,
+      "detail": "All8792 prompt token arrays contain nonnegative integer tokenIDs and match recorded lengths."
+    },
+    {
+      "name": "no_teacher_answer_or_generated_response_tokens",
+      "passed": true,
+      "detail": "Teacher answers are only rule-target metadata; actual generated response count0."
+    },
+    {
+      "name": "record_file_hash_matches_audit",
+      "passed": true,
+      "detail": "SavedJSONL SHA matches audit output."
+    },
+    {
+      "name": "source_counts_recomputed_from_records",
+      "passed": true,
+      "detail": {
+        "train": 7473,
+        "test": 1319
+      }
+    },
+    {
+      "name": "train_min_max_filter_recomputed",
+      "passed": true,
+      "detail": {
+        "actual_min": 56,
+        "actual_max": 256,
+        "P512_accepted": 7473
+      }
+    },
+    {
+      "name": "test_min_max_filter_recomputed",
+      "passed": true,
+      "detail": {
+        "actual_min": 67,
+        "actual_max": 232,
+        "P512_accepted": 1319
+      }
+    },
+    {
+      "name": "admitted_exact_normalized_overlap_absent",
+      "passed": true,
+      "detail": {
+        "train": 6973,
+        "tuning": 500,
+        "test": 1319
+      }
+    },
+    {
+      "name": "full_main_batch_legal_and_tail_illegal",
+      "passed": true,
+      "detail": "Main384/G8 legal;61 leftover prompts cannot directly use DP48/24 complete-group dispatcher;96/35 is a possible common padding design only."
+    },
+    {
+      "name": "dependency_wheel_URL_hashes_archived",
+      "passed": true,
+      "detail": "Temporary localvenv only; package names/versions and every installed wheelSHA retained; project runtime dependencies unchanged."
+    }
+  ],
+  "checks_count": 10,
+  "checks_passed": 10,
+  "dependencies": [
+    {
+      "name": "pyarrow",
+      "version": "22.0.0",
+      "url": "https://files.pythonhosted.org/packages/af/63/ba23862d69652f85b615ca14ad14f3bcfc5bf1b99ef3f0cd04ff93fdad5a/pyarrow-22.0.0-cp312-cp312-macosx_12_0_arm64.whl",
+      "sha256": "bea79263d55c24a32b0d79c00a1c58bb2ee5f0757ed95656b01c0fb310c5af3d"
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.22.1",
+      "url": "https://files.pythonhosted.org/packages/1c/58/2aa8c874d02b974990e89ff95826a4852a8b2a273c7d1b4411cdd45a4565/tokenizers-0.22.1-cp39-abi3-macosx_11_0_arm64.whl",
+      "sha256": "8d4e484f7b0827021ac5f9f71d4794aaef62b979ab7608593da22b1d2e3c4edc"
+    },
+    {
+      "name": "transformers",
+      "version": "4.57.1",
+      "url": "https://files.pythonhosted.org/packages/71/d3/c16c3b3cf7655a67db1144da94b021c200ac1303f82428f2beef6c2e72bb/transformers-4.57.1-py3-none-any.whl",
+      "sha256": "b10d05da8fa67dc41644dbbf9bc45a44cb86ae33da6f9295f5fbf5b7890bd267"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6",
+      "url": "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67"
+    },
+    {
+      "name": "huggingface_hub",
+      "version": "0.36.2",
+      "url": "https://files.pythonhosted.org/packages/a8/af/48ac8483240de756d2438c380746e7130d1c6f75802ef22f3c6d49982787/huggingface_hub-0.36.2-py3-none-any.whl",
+      "sha256": "48f0c8eac16145dfce371e9d2d7772854a4f591bcb56c9cf548accf531d54270"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.4",
+      "url": "https://files.pythonhosted.org/packages/a2/f0/d6613774d86fbf6d145751d43c59875e47a6f9f17daee0aef173bd36d90e/markupsafe-3.0.4-cp312-cp312-macosx_11_0_arm64.whl",
+      "sha256": "0930db9bdc62d22944e10b066448bb65dc9abe9112880c7cab8da54db4284d5f"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4",
+      "url": "https://files.pythonhosted.org/packages/31/2f/5ea3570fcb8ccd0882bea99436a513b2c85dad8f774a2057849130a8fb99/numpy-2.5.4-cp312-cp312-macosx_14_0_arm64.whl",
+      "sha256": "9cb18a327b49c5c337f972b03682f6a49855525faaf3c0d3e9c96cd0fd8880a8"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "url": "https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "url": "https://files.pythonhosted.org/packages/89/a0/6cf41a19a1f2f3feab0e9c0b74134aa2ce6849093d5517a0c550fe37a648/pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+      "sha256": "fc09d0aa354569bc501d4e787133afc08552722d3ab34836a80547331bb5d4a0"
+    },
+    {
+      "name": "regex",
+      "version": "2026.9.29",
+      "url": "https://files.pythonhosted.org/packages/37/14/f3f0ba083d2094392d5eabf56db5ea6ba469fd6e927afd187042054ea68a/regex-2026.9.29-cp312-cp312-macosx_11_0_arm64.whl",
+      "sha256": "f57dc6b8fef170f105d2cf5cdce254f47b137d7755086cf7050f47e16582abba"
+    },
+    {
+      "name": "safetensors",
+      "version": "0.8.0",
+      "url": "https://files.pythonhosted.org/packages/f5/b1/fa7c600e7dceae12e9606c7578cbc9ff1e1ed55844883ee5c92205e86226/safetensors-0.8.0-cp310-abi3-macosx_11_0_arm64.whl",
+      "sha256": "c80201d22cbf405b80647a60ada77bba06c8fba2da2743ba1e89cdcc39a81f25"
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.1",
+      "url": "https://files.pythonhosted.org/packages/a7/03/921a3d3c75785aca9ebfbfcabfbc3a1be12e2ab5265deb026d55a5a3f83e/tqdm-4.70.1-py3-none-any.whl",
+      "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73"
+    },
+    {
+      "name": "filelock",
+      "version": "4.2.4",
+      "url": "https://files.pythonhosted.org/packages/e0/1b/5e74289a1878e666bb4b65fe5805a04cafcac2aa5f519ef1ead67ef91c56/filelock-4.2.4-py3-none-any.whl",
+      "sha256": "301241438c57936ef93f4243a94f2559022268bfcf9b375a9a72eb0f8db8358e"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "url": "https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl",
+      "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "url": "https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl",
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "url": "https://files.pythonhosted.org/packages/e7/c8/693809898870237d82785a03f3b2b58fe4c9f14669f84a7d4e623c92a59e/charset_normalizer-3.5.2-cp312-cp312-macosx_10_13_universal2.whl",
+      "sha256": "ed2a239c0ea213acc1908150a3037257083c7c083128f1a4cec2ec4b97dca491"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.9.0",
+      "url": "https://files.pythonhosted.org/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl",
+      "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f"
+    },
+    {
+      "name": "hf-xet",
+      "version": "1.7.0",
+      "url": "https://files.pythonhosted.org/packages/c3/47/a26ebdce7056a61e931f228439bc0ab08cbec239d1690f965e5e637cba79/hf_xet-1.7.0-cp38-abi3-macosx_11_0_arm64.whl",
+      "sha256": "59fba37039233c7fcbe196817d6cdcf1b40dfb17b410f229d85b0cf0a1848da4"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "url": "https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "url": "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl",
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "scratch/rl-xy-paper-experiment-20261028/dataset-venv/bin/python",
+        "outputs/rl-xy-paper-experiment-20261028/evidence/dataset-audit/audit_dataset.py",
+        "--out",
+        "outputs/rl-xy-paper-experiment-20261028/evidence/dataset-audit/run-a1"
+      ],
+      "exit_code": 0,
+      "raw_stdout": "run-a1/audit-stdout.log"
+    },
+    {
+      "argv": [
+        "scratch/rl-xy-paper-experiment-20261028/dataset-venv/bin/python",
+        "outputs/rl-xy-paper-experiment-20261028/evidence/dataset-audit/postprocess_audit.py"
+      ],
+      "scope": "this validation/report script"
+    }
+  ],
+  "inputs_and_scripts_sha256": {
+    "audit_dataset.py": "15485a7c577b26d8d7c77201e7b5896bfcaddb57d4421328dde88f5d31c2f916",
+    "test_dataset_audit.py": "5948506d9d82b958d7771f7c1c1d2ad7b762c663e06c86c5d351f36646870a9d",
+    "postprocess_audit.py": "b3e06baa9613b5f21a9763f61f55ee7990ea0610fd0d65be2ce58f78deb5f05e",
+    "dependency-install.json": "5268f7845bf209bf82a306c05094b6deb34b2e702f02fe94db3f80b42ef09bc8",
+    "run-a1/audit.json": "a2d4deb3285a2857aa330fcb9a98466ced904728058c76165cb507fb25693d10",
+    "run-a1/prompt-records.jsonl": "94300179bf5850fa3ec0d028c7e71f194466a62041c5423783076659f32905e7",
+    "run-a1/mechanical-admission.json": "f61d8daf914053a84bddb7b368fb7c87507c8556c5ef3e0d24ee71a253f65389",
+    "batch-and-sample-count-gates.json": "db9d577ca3fb56490a51adb81341d2ee8eb5b4f297b65d5ea000a1b571a148a0"
+  },
+  "no_GPU_used": true,
+  "no_source_or_design_changes": true,
+  "no_generated_answers": true,
+  "semantic_dedup_performed": false
+}

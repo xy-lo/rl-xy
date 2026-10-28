@@ -1,0 +1,29 @@
+{
+  "schema_version": "rlxy.bounded_readonly_analysis/1",
+  "started_at_utc": "2026-10-28T07:52:10.358346+00:00",
+  "finished_at_utc": "2026-10-28T07:53:40.480365+00:00",
+  "elapsed_seconds": 90.12205037660897,
+  "exit_status": 0,
+  "error": null,
+  "argv": [
+    "/home/xuyin.p/rl-xy/runs-home-T42/T42/analysis-tools-native-a1/compare_native_replay.py",
+    "--left",
+    "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a8/result",
+    "--right",
+    "/home/xuyin.p/rl-xy/runs-home-T42/T42/W1-gpu-hot-mb4-a9/result",
+    "--out",
+    "/home/xuyin.p/rl-xy/runs-home-T42/T42/analysis-tools-native-a1/W1-a8-a9-verification.json"
+  ],
+  "tool_sha256": "2afcbd350d46ef6be13d04d529398c2c2b5209a9864ec9cc62347006c355fb6d",
+  "address_space_limit_bytes": [
+    2147483648,
+    2147483648
+  ],
+  "soft_wall_seconds": 175,
+  "external_hard_wall_seconds": 180,
+  "peak_RSS_KiB": 108164,
+  "analysis_processes": 1,
+  "native_GPU_or_model_launched": false,
+  "original_bundles_modified": false,
+  "output_sha256": "1d548e079a08429496db6d013fd8c61951d7a1df4c3b6c77ead57e2a904499a0"
+}
