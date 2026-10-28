@@ -14,7 +14,7 @@ HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-1
 
 def source_files():
     skip = {'__pycache__', '.pytest_cache', '.git'}
-    return {str(p.relative_to(ROOT)) for folder in ['src', 'scripts', 'tests', 'configs', 'docker', 'calibration'] for p in (ROOT / folder).rglob('*') if p.is_file() and not any(x in skip for x in p.parts) and p.suffix not in {'.pyc', '.pyo'} and p.name != '.DS_Store'}
+    return {str(p.relative_to(ROOT)) for folder in ['src', 'scripts', 'tests', 'configs', 'docker', 'calibration'] for p in (ROOT / folder).rglob('*') if p.is_file() and not any(x in skip or x.endswith(('.egg-info', '.dist-info')) for x in p.parts) and p.suffix not in {'.pyc', '.pyo'} and p.name != '.DS_Store'}
 
 
 def main():
