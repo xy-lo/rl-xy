@@ -6,7 +6,7 @@
 
 | 层 | 主要文件 | 输入、功能与输出 |
 |---|---|---|
-| 输入/能力合同 | `config.py`、`baseline_contract.py`、`model.py`、`hardware.py` | 校验模型、完整轨迹、batch/并行组、H0 来源及实现能力；配置合法不等于已经实现或成本可信 |
+| 输入/能力合同 | `config.py`、`baseline_contract.py`、`model.py`、`hardware_profile.py` | 校验模型、完整轨迹、batch/并行组、H0 来源及实现能力；配置合法不等于已经实现或成本可信 |
 | 同步协议 | `colocation.py`、`colocation_validation.py` | 全局阶段边界、训练/生成 TP 布局、权重重分片、行为/Actor/Reference 版本 |
 | 真实微批/DO | `training_batching.py`、`distributed_optimizer.py`、`aligned_graph.py` | 聚合真实形状，保留轨迹/causal attention/有效token分母，RS→owned Adam→AG 与状态生命周期 |
 | 推理生命周期 | `uniform_generation.py`、`inference_lifetimes.py` | 固定长度生成、KV 预留/增长/回收、最后 hidden row 的 sampling LM head；不复制实际 server router |

@@ -27,6 +27,11 @@ def main():
     for name in HISTORICAL:
         if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != frozen[name]:
             raise ValueError('Frozen historical document changed: ' + name)
+    architecture = (ROOT / 'docs/ARCHITECTURE.md').read_text()
+    modules = set(re.findall(r'[A-Za-z_][A-Za-z_0-9]*\.py', architecture))
+    known = {p.name for folder in ['src', 'scripts'] for p in (ROOT / folder).rglob('*.py')}
+    if modules - known:
+        raise ValueError('Architecture mentions absent local modules: ' + repr(sorted(modules - known)))
     links, shell_blocks = 0, 0
     for name in sorted(CURRENT):
         path = ROOT / name
