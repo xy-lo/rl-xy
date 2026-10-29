@@ -1,0 +1,269 @@
+diff --git a/astra-sim/common/Logging.cc b/astra-sim/common/Logging.cc
+index 0fbcfba..547dfcb 100644
+--- a/astra-sim/common/Logging.cc
++++ b/astra-sim/common/Logging.cc
+@@ -17,6 +17,7 @@ std::shared_ptr<spdlog::logger> LoggerFactory::get_logger(
+     if constexpr (!ENABLE_DEFAULT_SINK_FOR_OTHER_LOGGERS) {
+         return logger;
+     }
++    if (std::getenv("RLXY_SEQUENCE_PROGRAM") && logger_name != "workload") logger->set_level(spdlog::level::warn);
+     auto& logger_sinks = logger->sinks();
+     for (auto sink : default_sinks) {
+         if (std::find(logger_sinks.begin(), logger_sinks.end(), sink) ==
+diff --git a/astra-sim/network_frontend/analytical/congestion_aware/CongestionAwareNetworkApi.cc b/astra-sim/network_frontend/analytical/congestion_aware/CongestionAwareNetworkApi.cc
+index b8303ce..c891747 100644
+--- a/astra-sim/network_frontend/analytical/congestion_aware/CongestionAwareNetworkApi.cc
++++ b/astra-sim/network_frontend/analytical/congestion_aware/CongestionAwareNetworkApi.cc
+@@ -6,6 +6,10 @@ LICENSE file in the root directory of this source tree.
+ #include "congestion_aware/CongestionAwareNetworkApi.hh"
+ #include <astra-network-analytical/congestion_aware/Chunk.h>
+ #include <cassert>
++#include <algorithm>
++#include <cstdlib>
++#include <fstream>
++#include <stdexcept>
+ 
+ using namespace AstraSim;
+ using namespace AstraSimAnalyticalCongestionAware;
+@@ -14,6 +18,60 @@ using namespace NetworkAnalyticalCongestionAware;
+ 
+ std::shared_ptr<Topology> CongestionAwareNetworkApi::topology;
+ 
++namespace {
++// Physical reference granularity is 4 KiB. Other explicitly configured values
++// are numerical packetization/coarsening experiments, never a bandwidth scale.
++uint64_t packet_bytes() {
++    static const auto value=[]() {
++        const char* text=std::getenv("RLXY_NETWORK_PACKET_BYTES");
++        const auto bytes=text?std::stoull(text):uint64_t{4096};
++        if(!bytes || (bytes&(bytes-1)) || bytes>1048576)
++            throw std::runtime_error("packet bytes must be a power of two <=1MiB");
++        return bytes;
++    }();
++    return value;
++}
++struct PacketMessage;
++struct PacketArrival {PacketMessage* message;uint64_t bytes;};
++struct PacketMessage {
++    std::shared_ptr<Topology> topology;
++    std::shared_ptr<EventQueue> events;
++    Route route;
++    void* legacy_arg;
++    uint64_t count,packet,sent=0,received=0,remaining,packets=0,start;
++    static void arrived(void* pointer) {
++        auto* arrival=static_cast<PacketArrival*>(pointer);
++        auto* message=arrival->message;const auto bytes=arrival->bytes;delete arrival;
++        if(!message->remaining || message->received+bytes>message->count)std::abort();
++        message->received+=bytes;--message->remaining;
++        if(message->remaining)return;
++        if(message->sent!=message->count || message->received!=message->count)std::abort();
++        if(const auto path=std::getenv("RLXY_NETWORK_PACKET_LOG")) {
++            std::ofstream log(path,std::ios::app);
++            log<<"{\"bytes\":"<<message->count<<",\"sent_bytes\":"<<message->sent
++               <<",\"received_bytes\":"<<message->received<<",\"packets\":"<<message->packets
++               <<",\"packet_bytes\":"<<message->packet<<",\"hops\":"<<message->route.size()-1
++               <<",\"start_tick\":"<<message->start<<",\"end_tick\":"<<message->events->get_current_time()
++               <<",\"aggregate_callbacks\":1}\n";
++        }
++        auto* legacy=message->legacy_arg;delete message;
++        CommonNetworkApi::process_chunk_arrival(legacy);
++    }
++    static void inject(void* pointer) {
++        auto* message=static_cast<PacketMessage*>(pointer);
++        const auto bytes=std::min(message->packet,message->count-message->sent);
++        message->sent+=bytes;++message->packets;
++        auto* arrival=new PacketArrival{message,bytes};
++        auto chunk=std::make_unique<Chunk>(bytes,message->route,&PacketMessage::arrived,arrival);
++        message->topology->send(std::move(chunk));
++        // Same-tick FIFO injection interleaves messages issued together rather
++        // than placing one whole message ahead of every concurrent message.
++        if(message->sent<message->count)
++            message->events->schedule_event(message->events->get_current_time(),&PacketMessage::inject,message);
++    }
++};
++}
++
+ void CongestionAwareNetworkApi::set_topology(
+     std::shared_ptr<Topology> topology_ptr) noexcept {
+     assert(topology_ptr != nullptr);
+@@ -62,17 +120,18 @@ int CongestionAwareNetworkApi::sim_send(void* const buffer,
+         new_entry->register_send_callback(msg_handler, fun_arg);
+     }
+ 
+-    // create chunk
++    // Segment the message before transmission. Every packet streams through
++    // existing directed Link queues; the original whole-message tracker is
++    // completed once, only after every payload byte reached the destination.
+     auto chunk_arrival_arg = std::tuple(tag, src, dst, count, chunk_id);
+     auto arg = std::make_unique<decltype(chunk_arrival_arg)>(chunk_arrival_arg);
+     const auto arg_ptr = static_cast<void*>(arg.release());
+     const auto route = topology->route(src, dst);
+-    auto chunk = std::make_unique<Chunk>(
+-        count, route, CongestionAwareNetworkApi::process_chunk_arrival,
+-        arg_ptr);
+-
+-    // initiate transmission from src -> dst.
+-    topology->send(std::move(chunk));
++    const auto packet=packet_bytes();
++    if(!count || route.size()<2)throw std::runtime_error("invalid network message/route");
++    auto* message=new PacketMessage{topology,event_queue,route,arg_ptr,count,packet,0,0,
++        (count+packet-1)/packet,0,event_queue->get_current_time()};
++    event_queue->schedule_event(event_queue->get_current_time(),&PacketMessage::inject,message);
+ 
+     // return
+     return 0;
+diff --git a/astra-sim/network_frontend/analytical/congestion_aware/main.cc b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+index d81686b..7901c43 100644
+--- a/astra-sim/network_frontend/analytical/congestion_aware/main.cc
++++ b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+@@ -11,6 +11,9 @@ LICENSE file in the root directory of this source tree.
+ #include <astra-network-analytical/congestion_aware/Helper.h>
+ #include <remote_memory_backend/analytical/AnalyticalRemoteMemory.hh>
+ 
++#include "astra-sim/workload/RlxyMesh.hh"
++#include <cstdlib>
++#include "astra-sim/workload/RlxyGpu.hh"
+ using namespace AstraSim;
+ using namespace Analytical;
+ using namespace AstraSimAnalytical;
+@@ -53,7 +56,14 @@ int main(int argc, char* argv[]) {
+ 
+     // Generate topology
+     const auto network_parser = NetworkParser(network_configuration);
+-    const auto topology = construct_topology(network_parser);
++    const char* rlxy_model = std::getenv("RLXY_NETWORK_TOPOLOGY");
++    const auto topology = rlxy_model && std::string(rlxy_model)=="mesh2d"
++        ? std::shared_ptr<Topology>(std::make_shared<rlxy::Mesh2D>(network_parser))
++        : rlxy_model && std::string(rlxy_model)=="gpu_cluster"
++        ? std::shared_ptr<Topology>(std::make_shared<rlxy::GpuCluster>(network_parser))
++        : construct_topology(network_parser);
++    if (rlxy_model) std::cout << "[rlxy] network topology override: " << rlxy_model << std::endl;
++
+ 
+     // Get topology information
+     const auto npus_count = topology->get_npus_count();
+diff --git a/astra-sim/workload/Statistics.cc b/astra-sim/workload/Statistics.cc
+index 628d51b..399ce19 100644
+--- a/astra-sim/workload/Statistics.cc
++++ b/astra-sim/workload/Statistics.cc
+@@ -100,18 +100,25 @@ void Statistics::extract_comp_comm_overlap() {
+             has_comm = true;
+             break;
+         default:
+-            throw std::runtime_error(
+-                "Only GPU and COMM types are supported for overlap extraction");
++            break; // CPU/remote memory are not GPU/COMM intervals.
+         }
+     }
+     if (!has_comp || !has_comm) {
+         this->comp_comm_overlap = 0;
+         return;
+     }
+-    Tick overlap = 0;
+-    overlap = this->type_time.at(OperatorStatistics::OperatorType::GPU) +
+-              this->type_time.at(OperatorStatistics::OperatorType::COMM) -
+-              this->wall_time;
++    std::vector<std::pair<Tick, Tick>> combined;
++    for (const auto& entry : operator_statistics) {
++        const auto& stat = entry.second;
++        if (stat.type == OperatorStatistics::OperatorType::GPU ||
++            stat.type == OperatorStatistics::OperatorType::COMM) {
++            combined.push_back({stat.start_time, stat.end_time});
++        }
++    }
++    Tick overlap =
++        this->type_time.at(OperatorStatistics::OperatorType::GPU) +
++        this->type_time.at(OperatorStatistics::OperatorType::COMM) -
++        _calculateTotalRuntimeFromIntervals(combined);
+     this->comp_comm_overlap = overlap;
+ }
+ 
+diff --git a/astra-sim/workload/Workload.cc b/astra-sim/workload/Workload.cc
+index 8b33979..b8f8a9f 100644
+--- a/astra-sim/workload/Workload.cc
++++ b/astra-sim/workload/Workload.cc
+@@ -4,6 +4,7 @@ LICENSE file in the root directory of this source tree.
+ *******************************************************************************/
+ 
+ #include "astra-sim/workload/Workload.hh"
++#include "astra-sim/workload/RlxyResources.hh"
+ 
+ #include "astra-sim/common/Logging.hh"
+ #include "astra-sim/system/IntData.hh"
+@@ -22,6 +23,8 @@ using namespace AstraSim;
+ using namespace Chakra::FeederV3;
+ using json = nlohmann::json;
+ 
++#include "astra-sim/workload/RlxySequence.hh"
++
+ typedef ChakraProtoMsg::NodeType ChakraNodeType;
+ typedef ChakraProtoMsg::CollectiveCommType ChakraCollectiveCommType;
+ 
+@@ -53,6 +56,7 @@ Workload::Workload(Sys* sys, string et_filename, string comm_group_filename) {
+     initialize_comm_groups(comm_group_filename);
+     this->stats = new Statistics(this);
+     this->is_finished = false;
++    rlxy::initialize(sys->id);
+ }
+ 
+ Workload::~Workload() {
+@@ -143,13 +147,14 @@ void Workload::issue_dep_free_nodes() {
+     }
+     for (const auto node_id : dependancy_free_nodes_set) {
+         std::shared_ptr<ETFeederNode> node = et_feeder->lookupNode(node_id);
+-        if (hw_resource->is_available(node)) {
++        if (hw_resource->is_available(node) && rlxy::available(sys->id, node->id())) {
+             issue(node);
+         }
+     }
+ }
+ 
+ void Workload::issue(shared_ptr<Chakra::FeederV3::ETFeederNode> node) {
++    rlxy::start(sys->id, node->id(), Sys::boostedTick());
+     auto logger = LoggerFactory::get_logger("workload");
+     if (sys->trace_enabled) {
+         logger->debug("issue,sys->id={}, tick={}, node->id={}, "
+@@ -165,6 +170,9 @@ void Workload::issue(shared_ptr<Chakra::FeederV3::ETFeederNode> node) {
+     if (this->sys->track_local_mem) {
+         this->local_mem_usage_tracker->recordStart(node, Sys::boostedTick());
+     }
++    if (node->name().find("qwen3_sequence") != std::string::npos) {
++        rlxy::Sequence::start(this,node->id());return;
++    }
+     if (sys->replay_only) {
+         issue_replay(node);
+     } else {
+@@ -478,6 +486,7 @@ void Workload::call(EventType event, CallData* data) {
+         }
+ 
+         hw_resource->release(node);
++        rlxy::finish(sys->id, node->id(), Sys::boostedTick());
+         stats->record_end(node, Sys::boostedTick());
+ 
+         // Calculate network bandwidth
+@@ -519,6 +528,7 @@ void Workload::call(EventType event, CallData* data) {
+             }
+ 
+             hw_resource->release(node);
++            rlxy::finish(sys->id, node->id(), Sys::boostedTick());
+             stats->record_end(node, Sys::boostedTick());
+ 
+             // Calculate network bandwidth for point-to-point communications
+diff --git a/build/astra_analytical/CMakeLists.txt b/build/astra_analytical/CMakeLists.txt
+index 9fdbcdc..f464be0 100755
+--- a/build/astra_analytical/CMakeLists.txt
++++ b/build/astra_analytical/CMakeLists.txt
+@@ -28,3 +28,13 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../ AstraSim)
+ set(NETWORK_BACKEND_BUILD_AS_LIBRARY ON)
+ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../extern/network_backend/analytical/ Analytical)
+ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../astra-sim/network_frontend/analytical/ AstraSim_Analytical)
++
++# Isolated direct-API fixture bypasses Workload rank serialization, exercising
++# simultaneous messages with shared endpoints and exactly-once callbacks.
++file(GLOB rlxy_fixture_common ${CMAKE_CURRENT_SOURCE_DIR}/../../astra-sim/network_frontend/analytical/common/*.cc)
++add_executable(RlxyPacketFixture packet_fixture.cc ${rlxy_fixture_common}
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../astra-sim/network_frontend/analytical/congestion_aware/CongestionAwareNetworkApi.cc)
++target_link_libraries(RlxyPacketFixture PRIVATE AstraSim Analytical_Congestion_Aware)
++target_include_directories(RlxyPacketFixture PRIVATE
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../astra-sim/network_frontend/analytical/include/
++    ${CMAKE_CURRENT_SOURCE_DIR}/../../extern/ ${CMAKE_CURRENT_SOURCE_DIR}/../../extern/helper)

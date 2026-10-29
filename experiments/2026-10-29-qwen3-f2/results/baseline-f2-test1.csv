@@ -1,0 +1,4 @@
+model,window,gpu_step_s,wafer_step_s,wafer_over_gpu_time,gpu_effective_tokens_per_s,wafer_effective_tokens_per_s,response_tokens,prompt_tokens,gpu_raw_result,wafer_raw_result
+4B,test1,132.965928745913,159.06015702489398,1.1962474787721364,36794.65894867733,30758.40041597784,4399276,493160,matrix-gpu/native/test1/4B/test1/result.json,matrix-wafer/cases/4B/test1/attempt-1/native/result.json
+8B,test1,178.511873966146,208.23781762138,1.1665208201269088,28248.79313605959,24216.27856842395,4549585,493160,matrix-gpu/native/test1/8B/test1/result.json,matrix-wafer/cases/8B/test1/attempt-1/native/result.json
+14B,test1,260.75474596553,266.7469497529781,1.0229802290472605,16565.669721582053,16193.538497816597,3826417,493160,matrix-gpu/native/test1/14B/test1/result.json,matrix-wafer/cases/14B/test1/attempt-1/native/result.json

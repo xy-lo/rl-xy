@@ -60,13 +60,22 @@ def model_case(root,config):
 
 
 class Operators:
-    def __init__(self,root,config,platform,*,compute_scale=1.0,network_scale=1.0):
+    def __init__(self,root,config,platform,*,compute_scale=1.0,network_scale=1.0,gpu_calibration=None):
         self.root=Path(root);self.config_path=Path(config).resolve();base,self.info=model_case(root,config);self.model=base.model
         wafer,self.scenario,_=effective_case(base,self.root/'configs/wafer54_fixture/wafer.json')
         self.platform=platform;self.compute_scale=compute_scale;self.network_scale=network_scale
         if platform=='gpu':
             self.profile=load_gpu_profile(self.root/'configs/gpu/a100_48_reference.json')
             self.case=effective_gpu_case(base,self.profile);self.provider=GPUCostProvider(self.profile)
+            import os
+            calibration_path=gpu_calibration or os.environ.get('RLXY_GPU_CALIBRATION')
+            self.calibration_identity=None
+            if calibration_path:
+                from .gpu_calibration import GEMMCalibration,CalibratedGPUCostProvider
+                calibration=GEMMCalibration(calibration_path)
+                self.provider=CalibratedGPUCostProvider(self.provider,calibration)
+                self.calibration_identity=calibration.identity
+                self.attention_calibration=calibration if calibration.attention_models else None
         elif platform=='wafer':self.case=wafer;self.provider=CapacityAwareCostProvider();self.profile=None
         else:raise ValueError(platform)
         self.hw=self.case.hardware;self.units=self.hw.cores_per_die
@@ -129,6 +138,9 @@ class Operators:
         traffic=reads+writes
         memory=max(traffic/self.hw.dram_bytes_per_ns,traffic/self.hw.module_path_bytes_per_ns,
                    traffic/(units*self.hw.sram_bytes_per_ns))
+        if self.profile and getattr(self,'attention_calibration',None):
+            compute=self.attention_calibration.predict_attention(queries,contexts,heads,m.kv_heads//tp,hd,backward)/self.compute_scale
+            memory=0
         return Cost(compute,memory,flops,int(reads),int(writes),workspace*units)
     @lru_cache(maxsize=65536)
     def layer_forward(self,queries,contexts,tp):

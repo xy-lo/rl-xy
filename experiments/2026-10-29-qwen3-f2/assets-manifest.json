@@ -1,0 +1,61 @@
+{
+  "schema": "rlxy.qwen3-f2-release-assets/1",
+  "historical_bundle_sha256": "2f52a646a0ac71b6e071f8eb4622e3e67142922534fe47588f8694d6a2093df4",
+  "historical_source_tree_sha256": "798fea6b769764bc028cd520f40053d6b95d965679f308751a5957c675f82315",
+  "historical_native_binary_sha256": "7f13bf22147f779bb6fd3fe69e5cf5a7b22e305ae1a7420a8b061e95cb2816c0",
+  "physical_end_to_end_calibrated": false,
+  "scope": "Relocated and anonymized release assets; new source and asset identities; historical timing claims remain conditional.",
+  "files": {
+    "native/headers/RlxyGpu.hh": "d3280e421dde3c9a729c3ca81aa8102b27cfcbeab31713866937ebfa4d2f5313",
+    "native/headers/RlxyMesh.hh": "a5a14afb759fee65a083adcd501917b848fe4326ceebecc3397dd5b6cd7ed7e6",
+    "native/headers/RlxyResources.hh": "871d9c8a528388d416db4c243339bac77b29b1233efb0a3a93393dbcaba83c9e",
+    "native/headers/RlxySequence.hh": "b49b86d6c726340de5476942aa3856dfdfa83ef2b006969c0a0c291356f627f3",
+    "native/native-combined.patch": "b4b0f2164bf713ad8e72968cb0b2bc891490933dbe20d95841cf96f84dbd4bda",
+    "native/packet_fixture.cc": "a9fad26525474fd746967b4bdb29f95f762e6f76eff0d8661d5c777989640e53",
+    "policies/14B-gpu.json": "6c72552aa533a8b81cc35b1d28016ebca07268f9b447d26b1686bd0be3c988ed",
+    "policies/14B-wafer.json": "6c72552aa533a8b81cc35b1d28016ebca07268f9b447d26b1686bd0be3c988ed",
+    "policies/4B-gpu.json": "6072669e1f03ff335a72678d67ceb0dfb801d99bfa36c29888d3bab4dd064b0c",
+    "policies/4B-wafer.json": "051ad3e6071fb638709754a2a396f7fe40fa965066e5f9cf2d715d8b78cfbd6e",
+    "policies/8B-gpu.json": "051ad3e6071fb638709754a2a396f7fe40fa965066e5f9cf2d715d8b78cfbd6e",
+    "policies/8B-wafer.json": "53b02390b69c1d05fb5c442f62ce81bf00f568c73c3360c9a43706960e9fbd9d",
+    "policies/migration-rule.json": "3b891f3f8fc43efca811deb627b5988d5d35bb3d0e3531c1c33603922e8277a6",
+    "profiles/gpu-local.json": "d5014c171889e44ddbbdb19c8ce90cd29bdef9113c97cc533bc51415ed45adb3",
+    "profiles/gpu-protocol.json": "03c0c0ec4a23be8f25b2d1d742371d3a41a21d5b9c5c8538f456e20ef5ff8fee",
+    "results/baseline-f2-test1-phases.csv": "ca5372b02627abe1a42099b76215f3ca44ffb96c878219f7d0951ef33c1b2471",
+    "results/baseline-f2-test1.csv": "b7ca0549bce3cf40d9a91d2fbe7d2d8724d516577837836b61df1fffef23bead",
+    "wafer/candidate-profile-v2.json": "389a16628095b566b23e256dec7cb5a6e8dc69aac0ffa68acaad5538d9fd0804",
+    "wafer/exact_mapper_cache.py": "5665b547d5b4300609c9e4a93c1d879244356a9aeb6e020d1ff3106a4ff1363b",
+    "wafer/independent_timeline.py": "c043917f40345d4232e41c7cd43874b2e94b1a11fecd9d3b5a815f2c6085b305",
+    "wafer/memory_scenarios.py": "17de84cdd8f0c9b80e82074f57ee6c6436879f9acec60a329b686bee8be445ba",
+    "wafer/timeline_provider.py": "549fdf92ec870788f17680f0cbf3f46c07519abbd9e96ddc9ca4009abc9a94a1"
+  },
+  "input_hashes": {
+    "4B": {
+      "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "prompt_lengths.json": "795f74aa93fc3530d5fe4e2c22dedbf435d77c73c89960a054edc9da5018cbbf",
+      "tune.json": "f1edc07faaa821915b916293111f28146855eeee57bbe3125464102a900ba9f1",
+      "test1.json": "e2a64684474c0e77f642a3c1396d143f2fdf3a1f5628e91a80b021feac5ee02e",
+      "test2.json": "8d3dc0c845d9610f84e20af4672de9578618f5b65ea2a39eeb5635105f6764ea",
+      "test3.json": "210d15c975d49c58c85e9ec5e19618de483fb78722cbf80f1637bc472c33e720",
+      "test4.json": "ec20248d5add76a5b8a3f56014e6bd2493c40ea63e0a0550acbd498a704b9348"
+    },
+    "8B": {
+      "config.json": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+      "prompt_lengths.json": "795f74aa93fc3530d5fe4e2c22dedbf435d77c73c89960a054edc9da5018cbbf",
+      "tune.json": "4c90166444dabef389581dfab045d914825a7055a239e09e3f626211b6b0293a",
+      "test1.json": "fdf1a009027929e56291fe65c468d01ffa94f0fb04fce48f87c0626e0c63fc21",
+      "test2.json": "77277fa5954af02db0a00e90bb37195ed4e3da6cc5967f8a2ca3b649ee1a145b",
+      "test3.json": "87fcd089037a149b08dfb323f7c8a851e816e7229a64e00e989a57430b351615",
+      "test4.json": "508e16cb1aa98e56cd332703fafa5ed8ebf8c2c6f489fe6c0817d90a77b3c71f"
+    },
+    "14B": {
+      "config.json": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a",
+      "prompt_lengths.json": "795f74aa93fc3530d5fe4e2c22dedbf435d77c73c89960a054edc9da5018cbbf",
+      "tune.json": "c4f5f58083e231faf6e19af3f0efb5c59e230fedd8db713779b76b1a90f91acf",
+      "test1.json": "f15e1626e7b99532337b062dca3815d676a779eae9e156f13cd89d7e436e3ea8",
+      "test2.json": "1f8d2e52441d9b3258cfd1aad4101e6c98570617943402070a60e683ae970c61",
+      "test3.json": "71290f3fd1c031f632da817557f0b20b01e2bf6a1eb61d00aa1fe0c91f8f0ecd",
+      "test4.json": "84b28483f3b6ec1263f50d951603a5a490892376709f622983fab91ed9b6ee8b"
+    }
+  }
+}

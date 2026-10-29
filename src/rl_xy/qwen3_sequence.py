@@ -5,6 +5,7 @@ from pathlib import Path
 from .qwen3_cost import Cost
 from .qwen3_native import Plan,execute,NetworkProfiles,ceildiv
 from .qwen3_rollout import Rollout
+from .communication_service import protocol_overhead_ns
 
 
 def local(cost,delta=None,ranks=None):
@@ -24,6 +25,8 @@ def compile_blocks(op,ranks,blocks,next_blocks=None):
         steps.append(local(b.cost,delta))
         if not b.collective or n==1:continue
         payload=max(4*n,ceildiv(int(b.payload),4*n)*4*n)
+        overhead=protocol_overhead_ns(op,n,b.collective,payload)
+        if overhead:steps.append(local(Cost(compute=overhead)))
         if b.collective in ('GATHER','BCAST'):
             pairs=[(r,ranks[0]) for r in ranks[1:]] if b.collective=='GATHER' else [(ranks[0],r) for r in ranks[1:]]
             for src,dst in pairs:

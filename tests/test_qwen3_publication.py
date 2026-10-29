@@ -15,8 +15,22 @@ class Qwen3PublicationTest(unittest.TestCase):
     def test_public_results_and_claim_boundaries(self):
         result = checker.check()
         self.assertEqual(result['formal_runs'], 24)
-        self.assertEqual(result['current_vs_historical_cost_file_changes'], [])
+        # The stored result is tied to its own historical source manifest.
+        # A later implementation may legitimately change without changing that evidence.
+        historical = checker.read(ROOT / 'experiments/2026-10-29-qwen3/source/manifest.json')
+        self.assertEqual(historical['tree_sha256'], checker.SOURCE_TREE)
         self.assertFalse(result['hardware_calibrated'])
+
+    def test_tampered_historical_source_identity_is_rejected(self):
+        real_read = checker.read
+        def altered(path):
+            value = real_read(path)
+            if path.name == 'manifest.json' and path.parent.name == 'source':
+                value = dict(value, tree_sha256='0' * 64)
+            return value
+        with patch.object(checker, 'read', side_effect=altered):
+            with self.assertRaisesRegex(ValueError, 'Historical source tree identity differs'):
+                checker.check()
 
     def test_scope_promotion_is_rejected_before_checksum_validation(self):
         real_read = checker.read

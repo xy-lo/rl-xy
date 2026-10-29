@@ -154,7 +154,7 @@ class Screen:
                     if mb>local:continue
                     for lb in (1,2,4,8,16,32,64):
                         if lb>local:continue
-                        for cap in (4,8,16,32,64):
+                        for cap in (4,8,16,32,64,128):
                             if cap>assigned:continue
                             p=Policy(tr,ge,mb,lb,cap);a=self.op.admission(self.requests,tr,ge,mb,lb,cap)
                             if not a['passed']:
@@ -172,8 +172,11 @@ class Screen:
 
 def run_candidate(op,requests,policy,output,*,records=True):
     from .qwen3_source import manifest,sha
+    from .communication_service import operator_cost_identity
     out=Path(output);out.mkdir(parents=True,exist_ok=False);write(out/'policy.json',asdict(policy))
     version=manifest(op.root);write(out/'source_manifest.json',version)
+    runtime_identity=operator_cost_identity(op)
+    write(out/'operator_cost_identity.json',runtime_identity)
     input_hash=__import__('hashlib').sha256(json.dumps(requests,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     write(out/'run_inputs.json',{'source_tree_sha256':version['tree_sha256'],'trajectory_sha256':input_hash,'platform':op.platform,'compute_scale':op.compute_scale,'network_scale':op.network_scale,'model_config_sha256':op.info['config_sha256'],'global_prompt_cap':op.prompt_cap,'training_memory_policy':'actual fixed-order batch token counts after generation; no response-length oracle in generation admission or ordering'})
     admission=op.admission(requests,policy.train_tp,policy.rollout_tp,policy.train_mb,policy.logprob_mb,policy.cap);write(out/'admission.json',admission)
@@ -187,7 +190,8 @@ def run_candidate(op,requests,policy,output,*,records=True):
     import os
     from .qwen3_paths import native_binary,generation_cache
     binary=native_binary(op.root)
-    cache_fields={'code':version['tree_sha256'],'binary':sha(binary),'config':op.info['config_sha256'],'platform':op.platform,'compute_scale':op.compute_scale,'network_scale':op.network_scale,'input':input_hash,'rollout_tp':policy.rollout_tp,'cap':policy.cap}
+    cache_fields={'code':version['tree_sha256'],'binary':sha(binary),'config':op.info['config_sha256'],'platform':op.platform,'compute_scale':op.compute_scale,'network_scale':op.network_scale,'input':input_hash,'rollout_tp':policy.rollout_tp,'cap':policy.cap,'gpu_calibration':getattr(op,'calibration_identity',None)}
+    cache_fields['operator_cost_identity']=runtime_identity
     cache_key=__import__('hashlib').sha256(json.dumps(cache_fields,sort_keys=True).encode()).hexdigest()
     cache_root=generation_cache(op.root)/cache_key;cache_root.mkdir(parents=True,exist_ok=True)
     complete=cache_root/'complete.json'
@@ -221,6 +225,8 @@ def run_candidate(op,requests,policy,output,*,records=True):
         stages[name]=r['model_ns'];proof[name]=r
         write(out/'progress.json',{'stage_completed':name,'wall_seconds':time.monotonic()-start})
     duration=sum(stages.values());result={'status':'PASS','policy':asdict(policy),'platform':op.platform,'step_model_ns':duration,'stage_ns':stages,'admission':admission,'generation_mean_replica_wait_fraction':roll['mean_replica_barrier_wait_fraction'],'request_count':roll['request_count'],'wall_seconds':time.monotonic()-start,'execution':'native ASTRA per synchronous phase; compact repeated programs execute every collective/P2P on the native shared network; not one monolithic invocation','native_proof':{k:{kk:v[kk] for kk in ['model_ns','slowest_rank','native_nodes','native_rank_events','wall_seconds','binary_sha256','native_sequence_summaries','per_rank_costs']} for k,v in proof.items()},'source_tree_sha256':version['tree_sha256'],'trajectory_sha256':input_hash,'compute_scale':op.compute_scale,'network_scale':op.network_scale,'publication_status':'pending cross-platform consistency and sensitivity validation'}
+    result['gpu_calibration']=getattr(op,'calibration_identity',None)
+    result['operator_cost_identity']=runtime_identity
     if manifest(op.root)['tree_sha256']!=version['tree_sha256']:raise ValueError('source changed during candidate run')
     if len({x['binary_sha256'] for x in proof.values()})!=1:raise ValueError('native binary changed during case')
     write(out/'result.json',result);return result

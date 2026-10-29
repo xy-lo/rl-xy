@@ -1,0 +1,113 @@
+{
+  "schema_version": "rlxy.gpu_protocol_overhead/1",
+  "status": "FROZEN",
+  "calibrated_ranks": [
+    2
+  ],
+  "allow_rank_extrapolation": true,
+  "by_kind": {
+    "ALL_REDUCE": {
+      "fixed_ns": 0.0,
+      "per_peer_ns": 0.0,
+      "per_input_byte_ns": 0.0,
+      "per_wire_byte_ns": 0.0,
+      "wire_residual_knots": [
+        [
+          4096.0,
+          12732.26537810898
+        ],
+        [
+          1048576.0,
+          40002.21461965179
+        ],
+        [
+          134217728.0,
+          120838.75414306636
+        ]
+      ],
+      "wire_residual_boundary_policy": "constant_below_nonnegative_last_above"
+    },
+    "ALL_GATHER": {
+      "fixed_ns": 0.0,
+      "per_peer_ns": 0.0,
+      "per_input_byte_ns": 0.0,
+      "per_wire_byte_ns": 0.0,
+      "wire_residual_knots": [
+        [
+          4096,
+          11391.074244235992
+        ],
+        [
+          1048576,
+          30539.878554061892
+        ],
+        [
+          134217728,
+          293468.74842358404
+        ]
+      ],
+      "wire_residual_boundary_policy": "constant_below_nonnegative_last_above"
+    },
+    "REDUCE_SCATTER": {
+      "fixed_ns": 0.0,
+      "per_peer_ns": 0.0,
+      "per_input_byte_ns": 0.0,
+      "per_wire_byte_ns": 0.0,
+      "wire_residual_knots": [
+        [
+          2048.0,
+          10686.927256515502
+        ],
+        [
+          524288.0,
+          15896.502967956543
+        ],
+        [
+          67108864.0,
+          18127.665604858426
+        ]
+      ],
+      "wire_residual_boundary_policy": "constant_below_nonnegative_last_above"
+    },
+    "GATHER": {
+      "fixed_ns": 0.0,
+      "per_peer_ns": 0.0,
+      "per_input_byte_ns": 0.0,
+      "per_wire_byte_ns": 0.0,
+      "assumption": "Unmeasured grouped-P2P residual=0; AR/AG/RS curve not reused; separate pressure required"
+    },
+    "BCAST": {
+      "fixed_ns": 0.0,
+      "per_peer_ns": 0.0,
+      "per_input_byte_ns": 0.0,
+      "per_wire_byte_ns": 0.0,
+      "assumption": "Unmeasured grouped-P2P residual=0; AR/AG/RS curve not reused; separate pressure required"
+    }
+  },
+  "alignment_domain": {
+    "payload_multiple_bytes": 16,
+    "TP2_peer_segment_aligned": true,
+    "TP3_measured": "all padded to4*n=12bytes; input payload mod16 and AG output segment stride not aligned; classified out-of-domain pressure",
+    "TP3_alignment_causality": "not proven without aligned3 control; do not claim the slowdown is definitely alignment",
+    "new_TP3_control_padding_bytes": 48
+  },
+  "scope": "Aligned same-node TP2 only calibrated. Every n!=2 is explicit rank/algorithm extrapolation, including TP4/8 and DP6/12/24/48; all cross-node behavior unvalidated. GATHER/BCAST grouped-P2P residual=0 is an unmeasured assumption with separate sensitivity, not AR/AG/RS calibration. Added exactly once beyond same endpoint ledger and64KiB numerical-streaming fabric;4KiB is reference, not a full-step error guarantee.",
+  "method": "Aligned TP2 dev-only three positive total-minus-same-fabric/endpoint residual knots, linear in NCCL-standard wirebytes; below first constant startup, above last nonnegative last slope fixed before regression readout; no DNN/no bandwidth change. n2 peer startup not identifiable and fixed0.",
+  "source_profile_sha256": "f1a4e87c1cf2ca28778dae2b29ad57c9609c677823e68ad82752985f6371b8bf",
+  "native_binary_sha256": "7f13bf22147f779bb6fd3fe69e5cf5a7b22e305ae1a7420a8b061e95cb2816c0",
+  "source_tree_sha256": "798fea6b769764bc028cd520f40053d6b95d965679f308751a5957c675f82315",
+  "source_sha256": {
+    "network.json": "e7814b91d1022b342a78e4ed8bf9fa4b99bd5df7cf5fcf707f6467c1c8172cdf",
+    "network3.json": "9b63c29279b2a50e8d9a630243950dda6d07d5575aef88f8f1b14716e598d99c",
+    "network-streaming-64k.json": "06430cbf28050f2d31fdbe5d7aa4a2928589c8fa858708435c52d45b651852eb"
+  },
+  "validation_warning": "Existing final diagnosed old structure, now regression validation. New independent hardware final262144/4194304/67108864/268435456bytes and48byte-aligned TP3 control locked, not measured because all GPUs occupied.",
+  "comparison_warning": "Existing regression final has already informed old structural diagnosis and earlier diagnostics. It is not a pristine new final test. New hardware final and aligned3 control remain unmeasured.",
+  "network_packet_bytes": 65536,
+  "frozen_at": "2026-10-29T17:21:57.050864+08:00",
+  "numerical_packet_reference_bytes": 4096,
+  "validation_report_sha256": "e589839d487e09269bff650e9192181fb63dfbd1d021a70b75116f7d2d4be286",
+  "measurement_and_fit_script_sha256": "64c834ba519bc6f20561c9775ec6fa41c4f37052a0425b150abb94824a489376",
+  "native_integration_candidate_sha256": "23272f88b4dc7a033246c120473230d0d72897babb502cc875c1bd02de5c12a2",
+  "frozen_timing_terms_equal_validated_candidate": true
+}

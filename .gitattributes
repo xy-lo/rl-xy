@@ -8,3 +8,5 @@ experiments/**/figures/*.svg -whitespace
 
 # Patch context whitespace must remain byte-identical for application upstream.
 docker/astrasim/qwen3-native.patch -text -whitespace
+experiments/2026-10-29-qwen3-f2/native/native-combined.patch -text -whitespace
+experiments/2026-10-29-qwen3-f2/profiles/gpu-local.json -diff

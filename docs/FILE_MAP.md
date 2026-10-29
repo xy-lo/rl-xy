@@ -411,5 +411,14 @@
 | `docker/Dockerfile.qwen3` | Qwen3原生执行与长度回放扩展。 |
 | `docker/astrasim/RlxySequence.hh` | Qwen3原生执行与长度回放扩展。 |
 | `docker/astrasim/qwen3-native.patch` | 固定ASTRA commit上的历史完整tracked原生修改，新增header另行复制。 |
+| `src/rl_xy/communication_service.py` | GPU通信协议残差与成本身份。 |
+| `src/rl_xy/gpu_calibration.py` | GPU实测GEMM和Attention成本。 |
+| `src/rl_xy/f2_runtime.py` | f2资产检查及GPU/晶圆公共成本入口。 |
+| `scripts/replay_f2.py` | 使用f2固定策略与公开长度轨迹进行回放。 |
+| `scripts/search_f2.py` | 用tune窗口运行包含并发128的f2有限解析筛选。 |
+| `scripts/check_f2_compaction.py` | 两平台f2原生最小集成和表示一致性检查。 |
+| `tests/test_communication_service.py` | 通信协议与完整成本身份验证。 |
+| `tests/test_gpu_calibration.py` | GPU实测成本域和插值验证。 |
+| `tests/test_f2_runtime.py` | f2资产、冻结输入及跨路径算子成本验证。 |
 
 最新轻量输入、记录结果与图表统一放在`experiments/2026-10-29-qwen3/`；不复制本地原生日志、缓存或完整模型文件。

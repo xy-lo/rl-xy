@@ -1,0 +1,51 @@
+{
+  "rule_id": "T76C-capacity-only-port-v1",
+  "frozen_at": "2026-10-29T15:24:16+08:00",
+  "authorized_by": "parent T76 explicitly confirmed before new GPU winners are available",
+  "active_devices": 48,
+  "allocated_wafer_mesh": [
+    6,
+    9
+  ],
+  "common_constraints": "PP=1, no SP, same checkpoint/recomputation/precision, same public requests and FIFO ownership convention",
+  "allowed_tp": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "allowed_train_mb": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "allowed_logprob_mb": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "allowed_cap": [
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "pass_1": "Preserve GPU train_tp and rollout_tp exactly. Only decrease train_mb/logprob_mb/cap, never increase them. Enumerate feasible candidates by minimum total log2 reduction from GPU knobs.",
+  "pass_1_tie": "Fixed tuple (-train_mb, -logprob_mb, -cap), ascending. This preserves training microbatch, then logprob microbatch, then cap on an equal total reduction; no timing is inspected.",
+  "pass_2": "Only if no pass_1 candidate passes capacity, permit TP changes. Minimize abs(log2(train_tp/GPU_train_tp))+abs(log2(rollout_tp/GPU_rollout_tp)), then total knob log2 reduction.",
+  "pass_2_tie": "Fixed tuple (train_tp, rollout_tp, -train_mb, -logprob_mb, -cap), ascending; no timing is inspected.",
+  "admission": "Operators.admission over tune/test1/test2/test3/test4 declared phase memory bounds, plus integer/head/FFN/vocab/group legality. Test timing is never used. Rollout reserves max prompt +8192 independently of future response lengths; training lengths are available after rollout.",
+  "failure": "If no candidate passes, report unsupported under the declared hardware; never expand memory, reduce workload/precision, or discard long requests to force a pair.",
+  "old_rule_difference": "Frozen T58 first shrank phase-failing knobs iteratively, then used wafer tune latency to break equal nearest-TP ties. T76C replaces that final timing tie with a deterministic capacity-only ordering. It may also avoid unnecessary simultaneous knob reductions.",
+  "scope": "A migrated GPU schedule with minimum declared capacity adjustment. It is neither a WSC-specific search optimum nor DynaRL reproduction. All WSC scheduling methods must use the same low-level cost backend."
+}

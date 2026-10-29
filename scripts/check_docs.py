@@ -8,7 +8,7 @@ import subprocess
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-CURRENT = {'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md'}
+CURRENT = {'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md'}
 HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-10-27-v0.6/模型内部瓶颈分解.md'}
 
 

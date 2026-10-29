@@ -13,6 +13,7 @@ from .astra_adapter.generator import generate_traces
 from .astra_adapter.runner import run_astrasim
 from .astra_adapter.parser import EVENT_RE
 from .qwen3_paths import native_root,native_binary
+from .communication_service import protocol_overhead_ns
 
 
 class Plan:
@@ -35,6 +36,8 @@ class Plan:
         ps=tuple(ranks);n=len(ps)
         if n==1:return
         payload=max(4*n,ceildiv(int(payload),4*n)*4*n)
+        overhead=protocol_overhead_ns(self.op,n,kind,payload)
+        if overhead:self.local(ps,Cost(compute=overhead),name+'.protocol_overhead')
         if kind in ('GATHER','BCAST'):
             pairs=[(r,ps[0]) for r in ps[1:]] if kind=='GATHER' else [(ps[0],r) for r in ps[1:]]
             for src,dst in pairs:
@@ -151,6 +154,8 @@ class NetworkProfiles:
             if kind=='REDUCE_SCATTER':volume=(tp-1)/tp*payload
             value=steps*lat+volume/(rate*op.network_scale)
             value+=op.vec(0,payload,payload*tp if kind=='ALL_GATHER' else payload,'network_endpoints').ns
+            rounded=max(4*tp,ceildiv(int(payload),4*tp)*4*tp)
+            value+=protocol_overhead_ns(op,tp,kind,rounded)
         self.cache[key]=value;return value
     def blocks(self,tp,blocks):return sum(b.cost.ns+(self.time(tp,b.collective,b.payload) if b.collective else 0.) for b in blocks)
 

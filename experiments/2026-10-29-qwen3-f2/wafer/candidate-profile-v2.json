@@ -1,0 +1,27 @@
+{
+  "schema_version": "rlxy.wsc_local_timing/1",
+  "profile_id": "wsc_fifo_os_singlebuffer_proxy_v2",
+  "status": "CANDIDATE_NOT_FROZEN",
+  "gemm_timing": "exact selected OS tile events, one input tile buffer per core, work-conserving FIFO fluid DMA shared by DRAM/path and private direction SRAM endpoints",
+  "mapping": "unchanged original CapacityAware mapper and original hardware objective; no timing-driven remapping or double buffering",
+  "sram_load_bytes_per_ns_per_core": 400,
+  "sram_store_bytes_per_ns_per_core": 270,
+  "d2d_latency_ns_candidate": 100,
+  "d2d_bytes_per_ns_per_direction": 2000,
+  "d2d_bandwidth_status": "unchanged user design assumption; per-edge/per-direction caliber unverified, test 1000/2000/4000 separately",
+  "attention_timing": "unchanged arithmetic and affine context dependence; direction SRAM term with explicit units; no dynamic tile event replacement in decode",
+  "vector_timing": "Unchanged analytic vector streaming; six representative vector reference discrepancies are quantified in timeline-provider-validation.json. Vector throughput256 remains an assumption; not equated with published FP32 tensor throughput.",
+  "legacy_sram_bytes_per_ns_scope": "HardwareConfig scalar4000 retained only for original mapper identity and unchanged vector provider; GEMM and attention service use direction400/270 from this profile. It is not asserted as physical SRAM bandwidth.",
+  "source": {
+    "url": "https://hc34.hotchips.org/assets/program/conference/day2/Machine%20Learning/HotChips_tesla_dojo_uarch.pdf",
+    "sha256": "3f05051e211243bede28d4c9a084fe1ef10399855e4a698b227cde01b20920a8",
+    "pages": [
+      6,
+      14,
+      17
+    ],
+    "scope": "Dojo node SRAM and inter-die interface proxy parameters; hypothetical 256-core WSC, not physical D1 reproduction. 1.02TF/core@1GHz remains WSC-LLM-inspired BF16=FP16 assumption."
+  },
+  "network": "Must pair with separately versioned corrected streaming native backend; existing whole-chunk store-forward result is a reference scenario, not a calibrated cut-through prediction.",
+  "publication_scope": "Conditional architecture simulation with declared assumptions and reference validation; not measured physical WSC latency. All WSC scheduling methods must use one common version."
+}
