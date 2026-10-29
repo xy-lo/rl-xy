@@ -1,0 +1,149 @@
+diff --git a/astra-sim/common/Logging.cc b/astra-sim/common/Logging.cc
+index 0fbcfba..547dfcb 100644
+--- a/astra-sim/common/Logging.cc
++++ b/astra-sim/common/Logging.cc
+@@ -17,6 +17,7 @@ std::shared_ptr<spdlog::logger> LoggerFactory::get_logger(
+     if constexpr (!ENABLE_DEFAULT_SINK_FOR_OTHER_LOGGERS) {
+         return logger;
+     }
++    if (std::getenv("RLXY_SEQUENCE_PROGRAM") && logger_name != "workload") logger->set_level(spdlog::level::warn);
+     auto& logger_sinks = logger->sinks();
+     for (auto sink : default_sinks) {
+         if (std::find(logger_sinks.begin(), logger_sinks.end(), sink) ==
+diff --git a/astra-sim/network_frontend/analytical/congestion_aware/main.cc b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+index d81686b..7901c43 100644
+--- a/astra-sim/network_frontend/analytical/congestion_aware/main.cc
++++ b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+@@ -11,6 +11,9 @@ LICENSE file in the root directory of this source tree.
+ #include <astra-network-analytical/congestion_aware/Helper.h>
+ #include <remote_memory_backend/analytical/AnalyticalRemoteMemory.hh>
+ 
++#include "astra-sim/workload/RlxyMesh.hh"
++#include <cstdlib>
++#include "astra-sim/workload/RlxyGpu.hh"
+ using namespace AstraSim;
+ using namespace Analytical;
+ using namespace AstraSimAnalytical;
+@@ -53,7 +56,14 @@ int main(int argc, char* argv[]) {
+ 
+     // Generate topology
+     const auto network_parser = NetworkParser(network_configuration);
+-    const auto topology = construct_topology(network_parser);
++    const char* rlxy_model = std::getenv("RLXY_NETWORK_TOPOLOGY");
++    const auto topology = rlxy_model && std::string(rlxy_model)=="mesh2d"
++        ? std::shared_ptr<Topology>(std::make_shared<rlxy::Mesh2D>(network_parser))
++        : rlxy_model && std::string(rlxy_model)=="gpu_cluster"
++        ? std::shared_ptr<Topology>(std::make_shared<rlxy::GpuCluster>(network_parser))
++        : construct_topology(network_parser);
++    if (rlxy_model) std::cout << "[rlxy] network topology override: " << rlxy_model << std::endl;
++
+ 
+     // Get topology information
+     const auto npus_count = topology->get_npus_count();
+diff --git a/astra-sim/workload/Statistics.cc b/astra-sim/workload/Statistics.cc
+index 628d51b..399ce19 100644
+--- a/astra-sim/workload/Statistics.cc
++++ b/astra-sim/workload/Statistics.cc
+@@ -100,18 +100,25 @@ void Statistics::extract_comp_comm_overlap() {
+             has_comm = true;
+             break;
+         default:
+-            throw std::runtime_error(
+-                "Only GPU and COMM types are supported for overlap extraction");
++            break; // CPU/remote memory are not GPU/COMM intervals.
+         }
+     }
+     if (!has_comp || !has_comm) {
+         this->comp_comm_overlap = 0;
+         return;
+     }
+-    Tick overlap = 0;
+-    overlap = this->type_time.at(OperatorStatistics::OperatorType::GPU) +
+-              this->type_time.at(OperatorStatistics::OperatorType::COMM) -
+-              this->wall_time;
++    std::vector<std::pair<Tick, Tick>> combined;
++    for (const auto& entry : operator_statistics) {
++        const auto& stat = entry.second;
++        if (stat.type == OperatorStatistics::OperatorType::GPU ||
++            stat.type == OperatorStatistics::OperatorType::COMM) {
++            combined.push_back({stat.start_time, stat.end_time});
++        }
++    }
++    Tick overlap =
++        this->type_time.at(OperatorStatistics::OperatorType::GPU) +
++        this->type_time.at(OperatorStatistics::OperatorType::COMM) -
++        _calculateTotalRuntimeFromIntervals(combined);
+     this->comp_comm_overlap = overlap;
+ }
+ 
+diff --git a/astra-sim/workload/Workload.cc b/astra-sim/workload/Workload.cc
+index 8b33979..b8f8a9f 100644
+--- a/astra-sim/workload/Workload.cc
++++ b/astra-sim/workload/Workload.cc
+@@ -4,6 +4,7 @@ LICENSE file in the root directory of this source tree.
+ *******************************************************************************/
+ 
+ #include "astra-sim/workload/Workload.hh"
++#include "astra-sim/workload/RlxyResources.hh"
+ 
+ #include "astra-sim/common/Logging.hh"
+ #include "astra-sim/system/IntData.hh"
+@@ -22,6 +23,8 @@ using namespace AstraSim;
+ using namespace Chakra::FeederV3;
+ using json = nlohmann::json;
+ 
++#include "astra-sim/workload/RlxySequence.hh"
++
+ typedef ChakraProtoMsg::NodeType ChakraNodeType;
+ typedef ChakraProtoMsg::CollectiveCommType ChakraCollectiveCommType;
+ 
+@@ -53,6 +56,7 @@ Workload::Workload(Sys* sys, string et_filename, string comm_group_filename) {
+     initialize_comm_groups(comm_group_filename);
+     this->stats = new Statistics(this);
+     this->is_finished = false;
++    rlxy::initialize(sys->id);
+ }
+ 
+ Workload::~Workload() {
+@@ -143,13 +147,14 @@ void Workload::issue_dep_free_nodes() {
+     }
+     for (const auto node_id : dependancy_free_nodes_set) {
+         std::shared_ptr<ETFeederNode> node = et_feeder->lookupNode(node_id);
+-        if (hw_resource->is_available(node)) {
++        if (hw_resource->is_available(node) && rlxy::available(sys->id, node->id())) {
+             issue(node);
+         }
+     }
+ }
+ 
+ void Workload::issue(shared_ptr<Chakra::FeederV3::ETFeederNode> node) {
++    rlxy::start(sys->id, node->id(), Sys::boostedTick());
+     auto logger = LoggerFactory::get_logger("workload");
+     if (sys->trace_enabled) {
+         logger->debug("issue,sys->id={}, tick={}, node->id={}, "
+@@ -165,6 +170,9 @@ void Workload::issue(shared_ptr<Chakra::FeederV3::ETFeederNode> node) {
+     if (this->sys->track_local_mem) {
+         this->local_mem_usage_tracker->recordStart(node, Sys::boostedTick());
+     }
++    if (node->name().find("qwen3_sequence") != std::string::npos) {
++        rlxy::Sequence::start(this,node->id());return;
++    }
+     if (sys->replay_only) {
+         issue_replay(node);
+     } else {
+@@ -478,6 +486,7 @@ void Workload::call(EventType event, CallData* data) {
+         }
+ 
+         hw_resource->release(node);
++        rlxy::finish(sys->id, node->id(), Sys::boostedTick());
+         stats->record_end(node, Sys::boostedTick());
+ 
+         // Calculate network bandwidth
+@@ -519,6 +528,7 @@ void Workload::call(EventType event, CallData* data) {
+             }
+ 
+             hw_resource->release(node);
++            rlxy::finish(sys->id, node->id(), Sys::boostedTick());
+             stats->record_end(node, Sys::boostedTick());
+ 
+             // Calculate network bandwidth for point-to-point communications

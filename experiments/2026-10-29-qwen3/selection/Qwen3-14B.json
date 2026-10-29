@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "model": "14B",
+  "driver_sha256": "1fd10f32a021b92c1cd7088883bfbf3bf2485f65ca872af38a0f10d75c09a787",
+  "bound_finalizer_sha256": "8d09e991ef1217c3aa90d3eb156d5594288794ac80bad9a1afb17bd24d479ad7",
+  "tune_only": true,
+  "detailed_budget": 10,
+  "distinct_detailed_candidates": 9,
+  "complete_detailed_candidates": 9,
+  "winner": {
+    "policy": {
+      "train_tp": 8,
+      "rollout_tp": 4,
+      "train_mb": 8,
+      "logprob_mb": 64,
+      "cap": 64
+    },
+    "step_model_ns": 419317018064.891,
+    "evidence_path": "models/Qwen3-14B/tuning/candidate-01/attempt-1"
+  },
+  "candidates": [
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 8,
+        "logprob_mb": 64,
+        "cap": 64
+      },
+      "step_model_ns": 419317018064.891,
+      "evidence_path": "models/Qwen3-14B/tuning/candidate-01/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 8,
+        "logprob_mb": 4,
+        "cap": 64
+      },
+      "step_model_ns": 420243699264.891,
+      "evidence_path": "models/Qwen3-14B/tuning/candidate-05/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 8,
+        "logprob_mb": 32,
+        "cap": 64
+      },
+      "step_model_ns": 419380176391.299,
+      "evidence_path": "models/Qwen3-14B/tuning/candidate-02/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 8,
+        "logprob_mb": 16,
+        "cap": 64
+      },
+      "step_model_ns": 419514090381.26697,
+      "evidence_path": "models/Qwen3-14B/tuning/candidate-03/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 8,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "step_model_ns": 419771434456.563,
+      "evidence_path": "models/Qwen3-14B/tuning/candidate-04/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 4,
+        "logprob_mb": 64,
+        "cap": 64
+      },
+      "step_model_ns": 420547732019.707,
+      "evidence_path": "tuning_neighbors/Qwen3-14B/refine_train_mb/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 4,
+        "rollout_tp": 4,
+        "train_mb": 4,
+        "logprob_mb": 16,
+        "cap": 64
+      },
+      "step_model_ns": 437873317648.62,
+      "evidence_path": "tuning_neighbors/Qwen3-14B/trainTP4/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "train_mb": 8,
+        "logprob_mb": 2,
+        "cap": 64
+      },
+      "step_model_ns": 421272936590.04297,
+      "evidence_path": "tuning_neighbors/Qwen3-14B/refine_logprob_mb/attempt-1"
+    },
+    {
+      "policy": {
+        "train_tp": 8,
+        "rollout_tp": 8,
+        "train_mb": 8,
+        "logprob_mb": 64,
+        "cap": 64
+      },
+      "step_model_ns": 427887087805.864,
+      "evidence_path": "tuning_neighbors/Qwen3-14B/refine_rolloutTP8/attempt-1"
+    }
+  ],
+  "pruned_candidates": [],
+  "reason": "native tune-only adjacent-TP improvement and expanded microbatch/rollout verification; no held-out timing used",
+  "completed_prefix_diagnostics": [
+    {
+      "model": "14B",
+      "status": "COMPLETED_DOMINANCE_DIAGNOSTIC",
+      "candidate_policy": {
+        "train_tp": 8,
+        "rollout_tp": 8,
+        "train_mb": 8,
+        "logprob_mb": 64,
+        "cap": 64
+      },
+      "candidate_case": "tuning_neighbors/Qwen3-14B/refine_rolloutTP8/attempt-1",
+      "prefix_native_folder": "generation_cache/4564b2c724641b8705c1f2c0b29e75a1ab112e1a41b5a421f371c014428bdda3/attempt-1",
+      "prefix_log": "generation_cache/4564b2c724641b8705c1f2c0b29e75a1ab112e1a41b5a421f371c014428bdda3/attempt-1/sequence.23.jsonl",
+      "prefix_log_sha256": "b47d2942e3c35bbd9b71c5b6b5a2fb5d60e4bfd76012914064d29eb587bbd4b8",
+      "prefix_line_index": 444,
+      "prefix_witness": {
+        "communication_ns": 17228084324.08478,
+        "compute_ns": 33813423074.875443,
+        "end_tick": 176975065598290,
+        "memory_ns": 125933257134.6196,
+        "rank": 23,
+        "segment": 444
+      },
+      "prefix_ns": 176975065598.29,
+      "fixed_stage_ns": {
+        "old_policy": 41030187535.18,
+        "reference": 41030187535.18,
+        "advantage": 1004.0,
+        "training": 168414632742.54,
+        "optimizer": 231038809.51,
+        "publish": 2.0
+      },
+      "fixed_case": "models/Qwen3-14B/tuning/candidate-01/attempt-1",
+      "lower_bound_ns": 427681113226.7001,
+      "incumbent_ns": 419317018064.891,
+      "margin_ns": 8364095161.809082,
+      "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+      "native_binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "basis": "generation end cannot precede an already completed native segment; teacher/train/optimizer/advantage/publish are exactly unchanged for same training TP/microbatches under synchronous no-overlap; weight/sample times are nonnegative and omitted",
+      "host_timeout_is_not_used_as_a_performance_comparison": true,
+      "full_candidate_step_time_reported": true
+    }
+  ],
+  "candidate_accounting": "unique complete evidence paths plus bound-only paths; completed prefix proofs counted as diagnostics"
+}

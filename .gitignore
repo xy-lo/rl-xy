@@ -22,3 +22,10 @@ local/
 *.tar.gz
 
 runs-home-T42/
+
+native/
+
+# Generated figures and local tooling remain reproducible from source.
+.matplotlib/
+mplconfig/
+*.zip

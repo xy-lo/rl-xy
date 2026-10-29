@@ -8,7 +8,7 @@ from .types import CaseConfig, ParameterRow
 def enumerate_parameters(case: CaseConfig) -> list[ParameterRow]:
     model = case.model
     tp = case.strategy.tensor_parallel
-    qkv_width = model.hidden_size + 2 * model.kv_heads * model.head_dim
+    qkv_width = model.query_width + 2 * model.kv_heads * model.head_dim
     rows = [
         ParameterRow(
             "token_embedding",
@@ -30,8 +30,8 @@ def enumerate_parameters(case: CaseConfig) -> list[ParameterRow]:
                 ),
                 ParameterRow(
                     f"layer{layer}.o_proj",
-                    model.hidden_size * model.hidden_size,
-                    model.hidden_size * model.hidden_size // tp,
+                    model.hidden_size * model.query_width,
+                    model.hidden_size * model.query_width // tp,
                     False,
                     "row_parallel",
                 ),
@@ -51,6 +51,9 @@ def enumerate_parameters(case: CaseConfig) -> list[ParameterRow]:
                 ),
             ]
         )
+        if model.qk_norm:
+            rows.append(ParameterRow(f"layer{layer}.qk_norm", 2 * model.head_dim,
+                                     2 * model.head_dim, True, "replicated_per_head_dimension"))
         if model.qkv_bias:
             rows.append(ParameterRow(f"layer{layer}.qkv_bias", qkv_width, qkv_width // tp,
                                      False, "column_parallel"))

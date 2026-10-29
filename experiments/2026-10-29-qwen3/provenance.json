@@ -1,0 +1,33 @@
+{
+  "schema": "rlxy.qwen3-public-evidence/1",
+  "status": "RECORDED_SIMULATION_UNCALIBRATED",
+  "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+  "base_commit": "0ced6aad4eb818e8722f04500b1ea0e39fb26719",
+  "astra_commit": "4ce9ecfe746a3ee5fe47559a11d91644d641fa7f",
+  "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+  "models": [
+    "Qwen3-4B",
+    "Qwen3-8B",
+    "Qwen3-14B"
+  ],
+  "formal_runs": 24,
+  "paired_windows": 12,
+  "prompts_per_step": 192,
+  "responses_per_prompt": 8,
+  "test_windows_per_model": 4,
+  "tuning_windows_per_model": 1,
+  "trace_repo": "samuki-hf/thinking-rollouts",
+  "trace_revision": "a726a001d0145eddb2d5a2f5ede60591950b141f",
+  "trace_partition": "DS-1000, thinking, temperature 0.6",
+  "trace_scope": "Recorded response lengths; prompt lengths reconstructed using pinned official model chat templates. Not an online RL training log.",
+  "numeric_answers_regenerated": false,
+  "raw_native_logs_distributed": false,
+  "full_source_parquet_hash_verified": false,
+  "local_full_evidence_retained": true,
+  "published_inputs": "Frozen lengths, IDs, configs and prompt-length metadata; tokenizers, questions, responses and model weights are not required for replay.",
+  "hardware_calibrated": false,
+  "paper_performance_ready": false,
+  "gpu_global_optimum_proven": false,
+  "runtime_source_identity_is_historical": true,
+  "publication_source_note": "Current portable wrappers are a later source identity; historical result hashes are never rewritten to the publication commit."
+}

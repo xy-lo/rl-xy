@@ -45,6 +45,8 @@ class WorkflowBuilder:
     """
 
     def __init__(self, case: CaseConfig) -> None:
+        if case.model.qk_norm:
+            raise ValueError("Qwen3 requires the qwen3_baselines.py execution contract")
         self.case = case
         self.operations: list[Operation] = []
         self.next_node_id = 1

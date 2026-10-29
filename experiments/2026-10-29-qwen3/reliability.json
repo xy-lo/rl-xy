@@ -1,0 +1,305 @@
+{
+  "status": "PAPER_MAIN_NOT_RELEASED",
+  "hardware_calibrated": false,
+  "paper_performance_ready": false,
+  "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+  "phase_means": [
+    {
+      "model": "4B",
+      "phase_group": "generation",
+      "gpu": {
+        "seconds": 131.981928134365,
+        "compute_s": 14.883713038406793,
+        "memory_s": 111.78813699938435,
+        "communication_s": 5.309869280144051,
+        "rounding_and_markers_s": 0.0002088164298019409
+      },
+      "wafer": {
+        "seconds": 129.313104309315,
+        "compute_s": 10.833624633356687,
+        "memory_s": 118.06737014076614,
+        "communication_s": 0.4119008850628082,
+        "rounding_and_markers_s": 0.000208650129360199
+      },
+      "wafer_minus_gpu_s": -2.668823825049998
+    },
+    {
+      "model": "4B",
+      "phase_group": "logprob",
+      "gpu": {
+        "seconds": 33.497238033652,
+        "compute_s": 9.893649661062163,
+        "memory_s": 19.17083718834796,
+        "communication_s": 4.432750879151982,
+        "rounding_and_markers_s": 3.05089898109436e-07
+      },
+      "wafer": {
+        "seconds": 22.352752216187,
+        "compute_s": 11.408164608802156,
+        "memory_s": 10.195553063084018,
+        "communication_s": 0.7490342821869991,
+        "rounding_and_markers_s": 2.6211382484436036e-07
+      },
+      "wafer_minus_gpu_s": -11.144485817465004
+    },
+    {
+      "model": "4B",
+      "phase_group": "training",
+      "gpu": {
+        "seconds": 68.444290196686,
+        "compute_s": 21.011292800808413,
+        "memory_s": 38.59989341924858,
+        "communication_s": 8.833103514686147,
+        "rounding_and_markers_s": 4.6194286346435545e-07
+      },
+      "wafer": {
+        "seconds": 50.397146233666504,
+        "compute_s": 22.988383060054986,
+        "memory_s": 25.914635771168008,
+        "communication_s": 1.4941265391665137,
+        "rounding_and_markers_s": 8.63276990890503e-07
+      },
+      "wafer_minus_gpu_s": -18.047143963019494
+    },
+    {
+      "model": "4B",
+      "phase_group": "other",
+      "gpu": {
+        "seconds": 0.12549302756125,
+        "compute_s": 0.0006089349999999999,
+        "memory_s": 0.024170326500000002,
+        "communication_s": 0.10071376606125,
+        "rounding_and_markers_s": 0.0
+      },
+      "wafer": {
+        "seconds": 0.0461900389645,
+        "compute_s": 5.3166000000000006e-05,
+        "memory_s": 0.024641636,
+        "communication_s": 0.021495236964500005,
+        "rounding_and_markers_s": 0.0
+      },
+      "wafer_minus_gpu_s": -0.07930298859675
+    },
+    {
+      "model": "8B",
+      "phase_group": "generation",
+      "gpu": {
+        "seconds": 151.3645611652915,
+        "compute_s": 21.336671611621167,
+        "memory_s": 123.63406400711558,
+        "communication_s": 6.3936152183059916,
+        "rounding_and_markers_s": 0.00021032824875640867
+      },
+      "wafer": {
+        "seconds": 166.423955474186,
+        "compute_s": 19.47073881530972,
+        "memory_s": 146.3967977947897,
+        "communication_s": 0.5560914689372064,
+        "rounding_and_markers_s": 0.0003273951493835449
+      },
+      "wafer_minus_gpu_s": 15.059394308894497
+    },
+    {
+      "model": "8B",
+      "phase_group": "logprob",
+      "gpu": {
+        "seconds": 58.424599994814,
+        "compute_s": 19.620350242863474,
+        "memory_s": 36.050252955830544,
+        "communication_s": 2.753996204314009,
+        "rounding_and_markers_s": 5.918059730529785e-07
+      },
+      "wafer": {
+        "seconds": 39.897518745123996,
+        "compute_s": 22.780266543546155,
+        "memory_s": 16.910877029368006,
+        "communication_s": 0.20637458212399915,
+        "rounding_and_markers_s": 5.900858345031738e-07
+      },
+      "wafer_minus_gpu_s": -18.527081249690006
+    },
+    {
+      "model": "8B",
+      "phase_group": "training",
+      "gpu": {
+        "seconds": 117.93098524124301,
+        "compute_s": 40.14128784667862,
+        "memory_s": 72.30188563282881,
+        "communication_s": 5.487810859992934,
+        "rounding_and_markers_s": 9.017426338195801e-07
+      },
+      "wafer": {
+        "seconds": 85.135508594598,
+        "compute_s": 45.50878693854535,
+        "memory_s": 39.21538388388014,
+        "communication_s": 0.4113360980980015,
+        "rounding_and_markers_s": 1.6740744972229004e-06
+      },
+      "wafer_minus_gpu_s": -32.795476646645014
+    },
+    {
+      "model": "8B",
+      "phase_group": "other",
+      "gpu": {
+        "seconds": 0.32364336781525,
+        "compute_s": 0.0010000809999999999,
+        "memory_s": 0.07733098175,
+        "communication_s": 0.24531230506525,
+        "rounding_and_markers_s": -1.4551915228366853e-20
+      },
+      "wafer": {
+        "seconds": 0.12202727296950001,
+        "compute_s": 0.00016865800000000002,
+        "memory_s": 0.07883890200000002,
+        "communication_s": 0.043019712969499996,
+        "rounding_and_markers_s": 0.0
+      },
+      "wafer_minus_gpu_s": -0.20161609484575
+    },
+    {
+      "model": "14B",
+      "phase_group": "generation",
+      "gpu": {
+        "seconds": 179.0097848746925,
+        "compute_s": 25.115508444649894,
+        "memory_s": 146.9775717487665,
+        "communication_s": 6.916480065980676,
+        "rounding_and_markers_s": 0.00022461529544830322
+      },
+      "wafer": {
+        "seconds": 185.49841212517399,
+        "compute_s": 23.190083692994314,
+        "memory_s": 161.5913868014444,
+        "communication_s": 0.7167177804233195,
+        "rounding_and_markers_s": 0.00022385031195831302
+      },
+      "wafer_minus_gpu_s": 6.488627250481471
+    },
+    {
+      "model": "14B",
+      "phase_group": "logprob",
+      "gpu": {
+        "seconds": 87.36225194706799,
+        "compute_s": 22.457502012459,
+        "memory_s": 47.38037179057428,
+        "communication_s": 17.524378008567993,
+        "rounding_and_markers_s": 1.354667320251465e-07
+      },
+      "wafer": {
+        "seconds": 53.464510536473,
+        "compute_s": 26.29756501930203,
+        "memory_s": 24.855720643399998,
+        "communication_s": 2.3112245694730023,
+        "rounding_and_markers_s": 3.042979698181152e-07
+      },
+      "wafer_minus_gpu_s": -33.89774141059499
+    },
+    {
+      "model": "14B",
+      "phase_group": "training",
+      "gpu": {
+        "seconds": 179.21643315640898,
+        "compute_s": 47.09333125305368,
+        "memory_s": 97.15676286058883,
+        "communication_s": 34.9663372919092,
+        "rounding_and_markers_s": 1.750857276916504e-06
+      },
+      "wafer": {
+        "seconds": 120.026394134902,
+        "compute_s": 52.47181408879614,
+        "memory_s": 62.88593621651985,
+        "communication_s": 4.668641825151985,
+        "rounding_and_markers_s": 2.0044340324401857e-06
+      },
+      "wafer_minus_gpu_s": -59.190039021506976
+    },
+    {
+      "model": "14B",
+      "phase_group": "other",
+      "gpu": {
+        "seconds": 0.43908842511900004,
+        "compute_s": 0.0009258799999999998,
+        "memory_s": 0.063384224,
+        "communication_s": 0.374778321119,
+        "rounding_and_markers_s": 0.0
+      },
+      "wafer": {
+        "seconds": 0.1160348534145,
+        "compute_s": 0.000133486,
+        "memory_s": 0.064620158,
+        "communication_s": 0.051281209414500005,
+        "rounding_and_markers_s": 0.0
+      },
+      "wafer_minus_gpu_s": -0.32305357170450005
+    }
+  ],
+  "cost_means": [
+    {
+      "model": "4B",
+      "platform": "gpu",
+      "seconds": 234.04894939226418,
+      "compute_s": 45.78926443527737,
+      "memory_s": 169.5830379334809,
+      "communication_s": 18.67643744004343,
+      "rounding_and_markers_s": 0.00020958346256351476,
+      "sample_sd_s": 10.411065468438636
+    },
+    {
+      "model": "4B",
+      "platform": "wafer",
+      "seconds": 202.109192798133,
+      "compute_s": 45.230225468213824,
+      "memory_s": 154.20220061101818,
+      "communication_s": 2.6765569433808207,
+      "rounding_and_markers_s": 0.0002097755201759339,
+      "sample_sd_s": 10.487815142223102
+    },
+    {
+      "model": "8B",
+      "platform": "gpu",
+      "seconds": 328.0437897691638,
+      "compute_s": 81.09930978216323,
+      "memory_s": 232.0635335775249,
+      "communication_s": 14.880734587678184,
+      "rounding_and_markers_s": 0.00021182179736328123,
+      "sample_sd_s": 17.00224395890571
+    },
+    {
+      "model": "8B",
+      "platform": "wafer",
+      "seconds": 291.57901008687753,
+      "compute_s": 87.7599609554012,
+      "memory_s": 202.60189761003787,
+      "communication_s": 1.2168218621287072,
+      "rounding_and_markers_s": 0.0003296593097152711,
+      "sample_sd_s": 16.51009245753357
+    },
+    {
+      "model": "14B",
+      "platform": "gpu",
+      "seconds": 446.02755840328837,
+      "compute_s": 94.66726759016255,
+      "memory_s": 291.5780906239296,
+      "communication_s": 59.78197368757686,
+      "rounding_and_markers_s": 0.00022650161945724488,
+      "sample_sd_s": 14.648559998856427
+    },
+    {
+      "model": "14B",
+      "platform": "wafer",
+      "seconds": 359.10535164996344,
+      "compute_s": 101.95959628709245,
+      "memory_s": 249.3976638193642,
+      "communication_s": 7.7478653844628065,
+      "rounding_and_markers_s": 0.00022615904396057135,
+      "sample_sd_s": 11.741297525889152
+    }
+  ],
+  "known_limitations": [
+    "GPU analytic CTA model omits cross-CTA L2 reuse and calibrated kernel overlap/occupancy.",
+    "Wafer BF16 rate, vector rate, SRAM bandwidth and D2D timing contain explicit assumptions.",
+    "The C<=64 GPU search does not establish a sufficiently optimized baseline; later C128 probes found small model-internal improvements.",
+    "Four-window variation measures workload spread, not hardware-model prediction error.",
+    "Current outputs do not establish learning quality, a real-device speedup, or a wafer-specific method gain."
+  ]
+}

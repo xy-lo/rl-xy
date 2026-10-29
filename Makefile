@@ -16,6 +16,7 @@ test:
 
 check:
 	python3 scripts/check_public_results.py
+	python3 scripts/check_qwen3_results.py
 	python3 scripts/check_docs.py
 
 transfer:

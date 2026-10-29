@@ -5,6 +5,7 @@
 #include <astra-network-analytical/common/NetworkParser.h>
 #include <stdexcept>
 #include <iostream>
+#include <cstdlib>
 namespace rlxy {
 class Mesh2D final : public NetworkAnalyticalCongestionAware::Topology {
     int width,height;
@@ -36,9 +37,12 @@ public:
         while(current/width!=dst/width) {
             current+=(current/width<dst/width?width:-width);result.push_back(devices[current]);
         }
-        std::cout<<"[rlxy.mesh.route] src="<<src<<" dst="<<dst<<" path=";
-        for(const auto& device:result)std::cout<<device->get_id()<<",";
-        std::cout<<std::endl;
+        // Packet route traces are opt-in diagnostics, never the long-run default.
+        if(std::getenv("RLXY_MESH_ROUTE_LOG")) {
+            std::cout<<"[rlxy.mesh.route] src="<<src<<" dst="<<dst<<" path=";
+            for(const auto& device:result)std::cout<<device->get_id()<<",";
+            std::cout<<std::endl;
+        }
         return result;
     }
 };

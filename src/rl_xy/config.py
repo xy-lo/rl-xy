@@ -37,6 +37,7 @@ ROOT_FIELDS = {
 }
 MODEL_FIELDS = set(ModelConfig.__dataclass_fields__)
 MODEL_OPTIONS = {"qkv_bias", "rotary_embedding", "tie_word_embeddings"}
+MODEL_EXTENSIONS = {"qk_norm"}
 WORKLOAD_FIELDS = {
     "round_id",
     "group_id",
@@ -102,7 +103,7 @@ def _validate_case(case: CaseConfig) -> None:
     hardware = case.hardware
     strategy = case.strategy
     for name, value in asdict(model).items():
-        if name in MODEL_OPTIONS:
+        if name in MODEL_OPTIONS | MODEL_EXTENSIONS:
             if type(value) is not bool:
                 raise ConfigError(f"model.{name} must be boolean")
         else:
@@ -127,7 +128,7 @@ def _validate_case(case: CaseConfig) -> None:
     _non_negative("strategy.optimizer_minibatch_trajectories", strategy.optimizer_minibatch_trajectories)
     if case.schema_version == "1.0" and (strategy.training_epochs != 1 or strategy.optimizer_minibatch_trajectories != 0):
         raise ConfigError("multi-update training requires schema 1.1")
-    if model.hidden_size != model.query_heads * model.head_dim:
+    if not model.qk_norm and model.hidden_size != model.query_heads * model.head_dim:
         raise ConfigError("hidden_size must equal query_heads * head_dim")
     if case.schema_version == "1.0" and (any(getattr(model, k) for k in MODEL_OPTIONS)
                                         or model.kv_heads != model.query_heads):
@@ -235,7 +236,7 @@ def load_case(path: str | Path, rounds_override: int | None = None) -> CaseConfi
     ):
         if not isinstance(value, dict):
             raise ConfigError(f"{scope} must be an object")
-    allowed_model = MODEL_FIELDS if raw["schema_version"] == "1.1" else MODEL_FIELDS - MODEL_OPTIONS
+    allowed_model = (MODEL_FIELDS - (MODEL_EXTENSIONS - set(model_raw))) if raw["schema_version"] == "1.1" else MODEL_FIELDS - MODEL_OPTIONS - MODEL_EXTENSIONS
     _exact_fields(model_raw, allowed_model, "model")
     _exact_fields(workload_raw, WORKLOAD_FIELDS, "workload")
     if not HARDWARE_FIELDS-HARDWARE_OPTIONS <= set(hardware_raw) or set(hardware_raw)-HARDWARE_FIELDS:

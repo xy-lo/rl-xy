@@ -1,0 +1,10 @@
+# Preserve exact evidence and calibration bytes across checkouts.
+experiments/** -text
+calibration/** -text
+
+# Recorded CSV uses canonical CSV CRLF; SVG is a generated vector export.
+experiments/**/*.csv whitespace=cr-at-eol
+experiments/**/figures/*.svg -whitespace
+
+# Patch context whitespace must remain byte-identical for application upstream.
+docker/astrasim/qwen3-native.patch -text -whitespace

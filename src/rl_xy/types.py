@@ -29,6 +29,11 @@ class ModelConfig:
     qkv_bias: bool = False
     rotary_embedding: bool = False
     tie_word_embeddings: bool = False
+    qk_norm: bool = False
+
+    @property
+    def query_width(self) -> int:
+        return self.query_heads * self.head_dim
 
 
 @dataclass(frozen=True)

@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "seed": 20261028,
+  "sampling": "library-stratified disjoint prompt windows, equal batch1536; fixed sample IDs across models and platforms",
+  "dataset_revision": "a726a001d0145eddb2d5a2f5ede60591950b141f",
+  "lengths_csv_sha256": "3530d5ef7214207a5ad86f4bb9fa24de49ce4b5320ab98b1f79fbe91a2706a5b",
+  "ds1000_gzip_sha256": "e8c6daa9d7223976bce0296644f3933f78d7f47830669ff05cd61da62c6ba9b3",
+  "windows_sha256": "bde6a1ef8800e1a9fbf973c21fdfe00ebc9d6f12539deac6479dc4f6ade04198",
+  "models": [
+    {
+      "model": "Qwen3-4B",
+      "identity": {
+        "repo": "Qwen/Qwen3-4B",
+        "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+        "config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a"
+      },
+      "files": {
+        "config.json": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+        "prompt_lengths.json": "795f74aa93fc3530d5fe4e2c22dedbf435d77c73c89960a054edc9da5018cbbf",
+        "test1.json": "e2a64684474c0e77f642a3c1396d143f2fdf3a1f5628e91a80b021feac5ee02e",
+        "test2.json": "8d3dc0c845d9610f84e20af4672de9578618f5b65ea2a39eeb5635105f6764ea",
+        "test3.json": "210d15c975d49c58c85e9ec5e19618de483fb78722cbf80f1637bc472c33e720",
+        "test4.json": "ec20248d5add76a5b8a3f56014e6bd2493c40ea63e0a0550acbd498a704b9348",
+        "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "tune.json": "f1edc07faaa821915b916293111f28146855eeee57bbe3125464102a900ba9f1"
+      },
+      "prompt_length_min": 41,
+      "prompt_length_max": 2869
+    },
+    {
+      "model": "Qwen3-8B",
+      "identity": {
+        "repo": "Qwen/Qwen3-8B",
+        "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+        "config_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30"
+      },
+      "files": {
+        "config.json": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+        "prompt_lengths.json": "795f74aa93fc3530d5fe4e2c22dedbf435d77c73c89960a054edc9da5018cbbf",
+        "test1.json": "fdf1a009027929e56291fe65c468d01ffa94f0fb04fce48f87c0626e0c63fc21",
+        "test2.json": "77277fa5954af02db0a00e90bb37195ed4e3da6cc5967f8a2ca3b649ee1a145b",
+        "test3.json": "87fcd089037a149b08dfb323f7c8a851e816e7229a64e00e989a57430b351615",
+        "test4.json": "508e16cb1aa98e56cd332703fafa5ed8ebf8c2c6f489fe6c0817d90a77b3c71f",
+        "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "tune.json": "4c90166444dabef389581dfab045d914825a7055a239e09e3f626211b6b0293a"
+      },
+      "prompt_length_min": 41,
+      "prompt_length_max": 2869
+    },
+    {
+      "model": "Qwen3-14B",
+      "identity": {
+        "repo": "Qwen/Qwen3-14B",
+        "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+        "config_sha256": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a"
+      },
+      "files": {
+        "config.json": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a",
+        "prompt_lengths.json": "795f74aa93fc3530d5fe4e2c22dedbf435d77c73c89960a054edc9da5018cbbf",
+        "test1.json": "f15e1626e7b99532337b062dca3815d676a779eae9e156f13cd89d7e436e3ea8",
+        "test2.json": "1f8d2e52441d9b3258cfd1aad4101e6c98570617943402070a60e683ae970c61",
+        "test3.json": "71290f3fd1c031f632da817557f0b20b01e2bf6a1eb61d00aa1fe0c91f8f0ecd",
+        "test4.json": "84b28483f3b6ec1263f50d951603a5a490892376709f622983fab91ed9b6ee8b",
+        "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "tune.json": "c4f5f58083e231faf6e19af3f0efb5c59e230fedd8db713779b76b1a90f91acf"
+      },
+      "prompt_length_min": 41,
+      "prompt_length_max": 2869
+    }
+  ],
+  "numeric_answers_regenerated": false,
+  "input_template_reconstructed": true
+}

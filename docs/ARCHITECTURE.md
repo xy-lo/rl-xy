@@ -1,60 +1,38 @@
 # 架构与执行合同
 
-当前主入口是 `rl_xy.cli run-aligned`。历史 `run`、`run-wafer`、`run-colocated` 保留用于兼容；它们的旧协议和性能数字不能替代本版控制。逐文件职责见 [FILE_MAP](FILE_MAP.md)，命令见 [REPRODUCING](REPRODUCING.md)。
+当前Qwen3入口是 `qwen3_baselines.py` 和 `replay_qwen3_policies.py`。原 `rl_xy.cli run-aligned` 等0.9.5入口保留兼容；两条路径的输入、成本域和运行身份分别解释。
 
-## 分层与模块
+## 分层职责
 
-| 层 | 主要文件 | 输入、功能与输出 |
+| 层 | 模块 | 合同 |
 |---|---|---|
-| 输入/能力合同 | `config.py`、`baseline_contract.py`、`model.py`、`hardware_profile.py` | 校验模型、完整轨迹、batch/并行组、H0 来源及实现能力；配置合法不等于已经实现或成本可信 |
-| 同步协议 | `colocation.py`、`colocation_validation.py` | 全局阶段边界、训练/生成 TP 布局、权重重分片、行为/Actor/Reference 版本 |
-| 真实微批/DO | `training_batching.py`、`distributed_optimizer.py`、`aligned_graph.py` | 聚合真实形状，保留轨迹/causal attention/有效token分母，RS→owned Adam→AG 与状态生命周期 |
-| 推理生命周期 | `uniform_generation.py`、`inference_lifetimes.py` | 固定长度生成、KV 预留/增长/回收、最后 hidden row 的 sampling LM head；不复制实际 server router |
-| 算子与硬件成本 | `operator_ir.py`、`mapped_costs.py`、`gpu_model.py`、`mapping.py`、`multicore.py` | typed GEMM/向量/读写；GPU SM/CTA/标签或 wafer tile/核私有 SRAM、共享 DRAM 服务 |
-| 成本域与缓存 | `gemm_census.py`、`memoized_costs.py` | 按实际调用次数列精确逻辑签名，查表缺域拒绝，完整 shape/precision/cache 口径不得以统一倍数替代 |
-| 张量/资源 | `tensor_plan.py`、`resource_encoding.py`、`resource_validation.py` | alloc/read/READY/free、持久状态、workspace、私有 SRAM、DRAM/NIC、完整生命周期和峰值 |
-| 原生适配 | `communication_lowering.py`、`astra_adapter/`、`docker/astrasim/` | 每 rank Chakra ET、通信端点与资源 hook；原生网络排队和 issue/callback 时钟 |
-| 等价执行优化 | `local_chain_contraction.py`、`component_proof_cache.py`、`evidence_io.py` | 严格串行本地链精确收缩、不可变组件证明复用、流式证据；不删通信或资源验证 |
-| 运行/证据 | `aligned_run.py`、`reporting.py`；`scripts/bounded_run.py` | 预算、退出、镜像/源/输入身份、原始日志、SHA、指标与失败保留 |
-| 独立分析 | `scripts/check_aligned_result.py`、`compare_aligned_results.py`、`compare_native_replay.py` | 绑定实际 manifest 与工具 SHA；单包、同策略、原生等价分别检查，不提升硬件精度 |
+| 输入与模型 | `model_import.py`、`model.py`、`config.py` | Qwen3参数精确枚举、4B独立Q投影宽度、Q/K RMSNorm；固定逐轨迹P/R和分组 |
+| 本地成本 | `qwen3_cost.py`、`gpu_model.py`、`capacity_mapping.py` | 线性/attention/向量操作；GPU SM/CTA与晶圆core/tile容量映射 |
+| RL阶段 | `qwen3_experiment.py` | 训推权重转换、样本搬运、old/ref logprob、训练重算、DO和版本发布 |
+| 生成调度 | `qwen3_rollout.py` | 副本内FIFO补位、KV增长/释放；逻辑token轮次的精确事件压缩 |
+| 原生重复程序 | `qwen3_sequence.py`、`RlxySequence.hh` | 压缩宿主表示，仍执行每个原生子步/collective，不以压缩省略设备工作 |
+| 原生网络 | `qwen3_native.py`、`RlxyMesh.hh`、`RlxyGpu.hh` | rank依赖、die间/节点间网络及issue/callback完成时间 |
+| 身份与路径 | `qwen3_source.py`、`qwen3_paths.py` | 内容树与二进制SHA；显式输入/输出/后端路径，缓存不写入冻结输入 |
+| 公开校验 | `check_qwen3_results.py` | 校验已发布输入、记录账本与统计；不冒充原日志重放或硬件校准 |
 
-## 一次同步更新
+## 粒度与存储
 
-1. 持久 Actor/Reference/DO 状态准入；按所选 naive 路径导出推理权重并计重分片通信和本地读写。
-2. 经过阶段屏障，执行 prefill 与逐 token decode；Transformer/KV 处理全 P，普通 sampling 只对每请求最后 hidden row 做 LM head。
-3. 搬运样本、回收生成状态、切回训练；执行 reward、old-policy logprob、冻结 Reference、GRPO group 优势阶段。
-4. 执行真实训练 microbatch 的 forward/backward 与梯度累积；teacher 使用完整 S=P+R−1，不把采样剪枝套到训练。
-5. DP 梯度 ReduceScatter、唯一参数所有权的 norm/clip、owned FP32 Adam 更新、BF16 参数 AllGather。
-6. Actor 版本发布和清理。当前一次更新 Actor0→1，Reference0→0；下一轮不能提前读取未发布版本。
+系统级追踪同步阶段和TP/DP组；晶圆逻辑网格为54die、活动计算rank0–47。die内部把矩阵分给多个core，按最慢核工作和共享DRAM服务估算；每core的tile单独受1,250,000B SRAM限制。256core合计320MB，但单核不能把它当作池化空间。每die外部DRAM为64GB，状态与KV等另做准入。
 
-W1 训练 DP 连续分配完整 group；训练 TP 块内生成使用 `local[j::micro]` 静态交错，回收后按源 owner 显式搬运。每生成 replica 收到16个group各4条，不能误写成8个完整group。两侧 mapping/dispatch 相同，但这不是 veRL 实际 worker/server 路由、continuous batching 或 cache 实现。算法 oracle 及合成输入不等于执行数值 LLM 训练。
+GPU实际使用108SM、164KiB共享存储/SM和合法CTA候选。本次Qwen3的profile没有`gemm_profile`；旧3B热GEMM查表路径仍存在，不能混称本轮实测成本。两边本地计算+访存目前相加，GPU跨CTA的L2复用没有建模，仍需修订/校准。片内NoC、SRAM bank和PE阵列没有逐周期模拟。
 
-## 内存、通信与资源准入
+## RL单步与通信
 
-对象可先分配、后 READY；读必须满足生产依赖，free 必须晚于最后消费。KV、保守激活 tape、反向 partial、FP32 主梯度/master/moments、通信 staging 和外层样本 carrier 均有生命周期。DO 只分片归属状态，不把所有内存免费除 DP。arena 是原逻辑对象/预留的保守准入峰值，不是新算法节约；它不是生产 veRL 的显存严格下界。
+权重准备→生成→样本转移→old/ref→优势→forward/重算/backward→DO归约/Adam/参数发布。训练/生成TP不同时，历史baseline通过完整参数导出与目标分片装载处理；端点读写与通信计费。生成FIFO只在副本内补位，未引入晶圆专用跨副本任务重分配。
 
-GROUP AllGather 的 `comm_size` 是每 rank 输入 shard，ReduceScatter 是每 rank 完整输入；输出空间、端点读写、ring SUM 和 staging 分别保留。Astra 内部高 `local-mem-bw` 仅禁用重复 memory proxy，真实本地成本由显式服务给出，不是芯片带宽。操作级 payload 之和不等于 ring/链路 wire traffic。
+Network模型使用固定ASTRA后端和透明扩展；不同逻辑组的通信仍在同一原生网络资源上执行。compact程序与expanded小例按各rank时钟检查等价。表示压缩、宿主缓存、流式日志省宿主开销，不免费减少模拟计算或通信。
 
-`RlxyResources.hh` 在原生 issue/callback 执行准入/释放并输出实际快照。统一合同和逐 rank 合同必须能完整解码、语义和 SHA 对齐。read-ID 字典仅压缩重复 storage 字符串，非法类型/索引被拒绝；完整向量值缓存仍验证每行快照和私有容量；64 KiB 日志缓冲只改变宿主 I/O，kill 后的部分日志仍是失败。
+## 时间与容量边界
 
-严格本地链只合并没有中间竞争边界的串行 compute，保留整数服务总和；通信、全局边界和 cleanup 不免费消失。原始逻辑对象在实际 native macro 时钟上回放。宏内推导事件不能冒称每个算子都有独立 native callback。组件实例证明和语义签名去重分开，不能以字典去重省掉 invocation 覆盖。
+Qwen3各大阶段之间有全局屏障，每阶段取并行依赖/网络执行后的完成时间，因此单步可求阶段之和。阶段内不能把48个rank时间直接相加。0.9.5旧aligned报告的stage envelope可能重叠，不能把旧表任意求和；该口径不自动继承到新路径。
 
-## 硬件与单位
+时间为模拟设备ns；native内部采用固定tick缩放，程序墙钟独立记录。容量检查包括Actor/Reference/DO持久状态、导出buffer、KV、激活和前向临时buffer。GPU80GB、晶圆64GB均按声明生命周期上界；模型通过准入不代表实体框架显存已经验证。
 
-| 参数 | GPU 模型 | H0 晶圆模型 |
-|---|---|---|
-| 分配/活动 | 48/48，6节点×8 A100-SXM80GB | 54/48，6×9逻辑mesh，256核/die |
-| 名义 FP16/BF16 算力 | 312TFLOPS/卡；14.976PFLOPS合计 | FP16 1.02TFLOPS/核；active12.53376PF，allocated14.10048PF；BF16同率是假设 |
-| 主存 | 80GB/卡，2.039TB/s | 64GB/die，2TB/s |
-| 片上 | 164KiB/SM参考预算，不是实测cuBLAS occupancy | 1.25MB/core私有SRAM；容量不当带宽 |
-| 网络主场景 | NVLink300GB/s/方向；节点uplink400GB/s/方向共享 | D2D2TB/s/edge/方向的执行口径假设 |
+## 当前限制与证据身份
 
-H0 来源保留于 `configs/hardware/`；用户原表/论文值、单位解释、执行假设分别记录。WSC-LLM Fig.3 模板几何与 Case3 54die 资源不能直接拼成已验证封装；不缩小计算die掩盖布局问题。NoC/SRAM带宽、FP32/向量率、D2D方向/延迟、NIC/host等未定项不能冒充论文实测。细粒度 NoC/DMA、有限 NIC 队列与物理布局未完整校准。主参数和引用见[实验设计](EXPERIMENT_DESIGN.md)。
-
-模型成本用 ns，当前 native tick 每1000tick对应1model ns；日志和 manifest 保存缩放。以真实完成 callback 还原时钟，程序墙钟另记。阶段表是全 rank 最早 issue 到最晚 callback 的 envelope；barrier 的全步包络不是屏障服务时间，阶段跨度不能直接相加。
-
-## 证据能支持什么
-
-每个 run 保存实际 argv、模型/数据/算法/硬件/策略、源树与镜像/二进制、输入/产物 SHA、退出/OOM、预算、原始事件/资源与检查。失败保留；超时或超容量不填性能数值，不从多次尝试拼出伪单次成功。
-
-单测/数学 oracle/守恒/原生小例证明工程一致性；热GEMM标签只覆盖指定调用协议，不证明真实layout/fusion/网络/host或整步校准；仿真吞吐不证明学习质量。当前 `hardware_calibrated=false`、`full_verl_runtime_reproduced=false`、`paper_performance_ready=false`。G7受限3B控制已通过，G8强GPU/四模型/代表性负载仍未放行，详见[结果](RESULTS.md)。
+源树、策略、输入和二进制共同绑定每份结果，失败尝试保留。新发布包装器与历史运行是不同身份；冻结结果继续绑定历史树d7530f67…。目前没有真实48GPU或晶圆整步校准、学习质量、能耗/面积或专用方法收益结论。后续改进不得通过改变参数迎合预期快慢方向。

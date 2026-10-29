@@ -14,24 +14,46 @@ from .cost_model import CostEstimate
 from .mapping import ceildiv
 
 
-@lru_cache(maxsize=4096)
+def _ap_counts(start, step, count, bins):
+    from math import gcd
+    out=[0]*bins
+    period=bins//gcd(step,bins);q,r=divmod(count,period)
+    for i in range(period):out[(start+i*step)%bins]=q+(i<r)
+    return out
+
+
+@lru_cache(maxsize=65536)
 def cta_mapping(problem,sms,capacity,tm,tn,tk):
-    flops=[0]*sms;traffic=[0]*sms;workspace=[0]*sms
-    reads=writes=blocks=0
-    for _ in range(problem.batches):
-        for m in range(0,problem.m,tm):
-            mc=min(tm,problem.m-m)
-            for n in range(0,problem.n,tn):
-                nc=min(tn,problem.n-n);kc=min(tk,problem.k);sm=blocks%sms
-                need=mc*kc*problem.a_bytes+kc*nc*problem.b_bytes+mc*nc*problem.accumulator_bytes
-                if need>capacity:raise ValueError('GPU CTA exceeds private SM shared memory')
-                r=mc*problem.k*problem.a_bytes+problem.k*nc*problem.b_bytes
-                w=mc*nc*problem.output_bytes
-                flops[sm]+=2*mc*nc*problem.k;traffic[sm]+=r+w
-                workspace[sm]=max(workspace[sm],need)
-                reads+=r;writes+=w;blocks+=1
+    """Closed-form exact round-robin CTA ledger, including both edge tiles.
+
+    Identical to enumerating every output CTA, without work proportional to
+    large training token counts. This changes execution cost, not device cost.
+    """
+    mr=ceildiv(problem.m,tm);nc=ceildiv(problem.n,tn);b=problem.batches
+    count=_ap_counts(0,1,b*mr*nc,sms)
+    me=[0]*sms;ne=[0]*sms;corner=[0]*sms
+    dm=problem.m-(mr-1)*tm-tm;dn=problem.n-(nc-1)*tn-tn
+    if dm:
+        for batch in range(b):
+            x=_ap_counts(batch*mr*nc+(mr-1)*nc,1,nc,sms)
+            me=[a+c for a,c in zip(me,x)]
+    if dn:ne=_ap_counts(nc-1,nc,b*mr,sms)
+    if dm and dn:corner=_ap_counts(mr*nc-1,mr*nc,b,sms)
+    flops=[];traffic=[];workspace=[];reads=writes=0;kc=min(tk,problem.k)
+    for sm in range(sms):
+        sum_m=tm*count[sm]+dm*me[sm];sum_n=tn*count[sm]+dn*ne[sm]
+        product=tm*tn*count[sm]+dm*tn*me[sm]+tm*dn*ne[sm]+dm*dn*corner[sm]
+        r=problem.k*(sum_m*problem.a_bytes+sum_n*problem.b_bytes);w=product*problem.output_bytes
+        sizes=[(tm,tn,count[sm]-me[sm]-ne[sm]+corner[sm]),
+               (tm+dm,tn,me[sm]-corner[sm]),(tm,tn+dn,ne[sm]-corner[sm]),
+               (tm+dm,tn+dn,corner[sm])]
+        need=max((m*kc*problem.a_bytes+kc*n*problem.b_bytes+m*n*problem.accumulator_bytes
+                  for m,n,c in sizes if c),default=0)
+        if need>capacity:raise ValueError('GPU CTA exceeds private SM shared memory')
+        flops.append(2*problem.k*product);traffic.append(r+w);workspace.append(need)
+        reads+=r;writes+=w
     if sum(flops)!=problem.flops:raise ValueError('GPU CTA FLOP conservation failed')
-    return tuple(flops),tuple(traffic),tuple(workspace),reads,writes,blocks
+    return tuple(flops),tuple(traffic),tuple(workspace),reads,writes,b*mr*nc
 
 
 class GPUCostProvider:

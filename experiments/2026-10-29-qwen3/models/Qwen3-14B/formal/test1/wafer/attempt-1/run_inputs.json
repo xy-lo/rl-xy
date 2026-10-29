@@ -1,0 +1,10 @@
+{
+  "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+  "trajectory_sha256": "349daf5fabbc74b7f368df7c56b8f6a9fd68df13eadf2781f164a759a2f5df23",
+  "platform": "wafer",
+  "compute_scale": 1.0,
+  "network_scale": 1.0,
+  "model_config_sha256": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a",
+  "global_prompt_cap": 2869,
+  "training_memory_policy": "actual fixed-order batch token counts after generation; no response-length oracle in generation admission or ordering"
+}

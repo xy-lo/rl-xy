@@ -12,17 +12,19 @@ from pathlib import Path
 def inspect_hf_model(path: str | Path) -> dict:
     path = Path(path)
     raw = json.loads(path.read_text())
-    if raw.get("model_type") != "qwen2" or raw.get("architectures") != ["Qwen2ForCausalLM"]:
-        raise ValueError("current HF inspector supports Qwen2ForCausalLM only")
+    family = raw.get("model_type")
+    if family not in ("qwen2", "qwen3") or raw.get("architectures") != [{"qwen2":"Qwen2ForCausalLM", "qwen3":"Qwen3ForCausalLM"}[family]]:
+        raise ValueError("current HF inspector supports dense Qwen2/Qwen3 only")
     keys = ("num_hidden_layers", "hidden_size", "intermediate_size", "num_attention_heads",
             "num_key_value_heads", "vocab_size", "max_position_embeddings")
     for k in keys:
         if type(raw.get(k)) is not int or raw[k] <= 0:
             raise ValueError(f"invalid/missing {k}")
     d, q, kv = raw["hidden_size"], raw["num_attention_heads"], raw["num_key_value_heads"]
-    if d % q or q % kv:
+    hd = raw.get("head_dim", d // q)
+    if (family == "qwen2" and d % q) or q % kv or type(hd) is not int or hd <= 0:
         raise ValueError("incompatible hidden/query/KV head dimensions")
-    if raw.get("head_dim", d // q) != d // q:
+    if family == "qwen2" and hd != d // q:
         raise ValueError("nonstandard head_dim is not supported")
     if raw.get("hidden_act") != "silu" or raw.get("attention_dropout") != 0 or raw.get("use_sliding_window") is not False:
         raise ValueError("current inspector requires dense SwiGLU, zero attention dropout and no sliding window")
@@ -30,11 +32,13 @@ def inspect_hf_model(path: str | Path) -> dict:
         raise ValueError("tie_word_embeddings must be explicit")
     if any(k in raw for k in ("quantization_config", "num_experts", "num_local_experts")):
         raise ValueError("quantized/MoE parameter layout requires another model adapter")
-    width = kv * (d // q)
+    width = kv * hd
+    qw = q * hd
     layers, ffn, vocab = raw["num_hidden_layers"], raw["intermediate_size"], raw["vocab_size"]
     # Qwen2 has q/k/v projection biases and no o_proj/MLP biases.
-    per_layer = {"qkv_weights": d * (d + 2 * width), "qkv_biases": d + 2 * width,
-                 "o_proj": d * d, "ffn": 3 * d * ffn, "rmsnorm": 2 * d}
+    per_layer = {"qkv_weights": d * (qw + 2 * width), "qkv_biases": (qw + 2 * width) if family == "qwen2" else 0,
+                 "o_proj": d * qw, "ffn": 3 * d * ffn, "rmsnorm": 2 * d}
+    if family == "qwen3":per_layer["qk_norm"] = 2 * hd
     unique = vocab * d + layers * sum(per_layer.values()) + d
     if not raw["tie_word_embeddings"]:
         unique += vocab * d
@@ -43,9 +47,9 @@ def inspect_hf_model(path: str | Path) -> dict:
     if raw.get("rope_scaling") is not None:
         blockers.append("nondefault RoPE requires another execution template")
     return {
-        "schema_version": "rlxy.hf-model/1", "model_type": "qwen2", "config": raw,
+        "schema_version": "rlxy.hf-model/1", "model_type": family, "config": raw,
         "config_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-        "head_dim": d // q, "kv_width": width, "per_layer_parameter_elements": per_layer,
+        "head_dim": hd, "kv_width": width, "per_layer_parameter_elements": per_layer,
         "unique_parameter_elements": unique,
         "bf16_parameter_bytes": unique * 2,
         "bf16_kv_bytes_per_processed_token_all_layers": 2 * layers * width * 2,

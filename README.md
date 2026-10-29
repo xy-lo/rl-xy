@@ -1,50 +1,50 @@
 # rl-xy
 
-基于 AstraSim 的晶圆级 RL post-training **性能仿真与执行合同验证框架**。当前版本 0.9.5，主路径是同步 GRPO：同一软件策略分别映射到 48 张 A100 模型与 54-die 晶圆 H0 模型，计算、状态移动、通信和内存生命周期显式计费。
+基于 AstraSim 的 RL post-training 性能仿真框架。当前版本 **0.10.0**，新增 Qwen3-4B、8B、14B 公开长度回放，以及 48×A100 模型与 48 活动 die 晶圆模型的同步 GRPO 配对。
 
-当前完成首组 **Qwen2.5-3B** 严格控制：384×8＝3072 条固定 P512/R128 合成轨迹，训练 TP2/DP24/mb4 → 生成 TP1/DP48，48 active；DO 开启，SP/overlap 关闭。
+**当前结果尚未完成硬件计时校准，论文性能主结论未放行。** 下表是冻结成本模型的可复算输出。GPU 使用解析 SM/CTA 模型；晶圆使用 core 私有 SRAM 分块和共享带宽模型。成功执行、容量检查与求和一致性不等于已证明真实硬件精度或 GPU 全空间最优。
 
-| 指标 | 48×A100 模型 | 晶圆直接迁移模型 |
-|---|---:|---:|
-| 模拟一步时间 | 16.503234 s | 19.176605 s |
-| 仿真程序墙钟 | 659.886 s | 696.424 s |
-| 每 rank 的声明 DRAM 峰值 | 49.1775 GB | 49.1775 GB |
-| 完整运行／独立 MVP／严格配对 | PASS | PASS |
+| 模型 | 平台 | 设备单步时间：均值 ± SD（s） | 有效吞吐（token/s） |
+| --- | --- | --- | --- |
+| Qwen3-4B | GPU | 234.05 ± 10.41 | 22,084 |
+| Qwen3-4B | 晶圆迁移 | 202.11 ± 10.49 | 25,574 |
+| Qwen3-8B | GPU | 328.04 ± 17.00 | 16,091 |
+| Qwen3-8B | 晶圆迁移 | 291.58 ± 16.51 | 18,103 |
+| Qwen3-14B | GPU | 446.03 ± 14.65 | 9,994 |
+| Qwen3-14B | 晶圆迁移 | 359.11 ± 11.74 | 12,413 |
 
-本控制中晶圆耗时高 **16.20%**。这是受限显式 IR 和声明成本下的结果；没有数值训练或学习质量结果，不称最优/default veRL、实体晶圆部署或已校准硬件加速。两边相同的软件策略不自动代表最强 GPU 基线。
+每窗口 192 prompt×8 回答，四个正式测试窗口。时间为设备侧完整 RL 单步时间；SD 是窗口负载波动。有效吞吐为四窗口 Σ(P+R)/Σ设备时间，单位 token/s；不同于在线 serving 的请求 TPS。三档每条轨迹均在 GPU—晶圆之间严格配对。
+
+![当前模型的时间与吞吐](experiments/2026-10-29-qwen3/figures/baseline_normalized.png)
 
 ## 从这里开始
 
-| 文档 | 解决的问题 |
+| 文档 | 内容 |
 |---|---|
-| [构建与复现](docs/REPRODUCING.md) | Docker、测试、小例、完整 3B 命令、预算与结果检查 |
-| [架构](docs/ARCHITECTURE.md) | 分层职责、执行链、资源合同、硬件与时间口径 |
-| [实验设计](docs/EXPERIMENT_DESIGN.md) | 模型/算法/数据/切分/硬件/统计参数及逐项理由、来源 |
-| [实验结果](docs/RESULTS.md) | 最新 3B 阶段结果、证据、失败和论文使用范围 |
-| [文件索引](docs/FILE_MAP.md) | 每个源码、配置、脚本、测试的职责 |
+| [结果与可靠性](docs/RESULTS.md) | 绝对数值、图、阶段分解、已知问题及历史数据身份 |
+| [实验设计](docs/EXPERIMENT_DESIGN.md) | 模型、公开 trace、窗口、策略、硬件与指标的五点设计 |
+| [构建与复现](docs/REPRODUCING.md) | 纯 Python 校验、原生后端、单候选与冻结策略配对回放 |
+| [架构](docs/ARCHITECTURE.md) | RL 阶段、die/core/tile 粒度、容量、通信和计时口径 |
+| [文件索引](docs/FILE_MAP.md) | 实现、脚本、配置与兼容入口职责 |
 
-只保留上述当前文档入口。两份 0.6 历史实验 MD 保留原字节，按原提交理解；历史数字不与本版混用。
-
-## 最小检查
-
-Linux、Docker，宿主不需要 sudo 或 GPU；镜像构建需要网络。正式性能运行使用受限 runner。
+## 快速核对
 
 ```bash
-bash scripts/build_images.sh
-make test
+python3 -m pip install -e .
+python3 -m unittest discover -s tests -v
 python3 scripts/check_public_results.py
+python3 scripts/check_qwen3_results.py
 python3 scripts/check_docs.py
 ```
 
-完整构建链最后生成 `rlxy-astrasim:0.9.5`。本仓库的文档/分析整理提交与历史 a9 镜像是不同身份；重建必须保存新 image/source SHA，不能声称取得原 image ID。构建环境与现成镜像复现见复现文档。
+这些命令不需要 GPU。纯 Python 校验检查公开输入、历史结果身份、阶段账本与统计公式；原生小例另见复现文档。完整历史原始日志、编译依赖、模型权重和本地研究工作区不进入本仓库。
 
 ```text
-case/model/policy/hardware → typed算子与张量图
-  → GPU热GEMM查表/解析模型 或 wafer核/存储映射
-  → Chakra traces + 资源合同 → 原生AstraSim调度/网络
-  → issue/callback与资源日志 → 独立验收 → 有范围限制的结果
+公开长度 + 官方模型配置 + 同步协议
+  → 分阶段算子/矩阵形状与状态移动
+  → GPU SM/CTA 或晶圆 core/tile/容量/带宽成本
+  → 原生 AstraSim 网络和依赖执行
+  → 阶段完成时间、账本与配对验收
 ```
 
-`src/` 是实现，`configs/` 是输入，`docker/` 是固定后端与透明扩展，`scripts/` 是运行/校验/兼容工具，`tests/` 是回归，`calibration/` 是微基准标签，`experiments/` 只保存轻量可审核证据。大日志、依赖缓存、模型权重和凭据不入 Git。
-
-下一阶段先补齐 3B 实际 layout/fusion/FlashAttention、SP/overlap、GPU 选优与 host/网络/整步验证及代表性长响应，再扩展 7B/14B/32B 和晶圆优化。自建代码 MIT；AstraSim/Chakra 按各自许可获取。
+自建实现为 MIT。AstraSim、Chakra 及数据/模型元数据使用各自许可；来源和固定 revision 见实验设计与发布数据中的 provenance。0.6 与 0.9.5 的历史小型控制及其原始身份仍保留，不能与当前三档数字混用。

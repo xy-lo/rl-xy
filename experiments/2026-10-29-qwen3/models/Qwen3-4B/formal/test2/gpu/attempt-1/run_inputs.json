@@ -1,0 +1,10 @@
+{
+  "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+  "trajectory_sha256": "fc85716714506d4672fce779c2730edeae686c51cf634dae4ec45146ef8980cd",
+  "platform": "gpu",
+  "compute_scale": 1.0,
+  "network_scale": 1.0,
+  "model_config_sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+  "global_prompt_cap": 2869,
+  "training_memory_policy": "actual fixed-order batch token counts after generation; no response-length oracle in generation admission or ordering"
+}

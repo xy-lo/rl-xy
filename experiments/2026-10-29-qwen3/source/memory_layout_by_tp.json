@@ -1,0 +1,492 @@
+{
+  "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+  "scope": "logical parameter/gradient/reference/optimizer allocations, platform-independent for identical TP/DP and precisions",
+  "models": {
+    "4B": {
+      "1:1": {
+        "train_tp": 1,
+        "rollout_tp": 1,
+        "training_base_max": 33185363392,
+        "rollout_weights_per_rank": 8044936192,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 4022468352,
+        "valid_elements": 4022468096,
+        "dp_size": 48
+      },
+      "1:2": {
+        "train_tp": 1,
+        "rollout_tp": 2,
+        "training_base_max": 33185363392,
+        "rollout_weights_per_rank": 4022664192,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 4022468352,
+        "valid_elements": 4022468096,
+        "dp_size": 48
+      },
+      "1:4": {
+        "train_tp": 1,
+        "rollout_tp": 4,
+        "training_base_max": 33185363392,
+        "rollout_weights_per_rank": 2011528192,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 4022468352,
+        "valid_elements": 4022468096,
+        "dp_size": 48
+      },
+      "1:8": {
+        "train_tp": 1,
+        "rollout_tp": 8,
+        "training_base_max": 33185363392,
+        "rollout_weights_per_rank": 1005960192,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 4022468352,
+        "valid_elements": 4022468096,
+        "dp_size": 48
+      },
+      "2:1": {
+        "train_tp": 2,
+        "rollout_tp": 1,
+        "training_base_max": 17096322816,
+        "rollout_weights_per_rank": 8044936192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 2011332096,
+        "valid_elements": 2011332096,
+        "dp_size": 24
+      },
+      "2:2": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "training_base_max": 17096322816,
+        "rollout_weights_per_rank": 4022664192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 2011332096,
+        "valid_elements": 2011332096,
+        "dp_size": 24
+      },
+      "2:4": {
+        "train_tp": 2,
+        "rollout_tp": 4,
+        "training_base_max": 17096322816,
+        "rollout_weights_per_rank": 2011528192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 2011332096,
+        "valid_elements": 2011332096,
+        "dp_size": 24
+      },
+      "2:8": {
+        "train_tp": 2,
+        "rollout_tp": 8,
+        "training_base_max": 17096322816,
+        "rollout_weights_per_rank": 1005960192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 2011332096,
+        "valid_elements": 2011332096,
+        "dp_size": 24
+      },
+      "4:1": {
+        "train_tp": 4,
+        "rollout_tp": 1,
+        "training_base_max": 9051878656,
+        "rollout_weights_per_rank": 8044936192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 1005764352,
+        "valid_elements": 1005764096,
+        "dp_size": 12
+      },
+      "4:2": {
+        "train_tp": 4,
+        "rollout_tp": 2,
+        "training_base_max": 9051878656,
+        "rollout_weights_per_rank": 4022664192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 1005764352,
+        "valid_elements": 1005764096,
+        "dp_size": 12
+      },
+      "4:4": {
+        "train_tp": 4,
+        "rollout_tp": 4,
+        "training_base_max": 9051878656,
+        "rollout_weights_per_rank": 2011528192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 1005764352,
+        "valid_elements": 1005764096,
+        "dp_size": 12
+      },
+      "4:8": {
+        "train_tp": 4,
+        "rollout_tp": 8,
+        "training_base_max": 9051878656,
+        "rollout_weights_per_rank": 1005960192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 1005764352,
+        "valid_elements": 1005764096,
+        "dp_size": 12
+      },
+      "8:1": {
+        "train_tp": 8,
+        "rollout_tp": 1,
+        "training_base_max": 5029800960,
+        "rollout_weights_per_rank": 8044936192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 502980096,
+        "valid_elements": 502980096,
+        "dp_size": 6
+      },
+      "8:2": {
+        "train_tp": 8,
+        "rollout_tp": 2,
+        "training_base_max": 5029800960,
+        "rollout_weights_per_rank": 4022664192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 502980096,
+        "valid_elements": 502980096,
+        "dp_size": 6
+      },
+      "8:4": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "training_base_max": 5029800960,
+        "rollout_weights_per_rank": 2011528192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 502980096,
+        "valid_elements": 502980096,
+        "dp_size": 6
+      },
+      "8:8": {
+        "train_tp": 8,
+        "rollout_tp": 8,
+        "training_base_max": 5029800960,
+        "rollout_weights_per_rank": 1005960192,
+        "export_scratch_per_rank": 777912320,
+        "padded_elements": 502980096,
+        "valid_elements": 502980096,
+        "dp_size": 6
+      }
+    },
+    "8B": {
+      "1:1": {
+        "train_tp": 1,
+        "rollout_tp": 1,
+        "training_base_max": 67573566720,
+        "rollout_weights_per_rank": 16381470720,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 8190735360,
+        "valid_elements": 8190735360,
+        "dp_size": 48
+      },
+      "1:2": {
+        "train_tp": 1,
+        "rollout_tp": 2,
+        "training_base_max": 67573566720,
+        "rollout_weights_per_rank": 8191043584,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 8190735360,
+        "valid_elements": 8190735360,
+        "dp_size": 48
+      },
+      "1:4": {
+        "train_tp": 1,
+        "rollout_tp": 4,
+        "training_base_max": 67573566720,
+        "rollout_weights_per_rank": 4095830016,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 8190735360,
+        "valid_elements": 8190735360,
+        "dp_size": 48
+      },
+      "1:8": {
+        "train_tp": 1,
+        "rollout_tp": 8,
+        "training_base_max": 67573566720,
+        "rollout_weights_per_rank": 2048223232,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 8190735360,
+        "valid_elements": 8190735360,
+        "dp_size": 48
+      },
+      "2:1": {
+        "train_tp": 2,
+        "rollout_tp": 1,
+        "training_base_max": 34811936896,
+        "rollout_weights_per_rank": 16381470720,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 4095522048,
+        "valid_elements": 4095521792,
+        "dp_size": 24
+      },
+      "2:2": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "training_base_max": 34811936896,
+        "rollout_weights_per_rank": 8191043584,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 4095522048,
+        "valid_elements": 4095521792,
+        "dp_size": 24
+      },
+      "2:4": {
+        "train_tp": 2,
+        "rollout_tp": 4,
+        "training_base_max": 34811936896,
+        "rollout_weights_per_rank": 4095830016,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 4095522048,
+        "valid_elements": 4095521792,
+        "dp_size": 24
+      },
+      "2:8": {
+        "train_tp": 2,
+        "rollout_tp": 8,
+        "training_base_max": 34811936896,
+        "rollout_weights_per_rank": 2048223232,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 4095522048,
+        "valid_elements": 4095521792,
+        "dp_size": 24
+      },
+      "4:1": {
+        "train_tp": 4,
+        "rollout_tp": 1,
+        "training_base_max": 18431235072,
+        "rollout_weights_per_rank": 16381470720,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 2047915008,
+        "valid_elements": 2047915008,
+        "dp_size": 12
+      },
+      "4:2": {
+        "train_tp": 4,
+        "rollout_tp": 2,
+        "training_base_max": 18431235072,
+        "rollout_weights_per_rank": 8191043584,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 2047915008,
+        "valid_elements": 2047915008,
+        "dp_size": 12
+      },
+      "4:4": {
+        "train_tp": 4,
+        "rollout_tp": 4,
+        "training_base_max": 18431235072,
+        "rollout_weights_per_rank": 4095830016,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 2047915008,
+        "valid_elements": 2047915008,
+        "dp_size": 12
+      },
+      "4:8": {
+        "train_tp": 4,
+        "rollout_tp": 8,
+        "training_base_max": 18431235072,
+        "rollout_weights_per_rank": 2048223232,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 2047915008,
+        "valid_elements": 2047915008,
+        "dp_size": 12
+      },
+      "8:1": {
+        "train_tp": 8,
+        "rollout_tp": 1,
+        "training_base_max": 10241118208,
+        "rollout_weights_per_rank": 16381470720,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 1024111872,
+        "valid_elements": 1024111616,
+        "dp_size": 6
+      },
+      "8:2": {
+        "train_tp": 8,
+        "rollout_tp": 2,
+        "training_base_max": 10241118208,
+        "rollout_weights_per_rank": 8191043584,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 1024111872,
+        "valid_elements": 1024111616,
+        "dp_size": 6
+      },
+      "8:4": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "training_base_max": 10241118208,
+        "rollout_weights_per_rank": 4095830016,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 1024111872,
+        "valid_elements": 1024111616,
+        "dp_size": 6
+      },
+      "8:8": {
+        "train_tp": 8,
+        "rollout_tp": 8,
+        "training_base_max": 10241118208,
+        "rollout_weights_per_rank": 2048223232,
+        "export_scratch_per_rank": 1244659712,
+        "padded_elements": 1024111872,
+        "valid_elements": 1024111616,
+        "dp_size": 6
+      }
+    },
+    "14B": {
+      "1:1": {
+        "train_tp": 1,
+        "rollout_tp": 1,
+        "training_base_max": 121838536000,
+        "rollout_weights_per_rank": 29536614400,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 14768307456,
+        "valid_elements": 14768307200,
+        "dp_size": 48
+      },
+      "1:2": {
+        "train_tp": 1,
+        "rollout_tp": 2,
+        "training_base_max": 121838536000,
+        "rollout_weights_per_rank": 14768732160,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 14768307456,
+        "valid_elements": 14768307200,
+        "dp_size": 48
+      },
+      "1:4": {
+        "train_tp": 1,
+        "rollout_tp": 4,
+        "training_base_max": 121838536000,
+        "rollout_weights_per_rank": 7384791040,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 14768307456,
+        "valid_elements": 14768307200,
+        "dp_size": 48
+      },
+      "1:8": {
+        "train_tp": 1,
+        "rollout_tp": 8,
+        "training_base_max": 121838536000,
+        "rollout_weights_per_rank": 3692820480,
+        "export_scratch_per_rank": 0,
+        "padded_elements": 14768307456,
+        "valid_elements": 14768307200,
+        "dp_size": 48
+      },
+      "2:1": {
+        "train_tp": 2,
+        "rollout_tp": 1,
+        "training_base_max": 62767111680,
+        "rollout_weights_per_rank": 29536614400,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 7384366080,
+        "valid_elements": 7384366080,
+        "dp_size": 24
+      },
+      "2:2": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "training_base_max": 62767111680,
+        "rollout_weights_per_rank": 14768732160,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 7384366080,
+        "valid_elements": 7384366080,
+        "dp_size": 24
+      },
+      "2:4": {
+        "train_tp": 2,
+        "rollout_tp": 4,
+        "training_base_max": 62767111680,
+        "rollout_weights_per_rank": 7384791040,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 7384366080,
+        "valid_elements": 7384366080,
+        "dp_size": 24
+      },
+      "2:8": {
+        "train_tp": 2,
+        "rollout_tp": 8,
+        "training_base_max": 62767111680,
+        "rollout_weights_per_rank": 3692820480,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 7384366080,
+        "valid_elements": 7384366080,
+        "dp_size": 24
+      },
+      "4:1": {
+        "train_tp": 4,
+        "rollout_tp": 1,
+        "training_base_max": 33231561472,
+        "rollout_weights_per_rank": 29536614400,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 3692395776,
+        "valid_elements": 3692395520,
+        "dp_size": 12
+      },
+      "4:2": {
+        "train_tp": 4,
+        "rollout_tp": 2,
+        "training_base_max": 33231561472,
+        "rollout_weights_per_rank": 14768732160,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 3692395776,
+        "valid_elements": 3692395520,
+        "dp_size": 12
+      },
+      "4:4": {
+        "train_tp": 4,
+        "rollout_tp": 4,
+        "training_base_max": 33231561472,
+        "rollout_weights_per_rank": 7384791040,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 3692395776,
+        "valid_elements": 3692395520,
+        "dp_size": 12
+      },
+      "4:8": {
+        "train_tp": 4,
+        "rollout_tp": 8,
+        "training_base_max": 33231561472,
+        "rollout_weights_per_rank": 3692820480,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 3692395776,
+        "valid_elements": 3692395520,
+        "dp_size": 12
+      },
+      "8:1": {
+        "train_tp": 8,
+        "rollout_tp": 1,
+        "training_base_max": 18464102400,
+        "rollout_weights_per_rank": 29536614400,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 1846410240,
+        "valid_elements": 1846410240,
+        "dp_size": 6
+      },
+      "8:2": {
+        "train_tp": 8,
+        "rollout_tp": 2,
+        "training_base_max": 18464102400,
+        "rollout_weights_per_rank": 14768732160,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 1846410240,
+        "valid_elements": 1846410240,
+        "dp_size": 6
+      },
+      "8:4": {
+        "train_tp": 8,
+        "rollout_tp": 4,
+        "training_base_max": 18464102400,
+        "rollout_weights_per_rank": 7384791040,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 1846410240,
+        "valid_elements": 1846410240,
+        "dp_size": 6
+      },
+      "8:8": {
+        "train_tp": 8,
+        "rollout_tp": 8,
+        "training_base_max": 18464102400,
+        "rollout_weights_per_rank": 3692820480,
+        "export_scratch_per_rank": 1555824640,
+        "padded_elements": 1846410240,
+        "valid_elements": 1846410240,
+        "dp_size": 6
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+FROM rlxy-astrasim:0.9.5
+COPY . /workspace/rl-xy/
+COPY docker/astrasim/RlxyMesh.hh /opt/astra-sim/astra-sim/workload/RlxyMesh.hh
+RUN python3 -m pip install --no-cache-dir protobuf==5.29.1 tokenizers==0.22.2 jinja2==3.1.6 \
+    && python3 /workspace/rl-xy/scripts/patch_qwen3_native.py --astra-root /opt/astra-sim \
+    && cmake --build /opt/astra-sim/build/astra_analytical/build --parallel 4
+LABEL io.rlxy.version="0.10.0" io.rlxy.scope="Qwen3-public-length-replay-conditional-simulation"

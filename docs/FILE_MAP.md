@@ -1,6 +1,6 @@
 # 文件索引
 
-当前职责以本表为准。主链是`run-aligned`；旧入口和报告生成器保留兼容，不能把旧版本结果改名当前基线。新旧运行身份与公开证据范围见[架构](ARCHITECTURE.md)、[结果](RESULTS.md)。
+当前Qwen3入口是`qwen3_baselines.py`及`replay_qwen3_policies.py`；`run-aligned`和旧报告生成器保留历史兼容。新旧运行身份与公开证据范围见[架构](ARCHITECTURE.md)、[结果](RESULTS.md)。
 
 按实际公开文件生成，一路径一条，无重复追加版本表。原始运行日志、缓存、依赖、凭据及归档大包不属于源码索引。
 
@@ -8,6 +8,7 @@
 
 | 文件 | 职责 |
 |---|---|
+| `.gitattributes` | 保持冻结证据/校准字节；对CSV换行、生成SVG和patch上下文使用对应格式规则。 |
 | `.dockerignore` | 限制 Docker build context；排除依赖缓存、历史运行结果、构建日志和验收包。 |
 | `.github/workflows/ci.yml` | 固定官方Actions提交的Python回归、公开证据和文档检查；不冒称native或硬件校准。 |
 | `.gitignore` | 区分源码与可再生文件；排除 .deps、缓存、运行结果、验收包和构建日志。 |
@@ -382,3 +383,33 @@
 | `experiments/2026-10-28-v0.9.5/wafer/run.json` | 原wrapper命令、预算、真实退出/OOM与墙钟。 |
 | `experiments/2026-10-28-v0.9.5/wafer/verification.json` | 原单包独立MVP回执，绑定其manifest；不是在公开子集上重新运行MVP。 |
 | `experiments/2026-10-28-v0.9.5/wafer/wallclock_timings.json` | 原仿真程序构图/编码/native/后验子计时，与模型时间分开。 |
+
+
+## Qwen3 0.10.0 扩展
+
+| 文件 | 职责 |
+| --- | --- |
+| `src/rl_xy/qwen3_cost.py` | Qwen3 operator costs for iteration replay; no numeric weights or kernels. |
+| `src/rl_xy/qwen3_experiment.py` | Frozen Qwen3 baseline orchestration: screen, native phases, paired evidence. |
+| `src/rl_xy/qwen3_native.py` | Pinned ASTRA executions for coarse operator plans and isolated services. |
+| `src/rl_xy/qwen3_paths.py` | 显式输入/输出/ASTRA路径和只读源码/证据边界；generation缓存不写入实验输入。 |
+| `src/rl_xy/qwen3_rollout.py` | Bounded FIFO length replay with exact affine decode-period integration. |
+| `src/rl_xy/qwen3_sequence.py` | Compact repeated programs; all child network events execute in native ASTRA. |
+| `src/rl_xy/qwen3_source.py` | Content identity for every public-input/native execution result. |
+| `scripts/check_qwen3_compaction.py` | Native compact-vs-expanded equivalence with overlapping wafer TP routes. |
+| `scripts/check_qwen3_results.py` | 校验公开长度、配对、24份结果/216阶段及吞吐；不替代原始日志或硬件校准。 |
+| `scripts/patch_qwen3_native.py` | Apply only the compact program extension after the existing rl-xy patches. |
+| `scripts/plot_qwen3_baselines.py` | 从仓库内CSV重绘归一化和绝对值图，输出到独立runs目录。 |
+| `scripts/prepare_qwen3_public_inputs.py` | Freeze public length replay inputs, official chat template, and paired windows. |
+| `scripts/qwen3_baselines.py` | Screen or replay a Qwen3 candidate using explicit portable input/output paths. |
+| `scripts/rebuild_qwen3_native_dependencies.py` | Qwen3原生执行与长度回放扩展。 |
+| `scripts/replay_qwen3_policies.py` | 按已公开策略执行三档配对回放；记录新身份、检查点与失败；不冒充原调优搜索。 |
+| `scripts/run_qwen3_campaign.py` | 旧名称兼容入口，转到冻结策略回放。 |
+| `tests/test_native_output_streaming.py` | Long native diagnostic output must go to files, not memory PIPEs. |
+| `tests/test_qwen3_extension.py` | Qwen3算子/协议回归。 |
+| `tests/test_qwen3_publication.py` | Qwen3算子/协议回归。 |
+| `docker/Dockerfile.qwen3` | Qwen3原生执行与长度回放扩展。 |
+| `docker/astrasim/RlxySequence.hh` | Qwen3原生执行与长度回放扩展。 |
+| `docker/astrasim/qwen3-native.patch` | 固定ASTRA commit上的历史完整tracked原生修改，新增header另行复制。 |
+
+最新轻量输入、记录结果与图表统一放在`experiments/2026-10-29-qwen3/`；不复制本地原生日志、缓存或完整模型文件。

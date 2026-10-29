@@ -20,4 +20,4 @@ def demean_advantages(case):
 
 def local_qkv_width(case):
     m = case.model
-    return (m.hidden_size + 2 * m.kv_heads * m.head_dim) // case.strategy.tensor_parallel
+    return (m.query_width + 2 * m.kv_heads * m.head_dim) // case.strategy.tensor_parallel

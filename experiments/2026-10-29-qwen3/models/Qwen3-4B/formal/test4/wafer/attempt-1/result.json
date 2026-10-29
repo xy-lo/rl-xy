@@ -1,0 +1,4500 @@
+{
+  "status": "PASS",
+  "policy": {
+    "train_tp": 4,
+    "rollout_tp": 4,
+    "train_mb": 8,
+    "logprob_mb": 16,
+    "cap": 64
+  },
+  "platform": "wafer",
+  "step_model_ns": 204537212090.25,
+  "stage_ns": {
+    "weight_sync": 20709559.69,
+    "generation": 134863375396.358,
+    "samples": 33471.586,
+    "old_policy": 10729912878.056,
+    "reference": 10729912878.056,
+    "advantage": 3.0,
+    "training": 48167820723.22,
+    "optimizer": 25447178.284,
+    "publish": 2.0
+  },
+  "admission": {
+    "passed": true,
+    "peak_bytes": 46998609152,
+    "phase_peak_bytes": {
+      "generation": 37160628480,
+      "weight_export": 12230275328,
+      "training": 46499433216,
+      "logprob": 46998609152
+    },
+    "reasons": [],
+    "capacity_bytes": 64000000000,
+    "admission": "conservative per-phase lifetime upper bounds; actual trace peaks validated in replay"
+  },
+  "generation_mean_replica_wait_fraction": 0.09985932353949785,
+  "request_count": 1536,
+  "wall_seconds": 147.4591062919999,
+  "execution": "native ASTRA per synchronous phase; compact repeated programs execute every collective/P2P on the native shared network; not one monolithic invocation",
+  "native_proof": {
+    "weight_sync": {
+      "model_ns": 20709559.69,
+      "slowest_rank": 4,
+      "native_nodes": 6110,
+      "native_rank_events": 24534,
+      "wall_seconds": 0.39609391700014385,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {},
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443057.539999999
+        },
+        "1": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443058.550000001
+        },
+        "2": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5440438.119999998
+        },
+        "3": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5406689.42
+        },
+        "4": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10652279.690000001
+        },
+        "5": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10571999.100000003
+        },
+        "6": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10644410.350000001
+        },
+        "7": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10596242.399999997
+        },
+        "8": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219559.35
+        },
+        "9": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219560.359999999
+        },
+        "10": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219561.369999999
+        },
+        "11": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5182200.82
+        },
+        "12": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443057.539999999
+        },
+        "13": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443058.550000001
+        },
+        "14": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5440438.119999998
+        },
+        "15": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5406689.42
+        },
+        "16": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10652279.690000001
+        },
+        "17": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10571999.100000003
+        },
+        "18": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10644410.350000001
+        },
+        "19": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10596242.399999997
+        },
+        "20": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219559.35
+        },
+        "21": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219560.359999999
+        },
+        "22": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219561.369999999
+        },
+        "23": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5182200.82
+        },
+        "24": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443057.539999999
+        },
+        "25": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443058.550000001
+        },
+        "26": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5440438.119999998
+        },
+        "27": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5406689.42
+        },
+        "28": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10652279.690000001
+        },
+        "29": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10571999.100000003
+        },
+        "30": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10644410.350000001
+        },
+        "31": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10596242.399999997
+        },
+        "32": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219559.35
+        },
+        "33": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219560.359999999
+        },
+        "34": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219561.369999999
+        },
+        "35": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5182200.82
+        },
+        "36": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443057.539999999
+        },
+        "37": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5443058.550000001
+        },
+        "38": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5440438.119999998
+        },
+        "39": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5406689.42
+        },
+        "40": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10652279.690000001
+        },
+        "41": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10571999.100000003
+        },
+        "42": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10644410.350000001
+        },
+        "43": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 10596242.399999997
+        },
+        "44": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219559.35
+        },
+        "45": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219560.359999999
+        },
+        "46": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5219561.369999999
+        },
+        "47": {
+          "compute_ns": 1001.0,
+          "memory_ns": 10056279.0,
+          "communication_ns": 5182200.82
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "generation": {
+      "model_ns": 134863375396.358,
+      "slowest_rank": 31,
+      "native_nodes": 13,
+      "native_rank_events": 102,
+      "wall_seconds": 319.1883169160001,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {
+        "0": {
+          "communication_ns": 254788687.88615078,
+          "communication_steps": 876821,
+          "compute_ns": 10263958026.899582,
+          "end_tick": 121207546704886,
+          "executed_steps": 4262016,
+          "memory_ns": 110688599977.67087,
+          "rank": 0,
+          "status": "PASS"
+        },
+        "1": {
+          "communication_ns": 315979763.84550786,
+          "communication_steps": 832425,
+          "compute_ns": 10263958026.899582,
+          "end_tick": 121207546698846,
+          "executed_steps": 4262016,
+          "memory_ns": 110627408895.67166,
+          "rank": 1,
+          "status": "PASS"
+        },
+        "2": {
+          "communication_ns": 315979766.8611245,
+          "communication_steps": 832425,
+          "compute_ns": 10263958026.899582,
+          "end_tick": 121207546701862,
+          "executed_steps": 4262016,
+          "memory_ns": 110627408895.67166,
+          "rank": 2,
+          "status": "PASS"
+        },
+        "3": {
+          "communication_ns": 315979770.8854822,
+          "communication_steps": 832425,
+          "compute_ns": 10263958026.899582,
+          "end_tick": 121207546705886,
+          "executed_steps": 4262016,
+          "memory_ns": 110627408895.67166,
+          "rank": 3,
+          "status": "PASS"
+        },
+        "4": {
+          "communication_ns": 494033624.627089,
+          "communication_steps": 876505,
+          "compute_ns": 9340341384.010822,
+          "end_tick": 101248535048630,
+          "executed_steps": 4260480,
+          "memory_ns": 91413961077.5966,
+          "rank": 4,
+          "status": "PASS"
+        },
+        "5": {
+          "communication_ns": 549002898.5496306,
+          "communication_steps": 832125,
+          "compute_ns": 9340341384.010822,
+          "end_tick": 101248535038558,
+          "executed_steps": 4260480,
+          "memory_ns": 91358991793.59666,
+          "rank": 5,
+          "status": "PASS"
+        },
+        "6": {
+          "communication_ns": 549002904.6002415,
+          "communication_steps": 832125,
+          "compute_ns": 9340341384.010822,
+          "end_tick": 101248535044598,
+          "executed_steps": 4260480,
+          "memory_ns": 91358991793.59666,
+          "rank": 6,
+          "status": "PASS"
+        },
+        "7": {
+          "communication_ns": 549002909.6216624,
+          "communication_steps": 832125,
+          "compute_ns": 9340341384.010822,
+          "end_tick": 101248535049630,
+          "executed_steps": 4260480,
+          "memory_ns": 91358991793.59666,
+          "rank": 7,
+          "status": "PASS"
+        },
+        "8": {
+          "communication_ns": 264595086.2064938,
+          "communication_steps": 894754,
+          "compute_ns": 10546174707.923624,
+          "end_tick": 123794889565206,
+          "executed_steps": 4349184,
+          "memory_ns": 112983913757.42209,
+          "rank": 8,
+          "status": "PASS"
+        },
+        "9": {
+          "communication_ns": 327616636.1637308,
+          "communication_steps": 849450,
+          "compute_ns": 10546174707.923624,
+          "end_tick": 123794889559166,
+          "executed_steps": 4349184,
+          "memory_ns": 112920892201.42273,
+          "rank": 9,
+          "status": "PASS"
+        },
+        "10": {
+          "communication_ns": 327616639.1837055,
+          "communication_steps": 849450,
+          "compute_ns": 10546174707.923624,
+          "end_tick": 123794889562182,
+          "executed_steps": 4349184,
+          "memory_ns": 112920892201.42273,
+          "rank": 10,
+          "status": "PASS"
+        },
+        "11": {
+          "communication_ns": 327616643.20364684,
+          "communication_steps": 849450,
+          "compute_ns": 10546174707.923624,
+          "end_tick": 123794889566206,
+          "executed_steps": 4349184,
+          "memory_ns": 112920892201.42273,
+          "rank": 11,
+          "status": "PASS"
+        },
+        "12": {
+          "communication_ns": 255972095.90796435,
+          "communication_steps": 890646,
+          "compute_ns": 10320334362.38082,
+          "end_tick": 120853814069908,
+          "executed_steps": 4329216,
+          "memory_ns": 110277304061.80687,
+          "rank": 12,
+          "status": "PASS"
+        },
+        "13": {
+          "communication_ns": 317411579.8678515,
+          "communication_steps": 845550,
+          "compute_ns": 10320334362.38082,
+          "end_tick": 120853814063868,
+          "executed_steps": 4329216,
+          "memory_ns": 110215864571.8064,
+          "rank": 13,
+          "status": "PASS"
+        },
+        "14": {
+          "communication_ns": 317411582.8834478,
+          "communication_steps": 845550,
+          "compute_ns": 10320334362.38082,
+          "end_tick": 120853814066884,
+          "executed_steps": 4329216,
+          "memory_ns": 110215864571.8064,
+          "rank": 14,
+          "status": "PASS"
+        },
+        "15": {
+          "communication_ns": 317411586.90780866,
+          "communication_steps": 845550,
+          "compute_ns": 10320334362.38082,
+          "end_tick": 120853814070908,
+          "executed_steps": 4329216,
+          "memory_ns": 110215864571.8064,
+          "rank": 15,
+          "status": "PASS"
+        },
+        "16": {
+          "communication_ns": 547215588.2109839,
+          "communication_steps": 908737,
+          "compute_ns": 10347478744.25179,
+          "end_tick": 119639314575210,
+          "executed_steps": 4417152,
+          "memory_ns": 108744413763.29202,
+          "rank": 16,
+          "status": "PASS"
+        },
+        "17": {
+          "communication_ns": 608648044.1316128,
+          "communication_steps": 862725,
+          "compute_ns": 10347478744.25179,
+          "end_tick": 119639314565138,
+          "executed_steps": 4417152,
+          "memory_ns": 108682981297.29218,
+          "rank": 17,
+          "status": "PASS"
+        },
+        "18": {
+          "communication_ns": 608648050.1776582,
+          "communication_steps": 862725,
+          "compute_ns": 10347478744.25179,
+          "end_tick": 119639314571178,
+          "executed_steps": 4417152,
+          "memory_ns": 108682981297.29218,
+          "rank": 18,
+          "status": "PASS"
+        },
+        "19": {
+          "communication_ns": 608648055.203832,
+          "communication_steps": 862725,
+          "compute_ns": 10347478744.25179,
+          "end_tick": 119639314576210,
+          "executed_steps": 4417152,
+          "memory_ns": 108682981297.29218,
+          "rank": 19,
+          "status": "PASS"
+        },
+        "20": {
+          "communication_ns": 270219538.4683708,
+          "communication_steps": 900995,
+          "compute_ns": 10730349194.105022,
+          "end_tick": 129392237948468,
+          "executed_steps": 4379520,
+          "memory_ns": 118391463359.08113,
+          "rank": 20,
+          "status": "PASS"
+        },
+        "21": {
+          "communication_ns": 334297086.4259508,
+          "communication_steps": 855375,
+          "compute_ns": 10730349194.105022,
+          "end_tick": 129392237942428,
+          "executed_steps": 4379520,
+          "memory_ns": 118327385805.08119,
+          "rank": 21,
+          "status": "PASS"
+        },
+        "22": {
+          "communication_ns": 334297089.4446671,
+          "communication_steps": 855375,
+          "compute_ns": 10730349194.105022,
+          "end_tick": 129392237945444,
+          "executed_steps": 4379520,
+          "memory_ns": 118327385805.08119,
+          "rank": 22,
+          "status": "PASS"
+        },
+        "23": {
+          "communication_ns": 334297093.46598524,
+          "communication_steps": 855375,
+          "compute_ns": 10730349194.105022,
+          "end_tick": 129392237949468,
+          "executed_steps": 4379520,
+          "memory_ns": 118327385805.08119,
+          "rank": 23,
+          "status": "PASS"
+        },
+        "24": {
+          "communication_ns": 262641774.51572308,
+          "communication_steps": 893174,
+          "compute_ns": 10550172757.993258,
+          "end_tick": 124382450157516,
+          "executed_steps": 4341504,
+          "memory_ns": 113569432405.94847,
+          "rank": 24,
+          "status": "PASS"
+        },
+        "25": {
+          "communication_ns": 325694038.47515756,
+          "communication_steps": 847950,
+          "compute_ns": 10550172757.993258,
+          "end_tick": 124382450151476,
+          "executed_steps": 4341504,
+          "memory_ns": 113506380135.94858,
+          "rank": 25,
+          "status": "PASS"
+        },
+        "26": {
+          "communication_ns": 325694041.49340487,
+          "communication_steps": 847950,
+          "compute_ns": 10550172757.993258,
+          "end_tick": 124382450154492,
+          "executed_steps": 4341504,
+          "memory_ns": 113506380135.94858,
+          "rank": 26,
+          "status": "PASS"
+        },
+        "27": {
+          "communication_ns": 325694045.5151226,
+          "communication_steps": 847950,
+          "compute_ns": 10550172757.993258,
+          "end_tick": 124382450158516,
+          "executed_steps": 4341504,
+          "memory_ns": 113506380135.94858,
+          "rank": 27,
+          "status": "PASS"
+        },
+        "28": {
+          "communication_ns": 582233998.3587412,
+          "communication_steps": 911028,
+          "compute_ns": 10994097992.698467,
+          "end_tick": 134863375395358,
+          "executed_steps": 4428288,
+          "memory_ns": 123286834349.37769,
+          "rank": 28,
+          "status": "PASS"
+        },
+        "29": {
+          "communication_ns": 647919844.2793573,
+          "communication_steps": 864900,
+          "compute_ns": 10994097992.698467,
+          "end_tick": 134863375385286,
+          "executed_steps": 4428288,
+          "memory_ns": 123221148493.3783,
+          "rank": 29,
+          "status": "PASS"
+        },
+        "30": {
+          "communication_ns": 647919850.3267318,
+          "communication_steps": 864900,
+          "compute_ns": 10994097992.698467,
+          "end_tick": 134863375391326,
+          "executed_steps": 4428288,
+          "memory_ns": 123221148493.3783,
+          "rank": 30,
+          "status": "PASS"
+        },
+        "31": {
+          "communication_ns": 647919855.3514987,
+          "communication_steps": 864900,
+          "compute_ns": 10994097992.698467,
+          "end_tick": 134863375396358,
+          "executed_steps": 4428288,
+          "memory_ns": 123221148493.3783,
+          "rank": 31,
+          "status": "PASS"
+        },
+        "32": {
+          "communication_ns": 253815319.20557424,
+          "communication_steps": 890567,
+          "compute_ns": 10060059242.070484,
+          "end_tick": 119287837005204,
+          "executed_steps": 4328832,
+          "memory_ns": 108973758659.05928,
+          "rank": 32,
+          "status": "PASS"
+        },
+        "33": {
+          "communication_ns": 313262647.1622887,
+          "communication_steps": 845475,
+          "compute_ns": 10060059242.070484,
+          "end_tick": 119287836999164,
+          "executed_steps": 4328832,
+          "memory_ns": 108914311325.05899,
+          "rank": 33,
+          "status": "PASS"
+        },
+        "34": {
+          "communication_ns": 313262650.1802451,
+          "communication_steps": 845475,
+          "compute_ns": 10060059242.070484,
+          "end_tick": 119287837002180,
+          "executed_steps": 4328832,
+          "memory_ns": 108914311325.05899,
+          "rank": 34,
+          "status": "PASS"
+        },
+        "35": {
+          "communication_ns": 313262654.20225066,
+          "communication_steps": 845475,
+          "compute_ns": 10060059242.070484,
+          "end_tick": 119287837006204,
+          "executed_steps": 4328832,
+          "memory_ns": 108914311325.05899,
+          "rank": 35,
+          "status": "PASS"
+        },
+        "36": {
+          "communication_ns": 242584034.3965697,
+          "communication_steps": 853121,
+          "compute_ns": 9732507742.19038,
+          "end_tick": 111058860904396,
+          "executed_steps": 4146816,
+          "memory_ns": 101083574669.46713,
+          "rank": 36,
+          "status": "PASS"
+        },
+        "37": {
+          "communication_ns": 300329040.35733837,
+          "communication_steps": 809925,
+          "compute_ns": 9732507742.19038,
+          "end_tick": 111058860898356,
+          "executed_steps": 4146816,
+          "memory_ns": 101025829657.4668,
+          "rank": 37,
+          "status": "PASS"
+        },
+        "38": {
+          "communication_ns": 300329043.3710289,
+          "communication_steps": 809925,
+          "compute_ns": 9732507742.19038,
+          "end_tick": 111058860901372,
+          "executed_steps": 4146816,
+          "memory_ns": 101025829657.4668,
+          "rank": 38,
+          "status": "PASS"
+        },
+        "39": {
+          "communication_ns": 300329047.39739025,
+          "communication_steps": 809925,
+          "compute_ns": 9732507742.19038,
+          "end_tick": 111058860905396,
+          "executed_steps": 4146816,
+          "memory_ns": 101025829657.4668,
+          "rank": 39,
+          "status": "PASS"
+        },
+        "40": {
+          "communication_ns": 545403799.1492376,
+          "communication_steps": 897914,
+          "compute_ns": 10298177356.34254,
+          "end_tick": 120456168977148,
+          "executed_steps": 4364544,
+          "memory_ns": 109612383890.70319,
+          "rank": 40,
+          "status": "PASS"
+        },
+        "41": {
+          "communication_ns": 606476389.0693792,
+          "communication_steps": 852450,
+          "compute_ns": 10298177356.34254,
+          "end_tick": 120456168967076,
+          "executed_steps": 4364544,
+          "memory_ns": 109551311290.70276,
+          "rank": 41,
+          "status": "PASS"
+        },
+        "42": {
+          "communication_ns": 606476395.1167495,
+          "communication_steps": 852450,
+          "compute_ns": 10298177356.34254,
+          "end_tick": 120456168973116,
+          "executed_steps": 4364544,
+          "memory_ns": 109551311290.70276,
+          "rank": 42,
+          "status": "PASS"
+        },
+        "43": {
+          "communication_ns": 606476400.141587,
+          "communication_steps": 852450,
+          "compute_ns": 10298177356.34254,
+          "end_tick": 120456168978148,
+          "executed_steps": 4364544,
+          "memory_ns": 109551311290.70276,
+          "rank": 43,
+          "status": "PASS"
+        },
+        "44": {
+          "communication_ns": 271525706.36186975,
+          "communication_steps": 900205,
+          "compute_ns": 10774029482.066263,
+          "end_tick": 130567089144362,
+          "executed_steps": 4375680,
+          "memory_ns": 119521327545.0714,
+          "rank": 44,
+          "status": "PASS"
+        },
+        "45": {
+          "communication_ns": 335870146.321803,
+          "communication_steps": 854625,
+          "compute_ns": 10774029482.066263,
+          "end_tick": 130567089138322,
+          "executed_steps": 4375680,
+          "memory_ns": 119456983099.07144,
+          "rank": 45,
+          "status": "PASS"
+        },
+        "46": {
+          "communication_ns": 335870149.3385787,
+          "communication_steps": 854625,
+          "compute_ns": 10774029482.066263,
+          "end_tick": 130567089141338,
+          "executed_steps": 4375680,
+          "memory_ns": 119456983099.07144,
+          "rank": 46,
+          "status": "PASS"
+        },
+        "47": {
+          "communication_ns": 335870153.36189854,
+          "communication_steps": 854625,
+          "compute_ns": 10774029482.066263,
+          "end_tick": 130567089145362,
+          "executed_steps": 4375680,
+          "memory_ns": 119456983099.07144,
+          "rank": 47,
+          "status": "PASS"
+        }
+      },
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 10263958027.899582,
+          "memory_ns": 110688599977.67087,
+          "communication_ns": 254788687.88615078
+        },
+        "1": {
+          "compute_ns": 10263958027.899582,
+          "memory_ns": 110627408895.67166,
+          "communication_ns": 315979763.84550786
+        },
+        "2": {
+          "compute_ns": 10263958027.899582,
+          "memory_ns": 110627408895.67166,
+          "communication_ns": 315979766.8611245
+        },
+        "3": {
+          "compute_ns": 10263958027.899582,
+          "memory_ns": 110627408895.67166,
+          "communication_ns": 315979770.8854822
+        },
+        "4": {
+          "compute_ns": 9340341385.010822,
+          "memory_ns": 91413961077.5966,
+          "communication_ns": 494033624.627089
+        },
+        "5": {
+          "compute_ns": 9340341385.010822,
+          "memory_ns": 91358991793.59666,
+          "communication_ns": 549002898.5496306
+        },
+        "6": {
+          "compute_ns": 9340341385.010822,
+          "memory_ns": 91358991793.59666,
+          "communication_ns": 549002904.6002415
+        },
+        "7": {
+          "compute_ns": 9340341385.010822,
+          "memory_ns": 91358991793.59666,
+          "communication_ns": 549002909.6216624
+        },
+        "8": {
+          "compute_ns": 10546174708.923624,
+          "memory_ns": 112983913757.42209,
+          "communication_ns": 264595086.2064938
+        },
+        "9": {
+          "compute_ns": 10546174708.923624,
+          "memory_ns": 112920892201.42273,
+          "communication_ns": 327616636.1637308
+        },
+        "10": {
+          "compute_ns": 10546174708.923624,
+          "memory_ns": 112920892201.42273,
+          "communication_ns": 327616639.1837055
+        },
+        "11": {
+          "compute_ns": 10546174708.923624,
+          "memory_ns": 112920892201.42273,
+          "communication_ns": 327616643.20364684
+        },
+        "12": {
+          "compute_ns": 10320334363.38082,
+          "memory_ns": 110277304061.80687,
+          "communication_ns": 255972095.90796435
+        },
+        "13": {
+          "compute_ns": 10320334363.38082,
+          "memory_ns": 110215864571.8064,
+          "communication_ns": 317411579.8678515
+        },
+        "14": {
+          "compute_ns": 10320334363.38082,
+          "memory_ns": 110215864571.8064,
+          "communication_ns": 317411582.8834478
+        },
+        "15": {
+          "compute_ns": 10320334363.38082,
+          "memory_ns": 110215864571.8064,
+          "communication_ns": 317411586.90780866
+        },
+        "16": {
+          "compute_ns": 10347478745.25179,
+          "memory_ns": 108744413763.29202,
+          "communication_ns": 547215588.2109839
+        },
+        "17": {
+          "compute_ns": 10347478745.25179,
+          "memory_ns": 108682981297.29218,
+          "communication_ns": 608648044.1316128
+        },
+        "18": {
+          "compute_ns": 10347478745.25179,
+          "memory_ns": 108682981297.29218,
+          "communication_ns": 608648050.1776582
+        },
+        "19": {
+          "compute_ns": 10347478745.25179,
+          "memory_ns": 108682981297.29218,
+          "communication_ns": 608648055.203832
+        },
+        "20": {
+          "compute_ns": 10730349195.105022,
+          "memory_ns": 118391463359.08113,
+          "communication_ns": 270219538.4683708
+        },
+        "21": {
+          "compute_ns": 10730349195.105022,
+          "memory_ns": 118327385805.08119,
+          "communication_ns": 334297086.4259508
+        },
+        "22": {
+          "compute_ns": 10730349195.105022,
+          "memory_ns": 118327385805.08119,
+          "communication_ns": 334297089.4446671
+        },
+        "23": {
+          "compute_ns": 10730349195.105022,
+          "memory_ns": 118327385805.08119,
+          "communication_ns": 334297093.46598524
+        },
+        "24": {
+          "compute_ns": 10550172758.993258,
+          "memory_ns": 113569432405.94847,
+          "communication_ns": 262641774.51572308
+        },
+        "25": {
+          "compute_ns": 10550172758.993258,
+          "memory_ns": 113506380135.94858,
+          "communication_ns": 325694038.47515756
+        },
+        "26": {
+          "compute_ns": 10550172758.993258,
+          "memory_ns": 113506380135.94858,
+          "communication_ns": 325694041.49340487
+        },
+        "27": {
+          "compute_ns": 10550172758.993258,
+          "memory_ns": 113506380135.94858,
+          "communication_ns": 325694045.5151226
+        },
+        "28": {
+          "compute_ns": 10994097993.698467,
+          "memory_ns": 123286834349.37769,
+          "communication_ns": 582233998.3587412
+        },
+        "29": {
+          "compute_ns": 10994097993.698467,
+          "memory_ns": 123221148493.3783,
+          "communication_ns": 647919844.2793573
+        },
+        "30": {
+          "compute_ns": 10994097993.698467,
+          "memory_ns": 123221148493.3783,
+          "communication_ns": 647919850.3267318
+        },
+        "31": {
+          "compute_ns": 10994097993.698467,
+          "memory_ns": 123221148493.3783,
+          "communication_ns": 647919855.3514987
+        },
+        "32": {
+          "compute_ns": 10060059243.070484,
+          "memory_ns": 108973758659.05928,
+          "communication_ns": 253815319.20557424
+        },
+        "33": {
+          "compute_ns": 10060059243.070484,
+          "memory_ns": 108914311325.05899,
+          "communication_ns": 313262647.1622887
+        },
+        "34": {
+          "compute_ns": 10060059243.070484,
+          "memory_ns": 108914311325.05899,
+          "communication_ns": 313262650.1802451
+        },
+        "35": {
+          "compute_ns": 10060059243.070484,
+          "memory_ns": 108914311325.05899,
+          "communication_ns": 313262654.20225066
+        },
+        "36": {
+          "compute_ns": 9732507743.19038,
+          "memory_ns": 101083574669.46713,
+          "communication_ns": 242584034.3965697
+        },
+        "37": {
+          "compute_ns": 9732507743.19038,
+          "memory_ns": 101025829657.4668,
+          "communication_ns": 300329040.35733837
+        },
+        "38": {
+          "compute_ns": 9732507743.19038,
+          "memory_ns": 101025829657.4668,
+          "communication_ns": 300329043.3710289
+        },
+        "39": {
+          "compute_ns": 9732507743.19038,
+          "memory_ns": 101025829657.4668,
+          "communication_ns": 300329047.39739025
+        },
+        "40": {
+          "compute_ns": 10298177357.34254,
+          "memory_ns": 109612383890.70319,
+          "communication_ns": 545403799.1492376
+        },
+        "41": {
+          "compute_ns": 10298177357.34254,
+          "memory_ns": 109551311290.70276,
+          "communication_ns": 606476389.0693792
+        },
+        "42": {
+          "compute_ns": 10298177357.34254,
+          "memory_ns": 109551311290.70276,
+          "communication_ns": 606476395.1167495
+        },
+        "43": {
+          "compute_ns": 10298177357.34254,
+          "memory_ns": 109551311290.70276,
+          "communication_ns": 606476400.141587
+        },
+        "44": {
+          "compute_ns": 10774029483.066263,
+          "memory_ns": 119521327545.0714,
+          "communication_ns": 271525706.36186975
+        },
+        "45": {
+          "compute_ns": 10774029483.066263,
+          "memory_ns": 119456983099.07144,
+          "communication_ns": 335870146.321803
+        },
+        "46": {
+          "compute_ns": 10774029483.066263,
+          "memory_ns": 119456983099.07144,
+          "communication_ns": 335870149.3385787
+        },
+        "47": {
+          "compute_ns": 10774029483.066263,
+          "memory_ns": 119456983099.07144,
+          "communication_ns": 335870153.36189854
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "samples": {
+      "model_ns": 33471.586,
+      "slowest_rank": 42,
+      "native_nodes": 1586,
+      "native_rank_events": 2214,
+      "wall_seconds": 0.12145304099976784,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {},
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1595.0,
+          "communication_ns": 26048.186
+        },
+        "1": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1595.0,
+          "communication_ns": 25822.41
+        },
+        "2": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1595.0,
+          "communication_ns": 26210.066
+        },
+        "3": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1595.0,
+          "communication_ns": 25820.506
+        },
+        "4": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1372.0,
+          "communication_ns": 26842.166
+        },
+        "5": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1372.0,
+          "communication_ns": 26616.39
+        },
+        "6": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1372.0,
+          "communication_ns": 27063.266
+        },
+        "7": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1372.0,
+          "communication_ns": 26673.706
+        },
+        "8": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1690.0,
+          "communication_ns": 27084.226
+        },
+        "9": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1690.0,
+          "communication_ns": 26858.45
+        },
+        "10": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1690.0,
+          "communication_ns": 27305.326
+        },
+        "11": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1690.0,
+          "communication_ns": 26915.766
+        },
+        "12": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1712.0,
+          "communication_ns": 27778.164
+        },
+        "13": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1712.0,
+          "communication_ns": 27552.388
+        },
+        "14": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1712.0,
+          "communication_ns": 27999.264
+        },
+        "15": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1712.0,
+          "communication_ns": 27609.704
+        },
+        "16": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1568.0,
+          "communication_ns": 28323.776
+        },
+        "17": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1568.0,
+          "communication_ns": 28098.0
+        },
+        "18": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1568.0,
+          "communication_ns": 28599.392
+        },
+        "19": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1568.0,
+          "communication_ns": 28209.832
+        },
+        "20": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1701.0,
+          "communication_ns": 28588.4
+        },
+        "21": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1701.0,
+          "communication_ns": 28362.624
+        },
+        "22": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1701.0,
+          "communication_ns": 28864.016
+        },
+        "23": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1701.0,
+          "communication_ns": 28474.456
+        },
+        "24": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1551.0,
+          "communication_ns": 29085.7
+        },
+        "25": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1551.0,
+          "communication_ns": 28859.924
+        },
+        "26": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1551.0,
+          "communication_ns": 29361.316
+        },
+        "27": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1551.0,
+          "communication_ns": 28971.756
+        },
+        "28": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1583.0,
+          "communication_ns": 29421.67
+        },
+        "29": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1583.0,
+          "communication_ns": 29195.894
+        },
+        "30": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1583.0,
+          "communication_ns": 29758.48
+        },
+        "31": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1583.0,
+          "communication_ns": 29393.446
+        },
+        "32": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1677.0,
+          "communication_ns": 29680.31
+        },
+        "33": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1677.0,
+          "communication_ns": 29454.534
+        },
+        "34": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1677.0,
+          "communication_ns": 30017.12
+        },
+        "35": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1677.0,
+          "communication_ns": 29652.086
+        },
+        "36": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1482.0,
+          "communication_ns": 30187.496
+        },
+        "37": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1482.0,
+          "communication_ns": 29961.72
+        },
+        "38": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1482.0,
+          "communication_ns": 30524.305999999997
+        },
+        "39": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1482.0,
+          "communication_ns": 30159.272
+        },
+        "40": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1848.0,
+          "communication_ns": 30194.456
+        },
+        "41": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1848.0,
+          "communication_ns": 29968.68
+        },
+        "42": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1848.0,
+          "communication_ns": 30622.586000000003
+        },
+        "43": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1848.0,
+          "communication_ns": 30273.142
+        },
+        "44": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1855.0,
+          "communication_ns": 30096.456
+        },
+        "45": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1855.0,
+          "communication_ns": 29870.68
+        },
+        "46": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1855.0,
+          "communication_ns": 30524.586000000003
+        },
+        "47": {
+          "compute_ns": 1001.0,
+          "memory_ns": 1855.0,
+          "communication_ns": 30175.142
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "old_policy": {
+      "model_ns": 10729912878.056,
+      "slowest_rank": 42,
+      "native_nodes": 13,
+      "native_rank_events": 102,
+      "wall_seconds": 0.3487254170004235,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {
+        "0": {
+          "communication_ns": 186829178.73400003,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694396734,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 0,
+          "status": "PASS"
+        },
+        "1": {
+          "communication_ns": 186829179.74399975,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694397744,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 1,
+          "status": "PASS"
+        },
+        "2": {
+          "communication_ns": 186829129.8140001,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694347814,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 2,
+          "status": "PASS"
+        },
+        "3": {
+          "communication_ns": 186829130.8239998,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694348824,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 3,
+          "status": "PASS"
+        },
+        "4": {
+          "communication_ns": 284599321.1699998,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185216170,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 4,
+          "status": "PASS"
+        },
+        "5": {
+          "communication_ns": 284599322.1799995,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185217180,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 5,
+          "status": "PASS"
+        },
+        "6": {
+          "communication_ns": 284599440.7599997,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185335760,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 6,
+          "status": "PASS"
+        },
+        "7": {
+          "communication_ns": 284599441.7699995,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185336770,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 7,
+          "status": "PASS"
+        },
+        "8": {
+          "communication_ns": 188432434.276,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662113276,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 8,
+          "status": "PASS"
+        },
+        "9": {
+          "communication_ns": 188432435.2860001,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662114286,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 9,
+          "status": "PASS"
+        },
+        "10": {
+          "communication_ns": 188432365.88000003,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662044880,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 10,
+          "status": "PASS"
+        },
+        "11": {
+          "communication_ns": 188432366.89000008,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662045890,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 11,
+          "status": "PASS"
+        },
+        "12": {
+          "communication_ns": 208593636.20599982,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138728206,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 12,
+          "status": "PASS"
+        },
+        "13": {
+          "communication_ns": 208593637.21599942,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138729216,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 13,
+          "status": "PASS"
+        },
+        "14": {
+          "communication_ns": 208593596.96599978,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138688966,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 14,
+          "status": "PASS"
+        },
+        "15": {
+          "communication_ns": 208593597.97599944,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138689976,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 15,
+          "status": "PASS"
+        },
+        "16": {
+          "communication_ns": 326138048.63,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238267984630,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 16,
+          "status": "PASS"
+        },
+        "17": {
+          "communication_ns": 326138049.6399996,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238267985640,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 17,
+          "status": "PASS"
+        },
+        "18": {
+          "communication_ns": 326138101.62,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238268037620,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 18,
+          "status": "PASS"
+        },
+        "19": {
+          "communication_ns": 326138102.6299998,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238268038630,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 19,
+          "status": "PASS"
+        },
+        "20": {
+          "communication_ns": 192941560.9220002,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490118922,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 20,
+          "status": "PASS"
+        },
+        "21": {
+          "communication_ns": 192941561.93200025,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490119932,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 21,
+          "status": "PASS"
+        },
+        "22": {
+          "communication_ns": 192941490.5340002,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490048534,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 22,
+          "status": "PASS"
+        },
+        "23": {
+          "communication_ns": 192941491.54400027,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490049544,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 23,
+          "status": "PASS"
+        },
+        "24": {
+          "communication_ns": 171858233.81199995,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436224070812,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 24,
+          "status": "PASS"
+        },
+        "25": {
+          "communication_ns": 171858137.21799943,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436223974218,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 25,
+          "status": "PASS"
+        },
+        "26": {
+          "communication_ns": 171858138.22799993,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436223975228,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 26,
+          "status": "PASS"
+        },
+        "27": {
+          "communication_ns": 171858139.23799947,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436223976238,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 27,
+          "status": "PASS"
+        },
+        "28": {
+          "communication_ns": 321828031.252001,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844365252,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 28,
+          "status": "PASS"
+        },
+        "29": {
+          "communication_ns": 321828032.26200205,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844366262,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 29,
+          "status": "PASS"
+        },
+        "30": {
+          "communication_ns": 321828147.61200106,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844481612,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 30,
+          "status": "PASS"
+        },
+        "31": {
+          "communication_ns": 321827961.638002,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844295638,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 31,
+          "status": "PASS"
+        },
+        "32": {
+          "communication_ns": 203755278.0259997,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653312026,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 32,
+          "status": "PASS"
+        },
+        "33": {
+          "communication_ns": 203755279.036,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653313036,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 33,
+          "status": "PASS"
+        },
+        "34": {
+          "communication_ns": 203755243.03799972,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653277038,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 34,
+          "status": "PASS"
+        },
+        "35": {
+          "communication_ns": 203755244.04800004,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653278048,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 35,
+          "status": "PASS"
+        },
+        "36": {
+          "communication_ns": 166864765.9340012,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891432934,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 36,
+          "status": "PASS"
+        },
+        "37": {
+          "communication_ns": 166864766.9440012,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891433944,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 37,
+          "status": "PASS"
+        },
+        "38": {
+          "communication_ns": 166864723.49400112,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891390494,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 38,
+          "status": "PASS"
+        },
+        "39": {
+          "communication_ns": 166864724.50400123,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891391504,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 39,
+          "status": "PASS"
+        },
+        "40": {
+          "communication_ns": 474024684.25599915,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912782256,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 40,
+          "status": "PASS"
+        },
+        "41": {
+          "communication_ns": 474024685.26599944,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912783266,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 41,
+          "status": "PASS"
+        },
+        "42": {
+          "communication_ns": 474024780.055999,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912878056,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 42,
+          "status": "PASS"
+        },
+        "43": {
+          "communication_ns": 474024626.9779993,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912724978,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 43,
+          "status": "PASS"
+        },
+        "44": {
+          "communication_ns": 237923886.55400026,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449825554,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 44,
+          "status": "PASS"
+        },
+        "45": {
+          "communication_ns": 237923845.20800006,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449784208,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 45,
+          "status": "PASS"
+        },
+        "46": {
+          "communication_ns": 237923846.21800008,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449785218,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 46,
+          "status": "PASS"
+        },
+        "47": {
+          "communication_ns": 237923847.22800002,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449786228,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 47,
+          "status": "PASS"
+        }
+      },
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829178.73400003
+        },
+        "1": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829179.74399975
+        },
+        "2": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829129.8140001
+        },
+        "3": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829130.8239998
+        },
+        "4": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599321.1699998
+        },
+        "5": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599322.1799995
+        },
+        "6": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599440.7599997
+        },
+        "7": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599441.7699995
+        },
+        "8": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432434.276
+        },
+        "9": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432435.2860001
+        },
+        "10": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432365.88000003
+        },
+        "11": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432366.89000008
+        },
+        "12": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593636.20599982
+        },
+        "13": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593637.21599942
+        },
+        "14": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593596.96599978
+        },
+        "15": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593597.97599944
+        },
+        "16": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138048.63
+        },
+        "17": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138049.6399996
+        },
+        "18": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138101.62
+        },
+        "19": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138102.6299998
+        },
+        "20": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941560.9220002
+        },
+        "21": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941561.93200025
+        },
+        "22": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941490.5340002
+        },
+        "23": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941491.54400027
+        },
+        "24": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858233.81199995
+        },
+        "25": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858137.21799943
+        },
+        "26": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858138.22799993
+        },
+        "27": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858139.23799947
+        },
+        "28": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321828031.252001
+        },
+        "29": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321828032.26200205
+        },
+        "30": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321828147.61200106
+        },
+        "31": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321827961.638002
+        },
+        "32": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755278.0259997
+        },
+        "33": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755279.036
+        },
+        "34": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755243.03799972
+        },
+        "35": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755244.04800004
+        },
+        "36": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864765.9340012
+        },
+        "37": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864766.9440012
+        },
+        "38": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864723.49400112
+        },
+        "39": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864724.50400123
+        },
+        "40": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024684.25599915
+        },
+        "41": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024685.26599944
+        },
+        "42": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024780.055999
+        },
+        "43": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024626.9779993
+        },
+        "44": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923886.55400026
+        },
+        "45": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923845.20800006
+        },
+        "46": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923846.21800008
+        },
+        "47": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923847.22800002
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "reference": {
+      "model_ns": 10729912878.056,
+      "slowest_rank": 42,
+      "native_nodes": 13,
+      "native_rank_events": 102,
+      "wall_seconds": 0.34908020800003214,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {
+        "0": {
+          "communication_ns": 186829178.73400003,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694396734,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 0,
+          "status": "PASS"
+        },
+        "1": {
+          "communication_ns": 186829179.74399975,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694397744,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 1,
+          "status": "PASS"
+        },
+        "2": {
+          "communication_ns": 186829129.8140001,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694347814,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 2,
+          "status": "PASS"
+        },
+        "3": {
+          "communication_ns": 186829130.8239998,
+          "communication_steps": 600,
+          "compute_ns": 4095403483.223217,
+          "end_tick": 7934694348824,
+          "executed_steps": 2976,
+          "memory_ns": 3652461552.432009,
+          "rank": 3,
+          "status": "PASS"
+        },
+        "4": {
+          "communication_ns": 284599321.1699998,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185216170,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 4,
+          "status": "PASS"
+        },
+        "5": {
+          "communication_ns": 284599322.1799995,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185217180,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 5,
+          "status": "PASS"
+        },
+        "6": {
+          "communication_ns": 284599440.7599997,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185335760,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 6,
+          "status": "PASS"
+        },
+        "7": {
+          "communication_ns": 284599441.7699995,
+          "communication_steps": 600,
+          "compute_ns": 2975352813.579172,
+          "end_tick": 6058185336770,
+          "executed_steps": 2976,
+          "memory_ns": 2798232934.01599,
+          "rank": 7,
+          "status": "PASS"
+        },
+        "8": {
+          "communication_ns": 188432434.276,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662113276,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 8,
+          "status": "PASS"
+        },
+        "9": {
+          "communication_ns": 188432435.2860001,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662114286,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 9,
+          "status": "PASS"
+        },
+        "10": {
+          "communication_ns": 188432365.88000003,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662044880,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 10,
+          "status": "PASS"
+        },
+        "11": {
+          "communication_ns": 188432366.89000008,
+          "communication_steps": 600,
+          "compute_ns": 4121725295.5942593,
+          "end_tick": 8025662045890,
+          "executed_steps": 2976,
+          "memory_ns": 3715504196.015996,
+          "rank": 11,
+          "status": "PASS"
+        },
+        "12": {
+          "communication_ns": 208593636.20599982,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138728206,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 12,
+          "status": "PASS"
+        },
+        "13": {
+          "communication_ns": 208593637.21599942,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138729216,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 13,
+          "status": "PASS"
+        },
+        "14": {
+          "communication_ns": 208593596.96599978,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138688966,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 14,
+          "status": "PASS"
+        },
+        "15": {
+          "communication_ns": 208593597.97599944,
+          "communication_steps": 600,
+          "compute_ns": 4702092745.717798,
+          "end_tick": 9121138689976,
+          "executed_steps": 2976,
+          "memory_ns": 4210452193.5759845,
+          "rank": 15,
+          "status": "PASS"
+        },
+        "16": {
+          "communication_ns": 326138048.63,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238267984630,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 16,
+          "status": "PASS"
+        },
+        "17": {
+          "communication_ns": 326138049.6399996,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238267985640,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 17,
+          "status": "PASS"
+        },
+        "18": {
+          "communication_ns": 326138101.62,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238268037620,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 18,
+          "status": "PASS"
+        },
+        "19": {
+          "communication_ns": 326138102.6299998,
+          "communication_steps": 600,
+          "compute_ns": 3599827377.468686,
+          "end_tick": 7238268038630,
+          "executed_steps": 2976,
+          "memory_ns": 3312302369.407991,
+          "rank": 19,
+          "status": "PASS"
+        },
+        "20": {
+          "communication_ns": 192941560.9220002,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490118922,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 20,
+          "status": "PASS"
+        },
+        "21": {
+          "communication_ns": 192941561.93200025,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490119932,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 21,
+          "status": "PASS"
+        },
+        "22": {
+          "communication_ns": 192941490.5340002,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490048534,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 22,
+          "status": "PASS"
+        },
+        "23": {
+          "communication_ns": 192941491.54400027,
+          "communication_steps": 600,
+          "compute_ns": 4256545520.7622933,
+          "end_tick": 8365490049544,
+          "executed_steps": 2976,
+          "memory_ns": 3916002884.9440093,
+          "rank": 23,
+          "status": "PASS"
+        },
+        "24": {
+          "communication_ns": 171858233.81199995,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436224070812,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 24,
+          "status": "PASS"
+        },
+        "25": {
+          "communication_ns": 171858137.21799943,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436223974218,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 25,
+          "status": "PASS"
+        },
+        "26": {
+          "communication_ns": 171858138.22799993,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436223975228,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 26,
+          "status": "PASS"
+        },
+        "27": {
+          "communication_ns": 171858139.23799947,
+          "communication_steps": 600,
+          "compute_ns": 3811368500.1929817,
+          "end_tick": 7436223976238,
+          "executed_steps": 2976,
+          "memory_ns": 3452997215.599998,
+          "rank": 27,
+          "status": "PASS"
+        },
+        "28": {
+          "communication_ns": 321828031.252001,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844365252,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 28,
+          "status": "PASS"
+        },
+        "29": {
+          "communication_ns": 321828032.26200205,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844366262,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 29,
+          "status": "PASS"
+        },
+        "30": {
+          "communication_ns": 321828147.61200106,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844481612,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 30,
+          "status": "PASS"
+        },
+        "31": {
+          "communication_ns": 321827961.638002,
+          "communication_steps": 600,
+          "compute_ns": 3492578702.49673,
+          "end_tick": 7021844295638,
+          "executed_steps": 2976,
+          "memory_ns": 3207437456.567995,
+          "rank": 31,
+          "status": "PASS"
+        },
+        "32": {
+          "communication_ns": 203755278.0259997,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653312026,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 32,
+          "status": "PASS"
+        },
+        "33": {
+          "communication_ns": 203755279.036,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653313036,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 33,
+          "status": "PASS"
+        },
+        "34": {
+          "communication_ns": 203755243.03799972,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653277038,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 34,
+          "status": "PASS"
+        },
+        "35": {
+          "communication_ns": 203755244.04800004,
+          "communication_steps": 600,
+          "compute_ns": 4570846996.165468,
+          "end_tick": 8862653278048,
+          "executed_steps": 2976,
+          "memory_ns": 4088050898.336016,
+          "rank": 35,
+          "status": "PASS"
+        },
+        "36": {
+          "communication_ns": 166864765.9340012,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891432934,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 36,
+          "status": "PASS"
+        },
+        "37": {
+          "communication_ns": 166864766.9440012,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891433944,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 37,
+          "status": "PASS"
+        },
+        "38": {
+          "communication_ns": 166864723.49400112,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891390494,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 38,
+          "status": "PASS"
+        },
+        "39": {
+          "communication_ns": 166864724.50400123,
+          "communication_steps": 600,
+          "compute_ns": 3662423242.359163,
+          "end_tick": 7242891391504,
+          "executed_steps": 2976,
+          "memory_ns": 3413603244.5200105,
+          "rank": 39,
+          "status": "PASS"
+        },
+        "40": {
+          "communication_ns": 474024684.25599915,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912782256,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 40,
+          "status": "PASS"
+        },
+        "41": {
+          "communication_ns": 474024685.26599944,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912783266,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 41,
+          "status": "PASS"
+        },
+        "42": {
+          "communication_ns": 474024780.055999,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912878056,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 42,
+          "status": "PASS"
+        },
+        "43": {
+          "communication_ns": 474024626.9779993,
+          "communication_steps": 600,
+          "compute_ns": 5406795021.863168,
+          "end_tick": 10729912724978,
+          "executed_steps": 2976,
+          "memory_ns": 4849092954.44802,
+          "rank": 43,
+          "status": "PASS"
+        },
+        "44": {
+          "communication_ns": 237923886.55400026,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449825554,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 44,
+          "status": "PASS"
+        },
+        "45": {
+          "communication_ns": 237923845.20800006,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449784208,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 45,
+          "status": "PASS"
+        },
+        "46": {
+          "communication_ns": 237923846.21800008,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449785218,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 46,
+          "status": "PASS"
+        },
+        "47": {
+          "communication_ns": 237923847.22800002,
+          "communication_steps": 600,
+          "compute_ns": 5407839198.047142,
+          "end_tick": 10424449786228,
+          "executed_steps": 2976,
+          "memory_ns": 4778686561.488008,
+          "rank": 47,
+          "status": "PASS"
+        }
+      },
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829178.73400003
+        },
+        "1": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829179.74399975
+        },
+        "2": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829129.8140001
+        },
+        "3": {
+          "compute_ns": 4095403484.223217,
+          "memory_ns": 3652461552.432009,
+          "communication_ns": 186829130.8239998
+        },
+        "4": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599321.1699998
+        },
+        "5": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599322.1799995
+        },
+        "6": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599440.7599997
+        },
+        "7": {
+          "compute_ns": 2975352814.579172,
+          "memory_ns": 2798232934.01599,
+          "communication_ns": 284599441.7699995
+        },
+        "8": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432434.276
+        },
+        "9": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432435.2860001
+        },
+        "10": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432365.88000003
+        },
+        "11": {
+          "compute_ns": 4121725296.5942593,
+          "memory_ns": 3715504196.015996,
+          "communication_ns": 188432366.89000008
+        },
+        "12": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593636.20599982
+        },
+        "13": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593637.21599942
+        },
+        "14": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593596.96599978
+        },
+        "15": {
+          "compute_ns": 4702092746.717798,
+          "memory_ns": 4210452193.5759845,
+          "communication_ns": 208593597.97599944
+        },
+        "16": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138048.63
+        },
+        "17": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138049.6399996
+        },
+        "18": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138101.62
+        },
+        "19": {
+          "compute_ns": 3599827378.468686,
+          "memory_ns": 3312302369.407991,
+          "communication_ns": 326138102.6299998
+        },
+        "20": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941560.9220002
+        },
+        "21": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941561.93200025
+        },
+        "22": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941490.5340002
+        },
+        "23": {
+          "compute_ns": 4256545521.7622933,
+          "memory_ns": 3916002884.9440093,
+          "communication_ns": 192941491.54400027
+        },
+        "24": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858233.81199995
+        },
+        "25": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858137.21799943
+        },
+        "26": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858138.22799993
+        },
+        "27": {
+          "compute_ns": 3811368501.1929817,
+          "memory_ns": 3452997215.599998,
+          "communication_ns": 171858139.23799947
+        },
+        "28": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321828031.252001
+        },
+        "29": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321828032.26200205
+        },
+        "30": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321828147.61200106
+        },
+        "31": {
+          "compute_ns": 3492578703.49673,
+          "memory_ns": 3207437456.567995,
+          "communication_ns": 321827961.638002
+        },
+        "32": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755278.0259997
+        },
+        "33": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755279.036
+        },
+        "34": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755243.03799972
+        },
+        "35": {
+          "compute_ns": 4570846997.165468,
+          "memory_ns": 4088050898.336016,
+          "communication_ns": 203755244.04800004
+        },
+        "36": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864765.9340012
+        },
+        "37": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864766.9440012
+        },
+        "38": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864723.49400112
+        },
+        "39": {
+          "compute_ns": 3662423243.359163,
+          "memory_ns": 3413603244.5200105,
+          "communication_ns": 166864724.50400123
+        },
+        "40": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024684.25599915
+        },
+        "41": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024685.26599944
+        },
+        "42": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024780.055999
+        },
+        "43": {
+          "compute_ns": 5406795022.863168,
+          "memory_ns": 4849092954.44802,
+          "communication_ns": 474024626.9779993
+        },
+        "44": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923886.55400026
+        },
+        "45": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923845.20800006
+        },
+        "46": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923846.21800008
+        },
+        "47": {
+          "compute_ns": 5407839199.047142,
+          "memory_ns": 4778686561.488008,
+          "communication_ns": 237923847.22800002
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "advantage": {
+      "model_ns": 3.0,
+      "slowest_rank": 0,
+      "native_nodes": 13,
+      "native_rank_events": 102,
+      "wall_seconds": 0.0700157080000281,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {},
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "1": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "2": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "3": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "4": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "5": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "6": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "7": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "8": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "9": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "10": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "11": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "12": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "13": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "14": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "15": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "16": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "17": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "18": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "19": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "20": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "21": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "22": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "23": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "24": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "25": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "26": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "27": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "28": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "29": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "30": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "31": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "32": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "33": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "34": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "35": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "36": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "37": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "38": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "39": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "40": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "41": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "42": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "43": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "44": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "45": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "46": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "47": {
+          "compute_ns": 2.0,
+          "memory_ns": 1.0,
+          "communication_ns": 0.0
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "training": {
+      "model_ns": 48167820723.22,
+      "slowest_rank": 43,
+      "native_nodes": 13,
+      "native_rank_events": 102,
+      "wall_seconds": 1.5205637500002922,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {
+        "0": {
+          "communication_ns": 743918523.1820059,
+          "communication_steps": 3520,
+          "compute_ns": 16427573172.601477,
+          "end_tick": 36485045940182,
+          "executed_steps": 18161,
+          "memory_ns": 19313553333.440125,
+          "rank": 0,
+          "status": "PASS"
+        },
+        "1": {
+          "communication_ns": 743918524.1920072,
+          "communication_steps": 3520,
+          "compute_ns": 16427573172.601477,
+          "end_tick": 36485045941192,
+          "executed_steps": 18161,
+          "memory_ns": 19313553333.440125,
+          "rank": 1,
+          "status": "PASS"
+        },
+        "2": {
+          "communication_ns": 743887403.6420058,
+          "communication_steps": 3520,
+          "compute_ns": 16427573172.601477,
+          "end_tick": 36485014820642,
+          "executed_steps": 18161,
+          "memory_ns": 19313553333.440125,
+          "rank": 2,
+          "status": "PASS"
+        },
+        "3": {
+          "communication_ns": 743887404.6520076,
+          "communication_steps": 3520,
+          "compute_ns": 16427573172.601477,
+          "end_tick": 36485014821652,
+          "executed_steps": 18161,
+          "memory_ns": 19313553333.440125,
+          "rank": 3,
+          "status": "PASS"
+        },
+        "4": {
+          "communication_ns": 1134139561.773996,
+          "communication_steps": 3520,
+          "compute_ns": 11864301662.52321,
+          "end_tick": 27667647460774,
+          "executed_steps": 18161,
+          "memory_ns": 14669205290.951954,
+          "rank": 4,
+          "status": "PASS"
+        },
+        "5": {
+          "communication_ns": 1134139562.7840009,
+          "communication_steps": 3520,
+          "compute_ns": 11864301662.52321,
+          "end_tick": 27667647461784,
+          "executed_steps": 18161,
+          "memory_ns": 14669205290.951954,
+          "rank": 5,
+          "status": "PASS"
+        },
+        "6": {
+          "communication_ns": 1134096494.9939957,
+          "communication_steps": 3520,
+          "compute_ns": 11864301662.52321,
+          "end_tick": 27667604393994,
+          "executed_steps": 18161,
+          "memory_ns": 14669205290.951954,
+          "rank": 6,
+          "status": "PASS"
+        },
+        "7": {
+          "communication_ns": 1134096496.004001,
+          "communication_steps": 3520,
+          "compute_ns": 11864301662.52321,
+          "end_tick": 27667604395004,
+          "executed_steps": 18161,
+          "memory_ns": 14669205290.951954,
+          "rank": 7,
+          "status": "PASS"
+        },
+        "8": {
+          "communication_ns": 750009123.4419963,
+          "communication_steps": 3520,
+          "compute_ns": 16533784269.00073,
+          "end_tick": 36588044706442,
+          "executed_steps": 18161,
+          "memory_ns": 19304250548.52814,
+          "rank": 8,
+          "status": "PASS"
+        },
+        "9": {
+          "communication_ns": 750009124.4519955,
+          "communication_steps": 3520,
+          "compute_ns": 16533784269.00073,
+          "end_tick": 36588044707452,
+          "executed_steps": 18161,
+          "memory_ns": 19304250548.52814,
+          "rank": 9,
+          "status": "PASS"
+        },
+        "10": {
+          "communication_ns": 749945644.2219971,
+          "communication_steps": 3520,
+          "compute_ns": 16533784269.00073,
+          "end_tick": 36587981227222,
+          "executed_steps": 18161,
+          "memory_ns": 19304250548.52814,
+          "rank": 10,
+          "status": "PASS"
+        },
+        "11": {
+          "communication_ns": 749945645.2319962,
+          "communication_steps": 3520,
+          "compute_ns": 16533784269.00073,
+          "end_tick": 36587981228232,
+          "executed_steps": 18161,
+          "memory_ns": 19304250548.52814,
+          "rank": 11,
+          "status": "PASS"
+        },
+        "12": {
+          "communication_ns": 835009782.2419999,
+          "communication_steps": 3520,
+          "compute_ns": 18920178248.306374,
+          "end_tick": 41404018643242,
+          "executed_steps": 18161,
+          "memory_ns": 21648829724.496128,
+          "rank": 12,
+          "status": "PASS"
+        },
+        "13": {
+          "communication_ns": 835009783.2520009,
+          "communication_steps": 3520,
+          "compute_ns": 18920178248.306374,
+          "end_tick": 41404018644252,
+          "executed_steps": 18161,
+          "memory_ns": 21648829724.496128,
+          "rank": 13,
+          "status": "PASS"
+        },
+        "14": {
+          "communication_ns": 834993180.4619999,
+          "communication_steps": 3520,
+          "compute_ns": 18920178248.306374,
+          "end_tick": 41404002041462,
+          "executed_steps": 18161,
+          "memory_ns": 21648829724.496128,
+          "rank": 14,
+          "status": "PASS"
+        },
+        "15": {
+          "communication_ns": 834993181.4720014,
+          "communication_steps": 3520,
+          "compute_ns": 18920178248.306374,
+          "end_tick": 41404002042472,
+          "executed_steps": 18161,
+          "memory_ns": 21648829724.496128,
+          "rank": 15,
+          "status": "PASS"
+        },
+        "16": {
+          "communication_ns": 1306402296.066017,
+          "communication_steps": 3520,
+          "compute_ns": 14461366812.225294,
+          "end_tick": 32878699603066,
+          "executed_steps": 18161,
+          "memory_ns": 17110929739.519844,
+          "rank": 16,
+          "status": "PASS"
+        },
+        "17": {
+          "communication_ns": 1306379640.2360058,
+          "communication_steps": 3520,
+          "compute_ns": 14461366812.225294,
+          "end_tick": 32878676947236,
+          "executed_steps": 18161,
+          "memory_ns": 17110929739.519844,
+          "rank": 17,
+          "status": "PASS"
+        },
+        "18": {
+          "communication_ns": 1306375052.0060174,
+          "communication_steps": 3520,
+          "compute_ns": 14461366812.225294,
+          "end_tick": 32878672359006,
+          "executed_steps": 18161,
+          "memory_ns": 17110929739.519844,
+          "rank": 18,
+          "status": "PASS"
+        },
+        "19": {
+          "communication_ns": 1306375053.016006,
+          "communication_steps": 3520,
+          "compute_ns": 14461366812.225294,
+          "end_tick": 32878672360016,
+          "executed_steps": 18161,
+          "memory_ns": 17110929739.519844,
+          "rank": 19,
+          "status": "PASS"
+        },
+        "20": {
+          "communication_ns": 769031488.9600043,
+          "communication_steps": 3520,
+          "compute_ns": 17090737557.92331,
+          "end_tick": 38017937276960,
+          "executed_steps": 18161,
+          "memory_ns": 20158167457.256298,
+          "rank": 20,
+          "status": "PASS"
+        },
+        "21": {
+          "communication_ns": 769031489.9700062,
+          "communication_steps": 3520,
+          "compute_ns": 17090737557.92331,
+          "end_tick": 38017937277970,
+          "executed_steps": 18161,
+          "memory_ns": 20158167457.256298,
+          "rank": 21,
+          "status": "PASS"
+        },
+        "22": {
+          "communication_ns": 768976819.9800042,
+          "communication_steps": 3520,
+          "compute_ns": 17090737557.92331,
+          "end_tick": 38017882607980,
+          "executed_steps": 18161,
+          "memory_ns": 20158167457.256298,
+          "rank": 22,
+          "status": "PASS"
+        },
+        "23": {
+          "communication_ns": 768976820.9900066,
+          "communication_steps": 3520,
+          "compute_ns": 17090737557.92331,
+          "end_tick": 38017882608990,
+          "executed_steps": 18161,
+          "memory_ns": 20158167457.256298,
+          "rank": 23,
+          "status": "PASS"
+        },
+        "24": {
+          "communication_ns": 687213815.8480014,
+          "communication_steps": 3520,
+          "compute_ns": 15312275425.15391,
+          "end_tick": 33981465762848,
+          "executed_steps": 18161,
+          "memory_ns": 17981975581.600014,
+          "rank": 24,
+          "status": "PASS"
+        },
+        "25": {
+          "communication_ns": 687213816.8580093,
+          "communication_steps": 3520,
+          "compute_ns": 15312275425.15391,
+          "end_tick": 33981465763858,
+          "executed_steps": 18161,
+          "memory_ns": 17981975581.600014,
+          "rank": 25,
+          "status": "PASS"
+        },
+        "26": {
+          "communication_ns": 687190782.0680014,
+          "communication_steps": 3520,
+          "compute_ns": 15312275425.15391,
+          "end_tick": 33981442729068,
+          "executed_steps": 18161,
+          "memory_ns": 17981975581.600014,
+          "rank": 26,
+          "status": "PASS"
+        },
+        "27": {
+          "communication_ns": 687190783.0780087,
+          "communication_steps": 3520,
+          "compute_ns": 15312275425.15391,
+          "end_tick": 33981442730078,
+          "executed_steps": 18161,
+          "memory_ns": 17981975581.600014,
+          "rank": 27,
+          "status": "PASS"
+        },
+        "28": {
+          "communication_ns": 1285856710.512012,
+          "communication_steps": 3520,
+          "compute_ns": 13987403419.982357,
+          "end_tick": 32186912731512,
+          "executed_steps": 18161,
+          "memory_ns": 16913651613.655903,
+          "rank": 28,
+          "status": "PASS"
+        },
+        "29": {
+          "communication_ns": 1285856711.5220065,
+          "communication_steps": 3520,
+          "compute_ns": 13987403419.982357,
+          "end_tick": 32186912732522,
+          "executed_steps": 18161,
+          "memory_ns": 16913651613.655903,
+          "rank": 29,
+          "status": "PASS"
+        },
+        "30": {
+          "communication_ns": 1285960927.362012,
+          "communication_steps": 3520,
+          "compute_ns": 13987403419.982357,
+          "end_tick": 32187016948362,
+          "executed_steps": 18161,
+          "memory_ns": 16913651613.655903,
+          "rank": 30,
+          "status": "PASS"
+        },
+        "31": {
+          "communication_ns": 1285866758.7720053,
+          "communication_steps": 3520,
+          "compute_ns": 13987403419.982357,
+          "end_tick": 32186922779772,
+          "executed_steps": 18161,
+          "memory_ns": 16913651613.655903,
+          "rank": 31,
+          "status": "PASS"
+        },
+        "32": {
+          "communication_ns": 813294334.8899873,
+          "communication_steps": 3520,
+          "compute_ns": 18382107043.157627,
+          "end_tick": 40415477658890,
+          "executed_steps": 18161,
+          "memory_ns": 21220075288.343903,
+          "rank": 32,
+          "status": "PASS"
+        },
+        "33": {
+          "communication_ns": 813294335.8999906,
+          "communication_steps": 3520,
+          "compute_ns": 18382107043.157627,
+          "end_tick": 40415477659900,
+          "executed_steps": 18161,
+          "memory_ns": 21220075288.343903,
+          "rank": 33,
+          "status": "PASS"
+        },
+        "34": {
+          "communication_ns": 813286808.3099867,
+          "communication_steps": 3520,
+          "compute_ns": 18382107043.157627,
+          "end_tick": 40415470132310,
+          "executed_steps": 18161,
+          "memory_ns": 21220075288.343903,
+          "rank": 34,
+          "status": "PASS"
+        },
+        "35": {
+          "communication_ns": 813286809.3199909,
+          "communication_steps": 3520,
+          "compute_ns": 18382107043.157627,
+          "end_tick": 40415470133320,
+          "executed_steps": 18161,
+          "memory_ns": 21220075288.343903,
+          "rank": 35,
+          "status": "PASS"
+        },
+        "36": {
+          "communication_ns": 670836213.4820021,
+          "communication_steps": 3520,
+          "compute_ns": 14712354245.023201,
+          "end_tick": 32556975615482,
+          "executed_steps": 18161,
+          "memory_ns": 17173784202.503872,
+          "rank": 36,
+          "status": "PASS"
+        },
+        "37": {
+          "communication_ns": 670836214.4920048,
+          "communication_steps": 3520,
+          "compute_ns": 14712354245.023201,
+          "end_tick": 32556975616492,
+          "executed_steps": 18161,
+          "memory_ns": 17173784202.503872,
+          "rank": 37,
+          "status": "PASS"
+        },
+        "38": {
+          "communication_ns": 670836215.5020026,
+          "communication_steps": 3520,
+          "compute_ns": 14712354245.023201,
+          "end_tick": 32556975617502,
+          "executed_steps": 18161,
+          "memory_ns": 17173784202.503872,
+          "rank": 38,
+          "status": "PASS"
+        },
+        "39": {
+          "communication_ns": 670836216.5120044,
+          "communication_steps": 3520,
+          "compute_ns": 14712354245.023201,
+          "end_tick": 32556975618512,
+          "executed_steps": 18161,
+          "memory_ns": 17173784202.503872,
+          "rank": 39,
+          "status": "PASS"
+        },
+        "40": {
+          "communication_ns": 1892752671.5000017,
+          "communication_steps": 3520,
+          "compute_ns": 21790574194.38465,
+          "end_tick": 48167784244500,
+          "executed_steps": 18161,
+          "memory_ns": 24484456251.63212,
+          "rank": 40,
+          "status": "PASS"
+        },
+        "41": {
+          "communication_ns": 1892752603.3980088,
+          "communication_steps": 3520,
+          "compute_ns": 21790574194.38465,
+          "end_tick": 48167784176398,
+          "executed_steps": 18161,
+          "memory_ns": 24484456251.63212,
+          "rank": 41,
+          "status": "PASS"
+        },
+        "42": {
+          "communication_ns": 1892789149.2100022,
+          "communication_steps": 3520,
+          "compute_ns": 21790574194.38465,
+          "end_tick": 48167820722210,
+          "executed_steps": 18161,
+          "memory_ns": 24484456251.63212,
+          "rank": 42,
+          "status": "PASS"
+        },
+        "43": {
+          "communication_ns": 1892789150.220008,
+          "communication_steps": 3520,
+          "compute_ns": 21790574194.38465,
+          "end_tick": 48167820723220,
+          "executed_steps": 18161,
+          "memory_ns": 24484456251.63212,
+          "rank": 43,
+          "status": "PASS"
+        },
+        "44": {
+          "communication_ns": 949270430.3359922,
+          "communication_steps": 3520,
+          "compute_ns": 21793209605.871014,
+          "end_tick": 47392158460336,
+          "executed_steps": 18161,
+          "memory_ns": 24649677467.471832,
+          "rank": 44,
+          "status": "PASS"
+        },
+        "45": {
+          "communication_ns": 949245595.865998,
+          "communication_steps": 3520,
+          "compute_ns": 21793209605.871014,
+          "end_tick": 47392133625866,
+          "executed_steps": 18161,
+          "memory_ns": 24649677467.471832,
+          "rank": 45,
+          "status": "PASS"
+        },
+        "46": {
+          "communication_ns": 949245596.8759924,
+          "communication_steps": 3520,
+          "compute_ns": 21793209605.871014,
+          "end_tick": 47392133626876,
+          "executed_steps": 18161,
+          "memory_ns": 24649677467.471832,
+          "rank": 46,
+          "status": "PASS"
+        },
+        "47": {
+          "communication_ns": 949245597.8859981,
+          "communication_steps": 3520,
+          "compute_ns": 21793209605.871014,
+          "end_tick": 47392133627886,
+          "executed_steps": 18161,
+          "memory_ns": 24649677467.471832,
+          "rank": 47,
+          "status": "PASS"
+        }
+      },
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 16427573173.601477,
+          "memory_ns": 19313553333.440125,
+          "communication_ns": 743918523.1820059
+        },
+        "1": {
+          "compute_ns": 16427573173.601477,
+          "memory_ns": 19313553333.440125,
+          "communication_ns": 743918524.1920072
+        },
+        "2": {
+          "compute_ns": 16427573173.601477,
+          "memory_ns": 19313553333.440125,
+          "communication_ns": 743887403.6420058
+        },
+        "3": {
+          "compute_ns": 16427573173.601477,
+          "memory_ns": 19313553333.440125,
+          "communication_ns": 743887404.6520076
+        },
+        "4": {
+          "compute_ns": 11864301663.52321,
+          "memory_ns": 14669205290.951954,
+          "communication_ns": 1134139561.773996
+        },
+        "5": {
+          "compute_ns": 11864301663.52321,
+          "memory_ns": 14669205290.951954,
+          "communication_ns": 1134139562.7840009
+        },
+        "6": {
+          "compute_ns": 11864301663.52321,
+          "memory_ns": 14669205290.951954,
+          "communication_ns": 1134096494.9939957
+        },
+        "7": {
+          "compute_ns": 11864301663.52321,
+          "memory_ns": 14669205290.951954,
+          "communication_ns": 1134096496.004001
+        },
+        "8": {
+          "compute_ns": 16533784270.00073,
+          "memory_ns": 19304250548.52814,
+          "communication_ns": 750009123.4419963
+        },
+        "9": {
+          "compute_ns": 16533784270.00073,
+          "memory_ns": 19304250548.52814,
+          "communication_ns": 750009124.4519955
+        },
+        "10": {
+          "compute_ns": 16533784270.00073,
+          "memory_ns": 19304250548.52814,
+          "communication_ns": 749945644.2219971
+        },
+        "11": {
+          "compute_ns": 16533784270.00073,
+          "memory_ns": 19304250548.52814,
+          "communication_ns": 749945645.2319962
+        },
+        "12": {
+          "compute_ns": 18920178249.306374,
+          "memory_ns": 21648829724.496128,
+          "communication_ns": 835009782.2419999
+        },
+        "13": {
+          "compute_ns": 18920178249.306374,
+          "memory_ns": 21648829724.496128,
+          "communication_ns": 835009783.2520009
+        },
+        "14": {
+          "compute_ns": 18920178249.306374,
+          "memory_ns": 21648829724.496128,
+          "communication_ns": 834993180.4619999
+        },
+        "15": {
+          "compute_ns": 18920178249.306374,
+          "memory_ns": 21648829724.496128,
+          "communication_ns": 834993181.4720014
+        },
+        "16": {
+          "compute_ns": 14461366813.225294,
+          "memory_ns": 17110929739.519844,
+          "communication_ns": 1306402296.066017
+        },
+        "17": {
+          "compute_ns": 14461366813.225294,
+          "memory_ns": 17110929739.519844,
+          "communication_ns": 1306379640.2360058
+        },
+        "18": {
+          "compute_ns": 14461366813.225294,
+          "memory_ns": 17110929739.519844,
+          "communication_ns": 1306375052.0060174
+        },
+        "19": {
+          "compute_ns": 14461366813.225294,
+          "memory_ns": 17110929739.519844,
+          "communication_ns": 1306375053.016006
+        },
+        "20": {
+          "compute_ns": 17090737558.92331,
+          "memory_ns": 20158167457.256298,
+          "communication_ns": 769031488.9600043
+        },
+        "21": {
+          "compute_ns": 17090737558.92331,
+          "memory_ns": 20158167457.256298,
+          "communication_ns": 769031489.9700062
+        },
+        "22": {
+          "compute_ns": 17090737558.92331,
+          "memory_ns": 20158167457.256298,
+          "communication_ns": 768976819.9800042
+        },
+        "23": {
+          "compute_ns": 17090737558.92331,
+          "memory_ns": 20158167457.256298,
+          "communication_ns": 768976820.9900066
+        },
+        "24": {
+          "compute_ns": 15312275426.15391,
+          "memory_ns": 17981975581.600014,
+          "communication_ns": 687213815.8480014
+        },
+        "25": {
+          "compute_ns": 15312275426.15391,
+          "memory_ns": 17981975581.600014,
+          "communication_ns": 687213816.8580093
+        },
+        "26": {
+          "compute_ns": 15312275426.15391,
+          "memory_ns": 17981975581.600014,
+          "communication_ns": 687190782.0680014
+        },
+        "27": {
+          "compute_ns": 15312275426.15391,
+          "memory_ns": 17981975581.600014,
+          "communication_ns": 687190783.0780087
+        },
+        "28": {
+          "compute_ns": 13987403420.982357,
+          "memory_ns": 16913651613.655903,
+          "communication_ns": 1285856710.512012
+        },
+        "29": {
+          "compute_ns": 13987403420.982357,
+          "memory_ns": 16913651613.655903,
+          "communication_ns": 1285856711.5220065
+        },
+        "30": {
+          "compute_ns": 13987403420.982357,
+          "memory_ns": 16913651613.655903,
+          "communication_ns": 1285960927.362012
+        },
+        "31": {
+          "compute_ns": 13987403420.982357,
+          "memory_ns": 16913651613.655903,
+          "communication_ns": 1285866758.7720053
+        },
+        "32": {
+          "compute_ns": 18382107044.157627,
+          "memory_ns": 21220075288.343903,
+          "communication_ns": 813294334.8899873
+        },
+        "33": {
+          "compute_ns": 18382107044.157627,
+          "memory_ns": 21220075288.343903,
+          "communication_ns": 813294335.8999906
+        },
+        "34": {
+          "compute_ns": 18382107044.157627,
+          "memory_ns": 21220075288.343903,
+          "communication_ns": 813286808.3099867
+        },
+        "35": {
+          "compute_ns": 18382107044.157627,
+          "memory_ns": 21220075288.343903,
+          "communication_ns": 813286809.3199909
+        },
+        "36": {
+          "compute_ns": 14712354246.023201,
+          "memory_ns": 17173784202.503872,
+          "communication_ns": 670836213.4820021
+        },
+        "37": {
+          "compute_ns": 14712354246.023201,
+          "memory_ns": 17173784202.503872,
+          "communication_ns": 670836214.4920048
+        },
+        "38": {
+          "compute_ns": 14712354246.023201,
+          "memory_ns": 17173784202.503872,
+          "communication_ns": 670836215.5020026
+        },
+        "39": {
+          "compute_ns": 14712354246.023201,
+          "memory_ns": 17173784202.503872,
+          "communication_ns": 670836216.5120044
+        },
+        "40": {
+          "compute_ns": 21790574195.38465,
+          "memory_ns": 24484456251.63212,
+          "communication_ns": 1892752671.5000017
+        },
+        "41": {
+          "compute_ns": 21790574195.38465,
+          "memory_ns": 24484456251.63212,
+          "communication_ns": 1892752603.3980088
+        },
+        "42": {
+          "compute_ns": 21790574195.38465,
+          "memory_ns": 24484456251.63212,
+          "communication_ns": 1892789149.2100022
+        },
+        "43": {
+          "compute_ns": 21790574195.38465,
+          "memory_ns": 24484456251.63212,
+          "communication_ns": 1892789150.220008
+        },
+        "44": {
+          "compute_ns": 21793209606.871014,
+          "memory_ns": 24649677467.471832,
+          "communication_ns": 949270430.3359922
+        },
+        "45": {
+          "compute_ns": 21793209606.871014,
+          "memory_ns": 24649677467.471832,
+          "communication_ns": 949245595.865998
+        },
+        "46": {
+          "compute_ns": 21793209606.871014,
+          "memory_ns": 24649677467.471832,
+          "communication_ns": 949245596.8759924
+        },
+        "47": {
+          "compute_ns": 21793209606.871014,
+          "memory_ns": 24649677467.471832,
+          "communication_ns": 949245597.8859981
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "optimizer": {
+      "model_ns": 25447178.284,
+      "slowest_rank": 10,
+      "native_nodes": 256,
+      "native_rank_events": 822,
+      "wall_seconds": 0.06336054199982755,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {},
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10728533.572
+        },
+        "1": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583620.0,
+          "communication_ns": 10728580.572
+        },
+        "2": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583620.0,
+          "communication_ns": 10812385.260000002
+        },
+        "3": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583620.0,
+          "communication_ns": 10812386.260000002
+        },
+        "4": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812339.263999999
+        },
+        "5": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812372.263999999
+        },
+        "6": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10728558.556000004
+        },
+        "7": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10728559.556000004
+        },
+        "8": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812348.282000002
+        },
+        "9": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812381.282000002
+        },
+        "10": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812382.284000002
+        },
+        "11": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812381.284000002
+        },
+        "12": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10728533.572
+        },
+        "13": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10728575.572
+        },
+        "14": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10812380.260000002
+        },
+        "15": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10812381.260000002
+        },
+        "16": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812339.263999999
+        },
+        "17": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812372.263999999
+        },
+        "18": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10728558.556000004
+        },
+        "19": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10728559.556000004
+        },
+        "20": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812348.282000002
+        },
+        "21": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812381.282000002
+        },
+        "22": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812382.284000002
+        },
+        "23": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812381.284000002
+        },
+        "24": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10728533.572
+        },
+        "25": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10728575.572
+        },
+        "26": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10812380.260000002
+        },
+        "27": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10812381.260000002
+        },
+        "28": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812339.263999999
+        },
+        "29": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812372.263999999
+        },
+        "30": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10728558.556000004
+        },
+        "31": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10728559.556000004
+        },
+        "32": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812348.282000002
+        },
+        "33": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812381.282000002
+        },
+        "34": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812382.284000002
+        },
+        "35": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583636.0,
+          "communication_ns": 10812381.284000002
+        },
+        "36": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10728533.572
+        },
+        "37": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10728575.572
+        },
+        "38": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10812374.248
+        },
+        "39": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583625.0,
+          "communication_ns": 10812375.248
+        },
+        "40": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583668.0,
+          "communication_ns": 10812331.248
+        },
+        "41": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583646.0,
+          "communication_ns": 10812352.248
+        },
+        "42": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583646.0,
+          "communication_ns": 10728537.544000002
+        },
+        "43": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583646.0,
+          "communication_ns": 10728538.544000002
+        },
+        "44": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583662.0,
+          "communication_ns": 10309466.01
+        },
+        "45": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583662.0,
+          "communication_ns": 10309467.01
+        },
+        "46": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583662.0,
+          "communication_ns": 10309468.011999996
+        },
+        "47": {
+          "compute_ns": 51160.0,
+          "memory_ns": 14583662.0,
+          "communication_ns": 10309467.011999996
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    },
+    "publish": {
+      "model_ns": 2.0,
+      "slowest_rank": 0,
+      "native_nodes": 2,
+      "native_rank_events": 102,
+      "wall_seconds": 0.06253700000024764,
+      "binary_sha256": "6de2d6f539a9e6f8fca36d67f025d93da0afc29b049c56e8cb1276368a3ed617",
+      "native_sequence_summaries": {},
+      "per_rank_costs": {
+        "0": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "1": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "2": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "3": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "4": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "5": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "6": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "7": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "8": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "9": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "10": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "11": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "12": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "13": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "14": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "15": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "16": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "17": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "18": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "19": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "20": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "21": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "22": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "23": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "24": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "25": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "26": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "27": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "28": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "29": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "30": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "31": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "32": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "33": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "34": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "35": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "36": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "37": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "38": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "39": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "40": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "41": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "42": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "43": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "44": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "45": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "46": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "47": {
+          "compute_ns": 2.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "48": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "49": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "50": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "51": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "52": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        },
+        "53": {
+          "compute_ns": 1.0,
+          "memory_ns": 0.0,
+          "communication_ns": 0.0
+        }
+      }
+    }
+  },
+  "source_tree_sha256": "d7530f67e57de75cbcbfd4fc518bfb5cb6f738bdc3f895eb0014cee18bfb45ad",
+  "trajectory_sha256": "e27c089e9a178e3fce6481b9b4d2e890f1e451f43045cb5fc87e758bf281e2f9",
+  "compute_scale": 1.0,
+  "network_scale": 1.0,
+  "publication_status": "pending cross-platform consistency and sensitivity validation"
+}

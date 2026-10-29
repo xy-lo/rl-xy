@@ -142,33 +142,27 @@ def run_astrasim(
         environment["RLXY_RESOURCE_CONTRACT"]=str(Path(resource_contract).resolve())
     else:
         environment.pop("RLXY_RESOURCE_CONTRACT",None)
+    # Stream potentially large native diagnostics to disk. Holding packet-level
+    # output in subprocess.PIPE can exhaust host memory after a valid long run.
     try:
-        completed = subprocess.run(
-            command,
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=timeout_seconds,
-            cwd=out,
-            env=environment,
-        )
+        with stdout_path.open("w", encoding="utf-8") as stdout_file, stderr_path.open("w", encoding="utf-8") as stderr_file:
+            completed = subprocess.run(
+                command, check=False, stdout=stdout_file, stderr=stderr_file,
+                text=True, timeout=timeout_seconds, cwd=out, env=environment,
+            )
     except (OSError, subprocess.TimeoutExpired) as exc:
-        stdout = getattr(exc, "stdout", "") or ""
-        stderr = getattr(exc, "stderr", "") or str(exc)
-        if isinstance(stdout, bytes):
-            stdout = stdout.decode("utf-8", errors="replace")
-        if isinstance(stderr, bytes):
-            stderr = stderr.decode("utf-8", errors="replace")
-        stdout_path.write_text(stdout, encoding="utf-8")
-        stderr_path.write_text(stderr, encoding="utf-8")
+        with stderr_path.open("a", encoding="utf-8") as f:
+            f.write("\n" + str(exc) + "\n")
+        (out / 'astra_command.json').write_text(json.dumps({
+            'argv': list(command), 'exit_status': None, 'started_at_utc': started,
+            'finished_at_utc': _utc_now(), 'host_execution_error': type(exc).__name__,
+        }, indent=2) + '\n', encoding='utf-8')
         raise AstraExecutionError(f"AstraSim launch failed: {exc}") from exc
     finished = _utc_now()
     (out / 'astra_command.json').write_text(json.dumps({
         'argv': list(command), 'exit_status': completed.returncode,
         'started_at_utc': started, 'finished_at_utc': finished,
     }, indent=2) + '\n', encoding='utf-8')
-    stdout_path.write_text(completed.stdout, encoding="utf-8")
-    stderr_path.write_text(completed.stderr, encoding="utf-8")
     result = AstraRunResult(
         command=command,
         return_code=completed.returncode,
