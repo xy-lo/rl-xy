@@ -10,3 +10,5 @@ experiments/**/figures/*.svg -whitespace
 docker/astrasim/qwen3-native.patch -text -whitespace
 experiments/2026-10-29-qwen3-f2/native/native-combined.patch -text -whitespace
 experiments/2026-10-29-qwen3-f2/profiles/gpu-local.json -diff
+
+experiments/2026-11-01-idea1/astra-source/astra-sequence.patch -text -whitespace

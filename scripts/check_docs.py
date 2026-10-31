@@ -8,9 +8,10 @@ import subprocess
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-CURRENT = {'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md'}
+CURRENT = {'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md', 'docs/IDEA1.md'}
 HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-10-27-v0.6/模型内部瓶颈分解.md'}
 
+EVIDENCE = {'experiments/2026-11-01-idea1/test1-Idea1方法正文草稿.md', 'experiments/2026-11-01-idea1/test1-三模型结果与实现边界.md', 'experiments/2026-11-01-idea1/论文实验结果与表述.md'}
 
 def source_files():
     skip = {'__pycache__', '.pytest_cache', '.git'}
@@ -21,8 +22,8 @@ def main():
     # Only the source tree is scanned: untracked run outputs do not become repository documents.
     actual = {str(p.relative_to(ROOT)) for folder in ['docs', 'experiments', 'examples'] if (ROOT / folder).exists() for p in (ROOT / folder).rglob('*.md')}
     actual.add('README.md')
-    if actual != CURRENT | HISTORICAL:
-        raise ValueError('Noncanonical/missing Markdown: ' + repr(sorted(actual ^ (CURRENT | HISTORICAL))))
+    if actual != CURRENT | HISTORICAL | EVIDENCE:
+        raise ValueError('Noncanonical/missing Markdown: ' + repr(sorted(actual ^ (CURRENT | HISTORICAL | EVIDENCE))))
     frozen = json.loads((ROOT / 'experiments/2026-10-28-v0.9.5/source_freeze.json').read_text())['files']
     for name in HISTORICAL:
         if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != frozen[name]:

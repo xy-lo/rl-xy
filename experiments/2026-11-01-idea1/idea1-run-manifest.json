@@ -1,0 +1,41 @@
+{
+  "status": "EXPLICIT_LAUNCH_ARGUMENTS",
+  "rows": {
+    "4B": {
+      "model": "4B",
+      "train_tp": 4,
+      "train_mb": 8,
+      "rollout_tp": 4,
+      "cap": 128,
+      "logprob_mb": 16,
+      "window": "test2",
+      "binary_sha256": "3e21f5ee4374aee825e6987d43216ed507b62747c5268852de3315167b8152fe",
+      "trace_sha256": "8d3dc0c845d9610f84e20af4672de9578618f5b65ea2a39eeb5635105f6764ea",
+      "result_sha256": "4cfb82ea28e73507e1058d9ce2dbd084be458aab0399b5095983778e79174b67"
+    },
+    "8B": {
+      "model": "8B",
+      "train_tp": 4,
+      "train_mb": 4,
+      "rollout_tp": 4,
+      "cap": 64,
+      "logprob_mb": 16,
+      "window": "test2",
+      "binary_sha256": "3e21f5ee4374aee825e6987d43216ed507b62747c5268852de3315167b8152fe",
+      "trace_sha256": "77277fa5954af02db0a00e90bb37195ed4e3da6cc5967f8a2ca3b649ee1a145b",
+      "result_sha256": "0e912392f69ba3b9094dafd943374657ca6807149358b52c09eb8666d7d11c88"
+    },
+    "14B": {
+      "model": "14B",
+      "train_tp": 8,
+      "train_mb": 8,
+      "rollout_tp": 4,
+      "cap": 64,
+      "logprob_mb": 16,
+      "window": "test2",
+      "binary_sha256": "3e21f5ee4374aee825e6987d43216ed507b62747c5268852de3315167b8152fe",
+      "trace_sha256": "1f8d2e52441d9b3258cfd1aad4101e6c98570617943402070a60e683ae970c61",
+      "result_sha256": "f011dda9e01b1be79940c1760ef8c32c3865dfdaf245862a7fefc2c624cc8ddd"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "f2_admission": {
+    "passed": true,
+    "peak_bytes": 52694856448,
+    "phase_peak_bytes": {
+      "generation": 48624286720,
+      "weight_export": 24394054656,
+      "training": 42159828480,
+      "logprob": 52694856448
+    },
+    "reasons": [],
+    "capacity_bytes": 64000000000,
+    "admission": "conservative per-phase lifetime upper bounds; actual trace peaks validated in replay"
+  },
+  "helper_scratch_bound_bytes": 22020096,
+  "generation_upper_bound_bytes": 48646306816,
+  "capacity_bytes": 64000000000
+}

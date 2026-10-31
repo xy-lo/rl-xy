@@ -422,3 +422,21 @@
 | `tests/test_f2_runtime.py` | f2资产、冻结输入及跨路径算子成本验证。 |
 
 最新轻量输入、记录结果与图表统一放在`experiments/2026-10-29-qwen3/`；不复制本地原生日志、缓存或完整模型文件。
+
+## Idea1 融合方法
+
+| 文件 | 职责 |
+|---|---|
+| `scripts/idea1/attention_coop_runtime.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/attention_tp8_program.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/dynamic_native.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/generation_reclaim_priority_v4.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/helper_program_v10.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/locality_full4b_v3.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/locality_gqa_4b_v3.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/locality_runtime_v3.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/online_rollout.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/reclaim_priority.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `scripts/idea1/test_locality_no_oracle.py` | KV 局部性、长尾协作或原生事件运行组件。 |
+| `tests/test_idea1_release.py` | 验证局部性估计不读取未来生成长度。 |
+| `tests/test_idea1_layout.py` | 验证三档模型的头布局和迁移事件。 |

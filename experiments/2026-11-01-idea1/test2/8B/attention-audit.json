@@ -1,0 +1,56 @@
+{
+  "status": "PASS_TRACE_STRUCTURE_CAPACITY_FORMULA_NOT_NUMERICAL",
+  "requests": 1536,
+  "generation_s": 75.80510424719299,
+  "helper": true,
+  "attention_segments": 1181,
+  "migrations": 8,
+  "migration_endpoint_bytes": 48854974464,
+  "migration_times": [
+    {
+      "tx": 1,
+      "start_s": 60.92232581793,
+      "duration_s": 0.006080047226
+    },
+    {
+      "tx": 2,
+      "start_s": 62.783878517703,
+      "duration_s": 0.004182563402
+    },
+    {
+      "tx": 3,
+      "start_s": 63.649175325043,
+      "duration_s": 0.005221289706
+    },
+    {
+      "tx": 4,
+      "start_s": 64.070228152795,
+      "duration_s": 0.00605465321
+    },
+    {
+      "tx": 5,
+      "start_s": 68.563790368078,
+      "duration_s": 0.003332014666
+    },
+    {
+      "tx": 6,
+      "start_s": 68.573892148359,
+      "duration_s": 0.003564599306
+    },
+    {
+      "tx": 7,
+      "start_s": 69.619163902723,
+      "duration_s": 0.004236779658
+    },
+    {
+      "tx": 8,
+      "start_s": 69.624643589722,
+      "duration_s": 0.004843177673
+    }
+  ],
+  "limits": [
+    "QKV/attention/O FLOP shape and messages only; no tensor or BF16 equivalence",
+    "capacity bound and streamed layout assumptions not validated on wafer",
+    "f2 no cross-query-head KV reuse timing is not calibrated"
+  ]
+}

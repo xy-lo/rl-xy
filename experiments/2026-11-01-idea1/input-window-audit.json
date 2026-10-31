@@ -1,0 +1,132 @@
+{
+  "status": "PASS_DISJOINT_GROUP_IDS_AND_FROZEN_RECORDS",
+  "scope": "group ID nonoverlap; does not prove external source text uniqueness",
+  "models": {
+    "4B": {
+      "tune": {
+        "sha256": "f1edc07faaa821915b916293111f28146855eeee57bbe3125464102a900ba9f1",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 472288,
+        "response_tokens": 4732977,
+        "cutoff_length_count": 121
+      },
+      "test1": {
+        "sha256": "e2a64684474c0e77f642a3c1396d143f2fdf3a1f5628e91a80b021feac5ee02e",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 493160,
+        "response_tokens": 4399276,
+        "cutoff_length_count": 86
+      },
+      "test2": {
+        "sha256": "8d3dc0c845d9610f84e20af4672de9578618f5b65ea2a39eeb5635105f6764ea",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 458104,
+        "response_tokens": 4699674,
+        "cutoff_length_count": 142
+      },
+      "test3": {
+        "sha256": "210d15c975d49c58c85e9ec5e19618de483fb78722cbf80f1637bc472c33e720",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 510560,
+        "response_tokens": 4777554,
+        "cutoff_length_count": 114
+      },
+      "test4": {
+        "sha256": "ec20248d5add76a5b8a3f56014e6bd2493c40ea63e0a0550acbd498a704b9348",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 484800,
+        "response_tokens": 4851532,
+        "cutoff_length_count": 144
+      }
+    },
+    "8B": {
+      "tune": {
+        "sha256": "4c90166444dabef389581dfab045d914825a7055a239e09e3f626211b6b0293a",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 472288,
+        "response_tokens": 4727366,
+        "cutoff_length_count": 115
+      },
+      "test1": {
+        "sha256": "fdf1a009027929e56291fe65c468d01ffa94f0fb04fce48f87c0626e0c63fc21",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 493160,
+        "response_tokens": 4549585,
+        "cutoff_length_count": 71
+      },
+      "test2": {
+        "sha256": "77277fa5954af02db0a00e90bb37195ed4e3da6cc5967f8a2ca3b649ee1a145b",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 458104,
+        "response_tokens": 4868941,
+        "cutoff_length_count": 116
+      },
+      "test3": {
+        "sha256": "87fcd089037a149b08dfb323f7c8a851e816e7229a64e00e989a57430b351615",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 510560,
+        "response_tokens": 4745924,
+        "cutoff_length_count": 69
+      },
+      "test4": {
+        "sha256": "508e16cb1aa98e56cd332703fafa5ed8ebf8c2c6f489fe6c0817d90a77b3c71f",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 484800,
+        "response_tokens": 5003324,
+        "cutoff_length_count": 135
+      }
+    },
+    "14B": {
+      "tune": {
+        "sha256": "c4f5f58083e231faf6e19af3f0efb5c59e230fedd8db713779b76b1a90f91acf",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 472288,
+        "response_tokens": 3840384,
+        "cutoff_length_count": 44
+      },
+      "test1": {
+        "sha256": "f15e1626e7b99532337b062dca3815d676a779eae9e156f13cd89d7e436e3ea8",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 493160,
+        "response_tokens": 3826417,
+        "cutoff_length_count": 28
+      },
+      "test2": {
+        "sha256": "1f8d2e52441d9b3258cfd1aad4101e6c98570617943402070a60e683ae970c61",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 458104,
+        "response_tokens": 3945845,
+        "cutoff_length_count": 40
+      },
+      "test3": {
+        "sha256": "71290f3fd1c031f632da817557f0b20b01e2bf6a1eb61d00aa1fe0c91f8f0ecd",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 510560,
+        "response_tokens": 4051248,
+        "cutoff_length_count": 45
+      },
+      "test4": {
+        "sha256": "84b28483f3b6ec1263f50d951603a5a490892376709f622983fab91ed9b6ee8b",
+        "groups": 192,
+        "requests": 1536,
+        "prompt_tokens": 484800,
+        "response_tokens": 4059759,
+        "cutoff_length_count": 53
+      }
+    }
+  }
+}

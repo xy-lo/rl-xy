@@ -58,3 +58,7 @@ python3 scripts/check_docs.py
 ```
 
 自建实现为 MIT。AstraSim、Chakra 及数据/模型元数据使用各自许可；来源和固定 revision 见实验设计与发布数据中的 provenance。0.6 与 0.9.5 的历史小型控制及其原始身份仍保留，不能与当前三档数字混用。
+
+## Idea1 晶圆长尾协作
+
+Qwen3 4B/8B/14B 的融合方案和 test1/test2 仿真结果见 [Idea1 方法与复现入口](docs/IDEA1.md)。

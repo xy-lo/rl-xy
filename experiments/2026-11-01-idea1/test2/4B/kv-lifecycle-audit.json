@@ -1,0 +1,14 @@
+{
+  "status": "PASS_LOGICAL_LIFECYCLE_NOT_TENSOR",
+  "model": "4B",
+  "request_count": 1536,
+  "transactions": 9,
+  "segments": 610,
+  "additional_persistent_kv_write_bytes_all_ranks": 21359591424,
+  "pack_extra_read_bytes_all_endpoints": 178818711552,
+  "pack_extra_write_bytes_all_endpoints": 178818711552,
+  "limits": [
+    "actual tensor copy, QKV packing and device SRAM lifecycle not tested",
+    "numerical output and physical timing not established"
+  ]
+}

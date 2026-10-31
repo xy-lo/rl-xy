@@ -1,0 +1,61 @@
+{
+  "status": "PASS_TRACE_STRUCTURE_CAPACITY_FORMULA_NOT_NUMERICAL",
+  "requests": 1536,
+  "generation_s": 50.083729839883006,
+  "helper": true,
+  "attention_segments": 610,
+  "migrations": 9,
+  "migration_endpoint_bytes": 97910120448,
+  "migration_times": [
+    {
+      "tx": 1,
+      "start_s": 39.784540275586,
+      "duration_s": 0.008990209353
+    },
+    {
+      "tx": 2,
+      "start_s": 40.19453259006,
+      "duration_s": 0.008389257594
+    },
+    {
+      "tx": 3,
+      "start_s": 42.765331942535,
+      "duration_s": 0.011969527066
+    },
+    {
+      "tx": 4,
+      "start_s": 43.398796146005,
+      "duration_s": 0.007887659098
+    },
+    {
+      "tx": 5,
+      "start_s": 43.423564026667,
+      "duration_s": 0.010211406234
+    },
+    {
+      "tx": 6,
+      "start_s": 45.784922667821,
+      "duration_s": 0.010261088586
+    },
+    {
+      "tx": 7,
+      "start_s": 45.805486596378,
+      "duration_s": 0.010728551306
+    },
+    {
+      "tx": 8,
+      "start_s": 46.000217101601,
+      "duration_s": 0.007488834633
+    },
+    {
+      "tx": 9,
+      "start_s": 46.016049794265,
+      "duration_s": 0.011661470234
+    }
+  ],
+  "limits": [
+    "QKV/attention/O FLOP shape and messages only; no tensor or BF16 equivalence",
+    "capacity bound and streamed layout assumptions not validated on wafer",
+    "f2 no cross-query-head KV reuse timing is not calibrated"
+  ]
+}
