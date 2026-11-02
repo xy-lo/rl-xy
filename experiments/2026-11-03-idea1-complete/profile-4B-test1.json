@@ -1,0 +1,207 @@
+{
+  "status": "PASS_EXECUTED_BODY_PROFILE",
+  "model": "4B",
+  "window": "test1",
+  "last_backward_worker": 16,
+  "initial_training_region": 13,
+  "initial_tp": 4,
+  "checked_bodies": 34,
+  "body_digest_set": [
+    "0973837870a0004619c196d8230529af4c6b18e36957e74b6f9917abe7d9ca41",
+    "11a3fc61389ad646f3194e6426f2353345fe0e9a3baaa48f24954a025c1f0857",
+    "12798cc54e84d16c1425841593f124d7bd01c94296a79c0fd05e74a64648e405",
+    "1a53514b23d327cd74971f6c4c5602103106f56119a1c0b89bc6be52be006efd",
+    "1ca8f2d8bb1690698dc2cba547f7f0c6efdf4d21f9c59e6fc01f005239136a28",
+    "2888563b4cb214815d7ec2eec4bd96397ba495f7e5e6f60ce19be1b8b0b593ec",
+    "33d9a5849f02699afb44527f738037bedc00837b86919ffc05b018255a48156b",
+    "3674fa2619ba7c33c373d97605c47e9914b7357ad2418c55346d2f5f34aa1d9e",
+    "3a44ff75c15347b549ade3e92032576841d81cdbac6ba08071603664214f616e",
+    "3cbfa5b7c62c1e993383c308ff35a8431ac44b53d8735e39a8b855ba53edc908",
+    "41b17f3d0fa3c6fa1cf9f4bfb2cbd99379fa29e03e1f999e9d20f421cb51ac0d",
+    "5e18c2749c2628e55fb798c8e8c4f8f264d8e9e0b34f5d2001a5a3a643bbb06a",
+    "773d07ae9c0823bb2db6dbca99916ee1ac9c0a30c363447439b0f2816de28371",
+    "786b77500f445346f065c7874b7940f90890e197794fbea36fe4bae3471eb5be",
+    "8b42452f3695e133021c6935dcc70f5ed2e209b58a65824acefa6b1c712323c0",
+    "9b1d00ca9064c2e602510a0c4e3cfe396940f4f902259b06c794cbaaa94d9e76",
+    "9d6239e6a9669a2c1199aae35a871baa0ea926446e42bd64e05f4aa8930fcc45",
+    "abafed808de372d6473e0303bdb4ccee3c599991633f8d0d45ac11f923f3b117",
+    "ad998342265e6f822a64133f5e7948db2470a995ca02aa6fd76eb6c21afc3892",
+    "b9201544c126da6f1c0ce29a87c5b620496620a55c0191aa3c71fc74614c9604",
+    "bf0a80b84fe5b4b0e2d656d449894c9d5c19fe2f4475f0eb8ef3efebe9c7a231",
+    "c0c46c435b821e0dc0b1204c3abff2ab51d99b1ab1241275e57926898b0c40a6",
+    "e28d838094cd48c90642390d88362b54395641a4cf7ba319b48c2824da583d49",
+    "e3d2369b7cb4398e6a2e0571baa95a3b6403599fe9759ac11e449b9b6ffcc6bf",
+    "f21d7cafff5610043857f844373c7a397c716d029a1d267e0217e6e20f944328",
+    "ffae14fe8b8d1322f98d76503b583ed50109e8dd0c670d543bc9e242e69f8176"
+  ],
+  "rows": [
+    {
+      "stage": "old_policy",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 2.216978784,
+      "within_stage_fraction": 0.4801483828481887
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 1.789230491399499,
+      "within_stage_fraction": 0.38750759961631615
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.28147967099999965,
+      "within_stage_fraction": 0.0609622472757457
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 0.32958951,
+      "within_stage_fraction": 0.07138177025974954
+    },
+    {
+      "stage": "reference",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 2.216978784,
+      "within_stage_fraction": 0.4801483828481887
+    },
+    {
+      "stage": "reference",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 1.789230491399499,
+      "within_stage_fraction": 0.38750759961631615
+    },
+    {
+      "stage": "reference",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.28147967099999965,
+      "within_stage_fraction": 0.0609622472757457
+    },
+    {
+      "stage": "reference",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 0.32958951,
+      "within_stage_fraction": 0.07138177025974954
+    },
+    {
+      "stage": "training",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 11.47396428,
+      "within_stage_fraction": 0.4885893604578032
+    },
+    {
+      "stage": "training",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 4.495063173680965,
+      "within_stage_fraction": 0.1914107441553065
+    },
+    {
+      "stage": "training",
+      "operator_family": "attention_projection",
+      "inclusive_local_service_s": 5.129590359968021,
+      "within_stage_fraction": 0.21843045805501565
+    },
+    {
+      "stage": "training",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 1.187668381,
+      "within_stage_fraction": 0.0505738139450391
+    },
+    {
+      "stage": "training",
+      "operator_family": "normalization",
+      "inclusive_local_service_s": 0.009911474,
+      "within_stage_fraction": 0.00042205471663313775
+    },
+    {
+      "stage": "training",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 1.187662621,
+      "within_stage_fraction": 0.05057356867020231
+    }
+  ],
+  "decode_core_model": [
+    {
+      "batch": 1,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 4,
+      "modeled_fraction": 0.015625,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 0.37829205333333327,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 1,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 2,
+      "modeled_fraction": 0.0078125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 0.37829205333333327,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 8,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 32,
+      "modeled_fraction": 0.125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 2.420066304,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 8,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 16,
+      "modeled_fraction": 0.0625,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 1.210033152,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 16,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 64,
+      "modeled_fraction": 0.25,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 4.840132608,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 16,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 32,
+      "modeled_fraction": 0.125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 2.420066304,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 64,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 256,
+      "modeled_fraction": 1.0,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 19.360530432,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 64,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 128,
+      "modeled_fraction": 0.5,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 9.680265216,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    }
+  ],
+  "scope": "one physical TP2 pair on last backward executor; initial TP gang work counted once per rank; host oracle only, not extra device work",
+  "limitation": "inclusive GEMM service contains FIFO memory; no pure arithmetic/bandwidth attribution or hardware claim"
+}

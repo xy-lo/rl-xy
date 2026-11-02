@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-11-02T18:56:26.618743+00:00",
+  "selection_window": "tune",
+  "selection_metric": "native total_s minus measured Mac planning_proxy_s; report actual planning separately and in final totals",
+  "models": {
+    "4B": {
+      "primary": "regional DP20",
+      "source": "planner-native-4B-tune-v6/selected-plan.json",
+      "candidates": [
+        "planner-native-4B-tune-help-v7",
+        "pool-4B-tune-v10"
+      ]
+    },
+    "8B": {
+      "primary": "regional DP24",
+      "source": "planner-native-8B-tune-v6/selected-plan.json"
+    },
+    "14B": {
+      "candidates": [
+        "planner-native-14B-tune-help-v7",
+        "planner-native-14B-tune-dp14-help-v9c",
+        "pool-14B-tune-v10"
+      ],
+      "pending": true
+    }
+  },
+  "evaluation": "test1 exploratory; test2 follow-up validation, no response fields passed to planning. A candidate may execute blind before selection; never select using its test2 outcome."
+}

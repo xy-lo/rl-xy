@@ -1,0 +1,266 @@
+{
+  "status": "PASS_EXECUTED_BODY_PROFILE",
+  "model": "8B",
+  "window": "test1",
+  "last_backward_worker": 6,
+  "initial_training_region": 6,
+  "initial_tp": 2,
+  "checked_bodies": 142,
+  "body_digest_set": [
+    "018c07c84385f4e0db77bc26466d2f69545413a8c0ce89e2e8dcb5ab77f58f06",
+    "0193e9eac7ba5e3417c9747cf4a67f538b625c7934a7c0b0833d11e214699d81",
+    "04fc005c2908488642fb4ee4c3f38e2d9f2dd0775439552e209f55760cc84208",
+    "065d7c2e8ca88eee055e428a6e6b2e5a7898edcbe1c0ee9ae3874d52c406fec0",
+    "08412e9b85ee924f6b89dac6fb2225ea51126ac33a40cc469cffb0a1622e70c6",
+    "10b7bd709d27d010695c555d6b531dbdc4cc6ddc7bb5ac4291febe160ed7d33a",
+    "1c3d677a6147d17380e09bd3e2e3704b233a6680d846e725f69107c2c02636e4",
+    "1d4bc76fc2278f5633140966ca1966e582998bea061095486c5739912151f032",
+    "202d9209042d913761799be99c1185ca3d9f228db0d91ad8fa1237a287872fec",
+    "20fa689b96d62624e431acdad557a4ab6cfc570f8795882a922d6d7ead188db0",
+    "22d2c005808b1989e5f3b8a1c92f2549e8620874b143a57ef2c0c0ae878bf3be",
+    "235ae35da0f92b161e4e09325031399f8bc71bd31d1d99b5a47c49d1fc65fd33",
+    "2691782c190e04b4d25623c925ae33f63b57a3e8b0359397b960e3002e240a41",
+    "28287a832b920391457030676fc6d774a14288080028c0e3a51f14b08a7a630a",
+    "2b941a3edab607187d978cfbad9bad57953ea9a9430cd2f22f7f1d133ae0272a",
+    "2e15376a8750ebae95cc70ed327d0a7728973e24a083cee00ab3fb4a68d01fe8",
+    "2eeb45126c0c8ef4481a0555107bccafe97ea10adb2a557c9b41d7972447be08",
+    "3065ce66666fd14ee1a3a290044a53c8f8c264a6a0ed38b5249089bc0b12f023",
+    "334d5b8e0f7c8059f6a025a56735b3b6de84ec850f774a548c5825afee4b95fd",
+    "3582f05283172b01678a11b97a8db88f108b04257872e2ff6c246b1f6343c388",
+    "3f2d5b7c4c288afde8c073c6aaecc100ae0740d88fd35376fe2767ee010b63e0",
+    "4106efe97dadd8d3dfa6fcf46bf225cfb101b5dc5af3c321fee8bd129643397b",
+    "43f6a8428e7f4cfb9918807d82d0499b7f37a0455f7e9f8e5a922f0aa966d8a7",
+    "44c1b17d7ce5f9751110448bfea9c5926cca129c65330bfd44132c947af71642",
+    "4dc22500fccee5efe6eaa859371c7a638f64bedf295c333b551db77e8c4aca78",
+    "4f45ebe8464ba415c7e70a403497134893ad6e33444d0080f22e88d6e30f08ae",
+    "5974446827a3b0852006fa37ce44a7eedb9323bf0a00cdc8ec4d776344a84591",
+    "5a17a715b8816bdd7be6afd8c3e3a38088b16861be9a78dfc448069b886d4895",
+    "60d49785e16e8f661ef58ae26b3f09f3934d465f98b610cd8c285b4b6dcdc333",
+    "7166617837a8a1f344989de03c64bf6d5cc439071775fd3fc19818f70d20f710",
+    "71c722f89cb64f3c9e488bbdc6126f7a2e9a3d47184a8b76975839057fd8f68c",
+    "723278644d3a44160294ba24af1f42a70937c917300eff3522ad7cb97fdcb5c8",
+    "79fb0a7ef89a669c9743194e4a2c5a8e1fc99d9347ee560077321f60ea530707",
+    "7b02b45291181112be36c9e204eab3aeb5472a65f636d15d5893b369db968169",
+    "808de8a215fe43573516ad15d235c579ae7527c1403851a99d2614ccfd5d202f",
+    "83455974742150ecb1f271b9057ec88b3c8775088c151a9bee8e85d27a6988c4",
+    "8b0160afca70c12b01ed2f5d155cfaf226f0b6e51ad0da1e388a9b433a9e1f87",
+    "8ed3197080443f844b6d7c840fdafad430f9f2c5cd325de8cc25bdc6b1850930",
+    "8f3ff673cb941c768b3fd7c7448c54017b15d2fa98a217b43203445d4fa59899",
+    "9070f21993ac9b140a49517a17633afa68071aed41b82a1c02d9a73c7d9b60c8",
+    "9150e80a78eaecf5be53ed9137383d7f5c7e00699d678b93f9f9813c86abf62b",
+    "9275bb62ea16b89aa4d2780178ddb0e0aefe3cfaa5190120dc24e67d9bb85ce4",
+    "9499d469e8b0fffe352d1e765795cffccefde8e96c3db67c3c1a36e8a00ceff8",
+    "9624ce765203a48d501c5c7b7a1cee6362f9053d8be761f8aae4de63affc17dd",
+    "982c0654a916a42352df5a0b58c404873a190416eb85b59bbfbac3a0eb2c4526",
+    "997bbf0ee6c2a5beffd4360890cc2eb4a49a05d09006115e72f45dedcfa29ee7",
+    "a2ccba9a798790e21e59391459033b91f4c7d4f5181cc6d02cd402f8eee304cd",
+    "a5008bacb35e29f438c95c96465be1b6cd40223b973eafe17249a38a34773fcb",
+    "a5f526676003be46b6385d5f5df87db83655aabfcfc46a5bceda6c7058ffcf2d",
+    "a6f5a28a8c9991254e7502c6ccd63ea9e66eb83f59136d0ac8d6382e4bd6afda",
+    "a8a9c097d4074728063becee4d3d69366797c1d29358bb8f6fb72c6fed7e4dc5",
+    "aa7668f5f98bc2f9f71471652012a012e08fce84ccd744c49348497d3eca6d83",
+    "b1cb704517326b85ed604196cfbf01e1629535ba71066d581454ded97f553684",
+    "b2f07ec1a6d1057b7ccb4fe8c38624e556a13d8c52bf9cd1d9f790b968ccfd6e",
+    "b6357bcc502c8e20fb616aba5c7481b95183ebc3542b1a6cdcafdfe2f65044cd",
+    "ba4ffd0c19831998cddd521aced63117d13624b21485f93590787b33e5366f8a",
+    "ba8a0f0b86b0556735e6a3d4fbbca23a470a08c761de848019ed482c072050a4",
+    "ba8c47ff0291db4245cdd4746c886de65ca3ef3a5e5345df95355c2d18334fdb",
+    "be7e1f041b0353732e26638d92ee5bc3667cfbb3b31b20d7856602b7f89133d0",
+    "bf8ba5c165614134b786afcf7057da594fc656ac17a81449ae7f1a2d86abb1f4",
+    "c1801c99b279dd5daf0d46650e910852f2d8b21486528c3fae9b2a0bab9b4b7e",
+    "c55f79abc80839e2c30d7e572463755a50d83c71561d29fe13ab4b506768f0a2",
+    "cdf7b2142557f15f08635fa95a8c5b6b20ac94e03bd5ae581d51384d3891c99d",
+    "d1cbe7a4ccf833a4e529c33ba3dc087cbf6c3a433024c6748140d0c27429a60a",
+    "d1e1e5412f7564fca095cce196888fe1f577ee8cb08809c80a9877534d20d975",
+    "d1e46fd8278c134dfe83f1ec32a62a2660625482e4a26dcd6303238a83339880",
+    "d536fe9faf07e54719272b9aa7d38b2cdc8413fff2d40a417e51ebdc41c2c3a9",
+    "d5c7d2cbab1cfef44989d1ea15d9392bbd43f463e8e9de335ac6f4af595eb749",
+    "d785fac7ad2e599ecf128c6b36359e057e4f9b848834fc4af9309bc0c4a8ef98",
+    "d875cb7f973bb3f2ef69054c45218cfa42117a0f4374f1b6b12dfe2ab30a987c",
+    "d8eac7de4fdf20cda0eeca7b18f1ba5ffd09e64a4b4b064d3bf8b23d9433576a",
+    "dd3a14fb5d3d8b144b63a43990b7a175c6034614ffaa7515c7add49dbd3449dd",
+    "e448930fa5404aab828d4f95550c1bda020839c561754e3bf4d4a91f97c61f92",
+    "e529f38119332f41e7f5604f96c2249166e93ec5ee0c0869436633d8e1b5c7bf",
+    "e5a3d17ed6a4b43ba460f0397f2ef623a948540f42e35e0a86c7a7cf79c60647",
+    "e8f89ac2e3fcf3c51a29ce4be2877d47f71a08698da52da1fe5792312c329f19",
+    "eb7d715473647ee1d0cf6008bc8f4028dbd5894bf86f694d143c4c3fbbd512b6",
+    "ec5d5188b1a774c829cd9cf89067667da4ba5ccf259b89604b8205cdca2f0a77",
+    "f08f4fb30273e28ce0e382f4bfe12a9c081b301573ff5dd29785b06a1e82d8d3",
+    "f3e6ffab751027f0b70fa0a15b721b031544f80012570c3f70c81b0e615ed2b2",
+    "f59cae22b25ea14d9dc03a7ec2bc5f38f5870e421f40b6118dcdac99f6edd15a",
+    "f6f0d2ce9a8e29cdebca9ac4095c1efc34b7739426ba4032d4fab1f85e13e542",
+    "f9fd7d183249f35ce4fbd0ddcd01bb375101c5811b22cfde2aaa6ed26f50c8a1",
+    "fe30519e86b1eda9bbeef1a93be9e1e4cd85e64e94bd167bc7d2f208afcd22f0",
+    "ff974a6522302fc10e8e5ec6fdcca15a49867ad57c0d864300568a32290d56ef"
+  ],
+  "rows": [
+    {
+      "stage": "old_policy",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 4.81981284,
+      "within_stage_fraction": 0.5859268707527931
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 2.666724923357997,
+      "within_stage_fraction": 0.3241839136437574
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.19832117299999988,
+      "within_stage_fraction": 0.024109173562829312
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 0.541104201,
+      "within_stage_fraction": 0.06578004204062007
+    },
+    {
+      "stage": "reference",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 4.81981284,
+      "within_stage_fraction": 0.5859268707527931
+    },
+    {
+      "stage": "reference",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 2.666724923357997,
+      "within_stage_fraction": 0.3241839136437574
+    },
+    {
+      "stage": "reference",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.19832117299999988,
+      "within_stage_fraction": 0.024109173562829312
+    },
+    {
+      "stage": "reference",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 0.541104201,
+      "within_stage_fraction": 0.06578004204062007
+    },
+    {
+      "stage": "training",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 19.293224364,
+      "within_stage_fraction": 0.5815343896168804
+    },
+    {
+      "stage": "training",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 5.264011320246878,
+      "within_stage_fraction": 0.15866728921517856
+    },
+    {
+      "stage": "training",
+      "operator_family": "attention_projection",
+      "inclusive_local_service_s": 5.476583207281103,
+      "within_stage_fraction": 0.16507460922783648
+    },
+    {
+      "stage": "training",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.8171268509999986,
+      "within_stage_fraction": 0.024629753719265242
+    },
+    {
+      "stage": "training",
+      "operator_family": "normalization",
+      "inclusive_local_service_s": 0.064480599,
+      "within_stage_fraction": 0.0019435676004247516
+    },
+    {
+      "stage": "training",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 2.260985421,
+      "within_stage_fraction": 0.06815039062041463
+    }
+  ],
+  "decode_core_model": [
+    {
+      "batch": 1,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 4,
+      "modeled_fraction": 0.015625,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 0.37829205333333327,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 1,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 2,
+      "modeled_fraction": 0.0078125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 0.37829205333333327,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 8,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 32,
+      "modeled_fraction": 0.125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 2.420066304,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 8,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 16,
+      "modeled_fraction": 0.0625,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 1.210033152,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 16,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 64,
+      "modeled_fraction": 0.25,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 4.840132608,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 16,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 32,
+      "modeled_fraction": 0.125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 2.420066304,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 55,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 220,
+      "modeled_fraction": 0.859375,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 16.63795584,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 55,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 110,
+      "modeled_fraction": 0.4296875,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 8.31897792,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    }
+  ],
+  "scope": "one physical TP2 pair on last backward executor; initial TP gang work counted once per rank; host oracle only, not extra device work",
+  "limitation": "inclusive GEMM service contains FIFO memory; no pure arithmetic/bandwidth attribution or hardware claim"
+}

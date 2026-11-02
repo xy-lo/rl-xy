@@ -1,0 +1,187 @@
+{
+  "runs": [
+    {
+      "model": "4B",
+      "window": "test1",
+      "run_dir": "outputs/idea1-t132/final-4B-test1-v15",
+      "argv": [
+        "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python",
+        "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15/scripts/idea1_layered/run_system.py",
+        "--model",
+        "4B",
+        "--window",
+        "test1",
+        "--output",
+        "<historical-workspace>/outputs/idea1-t132/final-4B-test1-v15",
+        "--layout-from",
+        "<historical-workspace>/outputs/idea1-t132/locked-profile-4B.json",
+        "--history",
+        "<historical-workspace>/outputs/idea1-t132/history-bound-4B.json",
+        "--allow-offline-history-proxy",
+        "--catalog",
+        "<historical-workspace>/outputs/idea1-t132/catalog-bound-4B.json",
+        "--fast-cost-validation",
+        "<historical-workspace>/outputs/idea1-t132/cost-acceleration-validation-large.json",
+        "--native-root",
+        "<historical-workspace>/outputs/rl-xy-dynarl-t86-20261030/astra-sim"
+      ],
+      "env_override": {
+        "PYTHONPATH": "<historical-workspace>/outputs/idea1-t131/cost-small/src"
+      },
+      "log": "<historical-workspace>/outputs/idea1-t132/final-4B-test1-v15.log"
+    },
+    {
+      "model": "8B",
+      "window": "test1",
+      "run_dir": "outputs/idea1-t132/final-8B-test1-v15",
+      "argv": [
+        "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python",
+        "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15/scripts/idea1_layered/run_system.py",
+        "--model",
+        "8B",
+        "--window",
+        "test1",
+        "--output",
+        "<historical-workspace>/outputs/idea1-t132/final-8B-test1-v15",
+        "--layout-from",
+        "<historical-workspace>/outputs/idea1-t132/locked-profile-8B.json",
+        "--history",
+        "<historical-workspace>/outputs/idea1-t132/history-bound-8B.json",
+        "--allow-offline-history-proxy",
+        "--catalog",
+        "<historical-workspace>/outputs/idea1-t132/catalog-bound-8B-cap55.json",
+        "--fast-cost-validation",
+        "<historical-workspace>/outputs/idea1-t132/cost-acceleration-validation-large.json",
+        "--native-root",
+        "<historical-workspace>/outputs/rl-xy-dynarl-t86-20261030/astra-sim"
+      ],
+      "env_override": {
+        "PYTHONPATH": "<historical-workspace>/outputs/idea1-t131/cost-small/src"
+      },
+      "log": "<historical-workspace>/outputs/idea1-t132/final-8B-test1-v15.log"
+    },
+    {
+      "model": "14B",
+      "window": "test1",
+      "run_dir": "outputs/idea1-t132/final-14B-test1-v15",
+      "argv": [
+        "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python",
+        "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15/scripts/idea1_layered/run_system.py",
+        "--model",
+        "14B",
+        "--window",
+        "test1",
+        "--output",
+        "<historical-workspace>/outputs/idea1-t132/final-14B-test1-v15",
+        "--layout-from",
+        "<historical-workspace>/outputs/idea1-t132/locked-profile-14B.json",
+        "--history",
+        "<historical-workspace>/outputs/idea1-t132/history-bound-14B.json",
+        "--allow-offline-history-proxy",
+        "--catalog",
+        "<historical-workspace>/outputs/idea1-t132/catalog-bound-14B-cap33.json",
+        "--fast-cost-validation",
+        "<historical-workspace>/outputs/idea1-t132/cost-acceleration-validation-large.json",
+        "--native-root",
+        "<historical-workspace>/outputs/rl-xy-dynarl-t86-20261030/astra-sim"
+      ],
+      "env_override": {
+        "PYTHONPATH": "<historical-workspace>/outputs/idea1-t131/cost-14b/src"
+      },
+      "log": "<historical-workspace>/outputs/idea1-t132/final-14B-test1-v15.log"
+    },
+    {
+      "model": "4B",
+      "window": "test2",
+      "run_dir": "outputs/idea1-t132/final-4B-test2-v15",
+      "argv": [
+        "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python",
+        "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15/scripts/idea1_layered/run_system.py",
+        "--model",
+        "4B",
+        "--window",
+        "test2",
+        "--output",
+        "<historical-workspace>/outputs/idea1-t132/final-4B-test2-v15",
+        "--layout-from",
+        "<historical-workspace>/outputs/idea1-t132/locked-profile-4B.json",
+        "--history",
+        "<historical-workspace>/outputs/idea1-t132/history-bound-4B.json",
+        "--allow-offline-history-proxy",
+        "--catalog",
+        "<historical-workspace>/outputs/idea1-t132/catalog-bound-4B.json",
+        "--fast-cost-validation",
+        "<historical-workspace>/outputs/idea1-t132/cost-acceleration-validation-large.json",
+        "--native-root",
+        "<historical-workspace>/outputs/rl-xy-dynarl-t86-20261030/astra-sim"
+      ],
+      "env_override": {
+        "PYTHONPATH": "<historical-workspace>/outputs/idea1-t131/cost-small/src"
+      },
+      "log": "<historical-workspace>/outputs/idea1-t132/final-4B-test2-v15.log"
+    },
+    {
+      "model": "8B",
+      "window": "test2",
+      "run_dir": "outputs/idea1-t132/final-8B-test2-v15",
+      "argv": [
+        "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python",
+        "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15/scripts/idea1_layered/run_system.py",
+        "--model",
+        "8B",
+        "--window",
+        "test2",
+        "--output",
+        "<historical-workspace>/outputs/idea1-t132/final-8B-test2-v15",
+        "--layout-from",
+        "<historical-workspace>/outputs/idea1-t132/locked-profile-8B.json",
+        "--history",
+        "<historical-workspace>/outputs/idea1-t132/history-bound-8B.json",
+        "--allow-offline-history-proxy",
+        "--catalog",
+        "<historical-workspace>/outputs/idea1-t132/catalog-bound-8B-cap55.json",
+        "--fast-cost-validation",
+        "<historical-workspace>/outputs/idea1-t132/cost-acceleration-validation-large.json",
+        "--native-root",
+        "<historical-workspace>/outputs/rl-xy-dynarl-t86-20261030/astra-sim"
+      ],
+      "env_override": {
+        "PYTHONPATH": "<historical-workspace>/outputs/idea1-t131/cost-small/src"
+      },
+      "log": "<historical-workspace>/outputs/idea1-t132/final-8B-test2-v15.log"
+    },
+    {
+      "model": "14B",
+      "window": "test2",
+      "run_dir": "outputs/idea1-t132/final-14B-test2-v15",
+      "argv": [
+        "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python",
+        "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15/scripts/idea1_layered/run_system.py",
+        "--model",
+        "14B",
+        "--window",
+        "test2",
+        "--output",
+        "<historical-workspace>/outputs/idea1-t132/final-14B-test2-v15",
+        "--layout-from",
+        "<historical-workspace>/outputs/idea1-t132/locked-profile-14B.json",
+        "--history",
+        "<historical-workspace>/outputs/idea1-t132/history-bound-14B.json",
+        "--allow-offline-history-proxy",
+        "--catalog",
+        "<historical-workspace>/outputs/idea1-t132/catalog-bound-14B-cap33.json",
+        "--fast-cost-validation",
+        "<historical-workspace>/outputs/idea1-t132/cost-acceleration-validation-large.json",
+        "--native-root",
+        "<historical-workspace>/outputs/rl-xy-dynarl-t86-20261030/astra-sim"
+      ],
+      "env_override": {
+        "PYTHONPATH": "<historical-workspace>/outputs/idea1-t131/cost-14b/src"
+      },
+      "log": "<historical-workspace>/outputs/idea1-t132/final-14B-test2-v15.log"
+    }
+  ],
+  "runtime": "<historical-workspace>/outputs/idea1-t132/runtime-freezes/system-final-v15",
+  "runtime_manifest_sha256": "101141d5410d28d20326dba3eecaad03189744e4e6b5b2df69a7df7fca53c9d9",
+  "max_concurrency": 3
+}

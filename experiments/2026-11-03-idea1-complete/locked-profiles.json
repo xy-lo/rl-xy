@@ -1,0 +1,254 @@
+{
+  "time": "2026-11-02T20:24:51.540869+00:00",
+  "profiles": {
+    "4B": {
+      "model": "4B",
+      "rollout_cap": 64,
+      "rollout_tp": 2,
+      "region_members": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "resource_family": "regional",
+      "training_help_admission": "region-ready",
+      "tune_source": "tune-4B-ready-v14",
+      "selected_dp": 20,
+      "selection_device_s": 81.381204029458
+    },
+    "8B": {
+      "model": "8B",
+      "rollout_cap": 55,
+      "rollout_tp": 2,
+      "region_members": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13
+        ],
+        "14": [
+          14
+        ],
+        "15": [
+          15
+        ],
+        "16": [
+          16
+        ],
+        "17": [
+          17
+        ],
+        "18": [
+          18
+        ],
+        "19": [
+          19
+        ],
+        "20": [
+          20
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "resource_family": "regional",
+      "training_help_admission": "region-ready",
+      "tune_source": "tune-8B-ready-v14",
+      "selected_dp": 24,
+      "selection_device_s": 116.504166747938
+    },
+    "14B": {
+      "model": "14B",
+      "rollout_cap": 33,
+      "rollout_tp": 2,
+      "region_members": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "resource_family": "regional",
+      "training_help_admission": "region-ready",
+      "tune_source": "tune-14B-ready-v14",
+      "selected_dp": 20,
+      "selection_device_s": 172.326372837252
+    }
+  },
+  "selection_window": "tune",
+  "scope": "best measured TUNE device time among the recorded feasible candidate families/caps; no claim of global optimum",
+  "admission_choice": "region-ready selected on exact TUNE device-time parity with global-eos; stress case proves2 earlier transfers",
+  "no_further_mechanism_changes": true
+}

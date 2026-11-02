@@ -16,6 +16,7 @@ EVIDENCE=ROOT/'experiments/2026-11-02-idea1-joint'
 def audit(folder):
     folder=Path(folder).resolve(); result=load(folder/'result.json'); cmd=load(folder/'command.json')
     full=not result['subset_prompts']; model=cmd['model']; trace=Path(cmd['trace_path'])
+    if not trace.is_absolute():trace=ROOT/trace
     items0=load(trace)['trajectories']; items0=items0 if full else items0[:result['subset_prompts']*8]
     items={x['trajectory_id']:x for x in items0}; ids=set(items)
     assert len(ids)==len(items0)==result['completed']==result['trained_samples']==result['requests']
@@ -25,7 +26,7 @@ def audit(folder):
     assert sha(trace)==cmd['trace_sha256'] and digest(items0)==cmd['canonical_requests_sha256']
     assert result['native_exit_status']==0 and result['trained_workers']==27
     archive=load(folder/'source-archive-map.json')
-    assert all(sha(archive[p])==h for p,h in load(folder/'source_hashes.json').items())
+    assert all(sha(Path(archive[p]) if Path(archive[p]).is_absolute() else folder/archive[p])==h for p,h in load(folder/'source_hashes.json').items())
     cap=load(folder/'capacity.json'); assert cap['passed'] and max(cap['phase_peak_bytes'].values())<=64000000000
     # Reproduce complete-GRPO-group allocation, independently of runtime imports.
     ngr=len(items0)//8; q,r=divmod(ngr,27); homegroups=[]; cursor=0
@@ -103,7 +104,7 @@ def audit(folder):
     assert len(moved)==result['training_transfers']==result['remotely_executed_batches']
     counts=Counter(e['worker'] for e in executed for t in e['tids'])
     if 'worker_trained_samples' in result:assert all(result['worker_trained_samples'][str(w)]==counts[w] for w in range(27))
-    if full:
+    if full and trace.stem=='test1':
         programs=load(folder/'issued-programs.json');zeroproofs=load(folder/'gradient-zero-programs.json'); frozen_jobs={}; frozen_zeros={}
         for phase in ('old_policy','reference','training'):
             with gzip.open(EVIDENCE/model/(phase+'-program.json.gz'),'rt') as f:frozen=json.load(f)
@@ -175,8 +176,8 @@ def audit(folder):
     assert abs(sum(integrals.values())-54*(end-gen_end)/1e12)<1e-5
     critical=max(executed,key=lambda e:e['end_tick'])
     critical_detail=dict(batch_id=critical['batch_id'],home=critical['home'],worker=critical['worker'],ready_s=manifest[critical['batch_id']]['ready_tick']/1e12,start_s=critical['start_tick']/1e12,end_s=critical['end_tick']/1e12,duration_s=(critical['end_tick']-critical['start_tick'])/1e12,response_tokens=sum(items[t]['response_length'] for t in critical['tids']))
-    report=dict(status='PASS_INDEPENDENT_EVIDENCE_AUDIT',model=model,full_test1=full,requests=len(ids),
-        frozen_teacher_parity=full,frozen_training_batch_multiset_parity=full,
+    report=dict(status='PASS_INDEPENDENT_EVIDENCE_AUDIT',model=model,full_test1=full and trace.stem=='test1',window=trace.stem,requests=len(ids),
+        frozen_teacher_parity=full and trace.stem=='test1',frozen_training_batch_multiset_parity=full and trace.stem=='test1',
         trained_once=True,gradient_zero_once_per_worker=True,prepared_transfer_causality=True,
         generation_end_s=gen_end/1e12,first_training_s=min(e['start_tick'] for e in byphase['training'])/1e12,
         training_end_s=end/1e12,total_s=result['total_s'],training_tail_s=(end-gen_end)/1e12,

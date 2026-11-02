@@ -34,6 +34,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--evidence-root',type=Path,default=ROOT/'experiments/2026-11-02-idea1-joint')
     parser.add_argument('--training-scope',choices=('domain','wafer'),default='domain')
+    parser.add_argument('--assignment',type=Path)
+    parser.add_argument('--fast-cost-validation',type=Path)
+    parser.add_argument('--window',choices=('tune','test1','test2','test3','test4'),default='test1')
     parser.add_argument('--model', choices=('4B','8B','14B'), required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--native-root', type=Path, required=True)
@@ -45,14 +48,31 @@ def main():
     os.environ['ASTRA_SIM_ROOT'] = str(native)
     os.environ['ASTRA_SIM_BIN'] = str(native/'build-dynarl/bin/AstraSim_Analytical_Congestion_Aware')
     configure_native()
-    manifest = verify_assets(); trace = INPUTS/('Qwen3-'+args.model)/'test1.json'
-    assert sha(trace) == manifest['input_hashes'][args.model]['test1.json']
+    manifest = verify_assets(); trace = INPUTS/('Qwen3-'+args.model)/(args.window+'.json')
+    assert sha(trace) == manifest['input_hashes'][args.model][args.window+'.json']
     original = json.loads(trace.read_text())['trajectories']
     requests = original[:args.subset_prompts*8] if args.subset_prompts else original
     if args.subset_prompts and not 1 <= args.subset_prompts <= 192:
         raise ValueError('invalid original subset')
+    assignment=None
+    if args.assignment:
+        if args.subset_prompts:raise ValueError('planned complete group assignment cannot be truncated')
+        from idea1_controller.history import digest
+        assignment=json.loads(args.assignment.read_text())
+        assert assignment['source_requests_digest']==digest(requests)
+        assert assignment['model']==args.model and assignment['window']==args.window
+        groups_by_id={str(x['group_id']):[] for x in requests}
+        for x in requests:groups_by_id[str(x['group_id'])].append(x)
+        assigned={int(w):[x for gid in gids for x in groups_by_id[gid]] for w,gids in assignment['queues'].items()}
+        assert sorted(x['trajectory_id'] for xs in assigned.values() for x in xs)==sorted(x['trajectory_id'] for x in requests)
+        assert max(map(len,assigned.values()))<=64
+        (out/'assignment.json').write_text(json.dumps(assignment,indent=2)+'\n')
     p = {'4B': Policy(2,2,4,8,32), '8B': Policy(2,2,2,1,16), '14B': Policy(2,2,1,1,16)}[args.model]
     op = make_operator(args.model, 'wafer', cache_dir=out.parent/'mapper-cache')
+    if args.fast_cost_validation:
+        from idea1_controller.cost_backend import install
+        acceleration=install(op,out.parent/'cost-accelerator',json.loads(args.fast_cost_validation.read_text()))
+        (out/'cost-accelerator-identity.json').write_text(json.dumps(acceleration,indent=2)+'\n')
     apply_generation_gqa(op)
     admission = op.admission(original, p.train_tp, p.rollout_tp, p.train_mb, p.logprob_mb, p.cap)
     assert admission['passed']
@@ -65,7 +85,7 @@ def main():
     # A destination has its own producer records plus the assigned training set.
     # Double this sum to conservatively reserve transfer staging as well.
     token_cap = max(op.prompt_cap, max(x['prompt_length'] for x in original))+8192
-    record_bound = 2*(64+57)*token_cap*4
+    record_bound = 2*(64+(64 if assignment else 57))*token_cap*4
     factor = op.model.layers*2*(op.model.kv_heads//4)*op.model.head_dim*2
     kv_bound = max(sum(sorted((x['prompt_length']+8192 for x in original[i::27]), reverse=True)[:p.cap])*factor for i in range(27))
     peaks = dict(
@@ -94,7 +114,7 @@ def main():
     (out/'capacity.json').write_text(json.dumps(capacity, indent=2)+'\n')
     if not capacity['passed']:
         raise ValueError('joint lifecycle capacity failed')
-    replicas = {w: Replica(op, requests[w::27], (2*w, 2*w+1), p.cap) for w in range(27)}
+    replicas = {w: Replica(op, (assigned[w] if assignment else requests[w::27]), (2*w, 2*w+1), p.cap) for w in range(27)}
     # Prefix and suffix are native operation DAGs around the dynamic sequences.
     plan = weight_plan(op, p)
     if staged:
@@ -111,7 +131,7 @@ def main():
             gid = str(len(plan.groups)+1); plan.groups[gid] = list(ranks); plan.groupids[ranks] = gid
             groups[src, dst] = int(gid)
     frozen = None
-    if not args.subset_prompts:
+    if not args.subset_prompts and not assignment and args.window=='test1':
         baseline = args.evidence_root.resolve()/args.model
         metadata = json.loads((baseline/'baseline-metadata.json').read_text())
         baseline_result = metadata['result_fields']
@@ -145,6 +165,9 @@ def main():
             independently_recompiled_samples=[requests[i]['trajectory_id'] for i in (0, 1)],
             scope='reuse compiled per-batch operators only; all native computation and network events execute again'), indent=2)+'\n')
     ctrl = JointRuntime(op, replicas, requests, True, 16, True, True, group_ids=groups, early=not args.no_early, frozen=frozen, train_mb=p.train_mb, logprob_mb=p.logprob_mb, training_scope=args.training_scope)
+    if assignment:
+        ctrl.groups=[assigned[w] for w in range(27)]
+        ctrl.targets={x['trajectory_id']:w for w,xs in enumerate(ctrl.groups) for x in xs}
     ctrl = LayeredNativeAdapter(ctrl,p,capacity,args.model,out)
     seq = attach(plan, [(r.ranks, [{'repeat': 10000000, 'steps': [ctrl.rpc(w, 'arrive')]}]) for w, r in replicas.items()])
     suffix = optimizer_plan(op, p)
@@ -247,8 +270,8 @@ def main():
     (out/'training-transfers.json').write_text(json.dumps(ctrl.train_moves,indent=2)+'\n')
     (out/'issued-programs.json').write_text(json.dumps(ctrl.program_proof(), indent=2)+'\n')
     (out/'generation-events.json').write_text(json.dumps(dict(migrations=ctrl.migrations, helper_runs=ctrl.runs, releases=ctrl.releases), separators=(',', ':'))+'\n')
-    result = dict(status='PASS_NATIVE_JOINT_CONDITIONAL_SIMULATION', model='Qwen3-'+args.model, window='test1',
-                  implementation='layered-framework-mechanism3-legacy-compatible',requests=len(requests), completed=len(ctrl.done), trained_samples=sum(map(len, ctrl.train_done.values())),
+    result = dict(status='PASS_NATIVE_JOINT_CONDITIONAL_SIMULATION', model='Qwen3-'+args.model, window=args.window,
+                  implementation=('layered-history-placement' if assignment else 'layered-framework-mechanism3-legacy-compatible'),requests=len(requests), completed=len(ctrl.done), trained_samples=sum(map(len, ctrl.train_done.values())),
                   training_scope=args.training_scope,training_batches=len(ctrl.batch_manifest),remotely_executed_batches=sum(e['home']!=e['worker'] for e in ctrl.batch_executions),training_transfers=len(ctrl.train_moves),worker_trained_samples={str(w):len(ctrl.train_done[w]) for w in range(27)},trained_workers=len(ctrl.trained), sample_transfers=len(ctrl.moves),
                   helper_segments=len(ctrl.runs), helper_migrations=len(ctrl.migrations),
                   generation_end_tick=ctrl.generation_end_tick, total_s=native_result['model_ns']/1e9,

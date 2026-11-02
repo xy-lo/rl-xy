@@ -1,0 +1,45 @@
+{
+  "updated": "2026-11-02T20:57:34.447930+00:00",
+  "queued": 0,
+  "running": [],
+  "results": [
+    {
+      "model": "4B",
+      "window": "test1",
+      "exit_status": 0,
+      "run_dir": "outputs/idea1-t132/final-4B-test1-v15"
+    },
+    {
+      "model": "8B",
+      "window": "test1",
+      "exit_status": 0,
+      "run_dir": "outputs/idea1-t132/final-8B-test1-v15"
+    },
+    {
+      "model": "14B",
+      "window": "test1",
+      "exit_status": 0,
+      "run_dir": "outputs/idea1-t132/final-14B-test1-v15"
+    },
+    {
+      "model": "4B",
+      "window": "test2",
+      "exit_status": 0,
+      "run_dir": "outputs/idea1-t132/final-4B-test2-v15"
+    },
+    {
+      "model": "8B",
+      "window": "test2",
+      "exit_status": 0,
+      "run_dir": "outputs/idea1-t132/final-8B-test2-v15"
+    },
+    {
+      "model": "14B",
+      "window": "test2",
+      "exit_status": 0,
+      "run_dir": "outputs/idea1-t132/final-14B-test2-v15"
+    }
+  ],
+  "status": "PASS_NATIVE_SIX_RUNS",
+  "note": "independent post-run audits required separately"
+}
