@@ -8,7 +8,7 @@ import subprocess
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-CURRENT = {'docs/IDEA1_JOINT.md', 'docs/IDEA1_INSIGHTS.md', 'experiments/2026-11-02-idea1-joint/README.md', 'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md', 'docs/IDEA1.md', 'docs/H0_54.md', 'experiments/2026-11-02-h0-54/完整实验文档.md'}
+CURRENT = {'docs/IDEA1_LAYERED.md', 'experiments/2026-11-02-idea1-layered/README.md', 'docs/IDEA1_JOINT.md', 'docs/IDEA1_INSIGHTS.md', 'experiments/2026-11-02-idea1-joint/README.md', 'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md', 'docs/IDEA1.md', 'docs/H0_54.md', 'experiments/2026-11-02-h0-54/完整实验文档.md'}
 HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-10-27-v0.6/模型内部瓶颈分解.md'}
 
 EVIDENCE = {'experiments/2026-11-01-idea1/test1-Idea1方法正文草稿.md', 'experiments/2026-11-01-idea1/test1-三模型结果与实现边界.md', 'experiments/2026-11-01-idea1/论文实验结果与表述.md'}

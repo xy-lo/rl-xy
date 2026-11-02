@@ -1,0 +1,30 @@
+"""创新3分层接口。现有机制可适配，接口本身尚未接入运行。"""
+from typing import Protocol, Sequence
+from .contracts import ActionProposal, Decision, Readiness, RuntimeEvent, StepPlan, WorldSnapshot
+
+class GlobalRoleScheduler(Protocol):
+    def propose_role_transitions(self, snapshot: WorldSnapshot) -> Sequence[ActionProposal]: ...
+    # 唯一角色策略来源；提交成功事件后才改变权威assigned_role。
+
+class RegionController(Protocol):
+    def can_enter_preparation(self, region_id: str, snapshot: WorldSnapshot) -> Readiness: ...
+    def can_start_backward(self, region_id: str, snapshot: WorldSnapshot) -> Readiness: ...
+    def propose(self, region_id: str, snapshot: WorldSnapshot) -> Sequence[ActionProposal]: ...
+
+class RolloutCooperator(Protocol):
+    def propose_pending_takeovers(self, instance_id: str, snapshot: WorldSnapshot) -> Sequence[ActionProposal]: ...
+    def propose_attention_help(self, instance_id: str, snapshot: WorldSnapshot) -> Sequence[ActionProposal]: ...
+    # 先考虑同区域未开始回答；无合适候选才考虑付KV迁移成本的协作。
+
+class TrainingCooperator(Protocol):
+    def propose_unstarted_batch_takeovers(self, region_id: str, snapshot: WorldSnapshot) -> Sequence[ActionProposal]: ...
+    # 同版本、就绪、合法TP布局且安全边界；不硬编码全局rollout屏障。
+
+class EligibilityChecker(Protocol):
+    def check(self, proposal: ActionProposal, snapshot: WorldSnapshot) -> Readiness: ...
+    # 能力、资源、数据、内存、版本、物理范围、租约及更新合同统一检查。
+
+class ActionArbiter(Protocol):
+    def arbitrate(self, proposals: Sequence[ActionProposal], snapshot: WorldSnapshot) -> Decision: ...
+    # 原子保留所有参与die/链路预算/task lease；拒绝过期epoch和资源冲突。
+

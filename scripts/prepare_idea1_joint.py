@@ -14,7 +14,7 @@ def prepare(model, output):
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     for name in ('src', 'configs', 'docker'):
-        shutil.copytree(ROOT/name, output/name, ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+        shutil.copytree(ROOT/name, output/name, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', 'idea1_controller'))
     for name in ('pyproject.toml', '.gitignore'):
         shutil.copy2(ROOT/name, output/name)
     for name in ('2026-10-29-qwen3-f2', '2026-10-29-qwen3/inputs'):

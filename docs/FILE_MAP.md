@@ -455,3 +455,37 @@
 | `scripts/idea1_joint/reclaim_priority.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
 | `scripts/idea1_joint/run_joint.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
 | `scripts/prepare_idea1_joint.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+
+## 分层创新3新增文件
+
+| 文件 | 职责 |
+|---|---|
+| `src/idea1_controller/__init__.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/contracts.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/errors.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/execution.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/gradient.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/native/__init__.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/native/adapter.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/native/backend.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/native/context.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/native/policies.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/orchestration.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/planning.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/prediction.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/runtime.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `src/idea1_controller/state.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/audit_idea1_layered.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/check_idea1_layered.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/attention_tp8_program.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/dynamic_native.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/generation_reclaim_priority_v4.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/gqa_cost.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/helper_program_v10.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/joint_runtime.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/locality_runtime_v3.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/online_rollout.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/reclaim_priority.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/legacy/training_coop.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `scripts/idea1_layered/run_layered.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
+| `tests/test_idea1_layered_framework.py` | 分层控制器、固定旧策略适配、独立证据/框架检查或复跑入口。 |
