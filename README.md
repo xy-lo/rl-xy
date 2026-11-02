@@ -1,3 +1,5 @@
+> **当前 H0 主实验：**54 die 六 die 域及三模型结果见 [H0 实验与复现](docs/H0_54.md)。原 48 活动 die 结果是历史配置。
+
 # rl-xy
 
 基于 AstraSim 的 RL post-training 性能仿真框架。当前 f2 分时共置基座包含 Qwen3-4B、8B、14B 的公开长度回放、48×A100 模型以及 48 活动 die 晶圆模型；结果及适用范围见 [f2 结果与接手说明](docs/F2_HANDOFF.md)。

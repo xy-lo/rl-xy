@@ -1,0 +1,18 @@
+{
+  "f2_admission": {
+    "passed": true,
+    "peak_bytes": 62311715332,
+    "phase_peak_bytes": {
+      "generation": 47865317380,
+      "weight_export": 36478044164,
+      "training": 62311715332,
+      "logprob": 40794229360
+    },
+    "reasons": [],
+    "capacity_bytes": 64000000000,
+    "admission": "phase-lifetime bounded: distributed reference shard, on-demand reference all-gather, gradient allocated only for training; no physical memory execution"
+  },
+  "helper_scratch_bound_bytes": 8126464,
+  "generation_upper_bound_bytes": 47873443844,
+  "capacity_bytes": 64000000000
+}

@@ -1,0 +1,15 @@
+{
+  "source_bound_bytes": 55832977664,
+  "helper_bound_bytes": 48816838912,
+  "helper_kv_bound_bytes": 5277708288,
+  "helper_extra_weight_bytes": 755288064,
+  "scratch_bytes": 6291456,
+  "additional_nic_bound_bytes": 2097152,
+  "capacity_bytes": 64000000000,
+  "assumptions": [
+    "inactive helper KV released; original actor/reference state remains resident",
+    "source retains old KV until source completes; KV transfer streamed in NIC-sized chunks",
+    "bound uses prompt+8192 per original source request, not future lengths",
+    "DRAM scratch and fragment overhead are formula upper bounds, not measured lifecycle"
+  ]
+}

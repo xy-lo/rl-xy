@@ -440,3 +440,4 @@
 | `scripts/idea1/test_locality_no_oracle.py` | KV 局部性、长尾协作或原生事件运行组件。 |
 | `tests/test_idea1_release.py` | 验证局部性估计不读取未来生成长度。 |
 | `tests/test_idea1_layout.py` | 验证三档模型的头布局和迁移事件。 |
+| `tests/test_h0_summary.py` | 校验 54 die 配对账本、输入与 reference 重建证据。 |

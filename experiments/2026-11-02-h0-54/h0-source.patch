@@ -1,0 +1,191 @@
+diff --git a/src/rl_xy/qwen3_cost.py b/src/rl_xy/qwen3_cost.py
+index 629489e..9e30609 100644
+--- a/src/rl_xy/qwen3_cost.py
++++ b/src/rl_xy/qwen3_cost.py
+@@ -78,7 +78,7 @@ class Operators:
+                 self.attention_calibration=calibration if calibration.attention_models else None
+         elif platform=='wafer':self.case=wafer;self.provider=CapacityAwareCostProvider();self.profile=None
+         else:raise ValueError(platform)
+-        self.hw=self.case.hardware;self.units=self.hw.cores_per_die
++        self.hw=self.case.hardware;self.units=self.hw.cores_per_die;self.active_dies=48 if platform=='gpu' else 54
+         self.capacity=self.hw.dram_bytes_per_die
+         self.rows=enumerate_parameters(self.case)
+         prompt_file=Path(config).parent/"prompt_lengths.json"
+@@ -207,8 +207,8 @@ class Operators:
+         return blocks
+     @lru_cache(maxsize=128)
+     def state(self,train_tp,rollout_tp):
+-        train=self.case_tp(train_tp);rows=enumerate_parameters(train);layout=layout_for_case(train,dp_size=48//train_tp)
+-        states=[layout.state_bytes(i)['total_allocated_bytes'] for i in range(48//train_tp)]
++        train=self.case_tp(train_tp);rows=enumerate_parameters(train);layout=layout_for_case(train,dp_size=self.active_dies//train_tp)
++        states=[layout.state_bytes(i)['total_allocated_bytes'] for i in range(self.active_dies//train_tp)]
+         roll=sum(x.local_elements_per_die for x in enumerate_parameters(self.case_tp(rollout_tp)))*2
+         export=max(x.unique_elements*2 for x in rows if not x.replicated) if train_tp>1 else 0
+         return {'training_base_per_rank':states,'rollout_weights_per_rank':roll,'export_scratch_per_rank':export,
+@@ -224,10 +224,11 @@ class Operators:
+         # Training starts after generation: its actual lengths are known then.
+         # Check the declared fixed-order microbatches, not an invented batch of
+         # the longest requests from unrelated replicas.
+-        dp=48//train_tp;per=max(1,len(trajectories)//dp)
++        from .qwen3_experiment import training_groups, chunks
++        groups=training_groups(trajectories,train_tp,self.active_dies)
+         def batch_tokens(size):
+-            return max(sum(t['prompt_length']+t['response_length']-1 for t in trajectories[g+j:g+min(j+size,per)])
+-                       for g in range(0,len(trajectories),per) for j in range(0,per,size))
++            return max(sum(t['prompt_length']+t['response_length']-1 for t in batch)
++                       for group in groups for batch in chunks(group,size))
+         rows=enumerate_parameters(self.case_tp(train_tp))
+         max_param=max(x.local_elements_per_die for x in rows)
+         # Every-layer BF16 input checkpoints + one layer's FP32/BF16 working tensors.
+diff --git a/src/rl_xy/qwen3_experiment.py b/src/rl_xy/qwen3_experiment.py
+index 71d45dd..398106c 100644
+--- a/src/rl_xy/qwen3_experiment.py
++++ b/src/rl_xy/qwen3_experiment.py
+@@ -24,20 +24,24 @@ def chunks(items,n):return [items[i:i+n] for i in range(0,len(items),n)]
+ def write(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+ 
+ 
+-def training_groups(requests,tp):
+-    dp=48//tp;count=len(requests)//dp
+-    assert len(requests)%dp==0 and count%8==0
+-    return chunks(requests,count)
++def training_groups(requests,tp,world=48):
++    dp=world//tp
++    if world%tp or len(requests)%8:raise ValueError('invalid TP or incomplete GRPO group')
++    groups=chunks(requests,8);q,r=divmod(len(groups),dp);out=[];cursor=0
++    for i in range(dp):
++        n=q+(i<r);out.append([x for g in groups[cursor:cursor+n] for x in g]);cursor+=n
++    assert cursor==len(groups) and sum(map(len,out))==len(requests)
++    return out
+ 
+ 
+ def teacher_lengths(xs):return tuple(x['prompt_length']+x['response_length']-1 for x in xs)
+ 
+ 
+ def weight_plan(op,p):
+-    plan=Plan(op);plan.local(tuple(range(48)),Cost(compute=1000),'switch_to_rollout');tr=p.train_tp;ge=p.rollout_tp;rows=enumerate_parameters(op.case_tp(tr));dest={x.parameter_id:x for x in enumerate_parameters(op.case_tp(ge))}
++    plan=Plan(op);plan.local(tuple(range(op.active_dies)),Cost(compute=1000),'switch_to_rollout');tr=p.train_tp;ge=p.rollout_tp;rows=enumerate_parameters(op.case_tp(tr));dest={x.parameter_id:x for x in enumerate_parameters(op.case_tp(ge))}
+     # Every training replica holds the same parameter version. Per-tensor full
+     # export allows each rank to load its target rollout shard even for ge>tr.
+-    for group in range(48//tr):
++    for group in range(op.active_dies//tr):
+         ranks=tuple(range(group*tr,(group+1)*tr))
+         for row in rows:
+             if not row.replicated and tr>1:plan.comm(ranks,'ALL_GATHER',row.local_elements_per_die*2,'weight_export.'+row.parameter_id)
+@@ -46,9 +50,9 @@ def weight_plan(op,p):
+ 
+ 
+ def samples_plan(op,p,requests):
+-    plan=Plan(op);plan.local(tuple(range(48)),Cost(compute=1000),'switch_to_training');owners={r['trajectory_id']:tuple(range((i%(48//p.rollout_tp))*p.rollout_tp,(i%(48//p.rollout_tp)+1)*p.rollout_tp)) for i,r in enumerate(requests)}
++    plan=Plan(op);plan.local(tuple(range(op.active_dies)),Cost(compute=1000),'switch_to_training');owners={r['trajectory_id']:tuple(range((i%(op.active_dies//p.rollout_tp))*p.rollout_tp,(i%(op.active_dies//p.rollout_tp)+1)*p.rollout_tp)) for i,r in enumerate(requests)}
+     pairs=defaultdict(int)
+-    for i,group in enumerate(training_groups(requests,p.train_tp)):
++    for i,group in enumerate(training_groups(requests,p.train_tp,op.active_dies)):
+         for r in group:
+             srcs=owners[r['trajectory_id']]
+             for dst in range(i*p.train_tp,(i+1)*p.train_tp):
+@@ -63,7 +67,7 @@ def samples_plan(op,p,requests):
+ def teacher_plan(op,p,requests,training=False):
+     plan=Plan(op);tp=p.train_tp;mb=p.train_mb if training else p.logprob_mb
+     layout=op.state(tp,p.rollout_tp)['layout']
+-    for i,group in enumerate(training_groups(requests,tp)):
++    for i,group in enumerate(training_groups(requests,tp,op.active_dies)):
+         ranks=tuple(range(i*tp,(i+1)*tp))
+         if training:plan.local(ranks,op.vec(0,0,layout.padded_elements*4,'gradient_zero'),'gradient_zero')
+         for j,batch in enumerate(chunks(group,mb)):
+@@ -75,31 +79,31 @@ def teacher_plan(op,p,requests,training=False):
+ 
+ def advantage_plan(op,p,requests):
+     plan=Plan(op)
+-    for i,group in enumerate(training_groups(requests,p.train_tp)):
++    for i,group in enumerate(training_groups(requests,p.train_tp,op.active_dies)):
+         n=len(group);g=n//8
+         plan.local(tuple(range(i*p.train_tp,(i+1)*p.train_tp)),op.vec(5*n+4*g,8*n,4*n,'grpo_group_advantage'),'grpo_group_advantage')
+     return plan
+ 
+ 
+ def optimizer_plan(op,p):
+-    plan=Plan(op);tp=p.train_tp;dp=48//tp;layout=op.state(tp,p.rollout_tp)['layout']
++    plan=Plan(op);tp=p.train_tp;dp=op.active_dies//tp;layout=op.state(tp,p.rollout_tp)['layout']
+     # Q/K norm scales are replicated across TP, but their head contributions
+     # are partitioned. Merge them once after all accumulated microbatches.
+     if tp>1:
+         qk_bytes=op.model.layers*2*op.model.head_dim*4
+         for group in range(dp):plan.comm(tuple(range(group*tp,(group+1)*tp)),'ALL_REDUCE',qk_bytes,'qk_norm_parameter_grad_TP')
+-    for rank in range(48):
++    for rank in range(op.active_dies):
+         plan.local((rank,),op.vec(layout.padded_elements,layout.padded_elements*4,layout.padded_elements*4,'gradient_scale'),'gradient_scale')
+-    for shard in range(tp):plan.comm(tuple(range(shard,48,tp)),'REDUCE_SCATTER',layout.padded_elements*4,'dp_gradient_RS')
+-    for rank in range(48):
++    for shard in range(tp):plan.comm(tuple(range(shard,op.active_dies,tp)),'REDUCE_SCATTER',layout.padded_elements*4,'dp_gradient_RS')
++    for rank in range(op.active_dies):
+         n=layout.shard_valid_elements(rank//tp,tp_rank=rank%tp,norm_only=True)
+         plan.local((rank,),op.vec(n*2,n*4,4,'gradient_norm'),'gradient_norm')
+-    plan.comm(tuple(range(48)),'ALL_REDUCE',48*4,'gradient_global_norm')
+-    for rank in range(48):
++    plan.comm(tuple(range(op.active_dies)),'ALL_REDUCE',op.active_dies*4,'gradient_global_norm')
++    for rank in range(op.active_dies):
+         n=layout.shard_valid_elements(rank//tp)
+         plan.local((rank,),op.vec(n*3,n*4,n*4,'clip'),'clip')
+         plan.local((rank,),op.vec(n*12,n*16,n*14,'adamw'),'adamw')
+-    for shard in range(tp):plan.comm(tuple(range(shard,48,tp)),'ALL_GATHER',layout.shard_elements*2,'dp_parameter_AG')
++    for shard in range(tp):plan.comm(tuple(range(shard,op.active_dies,tp)),'ALL_GATHER',layout.shard_elements*2,'dp_parameter_AG')
+     return plan
+ 
+ 
+@@ -131,7 +135,7 @@ class Screen:
+     @lru_cache(maxsize=64)
+     def teacher(self,tp,mb,training):
+         totals=[]
+-        for group in training_groups(self.requests,tp):
++        for group in training_groups(self.requests,tp,self.op.active_dies):
+             total=0.
+             for batch in chunks(group,mb):
+                 ls=teacher_lengths(batch);blocks=self.op.training(ls,tp,sum(x['response_length'] for x in batch)) if training else self.op.forward(ls,tp)
+@@ -147,9 +151,9 @@ class Screen:
+     def run(self,output):
+         out=Path(output);out.mkdir(parents=True,exist_ok=True);start=time.monotonic();rows=[];rejected=[]
+         for tr in (1,2,4,8):
+-            local=len(self.requests)//(48//tr)
++            local=len(self.requests)//(self.op.active_dies//tr)
+             for ge in (1,2,4,8):
+-                assigned=len(self.requests)//(48//ge)
++                assigned=len(self.requests)//(self.op.active_dies//ge)
+                 for mb in (1,2,4,8,16,32,64):
+                     if mb>local:continue
+                     for lb in (1,2,4,8,16,32,64):
+@@ -218,7 +222,7 @@ def run_candidate(op,requests,policy,output,*,records=True):
+         elif name=='optimizer':r=execute(optimizer_plan(op,policy),out/name)
+         elif name=='advantage':r=execute(advantage_plan(op,policy,requests),out/name)
+         elif name=='publish':
+-            pp=Plan(op);pp.local(tuple(range(48)),Cost(compute=1),'publish_actor_v1_reference_v0');r=execute(pp,out/name)
++            pp=Plan(op);pp.local(tuple(range(op.active_dies)),Cost(compute=1),'publish_actor_v1_reference_v0');r=execute(pp,out/name)
+         else:
+             plan,program=teacher_program(op,policy,requests,training=name=='training')
+             r=execute(plan,out/name,sequence=program)
+diff --git a/src/rl_xy/qwen3_rollout.py b/src/rl_xy/qwen3_rollout.py
+index 359bdc1..ef89d38 100644
+--- a/src/rl_xy/qwen3_rollout.py
++++ b/src/rl_xy/qwen3_rollout.py
+@@ -53,7 +53,7 @@ class Rollout:
+         if len(done)!=len(requests):raise ValueError('request completion coverage')
+         return {'model_ns':time,'compute_ns':compute,'memory_ns':memory,'communication_service_ns':network,'actual_KV_peak_bytes':peak,'completion_ns':done,'periods':periods}
+     def run(self,requests,tp,cap,*,records=False):
+-        dp=48//tp;replicas=[]
++        dp=self.op.active_dies//tp;replicas=[]
+         for i in range(dp):replicas.append(self.replica(requests[i::dp],tp,cap,records=records))
+         end=max(x['model_ns'] for x in replicas)
+         return {'model_ns':end,'replicas':replicas,'replica_count':dp,'tp':tp,'cap':cap,
+diff --git a/src/rl_xy/qwen3_sequence.py b/src/rl_xy/qwen3_sequence.py
+index c4ab6b4..d8f106a 100644
+--- a/src/rl_xy/qwen3_sequence.py
++++ b/src/rl_xy/qwen3_sequence.py
+@@ -99,7 +99,7 @@ def run_generation(op,requests,tp,cap,output):
+ def teacher_program(op,p,requests,training=False):
+     from .qwen3_experiment import training_groups,chunks,teacher_lengths
+     programs=[];tp=p.train_tp;layout=op.state(tp,p.rollout_tp)['layout']
+-    for i,group in enumerate(training_groups(requests,tp)):
++    for i,group in enumerate(training_groups(requests,tp,op.active_dies)):
+         ranks=tuple(range(i*tp,(i+1)*tp));segments=[]
+         if training:segments.append({'repeat':1,'steps':[local(op.vec(0,0,layout.padded_elements*4,'gradient_zero'))]})
+         for batch in chunks(group,p.train_mb if training else p.logprob_mb):

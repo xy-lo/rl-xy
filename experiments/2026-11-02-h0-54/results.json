@@ -1,0 +1,75 @@
+{
+  "status": "PASS_PAIRED_SIMULATION",
+  "scope": "54-die 6x9, 9 six-die domains, TP2 source plus TP2 helper; stage-composed f2, no early training",
+  "rows": [
+    {
+      "model": "4B",
+      "gpu_s": 132.965928745913,
+      "wafer_baseline_s": 162.37176933884197,
+      "idea_s": 107.62259809628796,
+      "baseline_generation_s": 107.966098015434,
+      "idea_generation_s": 53.216926772879994,
+      "training_s": 37.107043457632,
+      "old_reference_s": 17.245130823296,
+      "relative_gpu": 0.19060018524034128,
+      "relative_wafer": 0.3371840527789157,
+      "policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 32
+      },
+      "trace_sha256": "e2a64684474c0e77f642a3c1396d143f2fdf3a1f5628e91a80b021feac5ee02e",
+      "baseline_sha256": "10c3a5e0a8e56cda3d582e8eccb30c36237bc827d0bc75c828a02fef0e030d76",
+      "idea_sha256": "e553054b134ca64e227d966f93e25d36eed6c93935f0f0c135088663827d523f",
+      "idea_audit_sha256": "b07803b5e12a0cdb173c99034a0d726590689f9414591fd47b12a03dbd1c8a5f"
+    },
+    {
+      "model": "8B",
+      "gpu_s": 178.511873966146,
+      "wafer_baseline_s": 245.50103647559598,
+      "idea_s": 187.004415109874,
+      "baseline_generation_s": 162.43375652226598,
+      "idea_generation_s": 103.937135156544,
+      "training_s": 55.318463837032,
+      "old_reference_s": 27.640120850703997,
+      "relative_gpu": -0.047574096641541,
+      "relative_wafer": 0.2382744374748773,
+      "policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 2,
+        "logprob_mb": 1,
+        "cap": 16
+      },
+      "trace_sha256": "fdf1a009027929e56291fe65c468d01ffa94f0fb04fce48f87c0626e0c63fc21",
+      "baseline_sha256": "635339801ae4710af0cf05ebce300822400d1d029b63a5f4325af6b5fc377d8f",
+      "idea_sha256": "5dbf0501479b71c6da85c36c8c50cd2414b3d32361f1ecee3e1a963596908d3f",
+      "idea_audit_sha256": "567a9118e97f7019a82504f174dc49b26c173b8f31e33f04a1a90875f0f75180"
+    },
+    {
+      "model": "14B",
+      "gpu_s": 260.75474596553,
+      "wafer_baseline_s": 348.75584795560604,
+      "idea_s": 285.635448862011,
+      "baseline_generation_s": 219.21918543814402,
+      "idea_generation_s": 156.098786344549,
+      "training_s": 87.80267885004,
+      "old_reference_s": 41.53818965368401,
+      "relative_gpu": -0.09541802510382724,
+      "relative_wafer": 0.18098735681022837,
+      "policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 1,
+        "logprob_mb": 1,
+        "cap": 16
+      },
+      "trace_sha256": "f15e1626e7b99532337b062dca3815d676a779eae9e156f13cd89d7e436e3ea8",
+      "baseline_sha256": "0182aec6e2e714480fec7e985fcad31deda529faedff5bffb7a3e9cfefa85b86",
+      "idea_sha256": "89de4533374b38eae04c2105d540931531d954cbde54b6a7d092e10efda376cd",
+      "idea_audit_sha256": "493b711314b5d0f3e88115a33770afa031ba6a7ba06b087383903985119717f7"
+    }
+  ]
+}
