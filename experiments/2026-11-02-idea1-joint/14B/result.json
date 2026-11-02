@@ -1,0 +1,26 @@
+{
+  "status": "PASS_NATIVE_JOINT_CONDITIONAL_SIMULATION",
+  "model": "Qwen3-14B",
+  "window": "test1",
+  "requests": 1536,
+  "completed": 1536,
+  "trained_samples": 1536,
+  "trained_workers": 27,
+  "sample_transfers": 719,
+  "helper_segments": 1370,
+  "helper_migrations": 15,
+  "generation_end_tick": 156181798297796,
+  "total_s": 276.267176518829,
+  "binary_sha256": "3e21f5ee4374aee825e6987d43216ed507b62747c5268852de3315167b8152fe",
+  "native_exit_status": 0,
+  "capacity_passed": true,
+  "wall_s": 1093.847082084,
+  "subset_prompts": 0,
+  "early": true,
+  "limitations": [
+    "trace-driven computation/communication costs, no numerical tensors",
+    "full reference pre-reconstruction changes lifetime and is fully charged",
+    "training waits for own six-die domain generation to drain",
+    "GPU local calibration/extrapolation; no physical wafer validation"
+  ]
+}

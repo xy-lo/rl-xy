@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "capacity_bytes": 64000000000,
+  "phase_peak_bytes": {
+    "weight_export": 36488751212,
+    "reference_reconstruction": 40807033560,
+    "generation": 62107990228,
+    "helper": 54731909332,
+    "teacher": 40807033560,
+    "training": 62324519532
+  },
+  "record_and_staging_bound_bytes": 10707048,
+  "full_reference_bytes": 14768732268,
+  "original_admission": {
+    "passed": true,
+    "peak_bytes": 62311715332,
+    "phase_peak_bytes": {
+      "generation": 47865317380,
+      "weight_export": 36478044164,
+      "training": 62311715332,
+      "logprob": 40794229360
+    },
+    "reasons": [],
+    "capacity_bytes": 64000000000,
+    "admission": "phase-lifetime bounded: distributed reference shard, on-demand reference all-gather, gradient allocated only for training; no physical memory execution"
+  },
+  "lifecycle": [
+    "initial distributed reference shards",
+    "weight export with gradient buffer released",
+    "two 27-rank AG before generation; full reference stays resident",
+    "domain-drained: release KV/helper and rollout copies",
+    "old/reference MB1 on original worker assignment",
+    "release reconstructed reference; retain persistent shard",
+    "allocate FP32 gradient; all sample gradients summed",
+    "global sample denominator; DP reduction; one optimizer update"
+  ],
+  "limitations": [
+    "formula upper bounds, no physical tensor allocation"
+  ]
+}

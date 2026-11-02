@@ -1,0 +1,75 @@
+[
+  {
+    "model": "4B",
+    "critical_worker": 0,
+    "assigned_samples": 64,
+    "assigned_eos_s": 46.030380467521,
+    "domain_eos_s": 53.233377301918,
+    "last_sample_delivery_s": 54.444429983764,
+    "last_sample_provider": 3,
+    "last_transfer_s": 1.86437e-07,
+    "provider_roles_during_wait_s": {
+      "prepare": 1.2110524954089996,
+      "sample_transfer": 1.8643700627762883e-07
+    },
+    "timing": {
+      "model": "4B",
+      "worker": 0,
+      "samples": 64,
+      "old_policy_start_s": 54.444429983765,
+      "reference_start_s": 63.066995394421,
+      "training_start_s": 71.693583474079,
+      "training_end_s": 108.796604263727,
+      "last_data_s": 54.444429983764
+    }
+  },
+  {
+    "model": "8B",
+    "critical_worker": 0,
+    "assigned_samples": 64,
+    "assigned_eos_s": 55.250846438158,
+    "domain_eos_s": 103.098112840206,
+    "last_sample_delivery_s": 103.357922381337,
+    "last_sample_provider": 6,
+    "last_transfer_s": 3.70261e-07,
+    "provider_roles_during_wait_s": {
+      "prepare": 0.25980917086999966,
+      "sample_transfer": 3.702610058553546e-07
+    },
+    "timing": {
+      "model": "8B",
+      "worker": 0,
+      "samples": 64,
+      "old_policy_start_s": 103.357922381338,
+      "reference_start_s": 117.177983982118,
+      "training_start_s": 131.006235453536,
+      "training_end_s": 186.3165082446,
+      "last_data_s": 103.357922381337
+    }
+  },
+  {
+    "model": "14B",
+    "critical_worker": 0,
+    "assigned_samples": 64,
+    "assigned_eos_s": 85.007833838123,
+    "domain_eos_s": 133.395471391997,
+    "last_sample_delivery_s": 146.804302661442,
+    "last_sample_provider": 21,
+    "last_transfer_s": 8.67501e-07,
+    "provider_roles_during_wait_s": {
+      "helper": 13.408823746622005,
+      "idle": 1.0000100303386716e-06,
+      "sample_transfer": 6.522812952880486e-06
+    },
+    "timing": {
+      "model": "14B",
+      "worker": 0,
+      "samples": 64,
+      "old_policy_start_s": 146.804302661443,
+      "reference_start_s": 167.562460002033,
+      "training_start_s": 188.335383046499,
+      "training_end_s": 276.123293162603,
+      "last_data_s": 146.804302661442
+    }
+  }
+]

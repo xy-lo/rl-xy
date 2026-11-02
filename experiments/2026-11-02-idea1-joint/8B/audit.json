@@ -1,0 +1,26 @@
+{
+  "status": "PASS_EVIDENCE_AUDIT",
+  "model": "8B",
+  "full_test1": true,
+  "requests": 1536,
+  "exact_frozen_teacher_training_program_parity": true,
+  "peak_bytes": 55843684712,
+  "prefix_until_generation_s": 0.028682969296,
+  "generation_s": 103.941778091251,
+  "first_prepare_s": 84.844499901544,
+  "first_training_s": 96.760603409212,
+  "generation_end_s": 103.970461060547,
+  "training_end_s": 186.3165082446,
+  "training_overlap_generation_die_s": 14.852368546736,
+  "total_s": 186.396311749906,
+  "role_integral_die_s": {
+    "own": 4811.527311795639,
+    "idle": 2466.8374921335594,
+    "sample_transfer": 0.0017514623779999803,
+    "helper": 152.9286076186045,
+    "prepare": 892.6131232164793,
+    "training": 1735.634278639209
+  },
+  "sample_transferred_bytes_all_lanes": 38904912,
+  "note": "Role occupancy includes local memory/network/waiting; not core arithmetic utilization. Integrals cover dynamic sequence interval, excluding prefix/suffix."
+}

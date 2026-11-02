@@ -441,3 +441,17 @@
 | `tests/test_idea1_release.py` | 验证局部性估计不读取未来生成长度。 |
 | `tests/test_idea1_layout.py` | 验证三档模型的头布局和迁移事件。 |
 | `tests/test_h0_summary.py` | 校验 54 die 配对账本、输入与 reference 重建证据。 |
+
+| `scripts/audit_idea1_joint.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/check_idea1_joint.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/attention_tp8_program.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/dynamic_native.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/generation_reclaim_priority_v4.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/gqa_cost.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/helper_program_v10.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/joint_runtime.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/locality_runtime_v3.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/online_rollout.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/reclaim_priority.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/idea1_joint/run_joint.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |
+| `scripts/prepare_idea1_joint.py` | 完整 Idea1 联合复现、事件审计或发布证据校验 |

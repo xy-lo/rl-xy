@@ -1,0 +1,58 @@
+{
+  "argv": [
+    "scratch/rl-xy-joint-t125/joint/run_joint.py",
+    "--model",
+    "8B",
+    "--native-root",
+    "outputs/rl-xy-dynarl-t86-20261030/astra-sim",
+    "--output",
+    "outputs/idea1-t125/8B/full-v1"
+  ],
+  "policy": {
+    "train_tp": 2,
+    "rollout_tp": 2,
+    "train_mb": 2,
+    "logprob_mb": 1,
+    "cap": 16
+  },
+  "native_binary_sha256": "3e21f5ee4374aee825e6987d43216ed507b62747c5268852de3315167b8152fe",
+  "trace_sha256": "fdf1a009027929e56291fe65c468d01ffa94f0fb04fce48f87c0626e0c63fc21",
+  "canonical_requests_sha256": "fb929acc2fd574aadd524f15668d35e8a6d182b78b2838ab43bd67dcf00b09b1",
+  "subset_prompts": 0,
+  "early": true,
+  "gradient_normalization": {
+    "accumulation": "sum of all assigned sample contributions",
+    "global_denominator": 1536,
+    "worker_samples": [
+      64,
+      64,
+      64,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56
+    ]
+  },
+  "generation_cost": "original Idea1 grouped-core GQA wrapper; unchanged arithmetic/reorder and reduced-parallelism assumptions",
+  "python": "<historical-workspace>/outputs/rl-xy-dynarl-t84-20261030/venv/bin/python"
+}

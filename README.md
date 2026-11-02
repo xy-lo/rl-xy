@@ -1,4 +1,4 @@
-> **当前 H0 主实验：**54 die 六 die 域及三模型结果见 [H0 实验与复现](docs/H0_54.md)。原 48 活动 die 结果是历史配置。
+> **当前完整 Idea1：**54 die 长尾生成协作与提前训练，三模型结果、压缩原生证据和复现见 [Idea1 联合方案](docs/IDEA1_JOINT.md)，瓶颈与下一步见 [关键路径分析](docs/IDEA1_INSIGHTS.md)。[H0 基线](docs/H0_54.md)与原 48 die 历史配置分别保留。
 
 # rl-xy
 
