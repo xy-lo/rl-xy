@@ -50,7 +50,7 @@ class AdaptiveKernel(CachedCompleteKernel):
             self.batch_manifest[bid]=proof;self.batch_state[bid]='queued'
             jobs.append(('training',tids,steps,dict(**proof,steps=steps)))
         jobs.append(('gradient_restore',[],self._restore_gradient(r) if items else ([local(self.op.vec(0,0,self.memory.grad2,'zero_empty_expanded_TP2_gradients'))] if tp>2 else []),None))
-        self.region_programs[r]=tuple((stage,tids,self._synchronized(r,i,steps),job) for i,(stage,tids,steps,job) in enumerate(jobs))
+        self._finalize_region_program(r,jobs)
 
 
     def commit_stage(self,w):

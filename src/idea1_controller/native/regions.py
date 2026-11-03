@@ -134,8 +134,13 @@ class RegionKernel(TrainingCoopRuntime):
                 program_sha256=digest(dict(repeat=1,steps=steps)),payload_bytes_per_lane=self.payload(batch),estimate_local_ns=sum(s.get('compute',0)+s.get('memory',0) for s in steps))
             self.batch_manifest[bid]=proof;self.batch_state[bid]='queued'
             jobs.append(('training',tids,steps,dict(**proof,steps=steps)))
-        jobs=order_ready_training_jobs(jobs,self.resource_layout.get('training_ready_order','input'))
         jobs.append(('gradient_restore',[],self._restore_gradient(r) if items else [],None))
+        self._finalize_region_program(r,jobs)
+
+    def _finalize_region_program(self,r,jobs):
+        # All base/cached/adaptive builders call this shared boundary. Sorting
+        # before synchronization keeps every TP rank on the same gate order.
+        jobs=order_ready_training_jobs(jobs,self.resource_layout.get('training_ready_order','input'))
         self.region_programs[r]=tuple((stage,tids,self._synchronized(r,i,steps),job) for i,(stage,tids,steps,job) in enumerate(jobs))
 
     def training_jobs(self,w):
