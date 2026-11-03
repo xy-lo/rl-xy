@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.1",
+  "case_id": "aligned_PP1_DO_4device_fixture",
+  "evidence_kind": "synthetic_fixture",
+  "rounds": 1,
+  "model": {
+    "layers": 1,
+    "hidden_size": 8,
+    "query_heads": 4,
+    "kv_heads": 2,
+    "head_dim": 2,
+    "ffn_size": 16,
+    "vocab_size": 16,
+    "actor_dtype_bytes": 2,
+    "reference_dtype_bytes": 2,
+    "master_dtype_bytes": 4,
+    "gradient_dtype_bytes": 4,
+    "optimizer_dtype_bytes": 4,
+    "qkv_bias": true,
+    "rotary_embedding": true,
+    "tie_word_embeddings": true
+  },
+  "workload": {
+    "round_id": 0,
+    "group_id": "multiple",
+    "prompt_token_ids": [],
+    "max_response_length": 2,
+    "behavior_version": 0,
+    "trajectories": [
+      {
+        "trajectory_id": "A",
+        "prompt_token_ids": [
+          1,
+          2
+        ],
+        "response_token_ids": [
+          3,
+          4
+        ],
+        "group_id": "g0",
+        "finish_reason": "fixture",
+        "reward": 1.0
+      },
+      {
+        "trajectory_id": "B",
+        "prompt_token_ids": [
+          1,
+          2
+        ],
+        "response_token_ids": [
+          3,
+          4
+        ],
+        "group_id": "g0",
+        "finish_reason": "fixture",
+        "reward": 0.0
+      },
+      {
+        "trajectory_id": "C",
+        "prompt_token_ids": [
+          1,
+          2
+        ],
+        "response_token_ids": [
+          3,
+          4
+        ],
+        "group_id": "g1",
+        "finish_reason": "fixture",
+        "reward": 5.0
+      },
+      {
+        "trajectory_id": "D",
+        "prompt_token_ids": [
+          1,
+          2
+        ],
+        "response_token_ids": [
+          3,
+          4
+        ],
+        "group_id": "g1",
+        "finish_reason": "fixture",
+        "reward": 3.0
+      }
+    ],
+    "advantage_rule": "demean_only",
+    "loss_reduction": "global_response_token_mean",
+    "optimizer": "adamw_shape_only"
+  },
+  "hardware": {
+    "dies": 2,
+    "cores_per_die": 1,
+    "dram_bytes_per_die": 262144,
+    "sram_bytes_per_core": 4096,
+    "nic_tx_bytes_per_die": 64,
+    "nic_rx_bytes_per_die": 64,
+    "gemm_flops_per_ns": 1,
+    "vector_ops_per_ns": 1,
+    "dram_bytes_per_ns": 16,
+    "module_path_bytes_per_ns": 16,
+    "sram_bytes_per_ns": 32,
+    "d2d_bytes_per_ns_per_direction": 8,
+    "d2d_latency_ns": 1,
+    "d2d_packet_bytes": 64,
+    "host_bytes_per_ns": 8,
+    "host_latency_ns": 2,
+    "astra_time_scale": 1000
+  },
+  "strategy": {
+    "tensor_parallel": 2,
+    "pipeline_parallel": 1,
+    "data_parallel": 1,
+    "training_microbatch_trajectories": 1,
+    "rollout_max_concurrency": 4,
+    "share_prompt_kv": false,
+    "actor_train_inference_layout_compatible": true,
+    "schedule": "strict_synchronous",
+    "kv_admission": "reserve_public_max_length"
+  },
+  "costs": {
+    "reward_cpu_ns": 12,
+    "advantage_cpu_ns": 8,
+    "sample_vector_ops_per_token": 16,
+    "softmax_vector_ops_per_element": 5,
+    "rmsnorm_vector_ops_per_element": 6,
+    "swiglu_vector_ops_per_element": 5,
+    "optimizer_vector_ops_per_local_parameter": 12,
+    "gradient_clip_vector_ops_per_local_parameter": 3,
+    "control_marker_ns": 1
+  }
+}

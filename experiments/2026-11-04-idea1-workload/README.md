@@ -30,3 +30,19 @@ python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/dev
 ```
 
 默认distribution为独立校准模式；本开发表使用显式controlled alpha1离线同题proxy，不是连续actor历史。test1/test2已有历史结果，不能称全新held-out。54晶圆die与48×A100并非等面积/功耗/成本，尚无GPU同helper策略消融。最终同窗表将用旧device_s，旧Mac代理规划与本次Linux主机规划分列。
+
+## 独立分布模式的开发版本
+
+[独立分布开发清单](distribution-development/bundle-manifest.json)另含3个完整4B TUNE点，原生及独立执行审计通过，1536回答不减。仅前两项严格配对；第三项版本不同，单列，不与前两项作纯算法归因。它们不是最终v13/cap1的无同题历史验收。
+
+|开发版本|信息与放置|设备/s|
+|---|---|---:|
+|legacy点摘要P0|独立calibration，独立放置|91.188989|
+|同legacy摘要PB|相同信息/资源，释放依赖放置|78.674187|
+|pooled V2|未知题相同条件点分数相同，独立情景保留；后续mesh运行时|79.569265|
+
+前两项缩短13.724%，但不能将该数字直接搬到新pooled摘要版本。该包保存原生源/事件/成本，不包含这些旧版本的完整独立预测重建；当前controlled开发包中的5点才额外包含该项重建。未知题不能提前识别真实哪条回答会长。test3/test4跨prompt的最终系统验证仍未完成。
+
+```bash
+python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/distribution-development
+```
