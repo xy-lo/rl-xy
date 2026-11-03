@@ -25,9 +25,26 @@ class HistoricalAdaptiveKernel(PackedPending,HistoricalHelper,CoordinateKernel):
     def init_history_help(self,history):
         self.helper_history={str(g):tuple(sorted(s['response_length'] for r in records for s in r['samples'])) for g,records in history['records'].items()}
     def init_workload_help(self,forecasts):
-        # These are sampled forecasts, never actual same-task observations.
-        self.helper_history={str(g):tuple(sorted(int(n) for v in f['response_scenarios'] for n in v)) for g,f in forecasts.items()}
-        self.helper_prediction_kind='calibration-distribution-forecast'
+        # Keep raw independent samples for the explicitly opted-in alpha=1
+        # controlled proxy. Bootstrap repetitions must not inflate its support.
+        pools={}
+        kinds={}
+        for g,f in forecasts.items():
+            if 'conditional_lengths' in f:
+                if (f.get('evidence_kind')!='OFFLINE_EXACT_PROXY_PLUS_GLOBAL' or
+                    f.get('exact_mixture_weight')!=1 or f.get('chronological') is not False):
+                    raise ValueError('raw helper support requires explicit controlled proxy provenance')
+                pool=f['conditional_lengths']
+                kinds[str(g)]='raw-offline-disjoint-same-prompt-proxy'
+            else:
+                pool=[n for v in f['response_scenarios'] for n in v]
+                kinds[str(g)]='calibration-distribution-scenarios'
+            if any(type(n) is not int or not 0<n<=8192 for n in pool):
+                raise ValueError('invalid conditional helper support')
+            pools[str(g)]=tuple(sorted(pool))
+        self.helper_history=pools
+        self.helper_prediction_kind='explicit-per-task-forecast-provenance'
+        self.helper_prediction_kinds=kinds
     def init_adaptive(self,record_reserve):
         super().init_adaptive(record_reserve);self.memory=PowerOfTwoMemory(self.op,record_reserve)
 

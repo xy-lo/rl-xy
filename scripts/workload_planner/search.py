@@ -58,8 +58,10 @@ def templates():
 
 
 class Environment:
-    def __init__(self, public_path, cache_dir, *, model='4B', injected_forecasts=None):
+    def __init__(self, public_path, cache_dir, *, model='4B', injected_forecasts=None, placement_mode='independent'):
         start = time.perf_counter_ns()
+        if placement_mode not in ('independent','release'):raise ValueError('invalid placement mode')
+        self.placement_mode=placement_mode
         self.public_path = Path(public_path).resolve()
         self.pub = json.loads(self.public_path.read_text())
         allowed = {'group_id', 'prompt_length', 'prompt_sha256', 'library'}
@@ -80,7 +82,7 @@ class Environment:
         validate_catalog(self.catalog_data, self.op, model, cfg)
         if self.history is not None:
             validate_history(self.pub, self.history, model, cfg)
-        self.policy = Policy(2, 2, 4, 8, 64)
+        self.policy = {'4B':Policy(2,2,4,8,64),'8B':Policy(2,2,2,1,16),'14B':Policy(2,2,1,1,16)}[model]
         net = NetworkProfiles(self.op, 'unused', native=False)
         self.suffix = simple_plan_time(optimizer_plan(self.op, self.policy), net) + 1
         self.prefix = 1000 + net.time(54, 'ALL_REDUCE', 54*4)
@@ -96,6 +98,9 @@ class Environment:
     def search(self, mode='shortlist6'):
         if mode not in ('full', 'shortlist12', 'shortlist6', 'one_scene', 'capacity_fallback'):
             raise ValueError('unknown search mode')
+        if self.placement_mode=='release':
+            from release_search import search
+            return search(self,mode)
         start = time.perf_counter_ns()
         clock = lambda: (time.perf_counter_ns() - start) / 1e9
         forecast = self.injected_forecasts if self.injected_forecasts is not None else {g: asdict(x) for g, x in predict_groups(self.pub, self.history).items()}

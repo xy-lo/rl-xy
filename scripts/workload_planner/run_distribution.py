@@ -11,13 +11,20 @@ sys.path.insert(0,str(ROOT/'src'))
 from idea1_controller.workload import WorkloadSpec, Observation, DistributionSnapshot, forecasts, digest
 from idea1_controller.offline_candidates import freeze_candidates, select_precomputed
 from search import Environment
+from idea1_controller.controlled_forecast import controlled_forecasts
 
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--model',default='4B',choices=['4B','8B','14B'])
     p.add_argument('--mode',default='one_scene',choices=['one_scene','shortlist6','full'])
-    p.add_argument('--no-history',action='store_true');p.add_argument('--output',type=Path,required=True)
-    a=p.parse_args();start=time.perf_counter();a.output.mkdir(parents=True,exist_ok=False)
+    p.add_argument('--placement',choices=['independent','release'],default='independent');p.add_argument('--no-history',action='store_true');p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--forecast-mode',choices=['distribution','controlled-proxy'],default='distribution')
+    p.add_argument('--allow-controlled-proxy',action='store_true')
+    p.add_argument('--proxy-weight',type=float,default=.75)
+    a=p.parse_args()
+    if a.forecast_mode=='controlled-proxy' and (a.no_history or a.placement!='release'):
+        p.error('controlled proxy requires history and release-aware placement')
+    start=time.perf_counter();a.output.mkdir(parents=True,exist_ok=False)
     inputs=ROOT/f'experiments/2026-10-29-qwen3/inputs/Qwen3-{a.model}'
     assets=ROOT/'experiments/2026-11-03-idea1-elastic/assets'
     hpath=assets/f'history-{a.model}.json.gz'
@@ -49,14 +56,23 @@ def main():
             rows.append(Observation(bind['prompt_sha256'],bind['prompt_length'],bind['library'],digest([h['source_sha256'],g,[x['sample'] for x in samples]]),tuple(x['response_length'] for x in samples),tuple(x['finish_reason']=='length' for x in samples)))
     snapshot=DistributionSnapshot.build(rows,spec,kind='offline-calibration-proxy',source_sha256=hashlib.sha256(hpath.read_bytes()).hexdigest())
     snapshot = None if a.no_history else snapshot
-    forecast=forecasts(public,snapshot,spec)
+    global_snapshot=snapshot
+    if a.forecast_mode=='controlled-proxy':
+        snapshot,forecast=controlled_forecasts(public,h,global_snapshot,spec,model=a.model,
+            config_sha256=hashlib.sha256((inputs/'config.json').read_bytes()).hexdigest(),
+            source_file_sha256=hashlib.sha256(hpath.read_bytes()).hexdigest(),
+            allow_controlled_proxy=a.allow_controlled_proxy,exact_weight=a.proxy_weight)
+    else:
+        forecast=forecasts(public,snapshot,spec)
+    (a.output/'global-distribution.json').write_text(json.dumps(global_snapshot.to_dict() if global_snapshot else None))
     (a.output/'public.json').write_text(json.dumps(public))
     (a.output/'distribution.json').write_text(json.dumps(snapshot.to_dict() if snapshot else None))
     (a.output/'forecast.json').write_text(json.dumps(forecast))
     (a.output/'split-manifest.json').write_text(json.dumps(dict(calibration='historical test1/test2 prompt histories, offline proxy',tune='original tune',reserved='test3/test4; not scored',calibration_prompt_hashes=sorted(cal_hashes),tune_prompt_hashes=sorted(tune_hashes),reserved_prompt_hashes=sorted(held_hashes),excluded_calibration_groups=len(cal_raw)-len(cal_ids),excluded_reserved_groups=len(held_raw)-len(held_ids),groups=len(public),k=8,scenarios=16,excluded_incomplete=excluded,spec=spec.__dict__),indent=2))
     prep=time.perf_counter()-start
-    env=Environment(a.output/'public.json',a.output/'mapper-cache',model=a.model,injected_forecasts=forecast)
+    env=Environment(a.output/'public.json',a.output/'mapper-cache',model=a.model,injected_forecasts=forecast,placement_mode=a.placement)
     result=env.search('capacity_fallback' if a.no_history else a.mode)
+    result['forecast_evidence']=snapshot.kind if snapshot else 'no-history-hard-limit'
     catalog_sha=hashlib.sha256((assets/f'inference-catalog-{a.model}.json').read_bytes()).hexdigest()
     artifact=freeze_candidates(public,snapshot,catalog_sha,result)
     (a.output/'offline-candidates.json').write_text(json.dumps(artifact,separators=(',',':')))
@@ -73,7 +89,7 @@ def main():
     selected,reason=select_precomputed(artifact,public,snapshot,catalog_sha,admit=admit,fallback=lambda:None)
     selection=time.perf_counter()-before
     if selected is None: raise ValueError('no verified deployment plan')
-    summary=dict(status='PASS_DISTRIBUTION_PLANNING_PROXY',model=a.model,scope=result['score_scope'],mode=a.mode,groups=len(public),calibration_groups=len(cal_ids),calibration_vectors=len(rows),evidence_counts={k:sum(f['evidence_kind']==k for f in forecast.values()) for k in ('CLASS','GLOBAL','DEFAULT')},offline_preparation_s=prep,offline_environment_s=env.setup_s,offline_search_s=result['timings']['search_s'],online_artifact_check_and_capacity_s=selection,online_reason=reason,winner=result['winner'],counts=result['counts'],process_wall_s=time.perf_counter()-start,native_executed=False)
+    summary=dict(status='PASS_DISTRIBUTION_PLANNING_PROXY',model=a.model,scope=result['score_scope'],mode=a.mode,placement_mode=a.placement,forecast_mode=a.forecast_mode,groups=len(public),calibration_groups=len(cal_ids),calibration_vectors=len(rows),evidence_counts={k:sum(f['evidence_kind']==k for f in forecast.values()) for k in ('CLASS','GLOBAL','DEFAULT','OFFLINE_EXACT_PROXY_PLUS_GLOBAL')},offline_preparation_s=prep,offline_environment_s=env.setup_s,offline_search_s=result['timings']['search_s'],online_artifact_check_and_capacity_s=selection,online_reason=reason,winner=result['winner'],counts=result['counts'],process_wall_s=time.perf_counter()-start,native_executed=False)
     (a.output/'result.json').write_text(json.dumps(summary,indent=2))
     print(json.dumps(summary,indent=2),flush=True)
 

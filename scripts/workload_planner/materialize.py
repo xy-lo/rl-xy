@@ -38,7 +38,8 @@ def main():
  home.update(model=a.model,window=a.window,source_requests_digest=digest(requests),forecasts=forecast,
   plan_id=digest([artifact['artifact_digest'],sorted(ids)]),planning_wall_s=0,
   workload_distribution_version=artifact['distribution_version'],workload_forecast_digest=digest(forecast),
-  workload_offline_artifact=artifact['artifact_digest'],planner_source='distribution-offline-evaluated-candidates',
+  workload_offline_artifact=artifact['artifact_digest'],planner_source='distribution-controlled-proxy' if result.get('forecast_evidence')=='offline-controlled-same-prompt-proxy' else 'distribution-offline-evaluated-candidates',
+  forecast_evidence=result.get('forecast_evidence','offline-calibration-proxy'),
   planning_cost_scope='offline preparation/search and host admission measured separately; not injected as device compute',
   training_help_admission='region-ready',helper_domains=home['region_members'])
  (a.output/'selected-plan.json').write_text(json.dumps(home,indent=2))
