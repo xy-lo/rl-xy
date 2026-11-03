@@ -1,0 +1,24 @@
+{
+  "model": "8B",
+  "passed": true,
+  "layouts": [
+    {
+      "case": "8B-tune-TP1-static",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.07840558299999995,
+      "old_planning_s": 1.758980917
+    },
+    {
+      "case": "8B-tune-TP4-DP14",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.08483537499999999,
+      "old_planning_s": 1.357904208
+    },
+    {
+      "case": "8B-tune-TP4-DP27",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.06456833299999998,
+      "old_planning_s": 1.519513167
+    }
+  ]
+}

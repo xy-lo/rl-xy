@@ -1,0 +1,3008 @@
+{
+  "model": "4B",
+  "window": "tune",
+  "profiles": [
+    {
+      "key": "4B-tune-TP1-static",
+      "score": {
+        "mean_ns": 127189971735.70416,
+        "risk_ns": 127876823127.50696,
+        "scenario_ns": [
+          122808688961.53769,
+          129340601265.27426,
+          126179496752.32246,
+          125902488662.07019,
+          129164551977.95538,
+          127734139506.17288,
+          127960693958.214,
+          127595615349.56664,
+          129962876633.36296,
+          129911877972.46777,
+          126244351638.43192,
+          128636206159.724,
+          124085775640.4815,
+          126212721820.17484,
+          127449480871.17564,
+          125849980602.33446
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 113.70276091843401,
+      "TUNE_calibration_ratio": 0.8891584740501421,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            3
+          ],
+          "4": [
+            4
+          ],
+          "5": [
+            5
+          ],
+          "6": [
+            6
+          ],
+          "7": [
+            7
+          ],
+          "8": [
+            8
+          ],
+          "9": [
+            9
+          ],
+          "10": [
+            10
+          ],
+          "11": [
+            11
+          ],
+          "12": [
+            12
+          ],
+          "13": [
+            13
+          ],
+          "14": [
+            14
+          ],
+          "15": [
+            15
+          ],
+          "16": [
+            16
+          ],
+          "17": [
+            17
+          ],
+          "18": [
+            18
+          ],
+          "19": [
+            19
+          ],
+          "20": [
+            20
+          ],
+          "21": [
+            21
+          ],
+          "22": [
+            22
+          ],
+          "23": [
+            23
+          ],
+          "24": [
+            24
+          ],
+          "25": [
+            25
+          ],
+          "26": [
+            26
+          ]
+        },
+        "caps": {
+          "0": 31,
+          "1": 31,
+          "2": 31,
+          "3": 31,
+          "4": 31,
+          "5": 31,
+          "6": 31,
+          "7": 31,
+          "8": 31,
+          "9": 31,
+          "10": 31,
+          "11": 31,
+          "12": 31,
+          "13": 31,
+          "14": 31,
+          "15": 31,
+          "16": 31,
+          "17": 31,
+          "18": 31,
+          "19": 31,
+          "20": 31,
+          "21": 31,
+          "22": 31,
+          "23": 31,
+          "24": 31,
+          "25": 31,
+          "26": 31
+        },
+        "elastic": false,
+        "paired_tp1": true,
+        "actual_tp_counts": {
+          "1": 54
+        },
+        "capacity_frontier": {
+          "1": 31,
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "99f57dbfbfadf2d991651329c7b2627afb6a560b66414208b5a57c26d53b7d63"
+    },
+    {
+      "key": "4B-tune-TP2-online-safe-v13",
+      "score": {
+        "mean_ns": 99953708363.13904,
+        "risk_ns": 100693868236.5487,
+        "scenario_ns": [
+          96981568169.39484,
+          103553995705.50314,
+          99707272052.48537,
+          98905375439.15784,
+          101835709061.71436,
+          99286132999.30588,
+          98164469450.37096,
+          101834438973.53375,
+          101728390089.99467,
+          100711823419.5567,
+          95581575980.7779,
+          102274700008.05225,
+          97553808400.04918,
+          99443331022.41557,
+          101812663330.15334,
+          99884079707.75894
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 81.30248546137801,
+      "TUNE_calibration_ratio": 0.8074224069968519,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            3
+          ],
+          "4": [
+            4
+          ],
+          "5": [
+            5
+          ],
+          "6": [
+            6
+          ],
+          "7": [
+            7
+          ],
+          "8": [
+            8
+          ],
+          "9": [
+            9
+          ],
+          "10": [
+            10
+          ],
+          "11": [
+            11
+          ],
+          "12": [
+            12
+          ],
+          "13": [
+            13
+          ],
+          "14": [
+            14
+          ],
+          "15": [
+            15
+          ],
+          "16": [
+            16
+          ],
+          "17": [
+            17
+          ],
+          "18": [
+            18
+          ],
+          "19": [
+            19
+          ],
+          "20": [
+            20
+          ],
+          "21": [
+            21
+          ],
+          "22": [
+            22
+          ],
+          "23": [
+            23
+          ],
+          "24": [
+            24
+          ],
+          "25": [
+            25
+          ],
+          "26": [
+            26
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 67,
+          "2": 67,
+          "3": 67,
+          "4": 67,
+          "5": 67,
+          "6": 67,
+          "7": 67,
+          "8": 67,
+          "9": 67,
+          "10": 67,
+          "11": 67,
+          "12": 67,
+          "13": 67,
+          "14": 67,
+          "15": 67,
+          "16": 67,
+          "17": 67,
+          "18": 67,
+          "19": 67,
+          "20": 67,
+          "21": 67,
+          "22": 67,
+          "23": 67,
+          "24": 67,
+          "25": 67,
+          "26": 67
+        },
+        "elastic": true,
+        "actual_tp_counts": {
+          "2": 27,
+          "4": 0,
+          "8": 0
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869,
+        "elastic_data_wait": true,
+        "pending_enabled": true,
+        "pending_data_wait": true
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "c1a92fe438f97a6dfd6d3f2034c02f489eed3b1bf77c4c8d76919f457c1f8b63"
+    },
+    {
+      "key": "4B-tune-TP2-static",
+      "score": {
+        "mean_ns": 99953708363.13904,
+        "risk_ns": 100693868236.5487,
+        "scenario_ns": [
+          96981568169.39484,
+          103553995705.50314,
+          99707272052.48537,
+          98905375439.15784,
+          101835709061.71436,
+          99286132999.30588,
+          98164469450.37096,
+          101834438973.53375,
+          101728390089.99467,
+          100711823419.5567,
+          95581575980.7779,
+          102274700008.05225,
+          97553808400.04918,
+          99443331022.41557,
+          101812663330.15334,
+          99884079707.75894
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 90.900148260467,
+      "TUNE_calibration_ratio": 0.9027376726348975,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            3
+          ],
+          "4": [
+            4
+          ],
+          "5": [
+            5
+          ],
+          "6": [
+            6
+          ],
+          "7": [
+            7
+          ],
+          "8": [
+            8
+          ],
+          "9": [
+            9
+          ],
+          "10": [
+            10
+          ],
+          "11": [
+            11
+          ],
+          "12": [
+            12
+          ],
+          "13": [
+            13
+          ],
+          "14": [
+            14
+          ],
+          "15": [
+            15
+          ],
+          "16": [
+            16
+          ],
+          "17": [
+            17
+          ],
+          "18": [
+            18
+          ],
+          "19": [
+            19
+          ],
+          "20": [
+            20
+          ],
+          "21": [
+            21
+          ],
+          "22": [
+            22
+          ],
+          "23": [
+            23
+          ],
+          "24": [
+            24
+          ],
+          "25": [
+            25
+          ],
+          "26": [
+            26
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 67,
+          "2": 67,
+          "3": 67,
+          "4": 67,
+          "5": 67,
+          "6": 67,
+          "7": 67,
+          "8": 67,
+          "9": 67,
+          "10": 67,
+          "11": 67,
+          "12": 67,
+          "13": 67,
+          "14": 67,
+          "15": 67,
+          "16": 67,
+          "17": 67,
+          "18": 67,
+          "19": 67,
+          "20": 67,
+          "21": 67,
+          "22": 67,
+          "23": 67,
+          "24": 67,
+          "25": 67,
+          "26": 67
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 27,
+          "4": 0,
+          "8": 0
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "512c29f3be40585e2b34bc0911ca628b1d437e61dcce78f98f52c7edd5b46af8"
+    },
+    {
+      "key": "4B-tune-TP4-elastic",
+      "score": {
+        "mean_ns": 85311989669.3531,
+        "risk_ns": 86118615356.16202,
+        "scenario_ns": [
+          83099392100.97867,
+          85619646140.71935,
+          85832893005.5911,
+          84355429727.14796,
+          86375828076.65936,
+          85730196607.02745,
+          88311682027.16866,
+          82892952958.35,
+          85623405898.7519,
+          83429295681.22675,
+          87621062747.9635,
+          85250821180.55232,
+          88765302806.00879,
+          85067194022.27234,
+          82745254650.98326,
+          84271477078.24835
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 79.804296993816,
+      "TUNE_calibration_ratio": 0.9266788215738049,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            6
+          ],
+          "4": [
+            4,
+            7
+          ],
+          "5": [
+            5,
+            8
+          ],
+          "9": [
+            9,
+            12
+          ],
+          "10": [
+            10,
+            13
+          ],
+          "11": [
+            11,
+            14
+          ],
+          "15": [
+            15,
+            18
+          ],
+          "16": [
+            16,
+            19
+          ],
+          "17": [
+            17,
+            20
+          ],
+          "21": [
+            21,
+            24
+          ],
+          "22": [
+            22,
+            25
+          ],
+          "23": [
+            23,
+            26
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 134,
+          "4": 134,
+          "5": 134,
+          "9": 134,
+          "10": 134,
+          "11": 134,
+          "15": 134,
+          "16": 134,
+          "17": 134,
+          "21": 134,
+          "22": 134,
+          "23": 134
+        },
+        "elastic": true,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 13,
+          "8": 0
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "4c0904257772417261e83d491ca4dce23aef31279d519028556c088b21e24400"
+    },
+    {
+      "key": "4B-tune-TP4-online-safe-v13",
+      "score": {
+        "mean_ns": 85311989669.3531,
+        "risk_ns": 86118615356.16202,
+        "scenario_ns": [
+          83099392100.97867,
+          85619646140.71935,
+          85832893005.5911,
+          84355429727.14796,
+          86375828076.65936,
+          85730196607.02745,
+          88311682027.16866,
+          82892952958.35,
+          85623405898.7519,
+          83429295681.22675,
+          87621062747.9635,
+          85250821180.55232,
+          88765302806.00879,
+          85067194022.27234,
+          82745254650.98326,
+          84271477078.24835
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 79.804296993816,
+      "TUNE_calibration_ratio": 0.9266788215738049,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            6
+          ],
+          "4": [
+            4,
+            7
+          ],
+          "5": [
+            5,
+            8
+          ],
+          "9": [
+            9,
+            12
+          ],
+          "10": [
+            10,
+            13
+          ],
+          "11": [
+            11,
+            14
+          ],
+          "15": [
+            15,
+            18
+          ],
+          "16": [
+            16,
+            19
+          ],
+          "17": [
+            17,
+            20
+          ],
+          "21": [
+            21,
+            24
+          ],
+          "22": [
+            22,
+            25
+          ],
+          "23": [
+            23,
+            26
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 134,
+          "4": 134,
+          "5": 134,
+          "9": 134,
+          "10": 134,
+          "11": 134,
+          "15": 134,
+          "16": 134,
+          "17": 134,
+          "21": 134,
+          "22": 134,
+          "23": 134
+        },
+        "elastic": true,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 13,
+          "8": 0
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869,
+        "elastic_data_wait": true,
+        "pending_enabled": true,
+        "pending_data_wait": true
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "7d5dad3f9925448f2ff6b038d40acba5c479605143675488201b686e80fa44ca"
+    },
+    {
+      "key": "4B-tune-TP4-static",
+      "score": {
+        "mean_ns": 85311989669.3531,
+        "risk_ns": 86118615356.16202,
+        "scenario_ns": [
+          83099392100.97867,
+          85619646140.71935,
+          85832893005.5911,
+          84355429727.14796,
+          86375828076.65936,
+          85730196607.02745,
+          88311682027.16866,
+          82892952958.35,
+          85623405898.7519,
+          83429295681.22675,
+          87621062747.9635,
+          85250821180.55232,
+          88765302806.00879,
+          85067194022.27234,
+          82745254650.98326,
+          84271477078.24835
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 79.804296993816,
+      "TUNE_calibration_ratio": 0.9266788215738049,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            6
+          ],
+          "4": [
+            4,
+            7
+          ],
+          "5": [
+            5,
+            8
+          ],
+          "9": [
+            9,
+            12
+          ],
+          "10": [
+            10,
+            13
+          ],
+          "11": [
+            11,
+            14
+          ],
+          "15": [
+            15,
+            18
+          ],
+          "16": [
+            16,
+            19
+          ],
+          "17": [
+            17,
+            20
+          ],
+          "21": [
+            21,
+            24
+          ],
+          "22": [
+            22,
+            25
+          ],
+          "23": [
+            23,
+            26
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 134,
+          "4": 134,
+          "5": 134,
+          "9": 134,
+          "10": 134,
+          "11": 134,
+          "15": 134,
+          "16": 134,
+          "17": 134,
+          "21": 134,
+          "22": 134,
+          "23": 134
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 13,
+          "8": 0
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "4c0904257772417261e83d491ca4dce23aef31279d519028556c088b21e24400"
+    },
+    {
+      "key": "4B-tune-TP8-DP14",
+      "score": {
+        "mean_ns": 82043008999.24747,
+        "risk_ns": 83103529075.59744,
+        "scenario_ns": [
+          85110724753.27051,
+          83656704307.0236,
+          82663052930.00217,
+          83677734496.36397,
+          78477269391.02121,
+          84877928763.39957,
+          82344734926.34464,
+          79167024033.1084,
+          82137262155.82253,
+          80518627524.52747,
+          76255689459.48126,
+          83722242868.57147,
+          87459453856.02426,
+          80312139104.78516,
+          81974808605.69853,
+          80332746812.51474
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 77.830682569502,
+      "TUNE_calibration_ratio": 0.9365508713679433,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1,
+          2
+        ],
+        "3": [
+          3,
+          6
+        ],
+        "4": [
+          4,
+          7
+        ],
+        "5": [
+          5,
+          8
+        ],
+        "9": [
+          9,
+          12
+        ],
+        "10": [
+          10,
+          13
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "16": [
+          16,
+          19
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "2ee354a67e8a7ca7ea37f69ae611a4d19915eb2cd05e136229317008413dd7aa"
+    },
+    {
+      "key": "4B-tune-TP8-DP27",
+      "score": {
+        "mean_ns": 83359602891.72513,
+        "risk_ns": 83875904026.88939,
+        "scenario_ns": [
+          81231288024.40297,
+          84981949613.50069,
+          84539774706.97491,
+          83273737487.15182,
+          80933794936.84418,
+          83509566255.78201,
+          85005693315.2443,
+          85667340988.97629,
+          85182273875.78809,
+          82048329146.35056,
+          84045867273.96158,
+          82309661983.13376,
+          81057725000.97058,
+          82501065338.00998,
+          83465820188.18001,
+          83999758132.33044
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 73.873630185369,
+      "TUNE_calibration_ratio": 0.8807491381754429,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13
+        ],
+        "14": [
+          14
+        ],
+        "15": [
+          15
+        ],
+        "16": [
+          16
+        ],
+        "17": [
+          17
+        ],
+        "18": [
+          18
+        ],
+        "19": [
+          19
+        ],
+        "20": [
+          20
+        ],
+        "21": [
+          21
+        ],
+        "22": [
+          22
+        ],
+        "23": [
+          23
+        ],
+        "24": [
+          24
+        ],
+        "25": [
+          25
+        ],
+        "26": [
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "ad29f5e81b8b31971f20a3bb420829a70b7804817b68eab67ee75780740738d8"
+    },
+    {
+      "key": "4B-tune-TP8-DP8",
+      "score": {
+        "mean_ns": 98248214410.20396,
+        "risk_ns": 99267088781.10358,
+        "scenario_ns": [
+          97049170237.6118,
+          96990780851.76813,
+          97975900444.28265,
+          97866723062.84903,
+          97794921214.02254,
+          99066619699.84619,
+          98905865975.10858,
+          98011488334.07571,
+          98316360698.48495,
+          97220578701.62677,
+          93618200016.95886,
+          101514217923.10431,
+          98717321654.29692,
+          98720131240.55899,
+          103133205864.50055,
+          97069944644.16753
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 83.957493187395,
+      "TUNE_calibration_ratio": 0.8457737022240256,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1,
+          2
+        ],
+        "3": [
+          3,
+          4,
+          6,
+          7
+        ],
+        "5": [
+          5,
+          8,
+          11,
+          14
+        ],
+        "9": [
+          9,
+          10,
+          12,
+          13
+        ],
+        "15": [
+          15,
+          16,
+          18,
+          19
+        ],
+        "17": [
+          17,
+          20,
+          23,
+          26
+        ],
+        "21": [
+          21,
+          22,
+          24,
+          25
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": false,
+        "queue_order": "input"
+      },
+      "source_audit_sha256": "56bbc8efb99896dd02241e93509027e4146741a320b22439569ab96051183e22"
+    },
+    {
+      "key": "4B-tune-TP8-balanced",
+      "score": {
+        "mean_ns": 77943127144.69098,
+        "risk_ns": 78201751666.76898,
+        "scenario_ns": [
+          77222876177.76956,
+          79121189296.36642,
+          77559062814.07071,
+          78116212274.01047,
+          77776475260.7515,
+          76959467293.93707,
+          78504319499.30022,
+          77694560300.02315,
+          78834061169.63957,
+          78271737154.13156,
+          77642943089.11824,
+          77743928254.66426,
+          77212863033.08987,
+          78336139445.7608,
+          78389334895.97458,
+          77704864356.44757
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 77.268260824333,
+      "TUNE_calibration_ratio": 0.9880630443367336,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869,
+        "execution_queues": {
+          "0": [
+            "194",
+            "796",
+            "650",
+            "293",
+            "233",
+            "300",
+            "857"
+          ],
+          "1": [
+            "927",
+            "885",
+            "387",
+            "25",
+            "162",
+            "748",
+            "972",
+            "449",
+            "785",
+            "393",
+            "20",
+            "572",
+            "577",
+            "537"
+          ],
+          "3": [
+            "408",
+            "44",
+            "57",
+            "750",
+            "584",
+            "189",
+            "389",
+            "798",
+            "768",
+            "48",
+            "455",
+            "35",
+            "746",
+            "491",
+            "353",
+            "609",
+            "789",
+            "928",
+            "582",
+            "123",
+            "995",
+            "646",
+            "788",
+            "633",
+            "191",
+            "890",
+            "619",
+            "557",
+            "685"
+          ],
+          "5": [
+            "402",
+            "355",
+            "280",
+            "27",
+            "161",
+            "106",
+            "674",
+            "252",
+            "287",
+            "905",
+            "892",
+            "955",
+            "913",
+            "878",
+            "503",
+            "580",
+            "831",
+            "34",
+            "176",
+            "832",
+            "124",
+            "500",
+            "644",
+            "192",
+            "965",
+            "704",
+            "688",
+            "451",
+            "687"
+          ],
+          "9": [
+            "257",
+            "228",
+            "121",
+            "54",
+            "997",
+            "635",
+            "963",
+            "804",
+            "882",
+            "66",
+            "255",
+            "452",
+            "901",
+            "140",
+            "224",
+            "111",
+            "958",
+            "835",
+            "569",
+            "381",
+            "645",
+            "521",
+            "818",
+            "967",
+            "974",
+            "801",
+            "345",
+            "845",
+            "686"
+          ],
+          "15": [
+            "446",
+            "779",
+            "953",
+            "226",
+            "432",
+            "272",
+            "488",
+            "386",
+            "19",
+            "794",
+            "112",
+            "992",
+            "32",
+            "265",
+            "918",
+            "304",
+            "826",
+            "477",
+            "516",
+            "648",
+            "481",
+            "341",
+            "719",
+            "756",
+            "190",
+            "627",
+            "274",
+            "657"
+          ],
+          "17": [
+            "411",
+            "242",
+            "419",
+            "58",
+            "299",
+            "406",
+            "168",
+            "49",
+            "585",
+            "721",
+            "12",
+            "369",
+            "433",
+            "621",
+            "551",
+            "313",
+            "220",
+            "728",
+            "430",
+            "923",
+            "38",
+            "682",
+            "964",
+            "663",
+            "583",
+            "887",
+            "600",
+            "844"
+          ],
+          "21": [
+            "700",
+            "62",
+            "73",
+            "6",
+            "388",
+            "672",
+            "784",
+            "490",
+            "979",
+            "333",
+            "736",
+            "354",
+            "484",
+            "92",
+            "295",
+            "568",
+            "618",
+            "166",
+            "739",
+            "290",
+            "138",
+            "232",
+            "471",
+            "24",
+            "482",
+            "891",
+            "118",
+            "543"
+          ]
+        },
+        "execution_assignment_proof": {
+          "long_quota": {
+            "0": 2,
+            "1": 4,
+            "3": 9,
+            "5": 9,
+            "9": 9,
+            "15": 9,
+            "17": 9,
+            "21": 9
+          },
+          "group_quota": {
+            "0": 7,
+            "1": 14,
+            "3": 29,
+            "5": 29,
+            "9": 29,
+            "15": 28,
+            "17": 28,
+            "21": 28
+          },
+          "scope": "actual inference groups; independent of retained training-home quotas"
+        },
+        "assignment_mode": "throughput-balanced"
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "throughput-balanced",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "74195a561f3e73068e74ff9de9c40415089336b36d32096519ae99a30371ff3b"
+    },
+    {
+      "key": "4B-tune-TP8-half-cap",
+      "score": {
+        "mean_ns": 84624366519.53252,
+        "risk_ns": 85256326102.91212,
+        "scenario_ns": [
+          83511744368.64377,
+          84084989123.2696,
+          84017885502.79219,
+          84330141983.83267,
+          84061481805.1102,
+          86355643016.53595,
+          86167656182.2815,
+          81778786838.30878,
+          84509216185.28267,
+          83616548545.74432,
+          87612807767.35516,
+          84895209634.14128,
+          86691601938.7468,
+          84052245965.18924,
+          84374017489.88458,
+          83929887965.4015
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 80.419691425053,
+      "TUNE_calibration_ratio": 0.9432694921427782,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 33,
+          "1": 67,
+          "3": 121,
+          "5": 121,
+          "9": 121,
+          "15": 121,
+          "17": 121,
+          "21": 121
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869,
+        "cap_ablation": "half of public-P capacity frontier"
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "e6da1fa0ec1308161b976943b0e3837140ad308a8e97200c976c394b5958f2a1"
+    },
+    {
+      "key": "4B-tune-TP8-static",
+      "score": {
+        "mean_ns": 82626179016.51326,
+        "risk_ns": 83646290214.35226,
+        "scenario_ns": [
+          82119909767.87354,
+          82328216421.1089,
+          83855136363.3816,
+          84355429727.14796,
+          80131562659.16391,
+          84318053706.3848,
+          85792184867.77496,
+          78499194269.92773,
+          81547111821.27509,
+          80189344877.2544,
+          87621062747.9635,
+          80723848274.80829,
+          82815859938.20859,
+          83463312748.56107,
+          80371918233.24467,
+          83886717840.1332
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 76.75508782363801,
+      "TUNE_calibration_ratio": 0.91761496686757,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": false,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "214cb89932c6a6210bb580acf1150fb45b5e6452b5b0228d33e8ab6268537c1e"
+    },
+    {
+      "key": "4B-tune-finalist1-online",
+      "score": {
+        "mean_ns": 83359602891.72513,
+        "risk_ns": 83875904026.88939,
+        "scenario_ns": [
+          81231288024.40297,
+          84981949613.50069,
+          84539774706.97491,
+          83273737487.15182,
+          80933794936.84418,
+          83509566255.78201,
+          85005693315.2443,
+          85667340988.97629,
+          85182273875.78809,
+          82048329146.35056,
+          84045867273.96158,
+          82309661983.13376,
+          81057725000.97058,
+          82501065338.00998,
+          83465820188.18001,
+          83999758132.33044
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 73.873630185369,
+      "TUNE_calibration_ratio": 0.8807491381754429,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": true,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869,
+        "elastic_data_wait": true,
+        "pending_enabled": true,
+        "pending_data_wait": true,
+        "finalist_source": "4B-tune-TP8-DP27"
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13
+        ],
+        "14": [
+          14
+        ],
+        "15": [
+          15
+        ],
+        "16": [
+          16
+        ],
+        "17": [
+          17
+        ],
+        "18": [
+          18
+        ],
+        "19": [
+          19
+        ],
+        "20": [
+          20
+        ],
+        "21": [
+          21
+        ],
+        "22": [
+          22
+        ],
+        "23": [
+          23
+        ],
+        "24": [
+          24
+        ],
+        "25": [
+          25
+        ],
+        "26": [
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "2ceefdbd5c3015118791874bf5d9f0adad5e04dbe175103503f34e56886c73ae"
+    },
+    {
+      "key": "4B-tune-finalist2-online",
+      "score": {
+        "mean_ns": 82626179016.51326,
+        "risk_ns": 83646290214.35226,
+        "scenario_ns": [
+          82119909767.87354,
+          82328216421.1089,
+          83855136363.3816,
+          84355429727.14796,
+          80131562659.16391,
+          84318053706.3848,
+          85792184867.77496,
+          78499194269.92773,
+          81547111821.27509,
+          80189344877.2544,
+          87621062747.9635,
+          80723848274.80829,
+          82815859938.20859,
+          83463312748.56107,
+          80371918233.24467,
+          83886717840.1332
+        ],
+        "limitations": "no exact mesh queues or training stealing; TP1 pair synchronization approximated; fixed global prefix/update excluded from surrogate only; native TUNE validation required"
+      },
+      "native_device_s": 76.75508782363801,
+      "TUNE_calibration_ratio": 0.91761496686757,
+      "inference": {
+        "schema": "idea1.inference-partition/1",
+        "groups": {
+          "0": [
+            0
+          ],
+          "1": [
+            1,
+            2
+          ],
+          "3": [
+            3,
+            4,
+            6,
+            7
+          ],
+          "5": [
+            5,
+            8,
+            11,
+            14
+          ],
+          "9": [
+            9,
+            10,
+            12,
+            13
+          ],
+          "15": [
+            15,
+            16,
+            18,
+            19
+          ],
+          "17": [
+            17,
+            20,
+            23,
+            26
+          ],
+          "21": [
+            21,
+            22,
+            24,
+            25
+          ]
+        },
+        "caps": {
+          "0": 67,
+          "1": 134,
+          "3": 243,
+          "5": 243,
+          "9": 243,
+          "15": 243,
+          "17": 243,
+          "21": 243
+        },
+        "elastic": true,
+        "actual_tp_counts": {
+          "2": 1,
+          "4": 1,
+          "8": 6
+        },
+        "capacity_frontier": {
+          "2": 67,
+          "4": 134,
+          "8": 243
+        },
+        "source": "public prompt catalog worst P; max feasible cap with real record reserve",
+        "public_max_prompt": 2869,
+        "elastic_data_wait": true,
+        "pending_enabled": true,
+        "pending_data_wait": true,
+        "finalist_source": "4B-tune-TP8-static"
+      },
+      "training_regions": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5
+        ],
+        "6": [
+          6
+        ],
+        "7": [
+          7
+        ],
+        "8": [
+          8
+        ],
+        "9": [
+          9
+        ],
+        "10": [
+          10
+        ],
+        "11": [
+          11,
+          14
+        ],
+        "12": [
+          12
+        ],
+        "13": [
+          13,
+          16
+        ],
+        "15": [
+          15,
+          18
+        ],
+        "17": [
+          17,
+          20
+        ],
+        "19": [
+          19
+        ],
+        "21": [
+          21,
+          24
+        ],
+        "22": [
+          22,
+          25
+        ],
+        "23": [
+          23,
+          26
+        ]
+      },
+      "storage_policy": {
+        "train_tp": 2,
+        "rollout_tp": 2,
+        "train_mb": 4,
+        "logprob_mb": 8,
+        "cap": 64
+      },
+      "assignment_mode": "retained-home-queues",
+      "home_assignment_strategy": {
+        "adaptive": true,
+        "queue_order": "history_long_first"
+      },
+      "source_audit_sha256": "b5914dcee1a8afbcd1145d2162c7f1d081af0ec9027355ad0353a7ff9bf196a1"
+    }
+  ],
+  "score_wall_s": 27.94998,
+  "scope": "history-only surrogate; per-profile discrepancy ratios fitted on TUNE only, never change reported native costs"
+}

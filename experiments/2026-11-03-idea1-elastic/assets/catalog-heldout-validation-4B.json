@@ -1,0 +1,252 @@
+{
+  "status": "PASS_BOUND_SIMULATOR_SHAPE_VALIDATION",
+  "model": "4B",
+  "catalog_sha256": "b47d909b31e7559187e5efa289251dc883a2898d5d8c5f2eca226cd7fcb0e4ea",
+  "samples": 30,
+  "rows": [
+    {
+      "tp": 1,
+      "batch": 3,
+      "phase": "decode",
+      "relative_error": 4.102639221644157e-06,
+      "operator_ns": 5484274.581647059,
+      "predicted_ns": 5484252.081647058
+    },
+    {
+      "tp": 1,
+      "batch": 3,
+      "phase": "prefill",
+      "relative_error": 0.045184168244596895,
+      "operator_ns": 105690740.81807072,
+      "predicted_ns": 100915192.60305093
+    },
+    {
+      "tp": 1,
+      "batch": 6,
+      "phase": "decode",
+      "relative_error": 7.6133140267040244e-06,
+      "operator_ns": 6633116.6456470555,
+      "predicted_ns": 6633066.145647056
+    },
+    {
+      "tp": 1,
+      "batch": 6,
+      "phase": "prefill",
+      "relative_error": 0.032710633030123816,
+      "operator_ns": 179955910.63614145,
+      "predicted_ns": 174069438.88172087
+    },
+    {
+      "tp": 1,
+      "batch": 12,
+      "phase": "decode",
+      "relative_error": 6.55034025743719e-06,
+      "operator_ns": 8930833.773647055,
+      "predicted_ns": 8930775.273647055
+    },
+    {
+      "tp": 1,
+      "batch": 12,
+      "phase": "prefill",
+      "relative_error": 0.00765317973048455,
+      "operator_ns": 330677529.2722829,
+      "predicted_ns": 328146794.70792955
+    },
+    {
+      "tp": 1,
+      "batch": 20,
+      "phase": "decode",
+      "relative_error": 1.6311456674330328e-06,
+      "operator_ns": 11954787.596154405,
+      "predicted_ns": 11954768.096154412
+    },
+    {
+      "tp": 1,
+      "batch": 20,
+      "phase": "prefill",
+      "relative_error": 0.009030561273396652,
+      "operator_ns": 527517409.9000104,
+      "predicted_ns": 532281188.19289595
+    },
+    {
+      "tp": 1,
+      "batch": 27,
+      "phase": "decode",
+      "relative_error": 2.200016428039456e-06,
+      "operator_ns": 14675215.093647067,
+      "predicted_ns": 14675182.807932775
+    },
+    {
+      "tp": 1,
+      "batch": 27,
+      "phase": "prefill",
+      "relative_error": 0.018783176676822638,
+      "operator_ns": 737419480.3626375,
+      "predicted_ns": 723568399.9780554
+    },
+    {
+      "tp": 2,
+      "batch": 65,
+      "phase": "decode",
+      "relative_error": 0.016168984495023516,
+      "operator_ns": 15120059.028768841,
+      "predicted_ns": 15364535.028768845
+    },
+    {
+      "tp": 2,
+      "batch": 65,
+      "phase": "prefill",
+      "relative_error": 0.01947236978464894,
+      "operator_ns": 913136356.7155349,
+      "predicted_ns": 930917285.5173069
+    },
+    {
+      "tp": 4,
+      "batch": 80,
+      "phase": "decode",
+      "relative_error": 0.014505549683352147,
+      "operator_ns": 10228740.257273894,
+      "predicted_ns": 10080366.757273903
+    },
+    {
+      "tp": 4,
+      "batch": 80,
+      "phase": "prefill",
+      "relative_error": 0.004866138175819561,
+      "operator_ns": 621820767.2053565,
+      "predicted_ns": 618794901.4315411
+    },
+    {
+      "tp": 4,
+      "batch": 112,
+      "phase": "decode",
+      "relative_error": 2.5601691608681872e-05,
+      "operator_ns": 13417082.169380508,
+      "predicted_ns": 13416738.66938052
+    },
+    {
+      "tp": 4,
+      "batch": 112,
+      "phase": "prefill",
+      "relative_error": 0.004909694886488013,
+      "operator_ns": 870380924.6497947,
+      "predicted_ns": 866107619.8747449
+    },
+    {
+      "tp": 4,
+      "batch": 131,
+      "phase": "decode",
+      "relative_error": 0.0068339797528083595,
+      "operator_ns": 15534579.240796179,
+      "predicted_ns": 15428416.24079618
+    },
+    {
+      "tp": 4,
+      "batch": 131,
+      "phase": "prefill",
+      "relative_error": 0.019488960452474863,
+      "operator_ns": 1013109548.4821566,
+      "predicted_ns": 1032854000.40655
+    },
+    {
+      "tp": 8,
+      "batch": 40,
+      "phase": "decode",
+      "relative_error": 0.007977223726072034,
+      "operator_ns": 3312367.9249007357,
+      "predicted_ns": 3285944.4249007376
+    },
+    {
+      "tp": 8,
+      "batch": 40,
+      "phase": "prefill",
+      "relative_error": 0.0370283279098002,
+      "operator_ns": 195607970.6106854,
+      "predicted_ns": 188364934.5331424
+    },
+    {
+      "tp": 8,
+      "batch": 56,
+      "phase": "decode",
+      "relative_error": 3.434033246220678e-05,
+      "operator_ns": 4251560.469113966,
+      "predicted_ns": 4251414.469113974
+    },
+    {
+      "tp": 8,
+      "batch": 56,
+      "phase": "prefill",
+      "relative_error": 0.016783883844891493,
+      "operator_ns": 263757303.0366076,
+      "predicted_ns": 259330431.09919932
+    },
+    {
+      "tp": 8,
+      "batch": 80,
+      "phase": "decode",
+      "relative_error": 0.019391170491722336,
+      "operator_ns": 5843432.7132739015,
+      "predicted_ns": 5730121.7132739
+    },
+    {
+      "tp": 8,
+      "batch": 80,
+      "phase": "prefill",
+      "relative_error": 0.006446234027457589,
+      "operator_ns": 371226612.4226778,
+      "predicted_ns": 368833598.80178094
+    },
+    {
+      "tp": 8,
+      "batch": 112,
+      "phase": "decode",
+      "relative_error": 7.547402161541518e-05,
+      "operator_ns": 7611890.657380507,
+      "predicted_ns": 7612465.157380517
+    },
+    {
+      "tp": 8,
+      "batch": 112,
+      "phase": "prefill",
+      "relative_error": 0.004240123213145481,
+      "operator_ns": 516570214.7688975,
+      "predicted_ns": 514379893.4100363
+    },
+    {
+      "tp": 8,
+      "batch": 160,
+      "phase": "decode",
+      "relative_error": 0.00662364911003706,
+      "operator_ns": 10210836.78746048,
+      "predicted_ns": 10143203.787460484
+    },
+    {
+      "tp": 8,
+      "batch": 160,
+      "phase": "prefill",
+      "relative_error": 0.0031041789530250295,
+      "operator_ns": 732638335.5410384,
+      "predicted_ns": 730364095.0396726
+    },
+    {
+      "tp": 8,
+      "batch": 217,
+      "phase": "decode",
+      "relative_error": 1.3934968429025354e-05,
+      "operator_ns": 13036747.631380465,
+      "predicted_ns": 13036929.298047125
+    },
+    {
+      "tp": 8,
+      "batch": 217,
+      "phase": "prefill",
+      "relative_error": 0.01334898529257814,
+      "operator_ns": 997704269.5829561,
+      "predicted_ns": 984385929.9619508
+    }
+  ],
+  "max_relative_error": 0.045184168244596895,
+  "p95_relative_error": 0.0370283279098002,
+  "wall_s": 2.541359833,
+  "scope": "held-out batch and ragged-length interpolation error against unchanged operator model; no physical hardware calibration"
+}

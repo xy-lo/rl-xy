@@ -1,0 +1,57 @@
+candidate,model,window,final_eligible,audit_scope,training_dp,TP1_instances,TP2_instances,TP4_instances,TP8_instances,minimum_cap,maximum_cap,global_inflight_capacity,device_s,planning_proxy_s,total_s,native_resizes,native_exit_status,driver_exit_status
+14B-tune-TP1-static,14B,tune,False,full safety,20,54,0,0,0,8,8,432,329.363728184069,1.7059506249999998,331.069678809069,0,0,0
+14B-tune-TP2-elastic,14B,tune,False,withdrawn development; no KV retirement proof,20,0,27,0,0,33,33,891,171.486203152045,1.7059506249999998,173.192153777045,9,0,0
+14B-tune-TP2-online-safe,14B,tune,False,cancelled/failed v12; safe replacement audited,20,0,27,0,0,33,33,891,,1.7059506249999998,,,,1
+14B-tune-TP2-online-safe-v13,14B,tune,False,failed development; controller error,20,0,27,0,0,33,33,891,,1.7059506249999998,,,,1
+14B-tune-TP2-online-safe-v18,14B,tune,True,full safety,20,0,27,0,0,33,33,891,172.534868659435,1.7059506249999998,174.240819284435,12,0,0
+14B-tune-TP2-static,14B,tune,False,full safety,20,0,27,0,0,33,33,891,184.41043827263002,1.7059506249999998,186.11638889763,0,0,0
+14B-tune-TP4-DP14,14B,tune,False,full safety,14,0,1,13,0,33,57,774,152.869903291623,1.36814025,154.238043541623,0,0,0
+14B-tune-TP4-DP27,14B,tune,False,full safety,27,0,1,13,0,33,57,774,151.04690256372197,1.5459152500000002,152.59281781372198,0,0,0
+14B-tune-TP4-balanced,14B,tune,False,full safety,20,0,1,13,0,33,57,774,155.872853332774,1.7059506249999998,157.578803957774,0,0,0
+14B-tune-TP4-elastic,14B,tune,False,full safety,20,0,1,13,0,33,57,774,151.973456736402,1.7059506249999998,153.679407361402,0,0,0
+14B-tune-TP4-half-cap,14B,tune,False,full safety,20,0,1,13,0,16,28,380,165.15914813969698,1.7059506249999998,166.865098764697,0,0,0
+14B-tune-TP4-online-safe,14B,tune,False,cancelled/failed v12; safe replacement audited,20,0,1,13,0,33,57,774,,1.7059506249999998,,,,1
+14B-tune-TP4-online-safe-v13,14B,tune,False,no accepted audit,20,0,1,13,0,33,57,774,,1.7059506249999998,,,,1
+14B-tune-TP4-online-safe-v18,14B,tune,True,full safety,20,0,1,13,0,33,57,774,151.973456736402,1.7059506249999998,153.679407361402,0,0,0
+14B-tune-TP4-static,14B,tune,False,full safety,20,0,1,13,0,33,57,774,151.973456736402,1.7059506249999998,153.679407361402,0,0,0
+14B-tune-TP8-policy-parity-v18-recovery,14B,tune,True,full safety,20,0,1,1,6,33,79,564,154.987177623673,1.7059506249999998,156.693128248673,0,0,0
+14B-tune-TP8-static,14B,tune,False,full safety,20,0,1,1,6,33,79,564,154.987177623673,1.7059506249999998,156.693128248673,0,0,0
+14B-tune-finalist1-online,14B,tune,False,orphaned supervisor; reported time not admitted; v18 replay required,27,0,1,13,0,33,57,774,151.04690256372197,1.5459152500000002,152.59281781372198,,0,
+14B-tune-finalist1-online-v18-recovery,14B,tune,True,full safety,27,0,1,13,0,33,57,774,151.04690256372197,1.5459152500000002,152.59281781372198,0,0,0
+14B-tune-finalist2-online,14B,tune,False,orphaned supervisor; reported time not admitted; v18 replay required,20,0,1,13,0,33,57,774,151.973456736402,1.7059506249999998,153.679407361402,,0,
+14B-tune-finalist2-online-v18-recovery,14B,tune,True,full safety,20,0,1,13,0,33,57,774,151.973456736402,1.7059506249999998,153.679407361402,0,0,0
+4B-tune-TP1-static,4B,tune,False,full safety,20,54,0,0,0,31,31,1674,113.70276091843401,1.474068209,115.176829127434,0,0,0
+4B-tune-TP2-elastic,4B,tune,False,withdrawn development; no KV retirement proof,20,0,27,0,0,67,67,1809,81.308083665378,1.474068209,82.782151874378,11,0,0
+4B-tune-TP2-online-safe,4B,tune,False,cancelled/failed v12; safe replacement audited,20,0,27,0,0,67,67,1809,,1.474068209,,,,1
+4B-tune-TP2-online-safe-v13,4B,tune,True,full safety,20,0,27,0,0,67,67,1809,81.30248546137801,1.474068209,82.77655367037801,11,0,0
+4B-tune-TP2-static,4B,tune,False,full safety,20,0,27,0,0,67,67,1809,90.900148260467,1.474068209,92.374216469467,0,0,0
+4B-tune-TP4-elastic,4B,tune,False,full safety,20,0,1,13,0,67,134,1809,79.804296993816,1.474068209,81.27836520281599,0,0,0
+4B-tune-TP4-online-safe,4B,tune,False,cancelled/failed v12; safe replacement audited,20,0,1,13,0,67,134,1809,,1.474068209,,,,1
+4B-tune-TP4-online-safe-v13,4B,tune,True,full safety,20,0,1,13,0,67,134,1809,79.804296993816,1.474068209,81.27836520281599,0,0,0
+4B-tune-TP4-static,4B,tune,False,full safety,20,0,1,13,0,67,134,1809,79.804296993816,1.474068209,81.27836520281599,0,0,0
+4B-tune-TP8-DP14,4B,tune,False,full safety,14,0,1,1,6,67,243,1659,77.830682569502,1.201148166,79.031830735502,0,0,0
+4B-tune-TP8-DP27,4B,tune,False,full safety,27,0,1,1,6,67,243,1659,73.873630185369,1.2167615,75.090391685369,0,0,0
+4B-tune-TP8-DP8,4B,tune,False,full safety,8,0,1,1,6,67,243,1659,83.957493187395,1.1727818749999996,85.130275062395,0,0,0
+4B-tune-TP8-balanced,4B,tune,False,full safety,20,0,1,1,6,67,243,1659,77.268260824333,1.474068209,78.742329033333,0,0,0
+4B-tune-TP8-half-cap,4B,tune,False,full safety,20,0,1,1,6,33,121,826,80.419691425053,1.474068209,81.893759634053,0,0,0
+4B-tune-TP8-static,4B,tune,False,full safety,20,0,1,1,6,67,243,1659,76.75508782363801,1.474068209,78.229156032638,0,0,0
+4B-tune-finalist1-online,4B,tune,True,full safety,27,0,1,1,6,67,243,1659,73.873630185369,1.2167615,75.090391685369,0,0,0
+4B-tune-finalist2-online,4B,tune,True,full safety,20,0,1,1,6,67,243,1659,76.75508782363801,1.474068209,78.229156032638,0,0,0
+8B-tune-TP1-static,8B,tune,False,full safety,24,54,0,0,0,22,22,1188,160.19989454550202,1.758980917,161.95887546250202,0,0,0
+8B-tune-TP2-elastic,8B,tune,False,withdrawn development; no KV retirement proof,24,0,27,0,0,55,55,1485,115.885705636923,1.758980917,117.64468655392301,5,0,0
+8B-tune-TP2-online-safe,8B,tune,False,cancelled/failed v12; safe replacement audited,24,0,27,0,0,55,55,1485,,1.758980917,,,,1
+8B-tune-TP2-online-safe-v13,8B,tune,True,full safety,24,0,27,0,0,55,55,1485,115.885705636923,1.758980917,117.64468655392301,5,0,0
+8B-tune-TP2-static,8B,tune,False,full safety,24,0,27,0,0,55,55,1485,121.389685401416,1.758980917,123.148666318416,0,0,0
+8B-tune-TP4-DP14,8B,tune,False,full safety,14,0,1,13,0,55,107,1446,112.984929896124,1.357904208,114.342834104124,0,0,0
+8B-tune-TP4-DP27,8B,tune,False,full safety,27,0,1,13,0,55,107,1446,108.010941725071,1.519513167,109.530454892071,0,0,0
+8B-tune-TP4-balanced,8B,tune,False,full safety,24,0,1,13,0,55,107,1446,112.37377209193201,1.758980917,114.13275300893201,0,0,0
+8B-tune-TP4-elastic,8B,tune,False,full safety,24,0,1,13,0,55,107,1446,108.539241017515,1.758980917,110.298221934515,0,0,0
+8B-tune-TP4-half-cap,8B,tune,False,full safety,24,0,1,13,0,27,53,716,111.987402866402,1.758980917,113.746383783402,0,0,0
+8B-tune-TP4-online-safe,8B,tune,False,cancelled/failed v12; safe replacement audited,24,0,1,13,0,55,107,1446,,1.758980917,,,,1
+8B-tune-TP4-online-safe-v13,8B,tune,True,full safety,24,0,1,13,0,55,107,1446,108.539241017515,1.758980917,110.298221934515,0,0,0
+8B-tune-TP4-static,8B,tune,False,full safety,24,0,1,13,0,55,107,1446,108.539241017515,1.758980917,110.298221934515,0,0,0
+8B-tune-TP8-policy-parity,8B,tune,False,orphaned supervisor; reported time not admitted; v18 replay required,24,0,1,1,6,55,148,1050,108.833043367593,1.758980917,110.59202428459301,,0,
+8B-tune-TP8-policy-parity-v18-recovery,8B,tune,True,full safety,24,0,1,1,6,55,148,1050,108.833043367593,1.758980917,110.59202428459301,0,0,0
+8B-tune-TP8-static,8B,tune,False,full safety,24,0,1,1,6,55,148,1050,108.833043367593,1.758980917,110.59202428459301,0,0,0
+8B-tune-finalist1-online,8B,tune,True,full safety,27,0,1,13,0,55,107,1446,108.010941725071,1.519513167,109.530454892071,0,0,0
+8B-tune-finalist2-online,8B,tune,True,full safety,24,0,1,13,0,55,107,1446,108.539241017515,1.758980917,110.298221934515,0,0,0

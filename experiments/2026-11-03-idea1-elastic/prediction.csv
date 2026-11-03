@@ -1,0 +1,7 @@
+model,window,prompts,history_kind,spearman_response_work,mean_absolute_response_work_error,proxy_long_groups,proxy_short_groups,length_censored_fraction
+4B,test1,192,offline-independent-same-prompt-proxy,0.9790563111455417,3007.1796875,58,61,0.055989583333333336
+8B,test1,192,offline-independent-same-prompt-proxy,0.9794577218349022,3160.8125,50,63,0.046223958333333336
+14B,test1,192,offline-independent-same-prompt-proxy,0.9843571909661277,2375.6822916666665,49,63,0.018229166666666668
+4B,test2,192,offline-independent-same-prompt-proxy,0.9802257180960326,2987.32421875,50,60,0.09244791666666667
+8B,test2,192,offline-independent-same-prompt-proxy,0.9769139898368022,3018.6002604166665,56,60,0.07552083333333333
+14B,test2,192,offline-independent-same-prompt-proxy,0.9744713533895776,2766.4778645833335,52,59,0.026041666666666668

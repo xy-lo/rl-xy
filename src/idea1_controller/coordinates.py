@@ -47,7 +47,7 @@ class ParameterCoordinates:
         if not model.tie_word_embeddings:add('lm_head','weight',(model.vocab_size,h),0)
         self.schema_digest=digest([asdict(x) for x in self.components])
     def views(self,parameter_id,tp,rank):
-        if tp not in (2,4,8) or not 0<=rank<tp:raise ValueError('unsupported uniform TP coordinate view')
+        if tp not in (1,2,4,8) or not 0<=rank<tp:raise ValueError('unsupported uniform TP coordinate view')
         out=[]
         for x in self.components:
             if x.parameter_id!=parameter_id:continue
@@ -60,6 +60,7 @@ class ParameterCoordinates:
         if not out:raise ValueError('unknown canonical parameter')
         return tuple(out)
     def restore_descriptor(self,parameter_id,tp,old_lane,subshard):
+        if tp not in (2,4,8):raise ValueError('training gradients retain TP2/4/8 contract')
         m=tp//2;rank=old_lane*m+subshard
         source=self.views(parameter_id,tp,rank);target=self.views(parameter_id,2,old_lane)
         for s,t in zip(source,target):

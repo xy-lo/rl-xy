@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-11-03T05:57:57.324446+00:00",
+  "change": "restore original AR communicator when an expanded inference cohort releases at EOS, before any later pending-answer reactivation",
+  "final_evaluation_runtime": "inference-v17",
+  "active_TUNE_finalists_runtime": "inference-v16 retained immutable; audit requires every AR participant set exactly matches current TP, rejects any observed stale-communicator branch",
+  "costs_inputs_hardware_unchanged": true,
+  "evaluation_started": false,
+  "regression": "EOS release restores execution_ranks, inference_owner and communicator together"
+}

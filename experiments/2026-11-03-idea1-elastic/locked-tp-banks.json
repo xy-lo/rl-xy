@@ -1,0 +1,36 @@
+{
+  "locked_at": "2026-11-03T07:18:06.789176+00:00",
+  "window": "tune",
+  "files": {
+    "tp-bank-4B.json": "6bbf9d51f51569141d865c93b9fc696d37276f2bd930b85edcb93fb4a8c128f3",
+    "inference-catalog-4B.json": "b47d909b31e7559187e5efa289251dc883a2898d5d8c5f2eca226cd7fcb0e4ea",
+    "tp-bank-8B.json": "bae3af63856e4d11622f46ced375ad78b684b7e5f0fc5d6aba08d853530b378b",
+    "inference-catalog-8B.json": "2b0f31975022d52fe0e63f49fc93574889572893a844d4ae613575698940b418",
+    "tp-bank-14B.json": "cb8d6582f68ee69063bcd2cf8b8a679fb672cc4dd1d66633bf5ae417d8d0ddeb",
+    "inference-catalog-14B.json": "0e51db74b1f4c078339ad55380256229a53f6cebb53358e0fa85f698a9b6c719"
+  },
+  "eligible_profiles": {
+    "4B": [
+      "4B-tune-TP2-online-safe-v13",
+      "4B-tune-TP4-online-safe-v13",
+      "4B-tune-finalist1-online",
+      "4B-tune-finalist2-online"
+    ],
+    "8B": [
+      "8B-tune-TP2-online-safe-v13",
+      "8B-tune-TP4-online-safe-v13",
+      "8B-tune-TP8-policy-parity-v18-recovery",
+      "8B-tune-finalist1-online",
+      "8B-tune-finalist2-online"
+    ],
+    "14B": [
+      "14B-tune-TP2-online-safe-v18",
+      "14B-tune-TP4-online-safe-v18",
+      "14B-tune-TP8-policy-parity-v18-recovery",
+      "14B-tune-finalist1-online-v18-recovery",
+      "14B-tune-finalist2-online-v18-recovery"
+    ]
+  },
+  "evaluation_runtime": "inference-v18",
+  "criterion": "finite supported full-policy TP2/4/8 profiles; minimum native TUNE device anchor; public-history Q10 gate; failed and stale PENDING policy cases excluded"
+}

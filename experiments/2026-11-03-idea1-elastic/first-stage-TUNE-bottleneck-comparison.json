@@ -1,0 +1,80 @@
+{
+  "scope": "TUNE first-stage explanatory comparison, not final test results",
+  "rows": [
+    {
+      "model": "4B",
+      "window": "tune",
+      "candidate_tp": 8,
+      "fixedTP2": {
+        "generation_end_s": 55.892474485576,
+        "first_backward_s": 53.471865714226,
+        "dynamic_end_s": 82.816077085002,
+        "post_generation_tail_s": 26.92360259942599,
+        "training_overlap_GEN_die_s": 23.959430649368045,
+        "native_training_transfers": 65,
+        "remote_samples": 292,
+        "post_generation_idle_die_s": 137.41348760788597
+      },
+      "candidate": {
+        "generation_end_s": 50.265667515024,
+        "first_backward_s": 47.474078898016,
+        "dynamic_end_s": 78.189960879182,
+        "post_generation_tail_s": 27.924293364157997,
+        "training_overlap_GEN_die_s": 20.130387978608,
+        "native_training_transfers": 74,
+        "remote_samples": 348,
+        "post_generation_idle_die_s": 100.80247628282403
+      }
+    },
+    {
+      "model": "8B",
+      "window": "tune",
+      "candidate_tp": 4,
+      "fixedTP2": {
+        "generation_end_s": 71.953901080258,
+        "first_backward_s": 76.72788059107,
+        "dynamic_end_s": 118.183344159634,
+        "post_generation_tail_s": 46.229443079376,
+        "training_overlap_GEN_die_s": 0,
+        "native_training_transfers": 111,
+        "remote_samples": 234,
+        "post_generation_idle_die_s": 75.19391960216602
+      },
+      "candidate": {
+        "generation_end_s": 66.077838897492,
+        "first_backward_s": 71.839622792149,
+        "dynamic_end_s": 110.218418429211,
+        "post_generation_tail_s": 44.140579531719,
+        "training_overlap_GEN_die_s": 0,
+        "native_training_transfers": 92,
+        "remote_samples": 190,
+        "post_generation_idle_die_s": 51.53193030971402
+      }
+    },
+    {
+      "model": "14B",
+      "window": "tune",
+      "candidate_tp": 4,
+      "fixedTP2": {
+        "generation_end_s": 101.892857158284,
+        "first_backward_s": 104.948033610955,
+        "dynamic_end_s": 173.888440106028,
+        "post_generation_tail_s": 71.99558294774401,
+        "training_overlap_GEN_die_s": 0,
+        "native_training_transfers": 176,
+        "remote_samples": 230,
+        "post_generation_idle_die_s": 64.58879637961203
+      },
+      "candidate": {
+        "generation_end_s": 100.25571888298,
+        "first_backward_s": 80.865607092242,
+        "dynamic_end_s": 153.535524005178,
+        "post_generation_tail_s": 53.279805122197985,
+        "training_overlap_GEN_die_s": 128.25475682639004,
+        "native_training_transfers": 158,
+        "remote_samples": 200,
+        "post_generation_idle_die_s": 38.13302086155213
+      }
+    }
+  ]
+}

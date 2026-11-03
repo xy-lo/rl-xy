@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-11-03T05:41:19.682588+00:00",
+  "cancellations": [
+    {
+      "case": "4B-tune-TP2-online-safe",
+      "native_pid": 3357,
+      "signal": "SIGTERM",
+      "reason": "known v12 role-binding-defect development run excluded; distinct safe-v13 replacement already fully completed and audited; preserve partial logs"
+    },
+    {
+      "case": "4B-tune-TP4-online-safe",
+      "native_pid": 4854,
+      "signal": "SIGTERM",
+      "reason": "known v12 role-binding-defect development run excluded; distinct safe-v13 replacement already fully completed and audited; preserve partial logs"
+    }
+  ]
+}

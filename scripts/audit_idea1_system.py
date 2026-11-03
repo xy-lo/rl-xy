@@ -74,8 +74,18 @@ def audit(folder):
     helper_owner={w:r for r,ws in domains.items() for w in ws}
     assert sorted(helper_owner)==list(range(27))
     producer={x['trajectory_id']:w for w,q in queues.items() for g in q for x in items if str(x['group_id'])==g}
+    if (folder/'inference-layout.json').exists():
+        inf=load(folder/'inference-layout.json')
+        owner={w:int(r) for r,ws in inf['groups'].items() for w in ws}
+        assert sorted(owner)==list(range(27))
+        if 'execution_queues' in inf:
+            origin={g:int(r) for r,gs in inf['execution_queues'].items() for g in gs}
+            producer={x['trajectory_id']:origin[str(x['group_id'])] for x in items}
+        else:producer={t:owner[w] for t,w in producer.items()}
     for move in load(folder/'pending-transfers.json'):
-        assert helper_owner[move['src']]==helper_owner[move['dst']]
+        if move.get('cohort_pending'):
+            assert tuple(move['dst_members'])==tuple(inf['groups'][str(move['dst'])])
+        else:assert helper_owner[move['src']]==helper_owner[move['dst']]
         assert move['bytes_per_lane']==sum(byid[t]['prompt_length']*4+64 for t in move['tids'])
         for t in move['tids']:
             assert producer[t]==move['src'] and move['start_tick']<=move['end_tick']<eos[t]

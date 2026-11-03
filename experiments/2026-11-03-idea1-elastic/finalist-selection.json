@@ -1,0 +1,42 @@
+{
+  "window": "tune",
+  "criterion": "lowest accepted device seconds among distinct static resource/placement/cap candidates; full online overlay requires new TUNE validation",
+  "selection": {
+    "4B": [
+      {
+        "key": "4B-tune-TP8-DP27",
+        "device_s": 73.873630185369,
+        "identity": "f83c59eae6a5c6018950061aa52bf7ad1482255a53b29075916b8a4767506cb8"
+      },
+      {
+        "key": "4B-tune-TP8-static",
+        "device_s": 76.75508782363801,
+        "identity": "4c8b64d6b595c4677a8ea0f73a657216edfd6f160cbcf7d73f2d1478b16c9f5f"
+      }
+    ],
+    "8B": [
+      {
+        "key": "8B-tune-TP4-DP27",
+        "device_s": 108.010941725071,
+        "identity": "b5dc9139f4288c61f4e7fd16a2a7170b188f9700fc243057149a24398e6b8b5d"
+      },
+      {
+        "key": "8B-tune-TP4-static",
+        "device_s": 108.539241017515,
+        "identity": "d740cf8e9d4e84318e641f6a55dcd641488118923bf00a06706a60f27dd3dbf6"
+      }
+    ],
+    "14B": [
+      {
+        "key": "14B-tune-TP4-DP27",
+        "device_s": 151.04690256372197,
+        "identity": "61d31247b4c4885f28c8310b18d278edf756583b66863abddaa45b52504cf327"
+      },
+      {
+        "key": "14B-tune-TP4-static",
+        "device_s": 151.973456736402,
+        "identity": "8cd513b6ff42ee8ce5174eda3091fb4cb6f8852bf8640954bb890cef5f2f0693"
+      }
+    ]
+  }
+}

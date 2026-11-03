@@ -1,0 +1,55 @@
+{
+  "scope": "T135 development only; T132 remains unchanged",
+  "runs": [
+    {
+      "path": "outputs/idea1-t135/runs/4B-tune-TP2-elastic",
+      "reason": "development migration lacks native per-source old KV retirement gates; prior audit covered bytes/EOS only",
+      "final_eligible": false,
+      "replacement": "safe online rerun"
+    },
+    {
+      "path": "outputs/idea1-t135/runs/14B-tune-TP2-elastic",
+      "reason": "development migration lacks native per-source old KV retirement gates; prior audit covered bytes/EOS only",
+      "final_eligible": false,
+      "replacement": "safe online rerun"
+    },
+    {
+      "path": "outputs/idea1-t135/runs/8B-tune-TP2-elastic",
+      "reason": "development migration lacks native per-source old KV retirement gates; prior audit covered bytes/EOS only",
+      "final_eligible": false,
+      "replacement": "safe online rerun"
+    }
+  ],
+  "v12_online_policy_excluded": [
+    {
+      "case": "4B-tune-TP2-online-safe",
+      "reason": "missing logical_roles binding in v12; may complete when pending branch untriggered, but final uses distinct safe v13 replacement",
+      "final_eligible": false
+    },
+    {
+      "case": "4B-tune-TP4-online-safe",
+      "reason": "missing logical_roles binding in v12; may complete when pending branch untriggered, but final uses distinct safe v13 replacement",
+      "final_eligible": false
+    },
+    {
+      "case": "8B-tune-TP2-online-safe",
+      "reason": "missing logical_roles binding in v12; may complete when pending branch untriggered, but final uses distinct safe v13 replacement",
+      "final_eligible": false
+    },
+    {
+      "case": "8B-tune-TP4-online-safe",
+      "reason": "missing logical_roles binding in v12; may complete when pending branch untriggered, but final uses distinct safe v13 replacement",
+      "final_eligible": false
+    },
+    {
+      "case": "14B-tune-TP2-online-safe",
+      "reason": "missing logical_roles binding in v12; may complete when pending branch untriggered, but final uses distinct safe v13 replacement",
+      "final_eligible": false
+    },
+    {
+      "case": "14B-tune-TP4-online-safe",
+      "reason": "missing logical_roles binding in v12; may complete when pending branch untriggered, but final uses distinct safe v13 replacement",
+      "final_eligible": false
+    }
+  ]
+}

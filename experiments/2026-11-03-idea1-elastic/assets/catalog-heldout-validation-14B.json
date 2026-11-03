@@ -1,0 +1,156 @@
+{
+  "status": "PASS_BOUND_SIMULATOR_SHAPE_VALIDATION",
+  "model": "14B",
+  "catalog_sha256": "0e51db74b1f4c078339ad55380256229a53f6cebb53358e0fa85f698a9b6c719",
+  "samples": 18,
+  "rows": [
+    {
+      "tp": 1,
+      "batch": 3,
+      "phase": "decode",
+      "relative_error": 2.364069376649535e-06,
+      "operator_ns": 16073978.354509812,
+      "predicted_ns": 16074016.3545098
+    },
+    {
+      "tp": 1,
+      "batch": 3,
+      "phase": "prefill",
+      "relative_error": 0.01811747787569645,
+      "operator_ns": 301165204.96954256,
+      "predicted_ns": 295708851.0315773
+    },
+    {
+      "tp": 1,
+      "batch": 6,
+      "phase": "decode",
+      "relative_error": 3.497293121524618e-06,
+      "operator_ns": 17727996.434509814,
+      "predicted_ns": 17728058.434509803
+    },
+    {
+      "tp": 1,
+      "batch": 6,
+      "phase": "prefill",
+      "relative_error": 0.010864608163810229,
+      "operator_ns": 540011374.9390851,
+      "predicted_ns": 545878386.9317987
+    },
+    {
+      "tp": 4,
+      "batch": 40,
+      "phase": "decode",
+      "relative_error": 3.0315034892440703e-05,
+      "operator_ns": 10547021.782362126,
+      "predicted_ns": 10547341.51569547
+    },
+    {
+      "tp": 4,
+      "batch": 40,
+      "phase": "prefill",
+      "relative_error": 0.006556800371187194,
+      "operator_ns": 980113821.7674598,
+      "predicted_ns": 973687411.0970892
+    },
+    {
+      "tp": 4,
+      "batch": 52,
+      "phase": "decode",
+      "relative_error": 2.837468147688596e-05,
+      "operator_ns": 12522901.222088512,
+      "predicted_ns": 12523256.555421855
+    },
+    {
+      "tp": 4,
+      "batch": 52,
+      "phase": "prefill",
+      "relative_error": 0.03981115097282536,
+      "operator_ns": 1308619320.5770018,
+      "predicted_ns": 1256521679.2395546
+    },
+    {
+      "tp": 8,
+      "batch": 20,
+      "phase": "decode",
+      "relative_error": 0.0018463342942270627,
+      "operator_ns": 4278748.450214465,
+      "predicted_ns": 4270848.450214463
+    },
+    {
+      "tp": 8,
+      "batch": 20,
+      "phase": "prefill",
+      "relative_error": 0.054550612179376824,
+      "operator_ns": 304852892.40097374,
+      "predicted_ns": 288222980.4958469
+    },
+    {
+      "tp": 8,
+      "batch": 28,
+      "phase": "decode",
+      "relative_error": 0.0021081479151640638,
+      "operator_ns": 5065109.484584556,
+      "predicted_ns": 5075787.484584561
+    },
+    {
+      "tp": 8,
+      "batch": 28,
+      "phase": "prefill",
+      "relative_error": 0.03116801871817976,
+      "operator_ns": 403916724.7549581,
+      "predicted_ns": 391327440.7172097
+    },
+    {
+      "tp": 8,
+      "batch": 40,
+      "phase": "decode",
+      "relative_error": 0.010650831214712874,
+      "operator_ns": 6425836.502362133,
+      "predicted_ns": 6357396.002362133
+    },
+    {
+      "tp": 8,
+      "batch": 40,
+      "phase": "prefill",
+      "relative_error": 0.030675555406933848,
+      "operator_ns": 570447176.8037299,
+      "predicted_ns": 552948392.8249581
+    },
+    {
+      "tp": 8,
+      "batch": 56,
+      "phase": "decode",
+      "relative_error": 5.356669140800396e-06,
+      "operator_ns": 8027376.503547179,
+      "predicted_ns": 8027333.50354718
+    },
+    {
+      "tp": 8,
+      "batch": 56,
+      "phase": "prefill",
+      "relative_error": 0.009014418963186376,
+      "operator_ns": 778139290.5472881,
+      "predicted_ns": 771124816.9705782
+    },
+    {
+      "tp": 8,
+      "batch": 71,
+      "phase": "decode",
+      "relative_error": 0.0026786141152809586,
+      "operator_ns": 9484133.301778734,
+      "predicted_ns": 9458728.968445383
+    },
+    {
+      "tp": 8,
+      "batch": 71,
+      "phase": "prefill",
+      "relative_error": 0.011989641970031852,
+      "operator_ns": 981336303.8582534,
+      "predicted_ns": 993102174.7937082
+    }
+  ],
+  "max_relative_error": 0.054550612179376824,
+  "p95_relative_error": 0.054550612179376824,
+  "wall_s": 1.589366791,
+  "scope": "held-out batch and ragged-length interpolation error against unchanged operator model; no physical hardware calibration"
+}

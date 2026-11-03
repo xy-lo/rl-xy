@@ -1,0 +1,204 @@
+{
+  "status": "PASS_EXACT_ALL_FIELDS",
+  "identity": {
+    "cpp_sha256": "accdf55725f68cad37f9972dd45993c06f1fffc0eca49ca882f837c1ace1febb",
+    "binary_sha256": "ded9454580e7b98944a409af23108cf309b4ea521b3da16b1638cda6e0c11db2",
+    "compiler": "clang++",
+    "flags": [
+      "-std=c++17",
+      "-O3",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-shared",
+      "-fPIC"
+    ],
+    "scope": "host event implementation only; frozen mathematical streams and hardware rates unchanged"
+  },
+  "cases": [
+    {
+      "shape": [
+        4096,
+        1024,
+        8192
+      ],
+      "equal": true,
+      "python_s": 0.016084540999999994,
+      "native_s": 0.0005927919999999948,
+      "old": {
+        "reference_ns": 554766.4160153213,
+        "reference_memory_busy_ns": 543425.4728215068,
+        "reference_per_core_compute_max_ns": 263172.0156862745,
+        "active_cores": 256,
+        "audit": {
+          "reads": 1073741824,
+          "writes": 8388608,
+          "flops": 68719476736,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 327680
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 554766.4160153213,
+        "reference_memory_busy_ns": 543425.4728215068,
+        "reference_per_core_compute_max_ns": 263172.0156862745,
+        "active_cores": 256,
+        "audit": {
+          "reads": 1073741824,
+          "writes": 8388608,
+          "flops": 68719476736,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 327680
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      }
+    },
+    {
+      "shape": [
+        5120,
+        4352,
+        8192
+      ],
+      "equal": true,
+      "python_s": 0.015481458000000003,
+      "native_s": 0.000552625000000001,
+      "old": {
+        "reference_ns": 1500930.6548148142,
+        "reference_memory_busy_ns": 1327965.6770370356,
+        "reference_per_core_compute_max_ns": 1398101.333333333,
+        "active_cores": 256,
+        "audit": {
+          "reads": 2483027968,
+          "writes": 89128960,
+          "flops": 365072220160,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 1500930.6548148142,
+        "reference_memory_busy_ns": 1327965.6770370356,
+        "reference_per_core_compute_max_ns": 1398101.333333333,
+        "active_cores": 256,
+        "audit": {
+          "reads": 2483027968,
+          "writes": 89128960,
+          "flops": 365072220160,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      }
+    },
+    {
+      "shape": [
+        5120,
+        4352,
+        32768
+      ],
+      "equal": true,
+      "python_s": 0.056282042000000004,
+      "native_s": 0.0017034999999999967,
+      "old": {
+        "reference_ns": 5767334.874074057,
+        "reference_memory_busy_ns": 5077177.078518122,
+        "reference_per_core_compute_max_ns": 5592405.333333331,
+        "active_cores": 256,
+        "audit": {
+          "reads": 9932111872,
+          "writes": 44564480,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 49408,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 5767334.874074057,
+        "reference_memory_busy_ns": 5077177.078518122,
+        "reference_per_core_compute_max_ns": 5592405.333333331,
+        "active_cores": 256,
+        "audit": {
+          "reads": 9932111872,
+          "writes": 44564480,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 49408,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      }
+    },
+    {
+      "shape": [
+        32768,
+        4352,
+        5120
+      ],
+      "equal": true,
+      "python_s": 0.34449387499999995,
+      "native_s": 0.008868624999999963,
+      "old": {
+        "reference_ns": 6340458.5935952375,
+        "reference_memory_busy_ns": 3990276.9739805884,
+        "reference_per_core_compute_max_ns": 5592405.333333317,
+        "active_cores": 256,
+        "audit": {
+          "reads": 6878658560,
+          "writes": 570425344,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 185088,
+          "tail_tiles": 20480,
+          "max_workspace": 1179648
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 6340458.5935952375,
+        "reference_memory_busy_ns": 3990276.9739805884,
+        "reference_per_core_compute_max_ns": 5592405.333333317,
+        "active_cores": 256,
+        "audit": {
+          "reads": 6878658560,
+          "writes": 570425344,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 185088,
+          "tail_tiles": 20480,
+          "max_workspace": 1179648
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      }
+    }
+  ],
+  "scope": "same generated GEMM streams and FIFO resource algorithm; exact full JSON field equality on test cases, not hardware calibration"
+}

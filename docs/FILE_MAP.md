@@ -543,3 +543,24 @@
 | `tests/test_idea1_region_handoff.py` | 完整Idea1资源规划、历史放置、状态/坐标合同、运行时协作或对应独立验收。 |
 | `tests/test_idea1_system_contracts.py` | 完整Idea1资源规划、历史放置、状态/坐标合同、运行时协作或对应独立验收。 |
 | `tests/test_idea1_training_tickets.py` | 完整Idea1资源规划、历史放置、状态/坐标合同、运行时协作或对应独立验收。 |
+
+## 动态推理 TP 扩展
+
+| 文件 | 职责 |
+|---|---|
+| `scripts/audit_idea1_inference.py` | 独立复算实际TP程序、EOS/KV退休门禁、PENDING输入广播和54rank原生回包成本。 |
+| `scripts/check_idea1_elastic.py` | 无原生仿真器复核动态TP六次便携证据、TUNE银行和对照表守恒。 |
+| `scripts/idea1_layered/run_elastic_system.py` | 公开任务与历史联合选择实际推理TP/训练区域，再启动原生执行；支持原始子集小例。 |
+| `scripts/idea1_layered/run_inference_system.py` | 实际TP1/2/4/8推理组、原TP2状态owner及独立训练区域的私有原生驱动。 |
+| `scripts/prepare_inference_catalog.py` | 按公开形状扩展TP1/2/4/8容量范围的冻结服务目录。 |
+| `scripts/validate_inference_catalog.py` | 用非节点batch和ragged长度测量规划服务插值误差，不作硬件校准。 |
+| `src/idea1_controller/elastic_planner.py` | TUNE绑定的联合资源候选银行、容量检查和历史场景风险选择。 |
+| `src/idea1_controller/inference_catalog.py` | 实际推理TP的稀疏batch服务插值与系数缓存。 |
+| `src/idea1_controller/inference_groups.py` | 54die覆盖、物理邻接、权重坐标视图、KV头重分片与真实TP容量证书。 |
+| `src/idea1_controller/inference_search.py` | 训练home历史放置、推理吞吐放置和完整阶段场景评分。 |
+| `src/idea1_controller/native/cohort_pending.py` | 真实推理组之间的未开始回答接管、全组租约和付费prompt广播。 |
+| `src/idea1_controller/native/inference_cohorts.py` | 实际推理TP全层程序、原生全组门禁、安全KV扩组与DATA_WAIT角色恢复。 |
+| `src/idea1_controller/native/paired_tp1.py` | 每个原TP2控制对上的两个TP1引擎、付费权重补齐及EOS记录复制。 |
+| `tests/test_idea1_inference_groups.py` | 物理分组、KV重分片退休顺序和TP1/宽TP参数视图测试。 |
+| `tests/test_idea1_inference_planning.py` | 未来回答隔离、候选身份绑定、服务插值及准备区域保护测试。 |
+| `tests/test_idea1_tp_execution.py` | 真实TP编译、双TP1安全点和仅DATA_WAIT可借算的执行测试。 |

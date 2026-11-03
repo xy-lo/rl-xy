@@ -1,0 +1,68 @@
+{
+  "updated": "2026-11-03T07:52:09.851697+00:00",
+  "queued": 0,
+  "running": [],
+  "results": [
+    {
+      "key": "8B-test1-v18",
+      "exit_status": 0,
+      "finished": "2026-11-03T07:29:44.213306+00:00",
+      "audit_exit_status": 0,
+      "total_s": 104.70663431438001,
+      "planning_s": 1.066073792,
+      "device_s": 103.64056052238001,
+      "profile": "8B-tune-finalist1-online"
+    },
+    {
+      "key": "14B-test1-v18",
+      "exit_status": 0,
+      "finished": "2026-11-03T07:31:49.935952+00:00",
+      "audit_exit_status": 0,
+      "total_s": 153.399263065711,
+      "planning_s": 0.995248208,
+      "device_s": 152.40401485771102,
+      "profile": "14B-tune-finalist1-online-v18-recovery"
+    },
+    {
+      "key": "4B-test1-v18",
+      "exit_status": 0,
+      "finished": "2026-11-03T07:32:13.664219+00:00",
+      "audit_exit_status": 0,
+      "total_s": 69.320178255161,
+      "planning_s": 1.057462708,
+      "device_s": 68.262715547161,
+      "profile": "4B-tune-finalist1-online"
+    },
+    {
+      "key": "4B-test2-v18",
+      "exit_status": 0,
+      "finished": "2026-11-03T07:46:21.989847+00:00",
+      "audit_exit_status": 0,
+      "total_s": 74.051189873079,
+      "planning_s": 0.9553862080000001,
+      "device_s": 73.095803665079,
+      "profile": "4B-tune-finalist1-online"
+    },
+    {
+      "key": "8B-test2-v18",
+      "exit_status": 0,
+      "finished": "2026-11-03T07:48:36.468889+00:00",
+      "audit_exit_status": 0,
+      "total_s": 110.4886448941,
+      "planning_s": 1.0012192080000002,
+      "device_s": 109.48742568610001,
+      "profile": "8B-tune-finalist1-online"
+    },
+    {
+      "key": "14B-test2-v18",
+      "exit_status": 0,
+      "finished": "2026-11-03T07:51:45.093617+00:00",
+      "audit_exit_status": 0,
+      "total_s": 155.576412205716,
+      "planning_s": 0.899918292,
+      "device_s": 154.676493913716,
+      "profile": "14B-tune-finalist1-online-v18-recovery"
+    }
+  ],
+  "status": "complete"
+}

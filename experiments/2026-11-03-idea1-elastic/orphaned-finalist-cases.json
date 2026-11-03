@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-11-03T06:42:01.001530+00:00",
+  "old_finalist_supervisor_pid": 19868,
+  "old_resume_pid": 51489,
+  "old_resume_was_waiting_only": true,
+  "cases": [
+    {
+      "key": "8B-tune-TP8-policy-parity",
+      "exit_status": null,
+      "audit_exit_status": null,
+      "driver_exit_status_observed": false,
+      "native_exit_status": 0,
+      "completion": "orphaned native artifacts; supervisor return status unavailable",
+      "requires_v18_replay": true
+    },
+    {
+      "key": "14B-tune-finalist1-online",
+      "exit_status": null,
+      "audit_exit_status": null,
+      "driver_exit_status_observed": false,
+      "native_exit_status": 0,
+      "completion": "orphaned native artifacts; supervisor return status unavailable",
+      "requires_v18_replay": true
+    },
+    {
+      "key": "14B-tune-finalist2-online",
+      "exit_status": null,
+      "audit_exit_status": null,
+      "driver_exit_status_observed": false,
+      "native_exit_status": 0,
+      "completion": "orphaned native artifacts; supervisor return status unavailable",
+      "requires_v18_replay": true
+    },
+    {
+      "key": "14B-tune-TP8-policy-parity",
+      "exit_status": null,
+      "audit_exit_status": null,
+      "driver_exit_status_observed": false,
+      "native_exit_status": null,
+      "completion": "not started after supervisor exit",
+      "requires_v18_replay": true
+    }
+  ],
+  "policy": "no inferred driver exit zero; all four current-version native replays before bank fitting"
+}

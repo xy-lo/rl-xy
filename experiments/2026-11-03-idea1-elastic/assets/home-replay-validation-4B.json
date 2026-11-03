@@ -1,0 +1,30 @@
+{
+  "model": "4B",
+  "passed": true,
+  "layouts": [
+    {
+      "case": "4B-tune-TP1-static",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.071899041,
+      "old_planning_s": 1.474068209
+    },
+    {
+      "case": "4B-tune-TP8-DP14",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.07054650000000001,
+      "old_planning_s": 1.201148166
+    },
+    {
+      "case": "4B-tune-TP8-DP27",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.07209708299999995,
+      "old_planning_s": 1.2167615
+    },
+    {
+      "case": "4B-tune-TP8-DP8",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.05473658299999995,
+      "old_planning_s": 1.1727818749999996
+    }
+  ]
+}

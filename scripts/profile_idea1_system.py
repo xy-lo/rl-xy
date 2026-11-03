@@ -40,7 +40,7 @@ def main():
     events=load(folder/'training-events.json');executions=load(folder/'training-batch-executions.json')
     last=max(executions,key=lambda x:x['end_tick']);worker=last['worker']
     layout=load(folder/'resource-layout.json');regions={int(r):tuple(ws) for r,ws in layout['region_members'].items()}
-    region=next(r for r,ws in regions.items() if worker in ws);tp=2*len(regions[region])
+    region=next(r for r,ws in regions.items() if worker in ws);tp=2*len(regions[region]);initial_training_tp=tp
     op=make_operator(model,'wafer',cache_dir=a.cache_dir or a.output.parent/'profile-cost-cache')
     if a.fast_cost_validation:
         from idea1_controller.cost_backend import install
@@ -50,11 +50,12 @@ def main():
     compiled={int(f.stem.split('.')[0]):json.load(gzip.open(f,'rt')) for f in (folder/'compiled-regions').glob('*.json.gz')}
     jobs={j[3]['batch_id']:j for xs in compiled.values() for j in xs if j[0]=='training'}
     portable_file=folder/'portable-training-programs.json.gz';portable=json.load(gzip.open(portable_file,'rt')) if portable_file.exists() else {}
-    totals=defaultdict(float);checked=[]
+    totals=defaultdict(float);checked=[];collective_payload=defaultdict(int)
     def attribute(stage,batch,logical_tp,expected):
         blocks=op.training(teacher_lengths(batch),logical_tp,sum(x['response_length'] for x in batch)) if stage=='training' else op.forward(teacher_lengths(batch),logical_tp)
         body=compile_blocks(op,tuple(range(logical_tp)),blocks)
         assert normalized(body)==normalized(expected),'profile body differs from executed body'
+        collective_payload[stage]+=sum(s['bytes'] for s in body if s['kind']=='AR')
         for block in blocks:totals[stage,family(block.name)]+=block.cost.ns
         extra=sum(s.get('compute',0)+s.get('memory',0) for s in body if s['kind']=='local')-sum(b.cost.ns for b in blocks)
         assert extra>=-1e-3
@@ -80,8 +81,14 @@ def main():
     for r in rows:sums[r['stage']]+=r['inclusive_local_service_s']
     for r in rows:r['within_stage_fraction']=r['inclusive_local_service_s']/sums[r['stage']]
     core_rows=[]
-    for batch in sorted({1,8,16,layout['rollout_cap']}):
-        for logical_tp in (2,4):
+    inf=load(folder/'inference-layout.json') if (folder/'inference-layout.json').exists() else None
+    if inf:
+        caps={}
+        for r,ws in inf['groups'].items():
+            tp=1 if inf.get('paired_tp1') else 2*len(ws);caps[tp]=max(caps.get(tp,0),inf['caps'][str(r)])
+    else:caps={tp:layout['rollout_cap'] for tp in (2,4)}
+    for logical_tp,cap in sorted(caps.items()):
+        for batch in sorted({1,min(8,cap),min(16,cap),cap}):
             cost=op.attention((1,)*batch,(8192,)*batch,logical_tp)
             active=min(op.units,batch*(op.model.kv_heads//logical_tp))
             core_rows.append(dict(batch=batch,tp=logical_tp,context=8192,modeled_active_KV_cores_per_die=active,
@@ -89,8 +96,9 @@ def main():
                 all_layers_attention_memory_ms=cost.memory*op.model.layers/1e6,
                 scope='conditional grouped-core operator formula; not observed hardware utilization'))
     report=dict(status='PASS_EXECUTED_BODY_PROFILE',model=model,window=result['window'],last_backward_worker=worker,
-        initial_training_region=region,initial_tp=tp,checked_bodies=len(checked),body_digest_set=sorted(set(checked)),rows=rows,
+        initial_training_region=region,initial_tp=initial_training_tp,checked_bodies=len(checked),body_digest_set=sorted(set(checked)),rows=rows,
         decode_core_model=core_rows,
+        collective_logical_payload_bytes_per_rank_by_stage=dict(collective_payload),
         scope='one physical TP2 pair on last backward executor; initial TP gang work counted once per rank; host oracle only, not extra device work',
         limitation='inclusive GEMM service contains FIFO memory; no pure arithmetic/bandwidth attribution or hardware claim')
     a.output.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:v for k,v in report.items() if k not in ('rows','body_digest_set','decode_core_model')}))

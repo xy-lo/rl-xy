@@ -1,0 +1,9 @@
+{
+  "registered_at": "2026-11-03T05:38:41.290221+00:00",
+  "window": "tune",
+  "evaluation_started": false,
+  "reason": "compare TP2/4/8 with the same complete safe online policy, rather than static TP8 against online TP2/4",
+  "rule": "two distinct static joint-resource finalists per model plus base TP8 full-policy control when not already represented; TP2/4 controls from safe-v13 campaign",
+  "native_runtime": "inference-v15",
+  "no_evaluation_time_selection": true
+}

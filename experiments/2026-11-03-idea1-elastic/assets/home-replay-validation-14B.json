@@ -1,0 +1,24 @@
+{
+  "model": "14B",
+  "passed": true,
+  "layouts": [
+    {
+      "case": "14B-tune-TP1-static",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.07578849999999998,
+      "old_planning_s": 1.7059506249999998
+    },
+    {
+      "case": "14B-tune-TP4-DP14",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.08061395800000004,
+      "old_planning_s": 1.36814025
+    },
+    {
+      "case": "14B-tune-TP4-DP27",
+      "queue_and_forecast_exact": true,
+      "new_planning_s": 0.063218041,
+      "old_planning_s": 1.5459152500000002
+    }
+  ]
+}

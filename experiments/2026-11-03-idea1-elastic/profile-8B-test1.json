@@ -1,0 +1,257 @@
+{
+  "status": "PASS_EXECUTED_BODY_PROFILE",
+  "model": "8B",
+  "window": "test1",
+  "last_backward_worker": 3,
+  "initial_training_region": 3,
+  "initial_tp": 2,
+  "checked_bodies": 135,
+  "body_digest_set": [
+    "01366d9bb1984f206ccd700dd09a77cfbb97906771b633e93bf59affe61220aa",
+    "089c9f057d246c7779b5e28b3de1d79ad167b9e36360007dcf8293425e07378e",
+    "0ec7a0650f243a76a448ae6ff1cabc12098c6af3a946bf1e528a97b0fbfaeded",
+    "130813f8f05817010007bc4cf41735b467609aeff7141d33d667134b6fd86bca",
+    "149428579f437bec9c1f321eb0184e1fe0d9c7ba7ea82cad05e70ca7d5c0eed4",
+    "1577f15e436bb13a5ea8a0d4fbb405d6a197d13f5016d67d37d44e24a2c65ec3",
+    "16dddcfc2d6e7a473034bc861c934ec2535810048b92ae498d1f2306257f8c52",
+    "187d48e581cf21ef0f72c5a6efc1ccce603d06736d328f39f47864059bcff602",
+    "1b5439f28ea3c2a5795eb2c73e3edc636976153e22868dfa412dbd0ecbd45439",
+    "1f48835d8c53cf2a9e91dd594138ae1a2a211313b6d7b4ae09b8ebd88e57fb2b",
+    "20f5308f9f1210384a5a675fc9cd626b4cbdb5200fb19f6642679aa05bf0da16",
+    "29602367ad44d47c6ba690884e1dcccfd6a5fc250980238b2891aa4f94b818bf",
+    "35eef4273b4a1eac94b0777e23c5fe5736ef0ac0100e585769397640645063e2",
+    "379f743753e6738e9f0fe6f2bb65bdd7d25274ec7605f0741827756505cb4e02",
+    "3b0de30052395c65c1f26543087656205b90a7d4dccd4f3bbe386cc2f37c4091",
+    "3f72e00ca83a7e9dbd24f02df211fadfe8571967ea6320e1e7a5a7b10ec83572",
+    "44f442d503b8c83e55dea97358a9cf8a987cd165eb8a2889341dcaa3087dbd1b",
+    "47b3d6ecb5cca3a989e2c1665978bef996dcf66cb70a857e178056537ca96d35",
+    "4af5d299f8db34c2c53de894a93ea6e398c5dcd607f05416bf9c32f58db92f12",
+    "4bb86ab1ad1b124286ca7f39bb95aa18e80678f4544aa5d22780f6ddaaf5d67f",
+    "4e49fe34e25b968b69adacb0f4828c3a714fae1e4c3db8d12ba58116721e30e2",
+    "4e5535d9b39c9486307187aa693686b8571275aa253a6d7c38ada536ce723a3b",
+    "4f8a6aa4744e8c5b34d0e2ebf4af63d5d8ec82f00d7a44be5364fa793518cb75",
+    "4ff1ba61b6b6b0b2eff769640cb381ebd4f94649e1a62476c59de23008399c2d",
+    "533bb872663bb09db35eb1a7882860987112a7e5592c57fbb67245b3556453d2",
+    "55fef6f06e13ad88cc3b521dd10eaa42977407a3413986cf8de2c1e4e5f84809",
+    "60c9d51daf65d6d1af67cba8403f9dd7696d3bae40a0c72e2d80ef392e348e22",
+    "6416f1972c541ca5fe60b2dbfda422f558e1b146e9b9ced6e8bad46ac950c6b2",
+    "6628706c8fe16a9e211d55739929a3b2996b0ec8b3c736742a234e0417621899",
+    "686b36fc7dc21cccb958d934c682926a3b9c4102555c4edf84395df01beab153",
+    "695971129bc1cd215dfb64c5cec264a0560acb243e40ef4668f08ff3ce928b2a",
+    "6abf5b2c2c323c018272090b3e29dc7ec98a6923c7cd93fd04ed0e1adf52a951",
+    "6e860c28e36f01bbc26b362d1fa478451a1f855f94113e3720ca490307e3a2f9",
+    "71b0ff1112d92722a6c65c1da3c2f679d10c5b9e8fc6091cc77167fa0c32bbfb",
+    "932152b538caaae9054c6c74fffb97a49298227def18f0f1545203c7557a291d",
+    "93fa590240d0f96251b7437d5f9ff8bbf576f838057316789fe41df39d127c7b",
+    "9499353469cc5eccbc8671833b9d11753dd315aee3f503aed67838807abf5381",
+    "9505e71a6e770d828ea9ea610c66655de457b8b190c519e04cd1976d88ac2a88",
+    "9d895b97eef1f5f29d25187de5e202f4cd8811f3ccaf506114d577110ff94b3b",
+    "a176a18c92b5438028af889cf1ca63a3679c50dadbabfe497e17403e96d5a6a2",
+    "a333c95e7ed1ec9fa7d8594da92fb40f594c563d14ccccb7ab0df05df7153f51",
+    "a4e1cbce290f99684ec0b3b2473c8e2b85462731a6517d779790099a61dea63e",
+    "a58cbb199eb22810d7a2d15ac487bad55bba9b3accdedf29d182a716a2b7992f",
+    "a9e9de1370ce1178604baf5e08c09cacdbc4b3ce4e238d4aa332cc424b21dc00",
+    "aa339ee58a503fa084e11dd4070f1bb0db426282d69899adf5d6824d3caf0cb7",
+    "ac456eecb22b9efd511b45d25ae7cd6bcd33e47065e4ef540c9a02d5fab89b08",
+    "addb2a12f2c8548a28b22c451e1aaead6c36048320a4ced9a92a69b4bee5d524",
+    "b47b076f2812f0b8ce51d2feb3982b1209059299f302766514e1d847c35dcdf1",
+    "b5200d7440ea1acafd86893eeb011f31150203269bf404d616519392d2cc4c2d",
+    "b5c4005caa2126ae191b2e2f01e792aa963604c5b29ba925edd7168813687cbf",
+    "b8262f4bb4a80d0152c051c2339843c3f5e341595a9b184abb02f1d2dedbce0a",
+    "cdeeb47501247dad33c212b8b79980d42f0bbfc5243d6061f0a6c71487b52ad9",
+    "cf5240e96e7dc9c5469ad4a75460019fac9fffe2bbafab6c660b1d1c828fa25b",
+    "cfbe775b808c232adad64eb65266ab26de432effec561be12bc43b6dbe7be757",
+    "d64b2f4de6280617c28b871fdf5bfb027c6c5d2491eefd2717f53ca6320ee9f3",
+    "d8aee6b2bee3986890517031e232a5aeb638b90d6a924bd4304ac6b87a5810db",
+    "d9fa1352c73e6d6fb65cb9ba7b2f536b4596b32618becdb7f3d0e7da17ee0016",
+    "db799f7df8768571562aebf47ad5ebeca201cdf83164e6da26a089606dbebc90",
+    "dceb74e627e9ab11b7e297e38b4a7944612d90d0b8cc63bc9c049a9f18758793",
+    "e0721afc65b48daf548b97681a23d2529bd50cf213e2311042e618727abc0470",
+    "e42c60fc0eb63cc67b34411ee41bc5ab76b4f0548f8701fd45c90c373d19127d",
+    "e79c1e91dd24d7ca2736bb8c013b6e5044172aa61df3980b61c68bea9293ac1f",
+    "eadc4b328d90685c372099cabab513697f571c5993e860e4c1c1dac5766ec6f7",
+    "ebcdf80793901ad5193b990c2a0bd222ae6ab9c745db3f002a2afa941d565511",
+    "eeada0619a7997a47f3967bcdb27e968c9d80e92a2968b364c7319d5406d4370",
+    "ef4de8be47da900ffbe59374574209e27937e255cd53eda19c0c1e2887917d27",
+    "ef786446d0ba37f6116ec32588027a1226e8379cc1a3fca492d990dec6d220d0",
+    "f37f9e2ada2b974465e6a9c749e4692a709e29fe52f3c4d9e2cec9af09749bdf",
+    "f3c136d93af99b701aa26efa3104ae6e970892f358dffab202c363e700d67950",
+    "f99de7d0a425d36183a00fdb424a9e3014f6afd61826eaedd598b3ee122cf495",
+    "fff2d5f64743eb5f16e302995379ce29f327c824247cd4eceb980a084e6a4c6c"
+  ],
+  "rows": [
+    {
+      "stage": "old_policy",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 4.98864186,
+      "within_stage_fraction": 0.5796657009908156
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 2.855535780432558,
+      "within_stage_fraction": 0.3318049674283081
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.2043092160000003,
+      "within_stage_fraction": 0.02374013774392779
+    },
+    {
+      "stage": "old_policy",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 0.557580143,
+      "within_stage_fraction": 0.06478919383694828
+    },
+    {
+      "stage": "reference",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 4.98864186,
+      "within_stage_fraction": 0.5796657009908156
+    },
+    {
+      "stage": "reference",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 2.855535780432558,
+      "within_stage_fraction": 0.3318049674283081
+    },
+    {
+      "stage": "reference",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.2043092160000003,
+      "within_stage_fraction": 0.02374013774392779
+    },
+    {
+      "stage": "reference",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 0.557580143,
+      "within_stage_fraction": 0.06478919383694828
+    },
+    {
+      "stage": "training",
+      "operator_family": "FFN",
+      "inclusive_local_service_s": 17.009682912,
+      "within_stage_fraction": 0.5722803401570125
+    },
+    {
+      "stage": "training",
+      "operator_family": "attention",
+      "inclusive_local_service_s": 4.887081090799973,
+      "within_stage_fraction": 0.16442284335852247
+    },
+    {
+      "stage": "training",
+      "operator_family": "attention_projection",
+      "inclusive_local_service_s": 5.1323207494661665,
+      "within_stage_fraction": 0.1726737811336451
+    },
+    {
+      "stage": "training",
+      "operator_family": "collective_endpoint_service",
+      "inclusive_local_service_s": 0.7251661510000006,
+      "within_stage_fraction": 0.02439777000615682
+    },
+    {
+      "stage": "training",
+      "operator_family": "normalization",
+      "inclusive_local_service_s": 0.050423836,
+      "within_stage_fraction": 0.001696479009478987
+    },
+    {
+      "stage": "training",
+      "operator_family": "other_vector_or_embedding",
+      "inclusive_local_service_s": 1.917965929,
+      "within_stage_fraction": 0.06452878633518412
+    }
+  ],
+  "decode_core_model": [
+    {
+      "batch": 1,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 4,
+      "modeled_fraction": 0.015625,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 0.37829205333333327,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 8,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 32,
+      "modeled_fraction": 0.125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 2.420066304,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 16,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 64,
+      "modeled_fraction": 0.25,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 4.840132608,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 55,
+      "tp": 2,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 220,
+      "modeled_fraction": 0.859375,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 16.63795584,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 1,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 2,
+      "modeled_fraction": 0.0078125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 0.37829205333333327,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 8,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 16,
+      "modeled_fraction": 0.0625,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 1.210033152,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 16,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 32,
+      "modeled_fraction": 0.125,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 2.420066304,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    },
+    {
+      "batch": 107,
+      "tp": 4,
+      "context": 8192,
+      "modeled_active_KV_cores_per_die": 214,
+      "modeled_fraction": 0.8359375,
+      "all_layers_attention_compute_ms": 0.6151770352941176,
+      "all_layers_attention_memory_ms": 16.184193408,
+      "scope": "conditional grouped-core operator formula; not observed hardware utilization"
+    }
+  ],
+  "collective_logical_payload_bytes_per_rank_by_stage": {
+    "old_policy": 116617670400,
+    "reference": 116617670400,
+    "training": 413925003872
+  },
+  "scope": "one physical TP2 pair on last backward executor; initial TP gang work counted once per rank; host oracle only, not extra device work",
+  "limitation": "inclusive GEMM service contains FIFO memory; no pure arithmetic/bandwidth attribution or hardware claim"
+}

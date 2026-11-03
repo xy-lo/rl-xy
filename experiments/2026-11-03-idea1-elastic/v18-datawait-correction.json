@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-11-03T06:17:38.425667+00:00",
+  "trigger": "14B TP2 full TUNE v13 faulted at94.503120276s after a record arrival woke an unborrowed TRAINING/DATA_WAIT member while another member of its region was lent to inference",
+  "fix": [
+    "CohortRegion emits a legal native wait for TRAINING members whose region is temporarily undrained",
+    "restoring a DATA_WAIT leader schedules a new self step even when no peer wakeup is necessary"
+  ],
+  "costs_hardware_inputs_unchanged": true,
+  "old_failed_native_pid": 3445,
+  "old_coordinator_pid": 75440,
+  "coordinator_only_stopped_native_finalists_continue": true,
+  "new_runtime": "inference-v18",
+  "new_six_evaluation_runtime": "inference-v18",
+  "targeted_tests": 6,
+  "old_TP4_control_superseded": [
+    {
+      "case": "14B-tune-TP4-online-safe-v13",
+      "pid": 45302,
+      "reason": "superseded by complete v18 DATA_WAIT state-machine validation"
+    }
+  ]
+}

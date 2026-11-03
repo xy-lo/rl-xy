@@ -2,12 +2,18 @@
 import sys
 import tempfile
 import unittest
+import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts/idea1'))
 from rl_xy.f2_runtime import make_operator
-from attention_tp8_program import head_layout, migration, compile_attention_tp8
+# Both historical TP4->TP8 and layered TP2->TP4 drivers have this module name.
+# Other contract tests may import the layered kernel first. Bind this test to
+# its explicit historical file instead of depending on global import order.
+spec=importlib.util.spec_from_file_location('historical_tp4_tp8_layout_test',ROOT/'scripts/idea1/attention_tp8_program.py')
+module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+head_layout,migration,compile_attention_tp8=module.head_layout,module.migration,module.compile_attention_tp8
 
 class Idea1LayoutTests(unittest.TestCase):
     def test_gqa_heads_and_migration(self):
