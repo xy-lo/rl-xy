@@ -19,6 +19,15 @@ class ReleasePlacementTests(unittest.TestCase):
    self.assertEqual(Counter(a['queues'][worker]),Counter(b['queues'][worker]))
    scores=[f[g]['score'] for g in b['queues'][worker]]
    self.assertEqual(scores,sorted(scores,reverse=True))
+ def test_inference_starts_predicted_long_groups_before_pending(self):
+  p,f=self.args();p=[p[i] for i in (4,0,5,1,6,2,7,3)]
+  args=(p,f,{0:[0,1],2:[2,3]},{0:2,1:2,2:2,3:2},{0:[0,1,2,3]})
+  r=balanced_release_placement(*args)
+  # A cap covering the first two K8 groups starts forecast-long work.
+  self.assertTrue(all(f[g]['label']=='proxy-long' for g in r['execution_queues']['0'][:2]))
+  legacy=balanced_release_placement(*args,inference_queue_order='input')
+  self.assertEqual(r['queues'],legacy['queues'])
+  self.assertEqual(legacy['execution_queues']['0'],[g['group_id'] for g in p])
  def test_regional_quota_and_no_long_packing(self):
   p,f=self.args();r=balanced_release_placement(p,f,{0:[0,1],2:[2,3]},{0:2,1:2,2:2,3:2},{0:[0],1:[1],2:[2],3:[3]})
   self.assertEqual(r['proof']['long_quota_by_region'],{'0':2,'2':2})

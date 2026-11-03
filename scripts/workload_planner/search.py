@@ -54,6 +54,18 @@ def templates():
             add(f'{axis}{n}', stripes(lines, n))
     boxes = [[r*3, r*3+1, r*3+3, r*3+4] for r in (0, 2, 4, 6)]
     add('box4', boxes + stripes([list(range(2, 27, 3)), [24, 25]], 4))
+    # A 9x3 pair mesh admits 13 dominoes plus one monomer. Column
+    # stripes alone leave THREE monomers and miss this natural TP4 scale.
+    snake=[row*3+col for col in range(3)
+           for row in (range(9) if col%2==0 else range(8,-1,-1))]
+    for side in ('head','tail'):
+        single=snake[0] if side=='head' else snake[-1]
+        rest=snake[1:] if side=='head' else snake[:-1]
+        add('packed2_'+side,[[single]]+[rest[i:i+2] for i in range(0,len(rest),2)])
+    # Same maximal TP8 count as box4, but with the residual row at the
+    # opposite edge. Residual TP2/TP4 location affects region release.
+    top_boxes=[[row*3,row*3+1,row*3+3,row*3+4] for row in (1,3,5,7)]
+    add('box4_top',top_boxes+[[5,8,11,14],[17,20,23,26],[0],[1,2]])
     return layouts
 
 

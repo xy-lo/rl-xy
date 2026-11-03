@@ -610,3 +610,4 @@
 | `scripts/report_idea1_workload.py` | 从审计后的native事件重建时间点及逐die状态表 |
 | `src/idea1_controller/state_report.py` | 物理54die守恒及训练helper子集的角色采样 |
 | `tests/test_state_report.py` | 角色时间边界、原生list序列化与helper冲突测试 |
+| `tests/test_workload_templates.py` | 最大TP4覆盖、余量区域位置与相邻合法性测试 |
