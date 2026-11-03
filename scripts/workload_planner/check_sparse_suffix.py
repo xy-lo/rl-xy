@@ -18,7 +18,7 @@ def main():
  from idea1_controller.inference_groups import InferenceAdmission
  cap=InferenceAdmission(env.op).evaluate(2,16,env.pub)
  base=cap['phase_peak_bytes']['gradient_restore']
- plan,proof=sparse_optimizer_plan(env.op,env.policy,regions,gradient_restore_peak_bytes=base,capacity_bytes=cap['capacity_bytes'])
+ plan,proof=sparse_optimizer_plan(env.op,env.policy,regions,gradient_restore_peak_bytes=base,capacity_bytes=cap['capacity_bytes'],contributors_are_region_roots=True)
  assert proof['mode']=='sparse-root-rs'
  cap['phase_peak_bytes']['optimizer_rs']=proof['capacity']['required_bytes']
  (a.output/'gradient-route.json').write_text(json.dumps(proof,indent=2))

@@ -48,6 +48,32 @@ class MeshPolicyTests(unittest.TestCase):
   k=self.kernel();k.tick=101
   with patch.object(CohortKernel,'pending_choice',return_value='base'):
    self.assertEqual(k.pending_choice(0),'base')
+ def training_kernel(self):
+  k=self.kernel();k.region_of={0:0,1:1,9:9};k.region_members={r:[r] for r in k.region_of}
+  k.trained={1,9};k.helper_jobs={};k.resource_layout={'training_help_admission':'region-ready'}
+  k.training_scope='wafer';k.done=set();k.ids=set(range(32))
+  job=dict(batch_id='b',estimate_local_ns=20000000.,index=0,payload_bytes_per_lane=1000000)
+  k.train_queues={0:deque([job])};k.batch_state={'b':'queued'}
+  k.portable_training_job=lambda job:dict(estimate_ns=1000000.)
+  return k
+ def test_training_uses_observed_congestion(self):
+  k=self.training_kernel();dst,job=k.training_help_choice(0)
+  self.assertEqual(dst,9);self.assertEqual(job['batch_id'],'b')
+  self.assertEqual(k.mesh_decision_log[-1]['kind'],'training-proposed')
+ def test_training_respects_restored_region_and_lease(self):
+  k=self.training_kernel();k.region_members[9]=[1,9,10]
+  k.leased=lambda j:j==1
+  self.assertIsNone(k.training_help_choice(0))
+ def test_training_unstarted_ticket_only(self):
+  k=self.training_kernel();k.batch_state['b']='running'
+  self.assertIsNone(k.training_help_choice(0))
+ def test_training_does_not_cross_region_in_domain_mode(self):
+  k=self.training_kernel();k.training_scope='domain'
+  self.assertIsNone(k.training_help_choice(0))
+ def test_training_stale_falls_back(self):
+  k=self.training_kernel();k.tick+=1
+  with patch.object(CohortKernel,'training_help_choice',return_value='base'):
+   self.assertEqual(k.training_help_choice(0),'base')
  def test_expansion_restores_candidate_set_on_failure(self):
   k=self.kernel();k.elastic_groups=[(0,1),(0,9)];original=k.elastic_groups
   with patch.object(CohortKernel,'inference_resize_choice',side_effect=RuntimeError('injected')):

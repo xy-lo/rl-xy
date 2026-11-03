@@ -5,6 +5,15 @@ class GradientRoutingTests(unittest.TestCase):
     def regions(self,n):
         # n roots, canonical distinct partition of original 27 owners.
         return {str(i):[i]+list(range(n+i,27,n)) for i in range(n)}
+    def test_runtime_requires_final_contributor_certificate(self):
+        from unittest.mock import patch
+        from idea1_controller.gradient_routing import sparse_optimizer_plan
+        sentinel=object()
+        with patch('rl_xy.qwen3_experiment.optimizer_plan',return_value=sentinel):
+            plan,proof=sparse_optimizer_plan(None,None,{},gradient_restore_peak_bytes=0,capacity_bytes=1)
+        self.assertIs(plan,sentinel)
+        self.assertEqual(proof['mode'],'original')
+        self.assertIn('training helpers',proof['reason'])
     def test_exact_coverage_and_owner_identity(self):
         for n in (2,7,8,15,18,26):
             p=range_plan(27*7,self.regions(n))

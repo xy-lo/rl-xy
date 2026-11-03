@@ -19,7 +19,7 @@ def main():
  result=json.loads((a.offline_run/'offline-candidates.json').read_text())['result'];regions={int(r):tuple(ws) for r,ws in result['training']['region_members'].items()}
  cap=InferenceAdmission(env.op).evaluate(2,16,env.pub)
  if a.mode=='sparse-roots':
-  plan,proof=sparse_optimizer_plan(env.op,env.policy,regions,gradient_restore_peak_bytes=cap['phase_peak_bytes']['gradient_restore'],capacity_bytes=cap['capacity_bytes'])
+  plan,proof=sparse_optimizer_plan(env.op,env.policy,regions,gradient_restore_peak_bytes=cap['phase_peak_bytes']['gradient_restore'],capacity_bytes=cap['capacity_bytes'],contributors_are_region_roots=True)
   assert proof['mode']=='sparse-root-rs'
   cap['phase_peak_bytes']['optimizer_rs']=proof['capacity']['required_bytes']
   (a.output/'gradient-route.json').write_text(json.dumps(proof,indent=2))
@@ -44,7 +44,7 @@ def main():
  assert native['native_exit_status']==0 and native['native_coverage_and_dependencies_checked']
  summary=dict(status='PASS_NATIVE_OPTIMIZER_COMPONENT_AUDIT',mode=a.mode,model='4B',regional_contributors=len(regions),canonical_owners=27,total_s=native['model_ns']/1e9,
   native_exit_status=native['native_exit_status'],binary_sha256=native['binary_sha256'],wall_s=time.perf_counter()-start,
-  scope='isolated original synchronous optimizer suffix or sparse-root RS variant, assumed completed canonical gradients; no rollout/training tensors or learning quality')
+  scope='isolated original synchronous optimizer suffix or sparse-root RS variant, assumed completed canonical gradients ONLY on region roots, no training donations; no rollout/training tensors or learning quality')
  (a.output/'capacity.json').write_text(json.dumps(cap,indent=2));(a.output/'command.json').write_text(json.dumps(dict(argv=sys.argv,source_commit=os.popen('git rev-parse HEAD').read().strip()),indent=2))
  (a.output/'result.json').write_text(json.dumps(summary,indent=2));print(json.dumps(summary))
 if __name__=='__main__':main()

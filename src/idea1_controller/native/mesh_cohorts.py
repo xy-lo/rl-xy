@@ -111,3 +111,41 @@ class MeshCohortKernel(CohortKernel):
         choice=max(candidates,key=lambda x:(x['predicted_net_ns'],tuple(-j for j in x['target'])))
         self.mesh_decision_log.append(dict(kind='resize-proposed',tick_ps=self.tick,source=w,prediction=choice))
         return choice
+
+    def training_help_choice(self,w):
+        view=self._live_mesh()
+        if view is None:return super().training_help_choice(w)
+        if w!=self.region_of[w] or self.leased(w) or not self.train_queues.get(w):return None
+        if self.resource_layout.get('training_help_admission','global-eos')!='region-ready' and len(self.done)!=len(self.ids):return None
+        # A receiver's entire training region must have completed canonical
+        # restoration. It can then accumulate new TP2 gradients locally; the
+        # original global RS includes every such contributor.
+        free=[j for j in self.trained if j!=w and all(v in self.trained for v in self.region_members[self.region_of[j]])
+              and self.waiting[j] and j not in self.services and j not in self.helper_jobs and not self.leased(j)
+              and (self.training_scope=='wafer' or self.same_domain(j,w))]
+        if not free:return None
+        remaining=sum(job['estimate_local_ns'] for job in self.train_queues[w])
+        # At most four observed, unstarted jobs per donor; no current/future
+        # rollout response is consulted here. All their advantages are ready.
+        jobs=sorted(self.train_queues[w],key=lambda x:(-x['estimate_local_ns'],x['index']))[:4]
+        candidates=[]
+        for job in jobs:
+            if self.batch_state[job['batch_id']]!='queued':continue
+            remote=self.portable_training_job(job);size=job['payload_bytes_per_lane']
+            for dst in free:
+                routes=[self._transport(view,a,b,size) for a,b in zip(self.rep[w].ranks,self.rep[dst].ranks)]
+                transport=sum(x['service_ns'] for x in routes)+4*size/self.op.hw.dram_bytes_per_ns
+                remote_end=remote['estimate_ns']+transport
+                after=max(remaining-job['estimate_local_ns'],remote_end)
+                gain=remaining-after
+                if gain>max(5000.,.05*remote_end):
+                    prediction=dict(gain_ns=gain,transport_ns=transport,remote_ns=remote['estimate_ns'],
+                        remaining_local_ns=remaining,queue_penalty_ns=sum(x['queue_penalty_ns'] for x in routes),
+                        paths=[x['path'] for x in routes],mesh_observation_tick_ps=view.tick_ps,
+                        scope='observed ready training batches and live mesh; bounded four-job critical-tail heuristic')
+                    candidates.append((gain,-job['index'],-dst,dst,job,prediction))
+        if not candidates:return None
+        chosen=max(candidates,key=lambda x:x[:3]);dst,job,prediction=chosen[3:]
+        self.mesh_decision_log.append(dict(kind='training-proposed',tick_ps=self.tick,source=w,target=dst,
+            batch_id=job['batch_id'],prediction=prediction))
+        return dst,job

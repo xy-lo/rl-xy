@@ -43,7 +43,7 @@ def range_plan(elements, regions, owners=27):
     return value
 
 
-def sparse_optimizer_plan(op,policy,regions,*,gradient_restore_peak_bytes,capacity_bytes):
+def sparse_optimizer_plan(op,policy,regions,*,gradient_restore_peak_bytes,capacity_bytes,contributors_are_region_roots=False):
     """Compile the existing optimizer suffix, replacing only its RS phase.
 
     Uses the existing native collective implementation and endpoint cost
@@ -53,6 +53,12 @@ def sparse_optimizer_plan(op,policy,regions,*,gradient_restore_peak_bytes,capaci
     from rl_xy.qwen3_native import Plan
     from rl_xy.types import Operation
     original=optimizer_plan(op,policy)
+    # Training donations can accumulate NEW gradients on a non-root TP2 pair
+    # after regional restoration. Static root membership is not a certificate
+    # of final zero buffers. The production runtime must retain original RS
+    # unless that contribution set is explicitly proven before compilation.
+    if not contributors_are_region_roots:
+        return original,dict(mode='original',reason='non-root gradients may be created by training helpers; no final contributor certificate')
     if op.active_dies!=54 or policy.train_tp!=2:
         return original,dict(mode='original',reason='unsupported canonical owner geometry')
     layout=op.state(2,policy.rollout_tp)['layout']
