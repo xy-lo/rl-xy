@@ -28,6 +28,8 @@ def main():
  os.environ['ASTRA_SIM_ROOT']=str(a.native_root);os.environ['ASTRA_SIM_BIN']=str(a.native_root/'build-dynarl/bin/AstraSim_Analytical_Congestion_Aware')
  os.environ['RLXY_RESOURCE_BACKEND']='1';os.environ['RLXY_MESH_POLICY']='xy';os.environ['RLXY_MESH_TICKS_PER_NS']='1000'
  os.environ.pop('RLXY_MESH_TELEMETRY',None);os.environ['RLXY_MESH_SUMMARY']=str(a.output/'mesh-summary.json')
+ from rl_xy.f2_runtime import configure_native
+ configure_native()
  sources=[Path(__file__),ROOT/'src/idea1_controller/gradient_routing.py',ROOT/'scripts/audit_idea1_gradient_route.py']
  sources+=list(Path(os.environ['RLXY_COST_ROOT']).joinpath('src').rglob('*.py'))
  hashes={str(s):hashlib.sha256(s.read_bytes()).hexdigest() for s in sources}
