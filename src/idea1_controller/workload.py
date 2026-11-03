@@ -85,7 +85,8 @@ class DistributionSnapshot:
         return value
 
 
-def forecasts(public, snapshot, spec, *, decision_seq=None, exact=False):
+def forecasts(public, snapshot, spec, *, decision_seq=None, exact=False, summary_mode='pooled'):
+    if summary_mode not in ('pooled','legacy'):raise ValueError('unknown forecast summary contract')
     allowed = {'group_id', 'prompt_length', 'prompt_sha256', 'library'}
     if not public or any(set(g) != allowed for g in public):
         raise ValueError("public fields only; batch must be nonempty")
@@ -105,7 +106,7 @@ def forecasts(public, snapshot, spec, *, decision_seq=None, exact=False):
     target_hashes = {g['prompt_sha256'] for g in public}
     if snapshot and snapshot.kind == 'offline-calibration-proxy' and any(r.prompt_hash in target_hashes for r in rows):
         raise ValueError("calibration and evaluation prompt overlap")
-    result = {}
+    result = {}; summary_cache = {}
     for g in public:
         ph = g['prompt_sha256']
         # Repeated tasks are not included in the independent fallback pool.
@@ -124,14 +125,23 @@ def forecasts(public, snapshot, spec, *, decision_seq=None, exact=False):
         key = digest([spec.__dict__, snapshot.version if snapshot else None, str(g['group_id']), ph])
         rng = random.Random(key)
         vectors = tuple(pool[rng.randrange(len(pool))].lengths for _ in range(spec.scenarios)) if pool else ((spec.output_max,)*spec.k,)*spec.scenarios
-        work = sorted(sum(v) + max(v) for v in vectors)
+        if summary_mode=='legacy':
+            work=sorted(sum(v)+max(v) for v in vectors)
+        else:
+            # Task-specific samples are independent scenario draws, NOT
+            # evidence that otherwise identical unknown tasks differ in mean.
+            pool_key=(evidence,ph,g['prompt_length']) if evidence=='EXACT_PLUS_GLOBAL' else (evidence,g['library'],(g['prompt_length']-1)//spec.bucket_width) if evidence=='CLASS' else (evidence,)
+            if pool_key not in summary_cache:
+                summary_cache[pool_key]=sorted(sum(r.lengths)+max(r.lengths) for r in pool) if pool else [spec.output_max*(spec.k+1)]
+            work=summary_cache[pool_key]
         q = lambda x: work[max(0, math.ceil(x*len(work))-1)]
         result[str(g['group_id'])] = dict(group_id=str(g['group_id']), prompt_length=g['prompt_length'],
             response_scenarios=vectors, score=statistics.median(work)+.25*(q(.9)-q(.5)),
             q25=q(.25), q75=q(.75), label='unknown', evidence_kind=evidence,
             independent_groups=len({r.prompt_hash for r in pool}),
             truncated_support=any(any(r.truncated) for r in pool),
-            forecast_version=key, source_snapshot=snapshot.version if snapshot else None)
+            forecast_version=key if summary_mode=='legacy' else digest([key,'pooled-point-summary/2']), source_snapshot=snapshot.version if snapshot else None)
+        if summary_mode=='pooled':result[str(g['group_id'])]['score_basis']='pooled conditional distribution; task-specific draws only for scenarios'
     scores = sorted(f['score'] for f in result.values())
     lo, hi = scores[max(0, math.ceil(len(scores)/3)-1)], scores[max(0, math.ceil(2*len(scores)/3)-1)]
     for f in result.values():

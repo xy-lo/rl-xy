@@ -84,3 +84,12 @@ python scripts/report_idea1_workload.py /remote/work/run-4B --output /remote/wor
 ```
 
 规划证据额外由audit_idea1_planning.py重建原始16×K预测，验证评估sample排除、候选版本及native队列绑定；仅对记录的候选分数重新排名，不冒充独立重跑每个候选。
+
+
+## 条件分布点分数版本
+
+默认pooled汇总从整个条件样本池计算score/q25/q75，相同条件的未知任务不因Monte Carlo随机种子而获得虚假的不同点分数。每题仍有独立K向量情景，用于评估真实随机波动；情景不代表提前知道该题答案。预测准入、hard capacity及真实在线历史序列门不变。
+
+旧实验通过显式legacy汇总重放；旧未标记缓存按legacy解释，不能默认命中新pooled合同。新候选、分布绑定及native资源记录包含forecast_summary标签，独立规划审计按标签重建。受控alpha1的4B新旧数值控制字段、TP/DP、队列与cap已逐项比较一致；快照及缓存身份有意不同。当前原生TUNE训练顺序消融仍使用冻结的v5源，不能把这次API修正混作其性能收益。
+
+legacy只是历史点分数与种子的兼容选择，不代表旧控制器。新接口可用--forecast-summary legacy明确复现旧信息处理；未使用同题历史的默认路径采用pooled。

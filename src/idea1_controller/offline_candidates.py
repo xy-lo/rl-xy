@@ -7,21 +7,23 @@ from copy import deepcopy
 from .workload import digest
 
 
-def freeze_candidates(public, snapshot, catalog_sha, result):
+def freeze_candidates(public, snapshot, catalog_sha, result, *, forecast_summary='pooled'):
+    if forecast_summary not in ('pooled','legacy'):raise ValueError('unsupported forecast summary contract')
     if not result['winner']['passed']:
         raise ValueError('unvalidated offline winner')
-    value = dict(schema='idea1.offline-candidates/1', public_digest=digest(public),
+    value = dict(schema='idea1.offline-candidates/1', forecast_summary=forecast_summary, public_digest=digest(public),
         distribution_version=snapshot.version if snapshot else None,
         catalog_sha256=catalog_sha, result=deepcopy(result))
     value['artifact_digest'] = digest(value)
     return value
 
 
-def select_precomputed(artifact, public, snapshot, catalog_sha, *, admit, fallback):
+def select_precomputed(artifact, public, snapshot, catalog_sha, *, admit, fallback, forecast_summary='pooled'):
     raw = {k:v for k,v in artifact.items() if k != 'artifact_digest'}
     if digest(raw) != artifact.get('artifact_digest'):
         raise ValueError('offline artifact digest mismatch')
-    if (artifact['public_digest'] != digest(public) or
+    if (artifact.get('forecast_summary','legacy') != forecast_summary or
+        artifact['public_digest'] != digest(public) or
         artifact['distribution_version'] != (snapshot.version if snapshot else None) or
         artifact['catalog_sha256'] != catalog_sha):
         return fallback(), 'IDENTITY_MISMATCH'

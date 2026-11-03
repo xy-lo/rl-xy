@@ -39,7 +39,7 @@ def main():
  inf.update(schema='idea1.inference-partition/1',elastic=not inf['paired_tp1'],elastic_data_wait=True,pending_enabled=True,pending_data_wait=True)
  home.update(model=a.model,window=a.window,source_requests_digest=digest(requests),forecasts=forecast,
   plan_id=digest([artifact['artifact_digest'],sorted(ids)]),planning_wall_s=0,
-  workload_distribution_version=artifact['distribution_version'],workload_forecast_digest=digest(forecast),
+  workload_distribution_version=artifact['distribution_version'],workload_forecast_summary=artifact.get('forecast_summary','legacy'),workload_forecast_digest=digest(forecast),
   workload_offline_artifact=artifact['artifact_digest'],planner_source='distribution-controlled-proxy' if result.get('forecast_evidence')=='offline-controlled-same-prompt-proxy' else 'distribution-offline-evaluated-candidates',
   forecast_evidence=result.get('forecast_evidence','offline-calibration-proxy'),
   planning_cost_scope='offline preparation/search and host admission measured separately; not injected as device compute',

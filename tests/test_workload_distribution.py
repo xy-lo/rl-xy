@@ -9,6 +9,24 @@ class WorkloadTests(unittest.TestCase):
         self.rows=tuple(Observation('cal'+str(i),10,'code','source'+str(i),(i+1,)*8,(False,)*8) for i in range(4))
         self.snapshot=DistributionSnapshot.build(self.rows,self.spec,kind='offline-calibration-proxy',source_sha256='source-digest')
         self.public=[dict(group_id='new',prompt_length=12,prompt_sha256='unseen',library='code')]
+    def test_equal_conditions_have_equal_summary_not_sample_noise(self):
+        p=[self.public[0],dict(self.public[0],group_id='new2',prompt_sha256='unseen2')]
+        a=forecasts(p,self.snapshot,self.spec)
+        for key in ('score','q25','q75','label'):
+            self.assertEqual(a['new'][key],a['new2'][key])
+        self.assertNotEqual(a['new']['forecast_version'],a['new2']['forecast_version'])
+        self.assertNotEqual(a['new']['response_scenarios'],a['new2']['response_scenarios'])
+        few=forecasts(p,self.snapshot,replace(self.spec,scenarios=3))
+        self.assertEqual(a['new']['score'],few['new']['score'])
+    def test_old_summary_cache_is_not_new_contract(self):
+        art=freeze_candidates(self.public,self.snapshot,'catalog',dict(winner=dict(passed=True)),forecast_summary='legacy')
+        _,why=select_precomputed(art,self.public,self.snapshot,'catalog',admit=lambda _:True,fallback=lambda:None)
+        self.assertEqual(why,'IDENTITY_MISMATCH')
+        art.pop('forecast_summary')
+        from idea1_controller.workload import digest
+        art['artifact_digest']=digest({k:v for k,v in art.items() if k!='artifact_digest'})
+        _,why=select_precomputed(art,self.public,self.snapshot,'catalog',admit=lambda _:True,fallback=lambda:None,forecast_summary='legacy')
+        self.assertEqual(why,'OFFLINE_CANDIDATE_REVALIDATED')
     def test_roundtrip_and_replay(self):
         snap=DistributionSnapshot.from_dict(self.snapshot.to_dict(),self.spec)
         a=forecasts(self.public,snap,self.spec)

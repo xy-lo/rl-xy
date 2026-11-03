@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts/idea1_layered/legacy'))
 import unittest
 from copy import deepcopy
 from idea1_controller.workload import WorkloadSpec, Observation, DistributionSnapshot

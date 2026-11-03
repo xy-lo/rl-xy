@@ -17,25 +17,29 @@ class ControlledProxySnapshot:
     global_snapshot_id: str
     source_file_sha256: str
     exact_weight: float
+    summary_mode: str = 'legacy'
     kind: str = 'offline-controlled-same-prompt-proxy'
 
     def to_dict(self):
         value=asdict(self)
+        if self.summary_mode=='legacy':value.pop('summary_mode')
         value.update(chronological=False,causality='offline calibration source available before planning; no online actor sequence asserted',
                      source_sample_policy='canonical binding and excluded sample IDs checked per exact prompt')
         return value
 
 
-def controlled_forecasts(public,source,global_snapshot,spec,*,model,config_sha256,source_file_sha256,allow_controlled_proxy=False,exact_weight=.75):
+def controlled_forecasts(public,source,global_snapshot,spec,*,model,config_sha256,source_file_sha256,allow_controlled_proxy=False,exact_weight=.75,summary_mode='pooled'):
     if not allow_controlled_proxy:raise ValueError('controlled proxy requires explicit opt-in')
     if not math.isfinite(exact_weight) or not 0<=exact_weight<=1:raise ValueError('invalid mixture weight')
     if spec.scenarios!=16:raise ValueError('legacy exact proxy has 16 scenarios; other contracts not yet supported')
     if source.get('kind')!='offline-independent-same-prompt-proxy' or source.get('chronological') is not False:raise ValueError('not the declared offline proxy source')
     if 'excluded_sample_ids' not in source:raise ValueError('exact proxy lacks evaluation-sample exclusion proof')
     validate_history(public,source,model,config_sha256)
-    global_predictions=forecasts(public,global_snapshot,spec)
-    snapshot_id=digest([spec.__dict__,source['snapshot_id'],global_snapshot.version if global_snapshot else None,source_file_sha256,exact_weight,'controlled-proxy-not-online'])
-    snapshot=ControlledProxySnapshot(snapshot_id,spec.contract,source['snapshot_id'],global_snapshot.version if global_snapshot else None,source_file_sha256,float(exact_weight))
+    global_predictions=forecasts(public,global_snapshot,spec,summary_mode=summary_mode)
+    identity=[spec.__dict__,source['snapshot_id'],global_snapshot.version if global_snapshot else None,source_file_sha256,exact_weight,'controlled-proxy-not-online']
+    if summary_mode!='legacy':identity.append('pooled-point-summary/2')
+    snapshot_id=digest(identity)
+    snapshot=ControlledProxySnapshot(snapshot_id,spec.contract,source['snapshot_id'],global_snapshot.version if global_snapshot else None,source_file_sha256,float(exact_weight),summary_mode=summary_mode)
     result={}
     for g in public:
         gid=str(g['group_id']);base=global_predictions[gid];rows=source['records'].get(gid,[])
@@ -68,6 +72,7 @@ def controlled_forecasts(public,source,global_snapshot,spec,*,model,config_sha25
                    evidence_kind='OFFLINE_EXACT_PROXY_PLUS_GLOBAL',controlled_proxy_exact=True,chronological=False,exact_independent_prompts=1,exact_joint_vectors=len(usable),
                    source_snapshot=snapshot.version,forecast_version=digest([snapshot.version,gid,vectors]),exact_mixture_weight=exact_weight,
                    provenance='disjoint offline same-prompt draws; not chronological RL history')
+        if summary_mode=='pooled':value['score_basis']='independent same-prompt proxy vectors plus explicitly sampled global mixture'
         if exact_weight==1:
             value['conditional_lengths']=tuple(s['response_length'] for row in usable for s in row['samples'])
             value['conditional_support_kind']='raw disjoint offline samples, K-correlated groups'

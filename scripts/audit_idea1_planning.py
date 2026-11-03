@@ -24,6 +24,7 @@ def audit_planning(native,offline):
     for g in public:
         canonical=prompts[str(g['group_id'])]
         assert (g['prompt_length'],g['prompt_sha256'],g['library'])==(canonical['prompt_length'],canonical['rendered_sha256'],canonical['library'])
+    summary_mode=split.get('forecast_summary','legacy')
     global_raw=load(offline/'global-distribution.json')
     global_snapshot=DistributionSnapshot.from_dict(global_raw,spec) if global_raw else None
     snapshot=load(offline/'distribution.json');saved=load(offline/'forecast.json')
@@ -32,19 +33,20 @@ def audit_planning(native,offline):
         history=json.loads(gzip.decompress(hp.read_bytes()))
         recomputed,pred=controlled_forecasts(public,history,global_snapshot,spec,model=model,
             config_sha256=sha(inputs/'config.json'),source_file_sha256=sha(hp),
-            allow_controlled_proxy=True,exact_weight=snapshot['exact_weight'])
+            allow_controlled_proxy=True,exact_weight=snapshot['exact_weight'],summary_mode=summary_mode)
         assert recomputed.to_dict()==snapshot and snapshot['chronological'] is False
         used={g:{s['sample'] for row in history['records'].get(g,[]) for s in row['samples']} for g in gids}
         assert all(x['sample'] not in used[str(x['group_id'])] for x in trace)
         version=recomputed.version;information='OFFLINE_CONTROLLED_SAME_PROMPT_PROXY'
     else:
         obj=DistributionSnapshot.from_dict(snapshot,spec) if snapshot else None
-        pred=forecasts(public,obj,spec);version=obj.version if obj else None
+        pred=forecasts(public,obj,spec,summary_mode=summary_mode);version=obj.version if obj else None
         information='INDEPENDENT_CALIBRATION' if obj else 'HARD_LIMIT_FALLBACK'
     assert digest(pred)==digest(saved),'forecast cannot be reconstructed from declared independent inputs'
     artifact=load(offline/'offline-candidates.json')
     assert digest({k:v for k,v in artifact.items() if k!='artifact_digest'})==artifact['artifact_digest']
     assert artifact['public_digest']==digest(public) and artifact['distribution_version']==version
+    assert artifact.get('forecast_summary','legacy')==summary_mode
     catalog=ROOT/f'experiments/2026-11-03-idea1-elastic/assets/inference-catalog-{model}.json'
     assert artifact['catalog_sha256']==sha(catalog)
     selected=artifact['result'];winner=selected['winner'];mode=selected['mode']
@@ -54,6 +56,7 @@ def audit_planning(native,offline):
     home=selected['training'];native_home=load(native/'resource-layout.json');inf=selected['inference'];native_inf=load(native/'inference-layout.json')
     assert native_home['workload_offline_artifact']==artifact['artifact_digest']
     assert native_home['workload_distribution_version']==version
+    assert native_home.get('workload_forecast_summary','legacy')==summary_mode
     assert native_home['workload_forecast_digest']==digest(saved)
     assert digest(native_home['forecasts'])==digest(saved)
     for name in ('queues','region_members'):assert digest(home[name])==digest(native_home[name])
