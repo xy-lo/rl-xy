@@ -21,8 +21,9 @@ def verify_bundle(root,require_final=False):
         assert proof['files']==expected and proof['checked_files']==len(expected)==187
         for name,value in expected.items():assert sha(root/proof['prefix']/name)==value
     reports=[]
-    with tempfile.TemporaryDirectory() as tmp:
-        for case in m['cases']:
+    assert len({c['id'] for c in m['cases']})==len(m['cases'])
+    for case in m['cases']:
+        with tempfile.TemporaryDirectory() as tmp:
             ident=Path(case['id']);archive=Path(case['archive'])
             assert len(ident.parts)==1 and not ident.is_absolute() and case['id'] not in ('.','..')
             assert not archive.is_absolute() and '..' not in archive.parts
@@ -47,6 +48,14 @@ def verify_bundle(root,require_final=False):
                 path=Path(path);assert not path.is_absolute() and '..' not in path.parts
                 assert sha(run/path)==source_hashes[key]
             cmd=load(run/'command.json')
+            assert case['model']==cmd['model']==load(run/'result.json')['model'].removeprefix('Qwen3-')
+            assert case['window']==load(run/'result.json')['window']
+            if (dst/'planning/offline').exists():
+                from audit_idea1_planning import audit_planning
+                planning_report=audit_planning(run,dst/'planning/offline')
+                assert planning_report==load(dst/'planning/audit.json')
+            else:
+                assert case['kind']!='final','final planning provenance missing'
             trace=Path(cmd['trace_path'])
             assert not trace.is_absolute() and '..' not in trace.parts
             assert sha(ROOT/trace)==cmd['trace_sha256']

@@ -53,8 +53,8 @@ def main():
             if sha(source)!=digest:raise ValueError('cost source changed '+name)
             target=a.output/prefix/name;target.parent.mkdir(exist_ok=True,parents=True);shutil.copy2(source,target)
         manifest['cost_proofs'][model]=dict(prefix=str(prefix),files=expected,checked_files=len(expected))
-    with tempfile.TemporaryDirectory() as tmp:
-        for case in spec['cases']:
+    for case in spec['cases']:
+        with tempfile.TemporaryDirectory() as tmp:
             original=Path(case['run']);result=load(original/'result.json')
             if result['native_exit_status']!=0 or result['completed']!=result['trained_samples']:
                 raise ValueError('incomplete native case '+case['id'])
@@ -67,6 +67,15 @@ def main():
                 if source.is_symlink():raise ValueError('symlink in evidence '+str(source))
             shutil.copytree(original,run)
             changes=relocate(run,original)
+            if case.get('offline_plan'):
+                planning=dst/'planning/offline';planning.mkdir(parents=True)
+                for name in ('public.json','global-distribution.json','distribution.json','forecast.json','split-manifest.json','offline-candidates.json','result.json'):
+                    shutil.copy2(Path(case['offline_plan'])/name,planning/name)
+                from audit_idea1_planning import audit_planning
+                planning_audit=audit_planning(run,planning)
+                (dst/'planning/audit.json').write_text(json.dumps(planning_audit,indent=2))
+            elif case['kind']=='final':
+                raise ValueError('final case requires complete offline planning provenance')
             after=check(run);assert after['status']==before['status']
             identities={}
             for path in sorted(dst.rglob('*')):
@@ -74,7 +83,7 @@ def main():
             archive=a.output/'evidence'/(case['id']+'.tar.gz')
             with tarfile.open(archive,'w:gz',compresslevel=6) as tar:
                 for name in identities:tar.add(dst/name,arcname=name,recursive=False)
-            meta={k:v for k,v in case.items() if k!='run'}
+            meta={k:v for k,v in case.items() if k not in ('run','offline_plan')}
             meta.update(model=result['model'].removeprefix('Qwen3-'),window=result['window'],
                 total_device_s=result['total_s'],archive=str(archive.relative_to(a.output)),files=identities,
                 relocation=changes,audit_status=before['status'],binary_sha256=result['binary_sha256'])

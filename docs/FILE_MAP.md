@@ -606,3 +606,7 @@
 | `tests/test_region_release_placement.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
 | `tests/test_spatial_release.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
 | `tests/test_workload_distribution.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `scripts/audit_idea1_planning.py` | 从原始校准/同题样本重建预测、排除评估样本并审计候选及native绑定 |
+| `scripts/report_idea1_workload.py` | 从审计后的native事件重建时间点及逐die状态表 |
+| `src/idea1_controller/state_report.py` | 物理54die守恒及训练helper子集的角色采样 |
+| `tests/test_state_report.py` | 角色时间边界、原生list序列化与helper冲突测试 |

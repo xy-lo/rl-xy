@@ -5,7 +5,7 @@ No configuration is selected using final-window response lengths or timing.
 Failures preserve logs and require diagnosis; no automatic benchmark weakening.
 GitHub publication follows human/agent review, outside this dispatcher.
 """
-import argparse,json,os,time,subprocess,hashlib,fcntl,concurrent.futures
+import argparse,json,os,time,subprocess,hashlib,fcntl,concurrent.futures,re
 from pathlib import Path
 
 def read(path):return json.loads(Path(path).read_text())
@@ -14,7 +14,9 @@ def write(path,value):
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--config',type=Path,required=True);a=p.parse_args();c=read(a.config)
- root=Path(c['evidence_root']);base=root/'final-campaign-01';base.mkdir(exist_ok=True)
+ root=Path(c['evidence_root']);name=c.get('campaign_name','final-campaign-01')
+ if not re.fullmatch('[A-Za-z0-9_-]+',name):raise ValueError('invalid campaign name')
+ base=root/name;base.mkdir(exist_ok=True)
  lock=(base/'dispatcher.lock').open('a+')
  try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
  except BlockingIOError:raise RuntimeError('final dispatcher already active')

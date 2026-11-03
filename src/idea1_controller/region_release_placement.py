@@ -10,7 +10,8 @@ from .placement import largest_remainder
 from .workload import digest
 
 
-def balanced_release_placement(public,forecast,regions,worker_quotas,inference_groups):
+def balanced_release_placement(public,forecast,regions,worker_quotas,inference_groups,*,training_queue_order='history_long_first'):
+    if training_queue_order not in ('history_long_first','input'):raise ValueError('unknown training queue order')
     ids=[str(g['group_id']) for g in public];index={g:i for i,g in enumerate(ids)}
     if len(set(ids))!=len(ids) or set(ids)!=set(forecast):raise ValueError('fixed group/forecast mismatch')
     regions={int(r):tuple(map(int,ws)) for r,ws in regions.items()}
@@ -42,7 +43,8 @@ def balanced_release_placement(public,forecast,regions,worker_quotas,inference_g
         if islong:longleft[r]-=1
     for g in sorted(longs,key=lambda g:(-score(g),index[g])):put(g,True)
     for g in sorted((g for g in ids if g not in longset),key=lambda g:(-score(g),index[g])):put(g,False)
-    for q in queues.values():q.sort(key=index.get)
+    for q in queues.values():
+        q.sort(key=(lambda g:(-score(g),index[g])) if training_queue_order=='history_long_first' else index.get)
     inference={r:sorted((g for w in ws for g in queues[w]),key=index.get) for r,ws in groups.items()}
     if Counter(g for q in queues.values() for g in q)!=Counter(ids) or Counter(g for q in inference.values() for g in q)!=Counter(ids):raise AssertionError('group conservation')
     if any(len(queues[w])!=quotas[w] for w in workers):raise AssertionError('worker quota changed')
@@ -50,7 +52,7 @@ def balanced_release_placement(public,forecast,regions,worker_quotas,inference_g
         if sum(g in longset for w in ws for g in queues[w])!=longquota[r]:raise AssertionError('regional long quota changed')
     producer={g:r for r,gs in inference.items() for g in gs}
     dependencies={str(r):sorted({owner[w] for w in ws}|{producer[g] for w in ws for g in queues[w]}) for r,ws in regions.items()}
-    proof=dict(policy='PB-balanced-producer-local',region_group_quota={str(r):capacity[r] for r in roots},
+    proof=dict(policy='PB-balanced-producer-local',training_queue_order=training_queue_order,inference_queue_order='stable-public-order',region_group_quota={str(r):capacity[r] for r in roots},
         worker_group_quota={str(w):quotas[w] for w in workers},long_quota_by_region={str(r):longquota[r] for r in roots},
         region_dependencies=dependencies,all_groups_digest=digest(ids),group_to_home_digest=digest({g:region_of[w] for w,q in queues.items() for g in q}),
         scope='forecast load balancing and physical cohort locality; finite heuristic, no global optimum or guaranteed helper claim')

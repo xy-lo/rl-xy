@@ -69,3 +69,18 @@ python scripts/audit_idea1_inference.py /remote/work/run-4B --output /remote/wor
 `scripts/package_idea1_workload.py`按显式case计划复制证据，保留改写文档原始字节和双重身份，归档源代码不改写。`scripts/check_idea1_workload.py BUNDLE --require-final`无需模拟器，重建原生事件、TP/EOS/KV、训练贡献、owner合同并校验187个成本源文件。最终表只引用同模型、同窗口已审计case；功能例、不同信息集和全量结果分开。
 
 完整新构建已在独立远端目录执行成功（131.73秒）；与当前测量后端的3,628个固定C++/CMake源文件逐字节一致，13个packet检查通过。构建目录改变导致二进制SHA不同，两个SHA分别记录，不伪装成同一个二进制。
+
+
+## 训练队列顺序与诊断
+
+PB默认按历史预测score从长到短安排各worker训练队列，推理execution queue仍按原public顺序。home归属、长任务配额和数量保持不变；PS继续冻结PB得到的训练顺序。保留input顺序参数用于消融。固定加和服务代理对部分顺序置换不敏感，但实际微批执行与helper可用时机会改变，因此顺序需要单独的native验证。
+
+旧输入顺序的快速4B完整TUNE原生/审计通过，75.364960s，较旧最佳73.873630s略慢。此性能门未通过，三模型尚未启动；长优先顺序的同配置对照进行中，不将预测不变当成真实等价。
+
+逐die表可由下式重建，训练helper是训练列的子集，不重复加入总数：
+
+```bash
+python scripts/report_idea1_workload.py /remote/work/run-4B --output /remote/work/run-4B-states
+```
+
+规划证据额外由audit_idea1_planning.py重建原始16×K预测，验证评估sample排除、候选版本及native队列绑定；仅对记录的候选分数重新排名，不冒充独立重跑每个候选。

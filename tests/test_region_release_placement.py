@@ -7,6 +7,18 @@ class ReleasePlacementTests(unittest.TestCase):
   public=[dict(group_id=str(i)) for i in range(8)]
   f={str(i):dict(score=100 if i<4 else 1,label='proxy-long' if i<4 else 'ordinary') for i in range(8)}
   return public,f
+ def test_training_long_first_preserves_home_and_inference_order(self):
+  p,f=self.args();p=[p[i] for i in (4,0,5,1,6,2,7,3)]
+  args=(p,f,{0:[0,1],2:[2,3]},{0:2,1:2,2:2,3:2},{0:[0,1,2,3]})
+  a=balanced_release_placement(*args,training_queue_order='input')
+  b=balanced_release_placement(*args)
+  self.assertEqual(a['execution_queues'],b['execution_queues'])
+  self.assertEqual(a['proof']['group_to_home_digest'],b['proof']['group_to_home_digest'])
+  self.assertNotEqual(a['queues'],b['queues'])
+  for worker in a['queues']:
+   self.assertEqual(Counter(a['queues'][worker]),Counter(b['queues'][worker]))
+   scores=[f[g]['score'] for g in b['queues'][worker]]
+   self.assertEqual(scores,sorted(scores,reverse=True))
  def test_regional_quota_and_no_long_packing(self):
   p,f=self.args();r=balanced_release_placement(p,f,{0:[0,1],2:[2,3]},{0:2,1:2,2:2,3:2},{0:[0],1:[1],2:[2],3:[3]})
   self.assertEqual(r['proof']['long_quota_by_region'],{'0':2,'2':2})
