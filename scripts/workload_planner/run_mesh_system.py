@@ -49,6 +49,7 @@ def main():
     parser.add_argument('--no-early', action='store_true')
     parser.add_argument('--mesh-routing',choices=('xy','adaptive_xy_yx'),default='xy')
     parser.add_argument('--mesh-controller',action='store_true')
+    parser.add_argument('--gradient-routing',choices=('original','sparse-roots'),default='original')
     parser.add_argument('--mesh-telemetry',action='store_true')
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=False)
@@ -270,7 +271,17 @@ def main():
     p=replace(p,cap=max(map(int,infer_caps.values())))
     ctrl = RegionAdapter(ctrl,p,capacity,args.model,out)
     seq = attach(plan, [(r.ranks, [{'repeat': 10000000, 'steps': [ctrl.rpc(w, 'arrive')]}]) for w, r in replicas.items()])
-    suffix = optimizer_plan(op, p)
+    if args.gradient_routing=='sparse-roots':
+        from idea1_controller.gradient_routing import sparse_optimizer_plan
+        suffix,gradient_route=sparse_optimizer_plan(op,p,regions,
+            gradient_restore_peak_bytes=capacity['phase_peak_bytes']['gradient_restore'],
+            capacity_bytes=capacity['capacity_bytes'])
+        if gradient_route['mode']=='sparse-root-rs':
+            capacity['phase_peak_bytes']['optimizer_rs']=gradient_route['capacity']['required_bytes']
+        (out/'capacity.json').write_text(json.dumps(capacity,indent=2)+chr(10))
+        (out/'gradient-route.json').write_text(json.dumps(gradient_route,indent=2)+chr(10))
+    else:
+        suffix = optimizer_plan(op, p)
     for operation in suffix.operations[1:]:
         if operation.kind == 'collective':
             ranks = operation.participant_ranks

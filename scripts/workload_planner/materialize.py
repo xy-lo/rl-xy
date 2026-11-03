@@ -33,6 +33,8 @@ def main():
  home['queues']={str(r):[g for g in gs if g in ids] for r,gs in home['queues'].items()}
  inf['execution_queues']={str(r):[g for g in gs if g in ids] for r,gs in inf['execution_queues'].items()}
  forecast={g:f for g,f in forecast.items() if g in ids}
+ if 'long_quota_by_region' in home:
+  home['long_quota_by_region']={str(r):sum(forecast[g]['label']=='proxy-long' for w in ws for g in home['queues'][str(w)]) for r,ws in home['region_members'].items()}
  # Retain existing online mechanisms, never infer FFN-only support from TP expansion.
  inf.update(schema='idea1.inference-partition/1',elastic=not inf['paired_tp1'],elastic_data_wait=True,pending_enabled=True,pending_data_wait=True)
  home.update(model=a.model,window=a.window,source_requests_digest=digest(requests),forecasts=forecast,

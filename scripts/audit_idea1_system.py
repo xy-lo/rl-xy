@@ -248,7 +248,12 @@ def audit(folder):
     # Preserve owner ordinal for RS/AG. Physical AR rings may be reordered.
     for o in ops:
         if o['collective'] in ('REDUCE_SCATTER', 'ALL_GATHER') and 'dp_' in o['name']:
+            if (folder/'gradient-route.json').exists() and o['collective']=='REDUCE_SCATTER':
+                continue # Verified as exact root order/range coverage below.
             assert o['ranks'] == list(range(o['ranks'][0], 54, 2))
+    if (folder/'gradient-route.json').exists():
+        from audit_idea1_gradient_route import audit_gradient_route
+        audit_gradient_route(folder,ops,regions,capacity)
     # Integrate dynamic roles only on the dynamic interval. Prefix/suffix are
     # separately labelled; final optimizer service must never count as idle.
     integrals = defaultdict(float)
