@@ -11,6 +11,7 @@ from idea1_controller.workload import digest
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--offline-run',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+ p.add_argument('--training-ready-order',choices=['input','ready_lpt'],default='input')
  p.add_argument('--model',default='4B');p.add_argument('--window',default='tune');p.add_argument('--subset-prompts',type=int,default=0)
  a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
  artifact=json.loads((a.offline_run/'offline-candidates.json').read_text())
@@ -44,6 +45,8 @@ def main():
   forecast_evidence=result.get('forecast_evidence','offline-calibration-proxy'),
   planning_cost_scope='offline preparation/search and host admission measured separately; not injected as device compute',
   training_help_admission='region-ready',helper_domains=home['region_members'])
+ if a.training_ready_order!='input':
+  home['training_ready_order']=a.training_ready_order;home['plan_id']=digest([home['plan_id'],a.training_ready_order])
  (a.output/'selected-plan.json').write_text(json.dumps(home,indent=2))
  (a.output/'inference-layout.json').write_text(json.dumps(inf,indent=2))
  (a.output/'forecast.json').write_text(json.dumps(forecast))

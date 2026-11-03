@@ -145,9 +145,20 @@ def check(folder):
         for key,value in values.items():
             got=actual[str(rank)][key]
             assert math.isclose(got,value,rel_tol=2e-11,abs_tol=.1),(rank,key,got,value)
+    training_layout=load(folder/'resource-layout.json')
+    ready_order=training_layout.get('training_ready_order','input')
+    assert ready_order in ('input','ready_lpt')
+    if ready_order=='ready_lpt':
+        manifest=load(folder/'training-batches.json');tickets=load(folder/'training-ticket-events.json')
+        homes={int(x['home']) for x in manifest.values()}
+        for region in homes:
+            observed=[x['batch_id'] for x in tickets if x['region']==region]
+            expected_ids=sorted((bid for bid,x in manifest.items() if x['home']==region),
+                key=lambda bid:(-manifest[bid]['estimate_local_ns'],manifest[bid]['index']))
+            assert observed==expected_ids,('ready LPT ticket order',region)
     return dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT',base=base,inference_programs=len(events),
         initial_inference_instances=54 if layout.get('paired_tp1') else len(initial),initial_tp_counts={1:54} if layout.get('paired_tp1') else dict(Counter(len(ws)*2 for ws in initial.values())),
-        native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
+        training_ready_order=ready_order,native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
         kv_storage_hazard_checked=True,
         pending_input_fanout_checked=True,
         pending_resize_exclusion_checked=True,

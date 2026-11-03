@@ -616,3 +616,5 @@
 | `tests/test_placement_services.py` | TP服务单位、prompt成本、条件池平均和未知题等条件约束 |
 
 | `tests/test_final_campaign.py` | 仅TUNE选择、完整peer等待、审计失败与原性能门不放宽的接续测试 |
+
+| `tests/test_ready_training_order.py` | 已知序列形状的LPT批顺序保持优势/梯度边界、样本与票据身份，默认路径完全保留 |
