@@ -37,7 +37,8 @@ def main():
     parser.add_argument('--inference-layout',type=Path,required=True)
     parser.add_argument('--assignment',type=Path,required=True)
     parser.add_argument('--resource-layout',type=Path,required=True)
-    parser.add_argument('--history',type=Path,required=True)
+    parser.add_argument('--history',type=Path)
+    parser.add_argument('--workload-forecast',type=Path)
     parser.add_argument('--rollout-cap',type=int,default=0)
     parser.add_argument('--fast-cost-validation',type=Path)
     parser.add_argument('--window',choices=('tune','test1','test2','test3','test4'),default='test1')
@@ -195,10 +196,22 @@ def main():
     ctrl.init_actor_views()
     ctrl.evidence_output=out
     ctrl.init_adaptive(record_bound)
-    frozen_history=json.loads(args.history.read_text())
-    assert frozen_history['model']==args.model
-    ctrl.init_history_help(frozen_history)
-    ctrl.resource_layout['helper_history_snapshot_id']=frozen_history['snapshot_id']
+    if bool(args.history)==bool(args.workload_forecast):
+        raise ValueError('select exactly one helper information source')
+    if args.workload_forecast:
+        predicted=json.loads(args.workload_forecast.read_text())
+        if digest(predicted)!=assignment.get('workload_forecast_digest'):
+            raise ValueError('runtime forecast identity mismatch')
+        if set(predicted)!={str(x['group_id']) for x in requests}:
+            raise ValueError('runtime forecast must cover fixed batch')
+        ctrl.init_workload_help(predicted)
+        ctrl.resource_layout['helper_history_snapshot_id']=assignment['workload_distribution_version']
+        ctrl.resource_layout['helper_prediction_kind']='calibration-distribution-forecast'
+    else:
+        frozen_history=json.loads(args.history.read_text())
+        assert frozen_history['model']==args.model
+        ctrl.init_history_help(frozen_history)
+        ctrl.resource_layout['helper_history_snapshot_id']=frozen_history['snapshot_id']
     ctrl.resource_layout=dict(ctrl.resource_layout,execution_backend='complete-system-native-v1',gradient_arena='compact then restore after activation release',training_microbatch_max_by_region={str(r):(p.train_mb if len(ws)==1 else min(8,p.train_mb*len(ws)*2)) for r,ws in regions.items()})
     (out/'resource-layout.json').write_text(json.dumps(ctrl.resource_layout,indent=2)+'\n')
     ctrl.resource_layout['parameter_schema_sha256']=ctrl.coordinates.schema_digest

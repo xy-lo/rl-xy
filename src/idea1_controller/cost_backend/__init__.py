@@ -1,4 +1,5 @@
 """Optional bit-exact host acceleration of the frozen FIFO event oracle."""
+import shutil
 import ctypes as C
 import hashlib,subprocess,sys,json,time,os,types
 from pathlib import Path
@@ -11,11 +12,15 @@ class Result(C.Structure):_fields_=[(k,C.c_double) for k in ('ns','busy','work')
 
 def build(folder):
     source=Path(__file__).with_name('fluid.cpp');sha=hashlib.sha256(source.read_bytes()).hexdigest();folder=Path(folder)/sha;folder.mkdir(parents=True,exist_ok=True)
+    compiler=os.environ.get('CXX') or shutil.which('clang++') or shutil.which('g++')
+    if not compiler:raise RuntimeError('C++17 compiler required for optional host accelerator')
+    version=subprocess.check_output([compiler,'--version'],text=True).splitlines()[0]
+    folder=folder/hashlib.sha256((compiler+version).encode()).hexdigest();folder.mkdir(exist_ok=True)
     flags=['-std=c++17','-O3','-fno-fast-math','-ffp-contract=off','-shared','-fPIC'];lib=folder/('fluid.dylib' if sys.platform=='darwin' else 'fluid.so')
     if not lib.exists():
-        tmp=lib.with_suffix('.'+str(os.getpid())+'.tmp');subprocess.run(['clang++',*flags,str(source),'-o',str(tmp)],check=True,capture_output=True);tmp.replace(lib)
+        tmp=lib.with_suffix('.'+str(os.getpid())+'.tmp');subprocess.run([compiler,*flags,str(source),'-o',str(tmp)],check=True,capture_output=True);tmp.replace(lib)
     api=C.CDLL(str(lib));fn=api.idea1_fluid_gemm;fn.argtypes=[C.POINTER(Problem),C.POINTER(Core),C.c_int,C.POINTER(Hardware),C.POINTER(Result),C.c_char_p];fn.restype=C.c_int
-    return fn,dict(cpp_sha256=sha,binary_sha256=hashlib.sha256(lib.read_bytes()).hexdigest(),compiler='clang++',flags=flags,scope='host event implementation only; frozen mathematical streams and hardware rates unchanged')
+    return fn,dict(cpp_sha256=sha,binary_sha256=hashlib.sha256(lib.read_bytes()).hexdigest(),compiler=Path(compiler).name,compiler_version=version,flags=flags,scope='host event implementation only; frozen mathematical streams and hardware rates unchanged')
 
 def result_for(fn,p,hw,parts,load,store):
     descriptors=(Core*len(parts))(*(Core(c,ext[1],ext[3],ext[5],*mp.tile) for c,ext,mp in parts))
@@ -32,6 +37,7 @@ def install(op,folder,validation):
     if validation.get('status')!='PASS_EXACT_ALL_FIELDS':raise ValueError('host acceleration not validated')
     fn,identity=build(folder)
     assert validation['identity']['cpp_sha256']==identity['cpp_sha256']
+    if validation['identity']['compiler']!=identity['compiler']:raise ValueError('host compiler changed: revalidate against Python event reference')
     import timeline_provider as provider_module
     def compute(self,p,hw):
         parts=provider_module.capacity_partition(p,hw) if hw.cores_per_die>1 else ((0,(0,p.batches,0,p.m,0,p.n),provider_module.choose_os_mapping(p,hw.sram_bytes_per_core)),)

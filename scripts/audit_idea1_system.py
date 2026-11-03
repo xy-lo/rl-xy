@@ -43,7 +43,14 @@ def audit(folder):
     owner_region = {w: r for r, ws in regions.items() for w in ws}
     group_region = {g: owner_region[w] for w, q in queues.items() for g in q}
     if plan.get('forecasts'):
-        for r, quota in plan['long_quota_by_region'].items():
+        # Distribution-only resource planning does not yet claim mechanism-2
+        # regional long quotas. Keep the old policy's required proof unchanged.
+        if plan.get('planner_source')=='distribution-offline-evaluated-candidates':
+            assert set(plan['forecasts'])==set(group_region)
+            assert all(f['evidence_kind'] in ('CLASS','GLOBAL','DEFAULT','EXACT_PLUS_GLOBAL') for f in plan['forecasts'].values())
+            quotas=plan.get('long_quota_by_region',{})
+        else:quotas=plan['long_quota_by_region']
+        for r, quota in quotas.items():
             quota_regions={int(k):v for k,v in plan.get('helper_domains',plan['region_members']).items()}
             assert sum(plan['forecasts'][g]['label'] == 'proxy-long' for w in quota_regions[int(r)] for g in queues[w]) == quota
     # Verify copied source bytes, independent of the live development tree.

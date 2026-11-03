@@ -24,8 +24,13 @@ class HistoricalHelper:
 class HistoricalAdaptiveKernel(PackedPending,HistoricalHelper,CoordinateKernel):
     def init_history_help(self,history):
         self.helper_history={str(g):tuple(sorted(s['response_length'] for r in records for s in r['samples'])) for g,records in history['records'].items()}
+    def init_workload_help(self,forecasts):
+        # These are sampled forecasts, never actual same-task observations.
+        self.helper_history={str(g):tuple(sorted(int(n) for v in f['response_scenarios'] for n in v)) for g,f in forecasts.items()}
+        self.helper_prediction_kind='calibration-distribution-forecast'
     def init_adaptive(self,record_reserve):
         super().init_adaptive(record_reserve);self.memory=PowerOfTwoMemory(self.op,record_reserve)
 
 class HistoricalFullKernel(PackedPending,HistoricalHelper,FullLayerKernel):
     init_history_help=HistoricalAdaptiveKernel.init_history_help
+    init_workload_help=HistoricalAdaptiveKernel.init_workload_help

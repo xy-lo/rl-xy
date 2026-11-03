@@ -1,0 +1,41 @@
+{
+  "scope": "bounded message-level XY/YX, no in-flight rerouting; O(1) actual FIFO and declared-message counters; all original scheduler rates unchanged",
+  "files": {
+    "extern/network_backend/analytical/include/astra-network-analytical/congestion_aware/Link.h": {
+      "base_sha256": "ae2fc32a80bc315b8d452561b149f54ab2b5437d00befa3c6bef9fccb29e28fa",
+      "new_sha256": "688be063ab6331010ce809d7530fb8cba9146313676283c5d1ffbbd9bce800e9"
+    },
+    "extern/network_backend/analytical/congestion_aware/network/Link.cpp": {
+      "base_sha256": "4065a00f913014e89a8b114cdd5c25fce4112275c6ef4fdfe86642597a056c09",
+      "new_sha256": "fa4e56a675e920bdd40a4f0e881ac8f461f3df3e6f7899748d9dbe2a628ebaab"
+    },
+    "extern/network_backend/analytical/include/astra-network-analytical/congestion_aware/Device.h": {
+      "base_sha256": "0fc0a21ddcf5baa37938192c93c34a1920488f3aabe5e1150ef7f1859dc7db12",
+      "new_sha256": "137f7d0c32b479501bcf51a11779256b223c1a8dc9b419a159e6d0352d51e584"
+    },
+    "astra-sim/workload/RlxyMesh.hh": {
+      "base_sha256": "a5a14afb759fee65a083adcd501917b848fe4326ceebecc3397dd5b6cd7ed7e6",
+      "new_sha256": "becf9247c013aae91930db552f97420ac1ec5641f16e2b020f70216305f39165"
+    },
+    "astra-sim/network_frontend/analytical/congestion_aware/CongestionAwareNetworkApi.cc": {
+      "base_sha256": "c3cc28e25931fc88aee74fbec0abdbe1283d048399963391044d3983681c31f5",
+      "new_sha256": "e70249ba50b4bc73f0961979abd223dc33db3290d80b6e08eb71641ccdb90c8d"
+    },
+    "astra-sim/workload/RlxySequence.hh": {
+      "base_sha256": "9773507e96f1a244707d12fc09000f02a2216524c99889ead0dd5d051dfcf6b1",
+      "new_sha256": "faafa9462556cd428d651fbe6a039de63efd9579fb0991402570cbc025bb3825"
+    },
+    "astra-sim/network_frontend/analytical/congestion_aware/main.cc": {
+      "base_sha256": "f04d5ca0128ebc495392a57abcc5f8bb3dbe64815c0d9c9e112e899c8d78a100",
+      "new_sha256": "1c8467ef0a1823b363eb6ac3f758eb034a0e13ede0cbc41cd606c4bfebd9adec"
+    },
+    "CMakeLists.txt": {
+      "base_sha256": "cab8f5b0a30a1569b7c68413b87df278915e03c04badf68ae7e78a9c398cd707",
+      "new_sha256": "59e5d966db8bc72bd124a67def27bdc101937d67918deb4433e25eafd24f5e8c"
+    },
+    "build/astra_analytical/packet_fixture.cc": {
+      "base_sha256": "a9fad26525474fd746967b4bdb29f95f762e6f76eff0d8661d5c777989640e53",
+      "new_sha256": "012d2c3823687d4bcbf20c89aec135dea5dbfd1766e62667c26b983e1091f126"
+    }
+  }
+}
