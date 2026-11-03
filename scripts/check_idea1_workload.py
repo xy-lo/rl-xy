@@ -7,6 +7,27 @@ ROOT=Path(__file__).resolve().parents[1]
 load=lambda p:json.loads(Path(p).read_text())
 sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
+def verify_comparison(comparison,final,baseline_path):
+    """Bind every published baseline column and unique model row, not just speedup."""
+    import csv
+    assert comparison['status']=='FINAL_NATIVE_RESULTS_READY_FOR_REVIEW'
+    rows=comparison['comparison']
+    keys={(c['model'],c['window']) for c in final}
+    assert len(rows)==len(keys)==3
+    assert {(x['model'],x['window']) for x in rows}==keys
+    assert comparison['baseline_csv_sha256']==sha(baseline_path)
+    with Path(baseline_path).open() as stream:old=list(csv.DictReader(stream))
+    fields={'gpu_s':'gpu_s','h0_s':'h0_s','original_generation_s':'original_generation_s',
+            'previous_innovation3_s':'previous_innovation3_s','old_complete_system_device_s':'device_s'}
+    for row in rows:
+        case=next(c for c in final if c['model']==row['model'] and c['window']==row['window'])
+        baseline=next(x for x in old if x['model']==row['model'] and x['window']==row['window'])
+        assert math.isfinite(row['device_s']) and row['device_s']>0
+        assert row['device_s']==case['total_device_s']
+        for output,source in fields.items():assert row[output]==float(baseline[source]),output
+        assert math.isclose(row['speedup_gpu_device'],row['gpu_s']/row['device_s'],rel_tol=1e-12)
+        assert math.isclose(row['reduction_old_complete_device'],1-row['device_s']/row['old_complete_system_device_s'],rel_tol=1e-12)
+
 def verify_bundle(root,require_final=False):
     root=Path(root);m=load(root/'bundle-manifest.json')
     assert m['schema']=='idea1.portable-workload-evidence/1'
@@ -71,17 +92,14 @@ def verify_bundle(root,require_final=False):
         assert all(c['expected_answers']==1536 for c in final)
         assert set(m['cost_proofs'])=={'4B','8B','14B'}
         comparison=load(root/'comparison.json')
-        assert comparison['status']=='FINAL_NATIVE_RESULTS_READY_FOR_REVIEW'
-        assert len(comparison['comparison'])==3
-        import csv
-        old=list(csv.DictReader((ROOT/'experiments/2026-11-03-idea1-elastic/comparison.csv').open()))
+        verify_comparison(comparison,final,ROOT/'experiments/2026-11-03-idea1-elastic/comparison.csv')
         for row in comparison['comparison']:
-            case=next(c for c in final if c['model']==row['model'])
-            baseline=next(r for r in old if r['model']==row['model'] and r['window']==row['window'])
-            assert row['device_s']==case['total_device_s']
-            assert row['gpu_s']==float(baseline['gpu_s']) and row['old_complete_system_device_s']==float(baseline['device_s'])
-            assert math.isclose(row['speedup_gpu_device'],row['gpu_s']/row['device_s'],rel_tol=1e-12)
-            assert math.isclose(row['reduction_old_complete_device'],1-row['device_s']/row['old_complete_system_device_s'],rel_tol=1e-12)
+            deployment=load(root/'deployment'/ (row['model']+'.json'))
+            assert deployment['model']==row['model'] and deployment['window']==row['window']
+            assert row['planning_host_s']==deployment['host_wall_s']
+            assert math.isfinite(row['planning_host_s']) and row['planning_host_s']>0
+            assert all(x['returncode']==0 and x['wall_s']>=0 for x in deployment['phases'])
+            assert deployment['host_wall_s']>=sum(x['wall_s'] for x in deployment['phases'])
     return dict(status='PASS_PORTABLE_WORKLOAD_SYSTEM_EVIDENCE',final=m['final'],cases=reports,cost_models=sorted(m['cost_proofs']),scope='trace/cost timing simulation; not Transformer numerical training, learning quality or hardware calibration')
 
 def main():

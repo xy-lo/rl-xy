@@ -620,3 +620,5 @@
 | `tests/test_ready_training_order.py` | 已知序列形状的LPT批顺序保持优势/梯度边界、样本与票据身份，默认路径完全保留 |
 
 | `tests/test_late_region_batching.py` | 全局EOS观察门、晚启动区域细批、早区域及teacher不变和样本守恒 |
+
+| `tests/test_workload_comparison.py` | 最终同窗表的全基线列、唯一模型、基线哈希与设备比值篡改负例。 |
