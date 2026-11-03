@@ -1,3 +1,5 @@
+> **开发中的工作负载分布与 Mesh 优化：** [接口、运行合同与复现入口](docs/IDEA1_WORKLOAD.md)，[分阶段验收计划](docs/idea1-workload-system-plan.md)。完整三模型验收尚在进行，中间结果不替代下述冻结实验。
+
 > **当前完整Idea1系统：** [动态推理TP、独立训练区域与运行时协作](docs/IDEA1_ELASTIC.md)。4B/8B/14B两个窗口均完成同版原生复跑；TP搜索、逐die状态和独立审计见[动态TP实验](experiments/2026-11-03-idea1-elastic/README.md)。test1整步69.320/104.707/153.399秒，含一次Mac规划代理；固定成本仿真，实体硬件与学习质量尚未验证。
 
 > **固定推理TP2阶段对照：** [资源规划、历史放置与运行时协作](docs/IDEA1_COMPLETE.md)。三模型、两窗口均完成原生复跑；完整表格、逐die状态和独立审计见[实验结果](experiments/2026-11-03-idea1-complete/README.md)。test1整步75.669/113.578/173.028秒，含一次Mac规划代理；固定成本仿真，实体硬件与学习质量尚未验证。
