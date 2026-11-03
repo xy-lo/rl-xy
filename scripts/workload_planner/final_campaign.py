@@ -26,6 +26,9 @@ def select_tune_policy(root,variants,ceiling):
   assert tune['model'] in ('4B','Qwen3-4B') and tune['window']=='tune','selection must not use final-window timing'
   ready_order=variant.get('training_ready_order','input')
   assert ready_order in ('input','ready_lpt')
+  cap=variant.get('late_region_batch_cap',0)
+  assert type(cap) is int and cap in (0,1,2,4)
+  assert read(root/run_name/'native-run/resource-layout.json').get('late_region_batch_cap_per_pair',0)==cap
   assert read(root/run_name/'native-run/resource-layout.json').get('training_ready_order','input')==ready_order
   assert tune['requests']==tune['completed']==tune['trained_samples']==1536 and tune['capacity_passed']
   assert read(root/run_name/'inference-audit.json')['status']=='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT'
@@ -92,7 +95,7 @@ def main():
    if 'offline_plan' in variant:
     proof=audit_planning(root/variant['run']/'native-run',Path(variant['offline_plan']))
     write(base/(variant['run']+'-planning-audit.json'),proof)
-  selected_home=chosen.get('home_policy','score');selected_mode=chosen.get('planner_mode',c['planner_mode']);selected_order=chosen.get('training_ready_order','input')
+  selected_home=chosen.get('home_policy','score');selected_mode=chosen.get('planner_mode',c['planner_mode']);selected_order=chosen.get('training_ready_order','input');selected_cap=chosen.get('late_region_batch_cap',0)
   stress=root/c['training_stress_run']/'native-run'
   events=read(stress/'mesh-coordination-events.json')
   if not any(e['kind']=='training-proposed' for e in events):raise RuntimeError('training mesh selection not exercised')
@@ -113,7 +116,7 @@ def main():
    folder=base/(model+'-test1');folder.mkdir(exist_ok=False)
    cost=cost14 if model=='14B' else Path(c['cost4_root'])
    env=dict(envbase,RLXY_COST_ROOT=str(cost),PYTHONPATH=str(cost/'src'))
-   args=[python,source/'scripts/workload_planner/plan_system.py','--model',model,'--window','test1','--mode',selected_mode,'--home-policy',selected_home,'--training-ready-order',selected_order,
+   args=[python,source/'scripts/workload_planner/plan_system.py','--model',model,'--window','test1','--mode',selected_mode,'--home-policy',selected_home,'--training-ready-order',selected_order,'--late-region-batch-cap',selected_cap,
     '--forecast-mode','controlled-proxy','--allow-controlled-proxy','--proxy-weight','1','--output',folder/'plan']
    run(args,folder,'planning',env)
    deploy=read(folder/'plan/deployment.json');files=deploy['files']

@@ -11,6 +11,7 @@ from idea1_controller.workload import digest
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--offline-run',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+ p.add_argument('--late-region-batch-cap',type=int,choices=[0,1,2,4],default=0)
  p.add_argument('--training-ready-order',choices=['input','ready_lpt'],default='input')
  p.add_argument('--model',default='4B');p.add_argument('--window',default='tune');p.add_argument('--subset-prompts',type=int,default=0)
  a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
@@ -47,6 +48,8 @@ def main():
   training_help_admission='region-ready',helper_domains=home['region_members'])
  if a.training_ready_order!='input':
   home['training_ready_order']=a.training_ready_order;home['plan_id']=digest([home['plan_id'],a.training_ready_order])
+ if a.late_region_batch_cap:
+  home['late_region_batch_cap_per_pair']=a.late_region_batch_cap;home['plan_id']=digest([home['plan_id'],'late-region-batch-cap',a.late_region_batch_cap])
  (a.output/'selected-plan.json').write_text(json.dumps(home,indent=2))
  (a.output/'inference-layout.json').write_text(json.dumps(inf,indent=2))
  (a.output/'forecast.json').write_text(json.dumps(forecast))

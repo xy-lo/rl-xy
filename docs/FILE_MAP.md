@@ -618,3 +618,5 @@
 | `tests/test_final_campaign.py` | 仅TUNE选择、完整peer等待、审计失败与原性能门不放宽的接续测试 |
 
 | `tests/test_ready_training_order.py` | 已知序列形状的LPT批顺序保持优势/梯度边界、样本与票据身份，默认路径完全保留 |
+
+| `tests/test_late_region_batching.py` | 全局EOS观察门、晚启动区域细批、早区域及teacher不变和样本守恒 |

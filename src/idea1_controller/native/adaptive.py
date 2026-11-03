@@ -19,10 +19,21 @@ class AdaptiveKernel(CachedCompleteKernel):
         # K remains8. Max training batch8 avoids crossing unrelated groups in
         # this first implementation and preserves small frozen TP2 batches.
         if stage=='training':maximum=min(8,maximum) if tp>2 else self.train_mb
+        cap=getattr(self,'resource_layout',{}).get('late_region_batch_cap_per_pair',0)
+        original_maximum=maximum
+        late=bool(cap and stage=='training' and len(self.done)==len(self.ids))
+        # The complete rollout state is observed here. Early regions retain
+        # their original batch efficiency; late regions create finer atomic
+        # jobs so a busy donor reaches helper dispatch points sooner.
+        if late:maximum=min(maximum,cap*factor)
         for batch in self.memory.batches(items,stage,tp,maximum):
             proof=asdict(self.memory.phase(stage,tp,batch));assert proof['peak_bytes']<=self.op.capacity
             self.allocation_events.append(dict(certificate_tick=self.tick,region=self.targets[batch[0]['trajectory_id']],stage=stage,tp=tp,items=[x['trajectory_id'] for x in batch],**proof))
-            self.mb_choices.append(dict(stage=stage,tp=tp,maximum=maximum,actual=len(batch)))
+            choice=dict(stage=stage,tp=tp,maximum=maximum,actual=len(batch))
+            if cap and stage=='training':
+                choice.update(late_region_cap_eligible=late,late_region_cap_applied=late and maximum<original_maximum,original_maximum=original_maximum,decision_tick=self.tick,
+                    region=self.targets[batch[0]['trajectory_id']],global_rollout_complete=len(self.done)==len(self.ids))
+            self.mb_choices.append(choice)
             yield batch
 
     def _build_region_program(self,r):

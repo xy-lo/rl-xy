@@ -156,9 +156,24 @@ def check(folder):
             expected_ids=sorted((bid for bid,x in manifest.items() if x['home']==region),
                 key=lambda bid:(-manifest[bid]['estimate_local_ns'],manifest[bid]['index']))
             assert observed==expected_ids,('ready LPT ticket order',region)
+    late_cap=training_layout.get('late_region_batch_cap_per_pair',0)
+    assert type(late_cap) is int and late_cap in (0,1,2,4)
+    applied=0
+    if late_cap:
+        generation_end=load(folder/'result.json')['generation_end_tick']
+        choices=load(folder/'microbatch-choices.json')
+        for choice in choices:
+            if choice['stage']!='training':continue
+            assert 'late_region_cap_applied' in choice
+            if choice['late_region_cap_eligible']:
+                assert choice['global_rollout_complete'] and choice['decision_tick']>=generation_end
+                assert choice['actual']<=choice['maximum']<=late_cap*(choice['tp']//2)
+            if choice['late_region_cap_applied']:
+                applied+=1
+                assert choice['late_region_cap_eligible'] and choice['maximum']<choice['original_maximum']
     return dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT',base=base,inference_programs=len(events),
         initial_inference_instances=54 if layout.get('paired_tp1') else len(initial),initial_tp_counts={1:54} if layout.get('paired_tp1') else dict(Counter(len(ws)*2 for ws in initial.values())),
-        training_ready_order=ready_order,native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
+        late_region_batch_cap=late_cap,late_region_capped_batches=applied,training_ready_order=ready_order,native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
         kv_storage_hazard_checked=True,
         pending_input_fanout_checked=True,
         pending_resize_exclusion_checked=True,
