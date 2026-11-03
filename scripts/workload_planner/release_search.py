@@ -21,15 +21,21 @@ def search(env,mode):
     forecast=env.injected_forecasts if env.injected_forecasts is not None else {g:asdict(x) for g,x in predict_groups(env.pub,env.history).items()}
     if set(forecast)!=set(env.public) or any(len(f['response_scenarios'])!=16 or any(len(v)!=8 for v in f['response_scenarios']) for f in forecast.values()):
         raise ValueError('current execution contract requires complete K8/16 forecasts')
+    from placement_services import PlacementServices
+    services_model=PlacementServices(env,forecast) if getattr(env,'home_policy','score')=='service' else None
     layouts=templates();placement_cache={};homes={};variants={};reserves={};certs={};admissions={};candidates=[]
     # The same fixed integer home quotas are used for each physical layout.
     base_quotas={name:layout_quotas(len(env.pub),layout) for name,layout in layouts.items()}
     for inf_name,layout in [('paired1',layouts['row1']),*layouts.items()]:
         paired=inf_name=='paired1'
         for train_name,training in layouts.items():
-            pkey=digest([layout,training,base_quotas[train_name]])
+            pkey=digest([layout,training,base_quotas[train_name],paired if services_model else None])
             if pkey not in placement_cache:
-                placement_cache[pkey]=balanced_release_placement(env.pub,forecast,training,base_quotas[train_name],layout)
+                options={}
+                if services_model:
+                    costs,producer=services_model.costs(training,layout,paired)
+                    options=dict(service_costs=costs,inference_ns_per_score=producer)
+                placement_cache[pkey]=balanced_release_placement(env.pub,forecast,training,base_quotas[train_name],layout,**options)
             pb=placement_cache[pkey]
             home=dict(region_members=training,queues=pb['queues'],placement_proof=pb['proof'],long_quota_by_region=pb['proof']['long_quota_by_region'])
             hkey=digest(home);homes[hkey]=home
@@ -98,7 +104,7 @@ def search(env,mode):
     if sorted(g for q in inf['execution_queues'].values() for g in q)!=sorted(env.public):raise AssertionError('inference group loss')
     if sorted(g for q in home['queues'].values() for g in q)!=sorted(env.public):raise AssertionError('training group loss')
     elapsed=clock()
-    return dict(mode=mode,placement_mode='release',winner=winner,inference=inf,training=home,
+    return dict(mode=mode,placement_mode='release',home_policy=getattr(env,'home_policy','score'),winner=winner,inference=inf,training=home,
         timings=dict(generate_admit_s=generated,coarse_s=coarse_end-generated,fine_s=fine_end-coarse_end,finalize_s=elapsed-fine_end,search_s=elapsed),
         counts=dict(inference_variants=len(variants),training_covers=len(layouts),joint_home_assignments=len(homes),candidate_pairs=len(candidates),legal_pairs=len(legal),fine_pairs=len(fine),scenario_replays=sum(len(e['scenarios_s']) for e in events),unique_inference_scenarios=len(ends),fresh_replica_cache_entries=len(scorer.replica_cache)),
         events=events,input_hashes=env.input_hashes,

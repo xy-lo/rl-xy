@@ -611,3 +611,6 @@
 | `src/idea1_controller/state_report.py` | 物理54die守恒及训练helper子集的角色采样 |
 | `tests/test_state_report.py` | 角色时间边界、原生list序列化与helper冲突测试 |
 | `tests/test_workload_templates.py` | 最大TP4覆盖、余量区域位置与相邻合法性测试 |
+
+| `scripts/workload_planner/placement_services.py` | 独立历史条件池与公开prompt的TP相关teacher/训练放置成本；避免未知题情景噪声作为点预测 |
+| `tests/test_placement_services.py` | TP服务单位、prompt成本、条件池平均和未知题等条件约束 |

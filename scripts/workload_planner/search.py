@@ -70,9 +70,11 @@ def templates():
 
 
 class Environment:
-    def __init__(self, public_path, cache_dir, *, model='4B', injected_forecasts=None, placement_mode='independent'):
+    def __init__(self, public_path, cache_dir, *, model='4B', injected_forecasts=None, placement_mode='independent',home_policy='score'):
         start = time.perf_counter_ns()
         if placement_mode not in ('independent','release'):raise ValueError('invalid placement mode')
+        if home_policy not in ('score','service'):raise ValueError('unknown home policy')
+        self.home_policy=home_policy
         self.placement_mode=placement_mode
         self.public_path = Path(public_path).resolve()
         self.pub = json.loads(self.public_path.read_text())

@@ -10,7 +10,7 @@ from .placement import largest_remainder
 from .workload import digest
 
 
-def balanced_release_placement(public,forecast,regions,worker_quotas,inference_groups,*,training_queue_order='history_long_first',inference_queue_order='history_long_first'):
+def balanced_release_placement(public,forecast,regions,worker_quotas,inference_groups,*,training_queue_order='history_long_first',inference_queue_order='history_long_first',service_costs=None,inference_ns_per_score=None):
     if training_queue_order not in ('history_long_first','input'):raise ValueError('unknown training queue order')
     if inference_queue_order not in ('history_long_first','input'):raise ValueError('unknown inference queue order')
     ids=[str(g['group_id']) for g in public];index={g:i for i,g in enumerate(ids)}
@@ -22,6 +22,16 @@ def balanced_release_placement(public,forecast,regions,worker_quotas,inference_g
     workers=sorted(quotas)
     if sorted(w for ws in regions.values() for w in ws)!=workers or sorted(w for ws in groups.values() for w in ws)!=workers:raise ValueError('region/inference partition mismatch')
     owner={w:r for r,ws in groups.items() for w in ws};region_of={w:r for r,ws in regions.items() for w in ws}
+    service=service_costs is not None or inference_ns_per_score is not None
+    if service:
+        if service_costs is None or inference_ns_per_score is None:raise ValueError('both service and producer costs required')
+        if set(service_costs)!=set(regions) or set(inference_ns_per_score)!=set(groups):raise ValueError('service cost region/cohort mismatch')
+        values=list(inference_ns_per_score.values())
+        for costs in service_costs.values():
+            if set(costs)!=set(ids):raise ValueError('service cost group mismatch')
+            values.extend(costs.values())
+        if any(not isinstance(v,(int,float)) or isinstance(v,bool) or not math.isfinite(v) or v<=0 for v in values):raise ValueError('invalid predicted service cost')
+    physical_dependencies={r:{owner[w] for w in ws} for r,ws in regions.items()}
     capacity={r:sum(quotas[w] for w in ws) for r,ws in regions.items()}
     longs=[g for g in ids if forecast[g]['label']=='proxy-long'];longset=set(longs)
     roots=sorted(regions);longquota=dict(zip(roots,largest_remainder(len(longs),[capacity[r] for r in roots])))
@@ -31,16 +41,25 @@ def balanced_release_placement(public,forecast,regions,worker_quotas,inference_g
         value=forecast[g]['score']
         if not isinstance(value,(float,int)) or isinstance(value,bool) or not math.isfinite(value) or value<=0:raise ValueError('missing predicted workload')
         return float(value)
+    def producer_ns(root,g=None):
+        return (producer_work[root]+(score(g) if g is not None else 0))*inference_ns_per_score[root]
     def worker(r,g):
         candidates=[w for w in regions[r] if len(queues[w])<quotas[w]]
+        if service:
+            return min(candidates,key=lambda w:(producer_ns(owner[w],g),work[w]+service_costs[r][g],w))
         return min(candidates,key=lambda w:((producer_work[owner[w]]+score(g))/len(groups[owner[w]]),work[w]+score(g),w))
     def put(g,islong):
         candidates=[r for r in roots if remaining[r] and (not islong or longleft[r])]
         def key(r):
             w=worker(r,g)
+            if service:
+                ready=max(producer_ns(root,g if root==owner[w] else None) for root in physical_dependencies[r])
+                return (ready+region_work[r]+service_costs[r][g],ready,work[w]+service_costs[r][g],r)
             return ((region_work[r]+score(g))/len(regions[r]),(producer_work[owner[w]]+score(g))/len(groups[owner[w]]),work[w]+score(g),r)
         r=min(candidates,key=key);w=worker(r,g)
-        queues[w].append(g);work[w]+=score(g);producer_work[owner[w]]+=score(g);region_work[r]+=score(g);remaining[r]-=1
+        queues[w].append(g)
+        amount=service_costs[r][g] if service else score(g)
+        work[w]+=amount;producer_work[owner[w]]+=score(g);region_work[r]+=amount;remaining[r]-=1
         if islong:longleft[r]-=1
     for g in sorted(longs,key=lambda g:(-score(g),index[g])):put(g,True)
     for g in sorted((g for g in ids if g not in longset),key=lambda g:(-score(g),index[g])):put(g,False)
@@ -58,4 +77,9 @@ def balanced_release_placement(public,forecast,regions,worker_quotas,inference_g
         worker_group_quota={str(w):quotas[w] for w in workers},long_quota_by_region={str(r):longquota[r] for r in roots},
         region_dependencies=dependencies,all_groups_digest=digest(ids),group_to_home_digest=digest({g:region_of[w] for w,q in queues.items() for g in q}),
         scope='forecast load balancing and physical cohort locality; finite heuristic, no global optimum or guaranteed helper claim')
+    if service:
+        proof.update(policy='PB-service-producer-local',
+            placement_objective='estimated producer release plus teacher/training service at actual region TP; no second division by region size',
+            placement_cost_digest=digest([service_costs,inference_ns_per_score]),
+            estimated_region_training_ns={str(r):v for r,v in region_work.items()})
     return dict(queues={str(w):q for w,q in queues.items()},execution_queues={str(r):q for r,q in inference.items()},proof=proof)

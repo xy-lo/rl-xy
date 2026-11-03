@@ -28,6 +28,24 @@ class ReleasePlacementTests(unittest.TestCase):
   legacy=balanced_release_placement(*args,inference_queue_order='input')
   self.assertEqual(r['queues'],legacy['queues'])
   self.assertEqual(legacy['execution_queues']['0'],[g['group_id'] for g in p])
+ def test_service_balances_real_cost_instead_of_equal_output_scores(self):
+  p=[dict(group_id=str(i)) for i in range(4)]
+  f={str(i):dict(score=1,label='ordinary') for i in range(4)}
+  args=(p,f,{0:[0],1:[1]},{0:2,1:2},{0:[0,1]})
+  cost={str(i):v for i,v in enumerate((10,1,10,1))}
+  old=balanced_release_placement(*args)
+  new=balanced_release_placement(*args,service_costs={0:cost,1:cost},inference_ns_per_score={0:1})
+  loads=lambda a:[sum(cost[g] for g in q) for q in a['queues'].values()]
+  self.assertEqual(sorted(loads(old)),[2,20]);self.assertEqual(loads(new),[11,11])
+  self.assertEqual(new['proof']['estimated_region_training_ns'],{'0':11,'1':11})
+  self.assertEqual(new['proof']['long_quota_by_region'],old['proof']['long_quota_by_region'])
+  self.assertEqual(Counter(g for q in new['execution_queues'].values() for g in q),Counter(cost.keys()))
+ def test_service_contract_rejects_missing_or_invalid_costs(self):
+  p,f=self.args();args=(p,f,{0:[0,1],2:[2,3]},{0:2,1:2,2:2,3:2},{0:[0,1,2,3]})
+  costs={r:{g:1 for g in f} for r in (0,2)}
+  with self.assertRaises(ValueError):balanced_release_placement(*args,service_costs=costs)
+  costs[0]['0']=float('nan')
+  with self.assertRaises(ValueError):balanced_release_placement(*args,service_costs=costs,inference_ns_per_score={0:1})
  def test_regional_quota_and_no_long_packing(self):
   p,f=self.args();r=balanced_release_placement(p,f,{0:[0,1],2:[2,3]},{0:2,1:2,2:2,3:2},{0:[0],1:[1],2:[2],3:[3]})
   self.assertEqual(r['proof']['long_quota_by_region'],{'0':2,'2':2})
