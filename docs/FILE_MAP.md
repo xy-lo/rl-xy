@@ -614,3 +614,5 @@
 
 | `scripts/workload_planner/placement_services.py` | 独立历史条件池与公开prompt的TP相关teacher/训练放置成本；避免未知题情景噪声作为点预测 |
 | `tests/test_placement_services.py` | TP服务单位、prompt成本、条件池平均和未知题等条件约束 |
+
+| `tests/test_final_campaign.py` | 仅TUNE选择、完整peer等待、审计失败与原性能门不放宽的接续测试 |

@@ -12,6 +12,32 @@ def read(path):return json.loads(Path(path).read_text())
 def write(path,value):
  p=Path(path);tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(value,indent=2));tmp.replace(p)
 
+def select_tune_policy(root,variants,ceiling):
+ """Choose only complete, audited 4B TUNE policies before final-window access."""
+ if not variants:raise ValueError('no 4B candidate policy')
+ accepted=[]
+ for variant in variants:
+  run_name=variant['run'];policy=variant.get('home_policy','score')
+  if policy not in ('score','service'):raise ValueError('unsupported selected home policy')
+  driver=read(root/(run_name+'-status.json'))
+  if not driver.get('complete') or not driver.get('stages') or any(x['returncode']!=0 for x in driver['stages']):
+   raise ValueError('candidate TUNE driver incomplete or failed')
+  tune=read(root/run_name/'native-run/result.json')
+  assert tune['model']=='4B' and tune['window']=='tune','selection must not use final-window timing'
+  assert tune['requests']==tune['completed']==tune['trained_samples']==1536 and tune['capacity_passed']
+  assert read(root/run_name/'inference-audit.json')['status']=='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT'
+  if 'offline_plan' in variant:
+   offline=Path(variant['offline_plan']);plan=read(offline/'result.json')
+   assert plan['model']=='4B' and plan['window']=='tune'
+   assert plan.get('home_policy','score')==policy and plan['mode']==variant['planner_mode']
+   assert plan['forecast_mode']=='controlled-proxy' and read(offline/'distribution.json')['exact_weight']==1
+  import math
+  if not math.isfinite(tune['total_s']) or tune['total_s']<=0:raise ValueError('invalid TUNE time')
+  accepted.append(dict(variant,device_s=tune['total_s']))
+ chosen=min(accepted,key=lambda x:(x['device_s'],x['run']))
+ if chosen['device_s']>ceiling:raise ValueError('4B full TUNE exceeds frozen prior-system device ceiling; iterate before final models')
+ return accepted,chosen
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--config',type=Path,required=True);a=p.parse_args();c=read(a.config)
  root=Path(c['evidence_root']);name=c.get('campaign_name','final-campaign-01')
@@ -50,11 +76,20 @@ def main():
    status('waiting-4b-gates',ready_gates=sum(gates),total_gates=len(gates))
    if all(gates):break
    time.sleep(30)
-  tune=read(root/c['tune_run']/'native-run/result.json')
-  assert tune['requests']==tune['completed']==tune['trained_samples']==1536 and tune['capacity_passed']
-  assert read(root/c['tune_run']/'inference-audit.json')['status']=='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT'
-  if tune['total_s']>c['max_tune_device_s']:
-   raise RuntimeError('4B full TUNE exceeds frozen prior-system device ceiling; iterate before final models')
+  variants=c.get('candidate_4b_policies',[dict(run=c['tune_run'],home_policy=c.get('home_policy','score'),planner_mode=c['planner_mode'])])
+  accepted,chosen=select_tune_policy(root,variants,c['max_tune_device_s'])
+  write(base/'tune-policy-selection.json',dict(candidates=accepted,selected=chosen,
+   selection='native audited TUNE only; complete all declared variants before final-window planning; no global optimum claim'))
+  # Independently reconstruct declared forecast and native binding for each
+  # candidate. Ranking from final-window outcomes is never fed back here.
+  import sys
+  sys.path.insert(0,str(source/'scripts'))
+  from audit_idea1_planning import audit_planning
+  for variant in variants:
+   if 'offline_plan' in variant:
+    proof=audit_planning(root/variant['run']/'native-run',Path(variant['offline_plan']))
+    write(base/(variant['run']+'-planning-audit.json'),proof)
+  selected_home=chosen.get('home_policy','score');selected_mode=chosen.get('planner_mode',c['planner_mode'])
   stress=root/c['training_stress_run']/'native-run'
   events=read(stress/'mesh-coordination-events.json')
   if not any(e['kind']=='training-proposed' for e in events):raise RuntimeError('training mesh selection not exercised')
@@ -62,7 +97,7 @@ def main():
   stress_result=read(stress/'result.json')
   if stress_result['training_transfers']<1:raise RuntimeError('training fixture did not exercise donation')
   assert read(root/c['training_stress_run']/'inference-audit.json')['status']=='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT'
-  status('preparing-final-models',tune_device_s=tune['total_s'],tune_ceiling_s=c['max_tune_device_s'])
+  status('preparing-final-models',tune_device_s=chosen['device_s'],selected_home_policy=selected_home,selected_tune=chosen['run'],tune_ceiling_s=c['max_tune_device_s'])
   envbase=dict(os.environ,LD_LIBRARY_PATH=c['ld_library_path'])
   cost14=Path(c['cost14_root'])
   if not cost14.exists():
@@ -75,7 +110,7 @@ def main():
    folder=base/(model+'-test1');folder.mkdir(exist_ok=False)
    cost=cost14 if model=='14B' else Path(c['cost4_root'])
    env=dict(envbase,RLXY_COST_ROOT=str(cost),PYTHONPATH=str(cost/'src'))
-   args=[python,source/'scripts/workload_planner/plan_system.py','--model',model,'--window','test1','--mode',c['planner_mode'],
+   args=[python,source/'scripts/workload_planner/plan_system.py','--model',model,'--window','test1','--mode',selected_mode,'--home-policy',selected_home,
     '--forecast-mode','controlled-proxy','--allow-controlled-proxy','--proxy-weight','1','--output',folder/'plan']
    run(args,folder,'planning',env)
    deploy=read(folder/'plan/deployment.json');files=deploy['files']
@@ -109,7 +144,7 @@ def main():
     previous_innovation3_s=float(old['previous_innovation3_s']),old_complete_system_device_s=float(old['device_s']),
     speedup_gpu_device=gpu/x['device_s'],reduction_old_complete_device=1-x['device_s']/float(old['device_s'])))
   report=dict(status='FINAL_NATIVE_RESULTS_READY_FOR_REVIEW',comparison=compare,
-   source_commit=commit,baseline_csv_sha256=hashlib.sha256(baseline.read_bytes()).hexdigest(),
+   selected_tune_policy=chosen,source_commit=commit,baseline_csv_sha256=hashlib.sha256(baseline.read_bytes()).hexdigest(),
    information='offline controlled same-prompt proxy alpha1, current evaluation samples excluded; NOT chronological RL history',
    evaluation='historically used test1 window, not pristine held-out',
    timing='native device seconds separate from host planning; old Mac planning proxy excluded from old device comparison',
