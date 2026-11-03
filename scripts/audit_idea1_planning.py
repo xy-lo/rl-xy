@@ -53,6 +53,11 @@ def audit_planning(native,offline):
     stage='coarse' if mode=='one_scene' else 'full' if mode=='full' else 'fine'
     candidates=[c for c in selected['events'] if c['passed'] and c['stage']==stage]
     assert candidates and min(candidates,key=lambda c:(c['risk_s'],c['signature']))['signature']==winner['signature']
+    constraint=selected.get('candidate_constraint')
+    if constraint is not None:
+        assert constraint and len(set(constraint))==len(constraint)
+        assert all(c['inf_name']+':'+c['training_name'] in constraint for c in selected['events'])
+        assert winner['inf_name']+':'+winner['training_name'] in constraint
     home=selected['training'];native_home=load(native/'resource-layout.json');inf=selected['inference'];native_inf=load(native/'inference-layout.json')
     assert native_home['workload_offline_artifact']==artifact['artifact_digest']
     assert native_home['workload_distribution_version']==version

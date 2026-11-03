@@ -20,6 +20,7 @@ def main():
  p.add_argument('--late-region-batch-cap',type=int,choices=[0,1,2,4],default=0)
  p.add_argument('--training-ready-order',choices=['input','ready_lpt'],default='input')
  p.add_argument('--home-policy',choices=['score','service'],default='score')
+ p.add_argument('--resource-candidate',action='append',help='explicit preselected offline bank entry inference@fraction:training')
  p.add_argument('--positions',choices=['pb','ps'],default='ps');p.add_argument('--output',type=Path,required=True)
  a=p.parse_args()
  if a.forecast_mode=='controlled-proxy' and not a.allow_controlled_proxy:p.error('offline controlled proxy requires explicit opt-in')
@@ -34,6 +35,7 @@ def main():
  args=['run_distribution.py','--model',a.model,'--window',a.window,'--mode',a.mode,'--placement','release',
   '--home-policy',a.home_policy,'--forecast-mode',a.forecast_mode,'--forecast-summary',a.forecast_summary,'--proxy-weight',a.proxy_weight,'--output',offline]
  if a.allow_controlled_proxy:args+=['--allow-controlled-proxy']
+ for candidate in a.resource_candidate or []:args+=['--resource-candidate',candidate]
  run('offline',args)
  run('bind',['materialize.py','--offline-run',offline,'--model',a.model,'--window',a.window,'--training-ready-order',a.training_ready_order,'--late-region-batch-cap',a.late_region_batch_cap,'--output',pb])
  selected=pb;position_reason='PB explicitly selected'
@@ -42,7 +44,7 @@ def main():
   selected=ps;position_reason=json.loads((ps/'position-proof.json').read_text())['reason']
  files={name:str((selected/name).resolve()) for name in ('selected-plan.json','inference-layout.json','forecast.json')}
  result=dict(schema='idea1.deployment/1',status='PLANNED_REQUIRES_NATIVE_ACCEPTANCE',model=a.model,window=a.window,
-  late_region_batch_cap=a.late_region_batch_cap,training_ready_order=a.training_ready_order,home_policy=a.home_policy,forecast_mode=a.forecast_mode,forecast_summary=a.forecast_summary,position_reason=position_reason,files=files,
+  resource_candidates=a.resource_candidate,late_region_batch_cap=a.late_region_batch_cap,training_ready_order=a.training_ready_order,home_policy=a.home_policy,forecast_mode=a.forecast_mode,forecast_summary=a.forecast_summary,position_reason=position_reason,files=files,
   hashes={name:hashlib.sha256(Path(path).read_bytes()).hexdigest() for name,path in files.items()},
   phases=stages,host_wall_s=time.perf_counter()-start,
   runtime_contract=dict(inference='legal TP1/2/4/8 and whole TP expansion until EOS; no active shrink',

@@ -23,4 +23,14 @@ class TemplateCoverageTests(unittest.TestCase):
   self.assertNotEqual(a,b)
   self.assertEqual(Counter(map(len,a.values())),Counter(map(len,b.values())))
   self.assertIn(0,b);self.assertEqual(b[0],[0]);self.assertEqual(b[1],[1,2])
+class CandidateSubsetTests(unittest.TestCase):
+ def test_named_bank_and_default(self):
+  from release_search import resource_candidates
+  layouts=search.templates();self.assertIsNone(resource_candidates(None,layouts))
+  self.assertEqual(resource_candidates(['box4_top@1:row1','box4_top@1.0:row1'],layouts),{('box4_top','row1',1.)})
+ def test_invalid_bank_is_rejected(self):
+  from release_search import resource_candidates
+  for values in [[],['missing@1:row1'],['box4@1:missing'],['box4@0.9:row1'],['box4'],['box4@nan:row1']]:
+   with self.subTest(values=values),self.assertRaises(ValueError):resource_candidates(values,search.templates())
+
 if __name__=='__main__':unittest.main()

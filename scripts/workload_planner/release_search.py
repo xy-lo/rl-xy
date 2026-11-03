@@ -15,6 +15,20 @@ from idea1_controller.search import risk
 from fast_replica import HeapScenarioScorer
 
 
+def resource_candidates(values,layouts):
+    """Explicit offline candidate subset; reject typos instead of silently falling back."""
+    if values is None:return None
+    if not values:raise ValueError('empty resource candidate bank')
+    allowed=set()
+    for value in values:
+        try:
+            inference,training=value.split(':');name,fraction=inference.split('@');fraction=float(fraction)
+        except (ValueError,TypeError):raise ValueError('resource candidate must be inference@fraction:training')
+        if name not in {'paired1',*layouts} or training not in layouts or fraction not in (.5,.75,1.):
+            raise ValueError('unknown resource template or capacity fraction')
+        allowed.add((name,training,fraction))
+    return allowed
+
 def search(env,mode):
     from search import templates
     start=time.perf_counter();clock=lambda:time.perf_counter()-start
@@ -23,12 +37,14 @@ def search(env,mode):
         raise ValueError('current execution contract requires complete K8/16 forecasts')
     from placement_services import PlacementServices
     services_model=PlacementServices(env,forecast) if getattr(env,'home_policy','score')=='service' else None
-    layouts=templates();placement_cache={};homes={};variants={};reserves={};certs={};admissions={};candidates=[]
+    layouts=templates();allowed=resource_candidates(getattr(env,'resource_candidates',None),layouts);placement_cache={};homes={};variants={};reserves={};certs={};admissions={};candidates=[]
     # The same fixed integer home quotas are used for each physical layout.
     base_quotas={name:layout_quotas(len(env.pub),layout) for name,layout in layouts.items()}
     for inf_name,layout in [('paired1',layouts['row1']),*layouts.items()]:
+        if allowed is not None and not any(x[0]==inf_name for x in allowed):continue
         paired=inf_name=='paired1'
         for train_name,training in layouts.items():
+            if allowed is not None and not any(x[:2]==(inf_name,train_name) for x in allowed):continue
             pkey=digest([layout,training,base_quotas[train_name],paired if services_model else None])
             if pkey not in placement_cache:
                 options={}
@@ -42,6 +58,7 @@ def search(env,mode):
             maximum=max(sum(len(home['queues'][str(w)])*8 for w in ws) for ws in training.values())
             reserves[hkey]=2*(len(env.pub)*8+max(64,maximum))*(max(env.op.prompt_cap,max(g['prompt_length'] for g in env.pub))+8192)*4
             for fraction in (.5,.75,1.):
+                if allowed is not None and (inf_name,train_name,fraction) not in allowed:continue
                 tp={r:1 if paired else len(ws)*2 for r,ws in layout.items()}
                 caps={str(r):max(1,int(fraction*env.catalog_data['inference_capacity_frontier'][str(tp[r])])) for r in layout}
                 inference=dict(groups=layout,caps=caps,paired_tp1=paired,execution_queues=pb['execution_queues'],quota=pb['proof'])
@@ -104,7 +121,7 @@ def search(env,mode):
     if sorted(g for q in inf['execution_queues'].values() for g in q)!=sorted(env.public):raise AssertionError('inference group loss')
     if sorted(g for q in home['queues'].values() for g in q)!=sorted(env.public):raise AssertionError('training group loss')
     elapsed=clock()
-    return dict(mode=mode,placement_mode='release',home_policy=getattr(env,'home_policy','score'),winner=winner,inference=inf,training=home,
+    return dict(candidate_constraint=None if allowed is None else sorted(f'{n}@{v}:{t}' for n,t,v in allowed),mode=mode,placement_mode='release',home_policy=getattr(env,'home_policy','score'),winner=winner,inference=inf,training=home,
         timings=dict(generate_admit_s=generated,coarse_s=coarse_end-generated,fine_s=fine_end-coarse_end,finalize_s=elapsed-fine_end,search_s=elapsed),
         counts=dict(inference_variants=len(variants),training_covers=len(layouts),joint_home_assignments=len(homes),candidate_pairs=len(candidates),legal_pairs=len(legal),fine_pairs=len(fine),scenario_replays=sum(len(e['scenarios_s']) for e in events),unique_inference_scenarios=len(ends),fresh_replica_cache_entries=len(scorer.replica_cache)),
         events=events,input_hashes=env.input_hashes,

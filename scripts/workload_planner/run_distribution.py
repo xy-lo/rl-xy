@@ -24,10 +24,12 @@ def main():
     p.add_argument('--allow-controlled-proxy',action='store_true')
     p.add_argument('--forecast-summary',choices=['pooled','legacy'],default='pooled')
     p.add_argument('--proxy-weight',type=float,default=.75)
+    p.add_argument('--resource-candidate',action='append',help='explicit offline bank entry inference@fraction:training; repeatable')
     a=p.parse_args()
     if a.home_policy=='service' and a.placement!='release':p.error('service home policy requires release placement')
     if a.forecast_mode=='controlled-proxy' and (a.no_history or a.placement!='release'):
         p.error('controlled proxy requires history and release-aware placement')
+    if a.resource_candidate and a.placement!='release':p.error('resource candidate bank requires release placement')
     start=time.perf_counter();a.output.mkdir(parents=True,exist_ok=False)
     inputs=ROOT/f'experiments/2026-10-29-qwen3/inputs/Qwen3-{a.model}'
     assets=ROOT/'experiments/2026-11-03-idea1-elastic/assets'
@@ -76,6 +78,7 @@ def main():
     (a.output/'split-manifest.json').write_text(json.dumps(dict(calibration='historical test1/test2 prompt histories, offline proxy',tune='original tune',reserved='test3/test4; independent of calibration and TUNE except recorded canonical duplicates',evaluation_window=a.window,forecast_summary=a.forecast_summary,evaluation_prompt_hashes=sorted(target_hashes),evaluation_tune_prompt_overlap=len(target_hashes&tune_hashes) if a.window!='tune' else 0,calibration_prompt_hashes=sorted(cal_hashes),tune_prompt_hashes=sorted(tune_hashes),reserved_prompt_hashes=sorted(held_hashes),excluded_calibration_groups=len(cal_raw)-len(cal_ids),excluded_reserved_groups=len(held_raw)-len(held_ids),groups=len(public),k=8,scenarios=16,excluded_incomplete=excluded,spec=spec.__dict__),indent=2))
     prep=time.perf_counter()-start
     env=Environment(a.output/'public.json',a.output/'mapper-cache',model=a.model,injected_forecasts=forecast,placement_mode=a.placement,home_policy=a.home_policy)
+    env.resource_candidates=a.resource_candidate
     result=env.search('capacity_fallback' if a.no_history else a.mode)
     result['forecast_evidence']=snapshot.kind if snapshot else 'no-history-hard-limit'
     result['forecast_summary']=a.forecast_summary
@@ -95,7 +98,7 @@ def main():
     selected,reason=select_precomputed(artifact,public,snapshot,catalog_sha,admit=admit,fallback=lambda:None,forecast_summary=a.forecast_summary)
     selection=time.perf_counter()-before
     if selected is None: raise ValueError('no verified deployment plan')
-    summary=dict(status='PASS_DISTRIBUTION_PLANNING_PROXY',model=a.model,window=a.window,scope=result['score_scope'],mode=a.mode,placement_mode=a.placement,home_policy=a.home_policy,forecast_mode=a.forecast_mode,groups=len(public),calibration_groups=len(cal_ids),calibration_vectors=len(rows),evidence_counts={k:sum(f['evidence_kind']==k for f in forecast.values()) for k in ('CLASS','GLOBAL','DEFAULT','OFFLINE_EXACT_PROXY_PLUS_GLOBAL')},offline_preparation_s=prep,offline_environment_s=env.setup_s,offline_search_s=result['timings']['search_s'],online_artifact_check_and_capacity_s=selection,online_reason=reason,winner=result['winner'],counts=result['counts'],process_wall_s=time.perf_counter()-start,native_executed=False)
+    summary=dict(candidate_constraint=result.get('candidate_constraint'),status='PASS_DISTRIBUTION_PLANNING_PROXY',model=a.model,window=a.window,scope=result['score_scope'],mode=a.mode,placement_mode=a.placement,home_policy=a.home_policy,forecast_mode=a.forecast_mode,groups=len(public),calibration_groups=len(cal_ids),calibration_vectors=len(rows),evidence_counts={k:sum(f['evidence_kind']==k for f in forecast.values()) for k in ('CLASS','GLOBAL','DEFAULT','OFFLINE_EXACT_PROXY_PLUS_GLOBAL')},offline_preparation_s=prep,offline_environment_s=env.setup_s,offline_search_s=result['timings']['search_s'],online_artifact_check_and_capacity_s=selection,online_reason=reason,winner=result['winner'],counts=result['counts'],process_wall_s=time.perf_counter()-start,native_executed=False)
     (a.output/'result.json').write_text(json.dumps(summary,indent=2))
     print(json.dumps(summary,indent=2),flush=True)
 
