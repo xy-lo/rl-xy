@@ -7,7 +7,7 @@ from final_campaign import select_tune_policy
 class FinalCampaignTests(unittest.TestCase):
  def case(self,root,name,seconds,window='tune',complete=True):
   d=root/name;(d/'native-run').mkdir(parents=True)
-  (d/'native-run/result.json').write_text(json.dumps(dict(model='4B',window=window,requests=1536,completed=1536,trained_samples=1536,capacity_passed=True,total_s=seconds)))
+  (d/'native-run/result.json').write_text(json.dumps(dict(model='Qwen3-4B',window=window,requests=1536,completed=1536,trained_samples=1536,capacity_passed=True,total_s=seconds)))
   (d/'inference-audit.json').write_text(json.dumps(dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT')))
   (root/(name+'-status.json')).write_text(json.dumps(dict(complete=complete,stages=[dict(returncode=0)])))
   return dict(run=name,home_policy='score',planner_mode='one_scene')

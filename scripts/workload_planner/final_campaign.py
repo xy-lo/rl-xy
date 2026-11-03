@@ -23,7 +23,7 @@ def select_tune_policy(root,variants,ceiling):
   if not driver.get('complete') or not driver.get('stages') or any(x['returncode']!=0 for x in driver['stages']):
    raise ValueError('candidate TUNE driver incomplete or failed')
   tune=read(root/run_name/'native-run/result.json')
-  assert tune['model']=='4B' and tune['window']=='tune','selection must not use final-window timing'
+  assert tune['model'] in ('4B','Qwen3-4B') and tune['window']=='tune','selection must not use final-window timing'
   assert tune['requests']==tune['completed']==tune['trained_samples']==1536 and tune['capacity_passed']
   assert read(root/run_name/'inference-audit.json')['status']=='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT'
   if 'offline_plan' in variant:
