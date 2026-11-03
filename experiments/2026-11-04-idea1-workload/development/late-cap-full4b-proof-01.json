@@ -1,0 +1,195 @@
+{
+  "status": "PASS_MATCHED_FULL4B_AND_PRIOR_PERFORMANCE_GATE",
+  "model": "4B",
+  "window": "tune",
+  "answers": 1536,
+  "baseline_s": 74.566400053373,
+  "late_cap2_s": 73.52612876836,
+  "speed_reduction": 0.013950938817864356,
+  "prior_approved_ceiling_s": 73.873630185369,
+  "margin_s": 0.34750141700899917,
+  "idle_before_die_s": 99.17720670656797,
+  "idle_after_die_s": 41.172088249897996,
+  "idle_reduction": 0.5848634014092333,
+  "same_generation_end": true,
+  "same_first_training": true,
+  "same_generation_role_work": true,
+  "same_teacher_role_work": true,
+  "training_role_extra_die_s": 1.8304236073379343,
+  "training_transfers": 76,
+  "remote_samples": 258,
+  "capped_batches": 32,
+  "critical_executions": [
+    {
+      "batch_id": "23:10",
+      "home": 23,
+      "worker": 2,
+      "tids": [
+        "124:11",
+        "124:18",
+        "124:47",
+        "124:56"
+      ],
+      "start_tick": 72728500197109,
+      "end_tick": 73486635674110,
+      "program_sha256": "0737a9fecb3c4ccb69c815fbc85b33d2ed0f1f732f9f436eabb2f1d4c5b6e1a1",
+      "training_tp": 2,
+      "physical_ranks": [
+        4,
+        5
+      ],
+      "remote": true,
+      "source_training_tp": 2,
+      "sequential_subbatches": [
+        [
+          "124:11",
+          "124:18",
+          "124:47",
+          "124:56"
+        ]
+      ]
+    },
+    {
+      "batch_id": "23:11",
+      "home": 23,
+      "worker": 4,
+      "tids": [
+        "124:63",
+        "124:67",
+        "124:75",
+        "124:82"
+      ],
+      "start_tick": 72728501337079,
+      "end_tick": 73357996611912,
+      "program_sha256": "0d10582ebf4159dbdbd82f3050a7519040c975f0e9e9787d1d6809b155570969",
+      "training_tp": 2,
+      "physical_ranks": [
+        8,
+        9
+      ],
+      "remote": true,
+      "source_training_tp": 2,
+      "sequential_subbatches": [
+        [
+          "124:63",
+          "124:67",
+          "124:75",
+          "124:82"
+        ]
+      ]
+    },
+    {
+      "batch_id": "23:9",
+      "home": 23,
+      "worker": 13,
+      "tids": [
+        "645:38",
+        "645:44",
+        "645:93",
+        "645:99"
+      ],
+      "start_tick": 72728502078943,
+      "end_tick": 73310808100264,
+      "program_sha256": "992e3ce7b477e7516c6270c41391654c62e7a44a361adebcf4785397d495c7d7",
+      "training_tp": 2,
+      "physical_ranks": [
+        26,
+        27
+      ],
+      "remote": true,
+      "source_training_tp": 2,
+      "sequential_subbatches": [
+        [
+          "645:38",
+          "645:44",
+          "645:93",
+          "645:99"
+        ]
+      ]
+    },
+    {
+      "batch_id": "6:7",
+      "home": 6,
+      "worker": 1,
+      "tids": [
+        "621:28",
+        "621:46",
+        "621:66",
+        "621:80"
+      ],
+      "start_tick": 71756431108104,
+      "end_tick": 73280845491777,
+      "program_sha256": "f4e6bf1a47be4ee5ae78a2c2aa7b3e2398b1d1302097cbc8704018aabdec8862",
+      "training_tp": 2,
+      "physical_ranks": [
+        2,
+        3
+      ],
+      "remote": true,
+      "source_training_tp": 2,
+      "sequential_subbatches": [
+        [
+          "621:28",
+          "621:46",
+          "621:66",
+          "621:80"
+        ]
+      ]
+    },
+    {
+      "batch_id": "23:8",
+      "home": 23,
+      "worker": 18,
+      "tids": [
+        "645:4",
+        "645:7",
+        "645:26",
+        "645:35"
+      ],
+      "start_tick": 72728502811700,
+      "end_tick": 73272976624229,
+      "program_sha256": "782dc9ed3d813e14efb5494ed43ae7f2ad6bbf1aaf4683973b8585f28fcc04ec",
+      "training_tp": 2,
+      "physical_ranks": [
+        36,
+        37
+      ],
+      "remote": true,
+      "source_training_tp": 2,
+      "sequential_subbatches": [
+        [
+          "645:4",
+          "645:7",
+          "645:26",
+          "645:35"
+        ]
+      ]
+    },
+    {
+      "batch_id": "0:12",
+      "home": 0,
+      "worker": 3,
+      "tids": [
+        "111:12",
+        "111:27"
+      ],
+      "start_tick": 72250609025696,
+      "end_tick": 73238295791241,
+      "program_sha256": "5d1cc6b16bfc8cb666930d2ccecab71645f63d256ed129b7830924c5b7cadac2",
+      "training_tp": 2,
+      "physical_ranks": [
+        6,
+        7
+      ],
+      "remote": true,
+      "source_training_tp": 2,
+      "sequential_subbatches": [
+        [
+          "111:12",
+          "111:27"
+        ]
+      ]
+    }
+  ],
+  "scope": "same resources/home/inference/forecast and fixed hardware; late observed training granularity only; TUNE simulation, no test1 GPU paired headline yet"
+}

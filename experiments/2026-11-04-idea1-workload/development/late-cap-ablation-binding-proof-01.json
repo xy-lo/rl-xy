@@ -1,0 +1,13 @@
+{
+  "status": "PASS_CONTROL_FIELDS_EQUAL",
+  "fields": [
+    "queues",
+    "region_members",
+    "forecasts",
+    "long_quota_by_region",
+    "training_help_admission",
+    "helper_domains"
+  ],
+  "only_runtime_change": "late region training job granularity, after observed global EOS",
+  "source_commit": "2ca1b01de5946c3b7961c2aaf4f59d38a5379659"
+}

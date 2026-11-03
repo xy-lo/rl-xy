@@ -14,3 +14,6 @@ experiments/2026-10-29-qwen3-f2/profiles/gpu-local.json -diff
 experiments/2026-11-01-idea1/astra-source/astra-sequence.patch -text -whitespace
 
 experiments/2026-11-02-h0-54/*.patch -text -whitespace
+
+# Frozen cost proofs retain upstream source EOFs and patch context verbatim.
+experiments/2026-11-04-idea1-workload/*/cost-proof/** -whitespace

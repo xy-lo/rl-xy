@@ -1,0 +1,35 @@
+{
+  "status": "PASS_HOST_PLANNER_TIMING",
+  "repeats": 3,
+  "source_commit": "07ee46375023ee6bb15c5236a7714bf393e8c145",
+  "summary": {
+    "one_scene": {
+      "median_process_wall_s": 2.2375214118510485,
+      "median_search_s": 1.5585359521210194,
+      "median_current_admission_s": 0.009552352130413055,
+      "shapes": [
+        "box4_top@1.0/row1"
+      ],
+      "max_gap_vs_full16_best": 0.03596806392007834
+    },
+    "shortlist6": {
+      "median_process_wall_s": 3.1125402990728617,
+      "median_search_s": 2.4199980907142162,
+      "median_current_admission_s": 0.010155405849218369,
+      "shapes": [
+        "box4@1.0/row1"
+      ],
+      "max_gap_vs_full16_best": 0.008164680920939693
+    },
+    "full": {
+      "median_process_wall_s": 13.418036045506597,
+      "median_search_s": 12.685061980038881,
+      "median_current_admission_s": 0.014038912951946259,
+      "shapes": [
+        "box4_top@1.0/packed2_tail"
+      ],
+      "max_gap_vs_full16_best": 0.0
+    }
+  },
+  "scope": "4B TUNE pooled-summary contract, offline same-prompt controlled proxy alpha1; finite216 candidates; full16 proxy reference, not native optimum; other native jobs running concurrently; cold dependency installation excluded"
+}

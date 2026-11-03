@@ -1,0 +1,225 @@
+{
+  "model": "Qwen3-4B",
+  "window": "tune",
+  "answers": 1536,
+  "total_device_s": 77.69590961766701,
+  "generation_end_s": 43.836864923863,
+  "first_training_s": 50.597609163864,
+  "early_training_overlap_s": 0,
+  "post_generation_dynamic_tail_s": 33.819400937796,
+  "optimizer_suffix_s": 0.03964375600801873,
+  "role_integral_die_s": {
+    "own": 2293.8200872505013,
+    "idle": 140.83298345073237,
+    "sample_transfer": 0.51123380157,
+    "prepare": 544.5268663702697,
+    "training": 1213.7469316111026
+  },
+  "post_generation_idle_die_s": 130.68788639178203,
+  "nonidle_role_occupancy": 0.9664158668832376,
+  "initial_inference_tp": {
+    "0": 2,
+    "1": 4,
+    "3": 8,
+    "5": 8,
+    "9": 8,
+    "15": 8,
+    "17": 8,
+    "21": 8
+  },
+  "training_tp": {
+    "0": 4,
+    "2": 2,
+    "3": 4,
+    "5": 2,
+    "6": 4,
+    "8": 2,
+    "9": 4,
+    "11": 2,
+    "12": 4,
+    "14": 2,
+    "15": 4,
+    "17": 2,
+    "18": 4,
+    "20": 2,
+    "21": 4,
+    "23": 2,
+    "24": 4,
+    "26": 2
+  },
+  "native_resizes": 0,
+  "training_transfers": 29,
+  "remote_training_samples": 200,
+  "regional": [
+    {
+      "region": 0,
+      "training_tp": 4,
+      "samples": 120,
+      "first_prepare_s": 43.772970063294,
+      "teacher_s": 9.83762702692,
+      "training_s": 21.766507713771,
+      "gradient_ready_s": 75.39332864759
+    },
+    {
+      "region": 2,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 43.772971737963,
+      "teacher_s": 9.50294416583,
+      "training_s": 20.967616732345,
+      "gradient_ready_s": 74.853027208604
+    },
+    {
+      "region": 3,
+      "training_tp": 4,
+      "samples": 120,
+      "first_prepare_s": 42.814480350716,
+      "teacher_s": 10.556550541088,
+      "training_s": 21.996900422701,
+      "gradient_ready_s": 75.443037472483
+    },
+    {
+      "region": 5,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 42.91909836135,
+      "teacher_s": 9.61474444455,
+      "training_s": 24.539376016986,
+      "gradient_ready_s": 77.656265861658
+    },
+    {
+      "region": 6,
+      "training_tp": 4,
+      "samples": 120,
+      "first_prepare_s": 42.814481350716,
+      "teacher_s": 10.542499328448,
+      "training_s": 22.454360072659,
+      "gradient_ready_s": 75.827564142454
+    },
+    {
+      "region": 8,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 42.919095454804,
+      "teacher_s": 10.285069850902,
+      "training_s": 21.062885823528,
+      "gradient_ready_s": 75.007105436101
+    },
+    {
+      "region": 9,
+      "training_tp": 4,
+      "samples": 112,
+      "first_prepare_s": 43.836868462098,
+      "teacher_s": 10.164816811614,
+      "training_s": 21.742227860495,
+      "gradient_ready_s": 76.046164713295
+    },
+    {
+      "region": 11,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 42.919096826652,
+      "teacher_s": 9.35729327951,
+      "training_s": 22.649288500597,
+      "gradient_ready_s": 75.538217557628
+    },
+    {
+      "region": 12,
+      "training_tp": 4,
+      "samples": 112,
+      "first_prepare_s": 43.836869462098,
+      "teacher_s": 11.08758720511,
+      "training_s": 21.651479571726,
+      "gradient_ready_s": 76.592160600692
+    },
+    {
+      "region": 14,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 42.91909836135,
+      "teacher_s": 9.52449485799,
+      "training_s": 22.623841876144,
+      "gradient_ready_s": 75.126349537301
+    },
+    {
+      "region": 15,
+      "training_tp": 4,
+      "samples": 112,
+      "first_prepare_s": 41.912210592492,
+      "teacher_s": 10.402430329454,
+      "training_s": 22.431628958,
+      "gradient_ready_s": 74.76249236355
+    },
+    {
+      "region": 17,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 41.52213807896,
+      "teacher_s": 9.599138759366,
+      "training_s": 23.564939306484,
+      "gradient_ready_s": 75.230801496126
+    },
+    {
+      "region": 18,
+      "training_tp": 4,
+      "samples": 112,
+      "first_prepare_s": 41.912211592492,
+      "teacher_s": 10.22583027123,
+      "training_s": 22.919755023147,
+      "gradient_ready_s": 75.074018356942
+    },
+    {
+      "region": 20,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 41.522135249454,
+      "teacher_s": 9.52295381967,
+      "training_s": 24.729051616625,
+      "gradient_ready_s": 75.986305897897
+    },
+    {
+      "region": 21,
+      "training_tp": 4,
+      "samples": 112,
+      "first_prepare_s": 42.161172530884,
+      "teacher_s": 10.261807727142,
+      "training_s": 22.404357296124,
+      "gradient_ready_s": 74.843558865229
+    },
+    {
+      "region": 23,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 41.522136591606,
+      "teacher_s": 9.191750452262,
+      "training_s": 24.860077862663,
+      "gradient_ready_s": 76.105537994473
+    },
+    {
+      "region": 24,
+      "training_tp": 4,
+      "samples": 112,
+      "first_prepare_s": 42.161173530884,
+      "teacher_s": 10.217648801534,
+      "training_s": 22.381985824745,
+      "gradient_ready_s": 74.862959755559
+    },
+    {
+      "region": 26,
+      "training_tp": 2,
+      "samples": 56,
+      "first_prepare_s": 41.52213807896,
+      "teacher_s": 9.071447415894,
+      "training_s": 23.155391274613,
+      "gradient_ready_s": 74.573423237811
+    }
+  ],
+  "native_slowest_rank": 12,
+  "native_slowest_rank_costs": {
+    "compute_ns": 44787836953.915535,
+    "memory_ns": 29071283993.670494,
+    "communication_ns": 2002436057.0667617
+  },
+  "phase_timing_scope": "role occupancy and native service ledger are different views, not additive",
+  "scope": "fixed-cost trace simulation, 54 dies; not physical compute utilization or numerical learning"
+}
