@@ -85,3 +85,40 @@ class WorkloadTests(unittest.TestCase):
         self.assertEqual(why,'CURRENT_ADMISSION_FAILED')
 
 if __name__=='__main__': unittest.main()
+
+class HistorySourceFallbackTests(unittest.TestCase):
+    def loader(self):
+        import importlib.util,sys
+        from pathlib import Path
+        root=Path(__file__).resolve().parents[1];sys.path.insert(0,str(root/'scripts/workload_planner'))
+        spec=importlib.util.spec_from_file_location('workload_distribution_cli',root/'scripts/workload_planner/run_distribution.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        return module.load_calibration_history
+    def test_disabled_source_is_never_read_or_required(self):
+        from pathlib import Path
+        from unittest.mock import patch
+        load=self.loader()
+        with patch.object(Path,'read_bytes',side_effect=AssertionError('unused history was read')):
+            self.assertEqual(load(Path('/missing/history.gz'),[],'4B','cfg',disabled=True),(None,'EXPLICIT_NO_HISTORY'))
+    def test_missing_source_has_explicit_fallback_reason(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as d:
+            self.assertEqual(self.loader()(Path(d)/'absent.gz',[],'4B','cfg'),(None,'HISTORY_FILE_MISSING'))
+    def test_corrupt_and_incompatible_existing_sources_fail_closed(self):
+        import tempfile,gzip,json,copy
+        from pathlib import Path
+        from idea1_controller.history import digest
+        load=self.loader()
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'history.gz'
+            for data in [b'not gzip',gzip.compress(b'[]')]:
+                p.write_bytes(data)
+                with self.assertRaises(ValueError):load(p,[],'4B','cfg')
+            good=dict(schema='idea1.independent-history/1',model='4B',model_config_sha256='cfg',records={},task_bindings={})
+            good['snapshot_id']=digest(good);p.write_bytes(gzip.compress(json.dumps(good).encode()))
+            self.assertEqual(load(p,[],'4B','cfg'),(good,None))
+            for field,value in [('model','8B'),('model_config_sha256','other'),('schema','bad')]:
+                bad=copy.deepcopy(good);bad[field]=value;bad['snapshot_id']=digest({k:v for k,v in bad.items() if k!='snapshot_id'})
+                p.write_bytes(gzip.compress(json.dumps(bad).encode()))
+                with self.assertRaises(ValueError):load(p,[],'4B','cfg')

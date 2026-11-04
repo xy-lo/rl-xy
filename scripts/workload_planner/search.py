@@ -106,7 +106,9 @@ class Environment:
         extra.comm((0, 1), 'ALL_GATHER', half, 'comm')
         extra.local((0, 1), self.op.vec(0, 0, half, 'TP1_missing_actor_half_write'), 'write')
         self.tp1_extra = simple_plan_time(extra, net)
-        self.input_hashes = {str(p): sha(p) for p in (hp, cp, self.public_path)}
+        self.input_hashes = {str(p): sha(p) for p in (cp, self.public_path)}
+        if injected_forecasts is None:self.input_hashes[str(hp)]=sha(hp)
+        else:self.input_hashes['injected_forecasts_digest']=digest(injected_forecasts)
         self.setup_s = (time.perf_counter_ns() - start) / 1e9
 
     def search(self, mode='shortlist6'):

@@ -14,9 +14,29 @@ from search import Environment
 from idea1_controller.controlled_forecast import controlled_forecasts
 
 
+def load_calibration_history(path,public,model,config_sha256,*,disabled=False):
+    """A hard-limit fallback must not require or read an unused history file."""
+    if disabled:return None,'EXPLICIT_NO_HISTORY'
+    path=Path(path)
+    if not path.is_file():return None,'HISTORY_FILE_MISSING'
+    try:
+        history=json.loads(gzip.decompress(path.read_bytes()))
+        if not isinstance(history,dict):raise ValueError('history must be an object')
+        if history.get('schema')!='idea1.independent-history/1':raise ValueError('unsupported history schema')
+        if not isinstance(history.get('records'),dict) or not isinstance(history.get('task_bindings'),dict):
+            raise ValueError('invalid history records or bindings')
+        from idea1_controller.history import validate_history
+        used=[g for g in public if history['records'].get(str(g['group_id']))]
+        validate_history(used,history,model,config_sha256)
+    except (OSError,ValueError,KeyError,TypeError) as error:
+        raise ValueError('invalid calibration history: '+str(error)) from error
+    return history,None
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--model',default='4B',choices=['4B','8B','14B'])
     p.add_argument('--window',choices=['tune','test1','test2','test3','test4'],default='tune')
+    p.add_argument('--subset-prompts',type=int,default=0,help='fixed complete-group prefix, selected before evaluation')
     p.add_argument('--mode',default='one_scene',choices=['one_scene','shortlist6','full'])
     p.add_argument('--placement',choices=['independent','release'],default='independent');p.add_argument('--no-history',action='store_true');p.add_argument('--output',type=Path,required=True)
     p.add_argument('--home-policy',choices=['score','service'],default='score')
@@ -26,6 +46,7 @@ def main():
     p.add_argument('--proxy-weight',type=float,default=.75)
     p.add_argument('--resource-candidate',action='append',help='explicit offline bank entry inference@fraction:training; repeatable')
     a=p.parse_args()
+    if a.subset_prompts<0:p.error('subset-prompts must be nonnegative')
     if a.home_policy=='service' and a.placement!='release':p.error('service home policy requires release placement')
     if a.forecast_mode=='controlled-proxy' and (a.no_history or a.placement!='release'):
         p.error('controlled proxy requires history and release-aware placement')
@@ -34,14 +55,16 @@ def main():
     inputs=ROOT/f'experiments/2026-10-29-qwen3/inputs/Qwen3-{a.model}'
     assets=ROOT/'experiments/2026-11-03-idea1-elastic/assets'
     hpath=assets/f'history-{a.model}.json.gz'
-    h=json.loads(gzip.decompress(hpath.read_bytes()))
     canonical=json.loads((inputs/'prompt_lengths.json').read_text())
-    def ids(window):
-        return sorted({str(x['group_id']) for x in json.loads((inputs/(window+'.json')).read_text())['trajectories']})
+    def ids(window,limit=0):
+        items=json.loads((inputs/(window+'.json')).read_text())['trajectories']
+        if limit:items=items[:limit*8]
+        return sorted({str(x['group_id']) for x in items})
     cal_raw=set(ids('test1')+ids('test2')); tune_ids=ids('tune'); held_raw=set(ids('test3')+ids('test4'))
     hashes=lambda group_ids:{canonical[g]['rendered_sha256'] for g in group_ids}
     tune_hashes=hashes(tune_ids)
-    target_ids=ids(a.window);target_hashes=hashes(target_ids)
+    target_ids=ids(a.window,a.subset_prompts);target_hashes=hashes(target_ids)
+    if a.subset_prompts and len(target_ids)!=a.subset_prompts:raise ValueError('subset exceeds available complete groups')
     held_ids={g for g in held_raw if canonical[g]['rendered_sha256'] not in tune_hashes}
     held_hashes=hashes(held_ids)
     cal_ids={g for g in cal_raw if canonical[g]['rendered_sha256'] not in tune_hashes|held_hashes|target_hashes}
@@ -52,17 +75,21 @@ def main():
     public=[dict(group_id=g,prompt_length=canonical[g]['prompt_length'],prompt_sha256=canonical[g]['rendered_sha256'],library=canonical[g]['library']) for g in target_ids]
     contract=digest(dict(model_config=hashlib.sha256((inputs/'config.json').read_bytes()).hexdigest(),k=8,output_max=8192,generation='published offline ds1000-think-temp06 proxy; actor version unavailable'))
     spec=WorkloadSpec(contract)
+    calibration_public=[dict(group_id=g,prompt_length=canonical[g]['prompt_length'],prompt_sha256=canonical[g]['rendered_sha256'],library=canonical[g]['library']) for g in sorted(cal_ids)]
+    h,fallback_reason=load_calibration_history(hpath,calibration_public,a.model,hashlib.sha256((inputs/'config.json').read_bytes()).hexdigest(),disabled=a.no_history)
+    if h is None and a.forecast_mode=='controlled-proxy':raise ValueError('controlled proxy history unavailable; use explicit no-history distribution fallback')
     rows=[]
     excluded=0
-    for g in sorted(cal_ids):
+    for g in (sorted(cal_ids) if h is not None else []):
+        if not h['records'].get(g):continue
         bind=h['task_bindings'][g]
         for i,r in enumerate(h['records'].get(g,[])):
             samples=r['samples']
             if len(samples)!=8 or any(x['finish_reason'] not in ('stop','length') for x in samples):
                 excluded+=1;continue
             rows.append(Observation(bind['prompt_sha256'],bind['prompt_length'],bind['library'],digest([h['source_sha256'],g,[x['sample'] for x in samples]]),tuple(x['response_length'] for x in samples),tuple(x['finish_reason']=='length' for x in samples)))
-    snapshot=DistributionSnapshot.build(rows,spec,kind='offline-calibration-proxy',source_sha256=hashlib.sha256(hpath.read_bytes()).hexdigest())
-    snapshot = None if a.no_history else snapshot
+    snapshot=DistributionSnapshot.build(rows,spec,kind='offline-calibration-proxy',source_sha256=hashlib.sha256(hpath.read_bytes()).hexdigest()) if rows else None
+    if h is not None and not rows:fallback_reason='EMPTY_CALIBRATION_POOL'
     global_snapshot=snapshot
     if a.forecast_mode=='controlled-proxy':
         snapshot,forecast=controlled_forecasts(public,h,global_snapshot,spec,model=a.model,
@@ -75,11 +102,13 @@ def main():
     (a.output/'public.json').write_text(json.dumps(public))
     (a.output/'distribution.json').write_text(json.dumps(snapshot.to_dict() if snapshot else None))
     (a.output/'forecast.json').write_text(json.dumps(forecast))
-    (a.output/'split-manifest.json').write_text(json.dumps(dict(calibration='historical test1/test2 prompt histories, offline proxy',tune='original tune',reserved='test3/test4; independent of calibration and TUNE except recorded canonical duplicates',evaluation_window=a.window,forecast_summary=a.forecast_summary,evaluation_prompt_hashes=sorted(target_hashes),evaluation_tune_prompt_overlap=len(target_hashes&tune_hashes) if a.window!='tune' else 0,calibration_prompt_hashes=sorted(cal_hashes),tune_prompt_hashes=sorted(tune_hashes),reserved_prompt_hashes=sorted(held_hashes),excluded_calibration_groups=len(cal_raw)-len(cal_ids),excluded_reserved_groups=len(held_raw)-len(held_ids),groups=len(public),k=8,scenarios=16,excluded_incomplete=excluded,spec=spec.__dict__),indent=2))
+    (a.output/'split-manifest.json').write_text(json.dumps(dict(calibration='historical test1/test2 prompt histories, offline proxy',tune='original tune',reserved='test3/test4; independent of calibration and TUNE except recorded canonical duplicates',evaluation_window=a.window,subset_prompts=a.subset_prompts,forecast_summary=a.forecast_summary,no_history_source=h is None,fallback_reason=fallback_reason,evaluation_prompt_hashes=sorted(target_hashes),evaluation_tune_prompt_overlap=len(target_hashes&tune_hashes) if a.window!='tune' else 0,calibration_prompt_hashes=sorted(cal_hashes) if rows else [],tune_prompt_hashes=sorted(tune_hashes),reserved_prompt_hashes=sorted(held_hashes),excluded_calibration_groups=len(cal_raw)-len(cal_ids),excluded_reserved_groups=len(held_raw)-len(held_ids),groups=len(public),k=8,scenarios=16,excluded_incomplete=excluded,spec=spec.__dict__),indent=2))
     prep=time.perf_counter()-start
     env=Environment(a.output/'public.json',a.output/'mapper-cache',model=a.model,injected_forecasts=forecast,placement_mode=a.placement,home_policy=a.home_policy)
     env.resource_candidates=a.resource_candidate
-    result=env.search('capacity_fallback' if a.no_history else a.mode)
+    hard_fallback=all(f['evidence_kind']=='DEFAULT' for f in forecast.values())
+    result=env.search('capacity_fallback' if hard_fallback else a.mode)
+    result['fallback_reason']=fallback_reason
     result['forecast_evidence']=snapshot.kind if snapshot else 'no-history-hard-limit'
     result['forecast_summary']=a.forecast_summary
     catalog_sha=hashlib.sha256((assets/f'inference-catalog-{a.model}.json').read_bytes()).hexdigest()
@@ -98,7 +127,7 @@ def main():
     selected,reason=select_precomputed(artifact,public,snapshot,catalog_sha,admit=admit,fallback=lambda:None,forecast_summary=a.forecast_summary)
     selection=time.perf_counter()-before
     if selected is None: raise ValueError('no verified deployment plan')
-    summary=dict(candidate_constraint=result.get('candidate_constraint'),status='PASS_DISTRIBUTION_PLANNING_PROXY',model=a.model,window=a.window,scope=result['score_scope'],mode=a.mode,placement_mode=a.placement,home_policy=a.home_policy,forecast_mode=a.forecast_mode,groups=len(public),calibration_groups=len(cal_ids),calibration_vectors=len(rows),evidence_counts={k:sum(f['evidence_kind']==k for f in forecast.values()) for k in ('CLASS','GLOBAL','DEFAULT','OFFLINE_EXACT_PROXY_PLUS_GLOBAL')},offline_preparation_s=prep,offline_environment_s=env.setup_s,offline_search_s=result['timings']['search_s'],online_artifact_check_and_capacity_s=selection,online_reason=reason,winner=result['winner'],counts=result['counts'],process_wall_s=time.perf_counter()-start,native_executed=False)
+    summary=dict(candidate_constraint=result.get('candidate_constraint'),status='PASS_DISTRIBUTION_PLANNING_PROXY',model=a.model,window=a.window,scope=result['score_scope'],mode=result['mode'],requested_mode=a.mode,placement_mode=a.placement,home_policy=a.home_policy,forecast_mode=a.forecast_mode,groups=len(public),calibration_groups=len({x.prompt_hash for x in rows}),calibration_vectors=len(rows),fallback_reason=fallback_reason,evidence_counts={k:sum(f['evidence_kind']==k for f in forecast.values()) for k in ('CLASS','GLOBAL','DEFAULT','OFFLINE_EXACT_PROXY_PLUS_GLOBAL')},offline_preparation_s=prep,offline_environment_s=env.setup_s,offline_search_s=result['timings']['search_s'],online_artifact_check_and_capacity_s=selection,online_reason=reason,winner=result['winner'],counts=result['counts'],process_wall_s=time.perf_counter()-start,native_executed=False)
     (a.output/'result.json').write_text(json.dumps(summary,indent=2))
     print(json.dumps(summary,indent=2),flush=True)
 

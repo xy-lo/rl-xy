@@ -148,3 +148,7 @@ test1的shortlist6和full16均选box4/row1，完整规划分别3.364356/13.69009
 无历史入口：统一planner的`--no-history`转发已有hard-limit预测及最小可行TP回退；独立规划审计识别capacity-only-fallback-diagnostic阶段。完整4B规划/绑定合同smoke通过（无native执行或设备耗时），冷规划约1.559s，选择可行TP1；该选择只表达保守容量回退，不宣称吞吐最优。此修复不改变当前冻结v16的训练/推理运行时。
 
 最终可迁移验收还逐一核对部署记录与实际native的packing/tail/cap/ready-order配置、明确资源候选子集及三份原始输入哈希；原生记录仅允许追加一个LF的已知序列化差异，不能用一份配置的结果搭配另一份部署参数。真实初验三档正例及18个参数/输入哈希篡改负例通过，进一步由归档往返验证。
+
+无历史文件路径补齐：显式no-history不再读取/哈希历史文件；默认独立分布遇到缺失文件时记录HISTORY_FILE_MISSING并返回容量回退，空calibration池同理。损坏或模型/配置不匹配的现有历史明确失败。真实planner入口测试主动拒绝所有history字节读取，显式无历史和文件缺失两例均通过。此修复只在规划层，当前final11冻结运行源不修改。
+
+为补充未知prompt验证，预先冻结两个4B独立评价batch：test3前44组/352回答、test4前79组/632回答。各窗口再下一组与TUNE存在canonical文本重复，因此前缀仅按公开hash确定；不称完整1536窗口held-out，不减少主表三档1536工作量。三种信息策略共用相同冻结候选族/执行/样本/cost：无历史最小可行TP、独立calibration分布、额外同题信息的离线controlled alpha1；最后一种不是未知prompt预测或真实时间序列。原生结果未产生前协议已固定，不按这些结果改规则，不报告未执行的oracle或全局regret。统一入口新增subset-prompts，保持完整K8组并在预测/绑定两端一致传递。
