@@ -1,0 +1,16 @@
+{
+  "status": "PASS_ACTUAL_BULK_PLUS_FINE_SUFFIX_NATIVE_FUNCTIONAL",
+  "answers": 128,
+  "source_commit": "8aa45c072798388b1192a221f4cd52179d90f34c",
+  "baseline_s": 71.48422574006,
+  "bulk8_s": 71.48422574006,
+  "grown_batches": 6,
+  "late_capped_batches": 56,
+  "generation_identical": true,
+  "scope": "functional branch coverage only, observed-fit fixture; full performance not inferred",
+  "fine_tail_batches": 24,
+  "baseline_label": "bulk8_without_reserved_suffix",
+  "new_label": "bulk8_with_last8_samples_fine",
+  "tail8_s": 71.48422574006,
+  "note": "original bulk8_s field refers to new arm; explicit labels here disambiguate; not completecycle speedup"
+}

@@ -1,0 +1,45 @@
+{
+  "status": "AUDITED_NEGATIVE_FULL4B",
+  "comparison": [
+    {
+      "run": "fine-tail-full-tune-01",
+      "device_s": 75.549235740966,
+      "roles": {
+        "own": 2292.8808998527943,
+        "idle": 137.79875241463404,
+        "sample_transfer": 0.0005379464959999983,
+        "prepare": 513.4826189937645,
+        "training": 1133.3547139892182
+      },
+      "inference_resizes": 0,
+      "training_transfers": 166
+    },
+    {
+      "run": "fine-tail-full-test1-01",
+      "device_s": 70.673201877509,
+      "roles": {
+        "own": 2111.9476997286665,
+        "idle": 170.29303503989797,
+        "sample_transfer": 0.0005020523439999987,
+        "prepare": 477.0645773385305,
+        "training": 1054.914065020138
+      },
+      "inference_resizes": 0,
+      "training_transfers": 162
+    },
+    {
+      "run": "bank-test1-controlled-full-01",
+      "device_s": 69.052905438236,
+      "roles": {
+        "own": 2111.9476997286665,
+        "idle": 90.86704830209,
+        "sample_transfer": 0.00040825707599999973,
+        "prepare": 477.06457733853046,
+        "training": 1046.844206838747
+      },
+      "inference_resizes": 0,
+      "training_transfers": 98
+    }
+  ],
+  "scope": "same sourcecost/hardware/forecast/layout; fine-grain suffix alone not sufficient; role occupancy not FLOP utilization"
+}

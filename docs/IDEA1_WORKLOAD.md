@@ -1,156 +1,107 @@
-# 工作负载分布规划与 Mesh 协作
+# Idea1 工作负载规划与 Mesh 协作：实现合同
 
-本分支在已发布动态TP系统上加入分布驱动候选规划、释放依赖感知放置、真实mesh观测和晚区域训练粒度控制。完整4B开发验收已通过，最终4B/8B/14B的test1验收进行中。所有native结果均为公开长度轨迹与固定成本驱动的AstraSim时序仿真；不是Transformer数值训练、学习质量验证或实体晶圆计时。
+本系统对公开长度 trace 执行完整 RL 周期的成本与事件时序仿真。它不执行数值 Transformer 训练，不提供学习质量或实体晶圆性能证明。最终实验、消融与归档入口见[实验目录](../experiments/2026-11-04-idea1-workload/README.md)。
 
-## 分层职责与三个机制
+## 分层与三个机制
 
-|层次|入口|职责|
+|层次|职责与接口|实现位置|
 |---|---|---|
-|工作负载合同|`src/idea1_controller/workload.py`|不可变模型/生成合同、K维联合分布、版本和历史因果检查|
-|受控同题信息|`controlled_forecast.py`|显式opt-in的独立同prompt回答proxy；排除当前评估sample，不冒充连续actor历史|
-|机制一：候选规划|`scripts/workload_planner/release_search.py`|合法训推布局、硬容量、每布局自己的PB放置及多情景周期估计|
-|机制二：区域放置PB|`region_release_placement.py`|完整任务数量配额、预测长任务区域配额、队列平衡与home/producer依赖|
-|机制二：物理位置PS|`spatial_release.py`|冻结队列和home，只换物理位置；共同阻塞、helper互斥、路径竞争；每轮32候选，最多2轮|
-|机制三：运行时|`native/mesh_cohorts.py`|安全PENDING接手、合法整组TP扩展、已就绪未启动训练批helper选择与真实队列观测|
-|机制三：训练程序|`native/regions.py`、`native/adaptive.py`|区域接管、实际批服务程序、晚区域粒度及共享finalizer|
-|物理网络|`native_extensions/mesh_runtime/`|真实FIFO及已宣布流量记账；单逻辑消息固定选XY/YX之一|
-|统一入口|`scripts/workload_planner/plan_system.py`|离线规划→执行身份后置绑定→有界位置优化；输出计划不等于验收|
+|工作负载输入|不可变分布快照、规范prompt身份、完整K维向量、类别/总体/无历史回退|`src/idea1_controller/workload.py`、`controlled_forecast.py`|
+|机制一：轮前资源规划|枚举可行推理TP/cap与训练区域，检查容量，离线评估并绑定部署身份|`scripts/workload_planner/run_distribution.py`、`search.py`、`release_search.py`、`materialize.py`|
+|机制二：任务与物理位置|冻结区域/worker配额，按历史分配长任务、生产者与数据home，限定范围内调整完整队列位置|`region_release_placement.py`、`spatial_release.py`、`materialize_spatial.py`|
+|机制三：运行时执行|未开始回答接手、合法推理TP扩组、区域接管、未开始训练批捐赠、真实Mesh链路观测与消息选路|`src/idea1_controller/native/`、`mesh_observation.py`|
+|全局提交|所有样本贡献完成后按规范optimizer owner合同归约、归一化、更新一次并发布actor_v1|既有native后缀与版本/贡献审计|
 
-推理cohort与训练区域可以不同，训练区域允许异构TP。27个规范TP2控制对/优化器owner不是固定27个推理副本。动态TP包含轮前选取和安全整组扩展，借入组保留至EOS；没有活动TP缩回或独立FFN租约。训练helper接管优势已就绪、尚未启动的完整批；`--training-scope wafer`允许跨训练区域，不能描述成始终只在同DP域内协作。
+统一入口`plan_system.py`依次执行离线规划、后置trace绑定与可选PS，输出`deployment.json`。部署文件表示已选择的计划，必须经native回放及独立审计后才构成实验结果。
 
-## 信息边界与分布版本
+## 信息与快照
 
-默认`distribution`使用独立prompt校准的总体/类别联合分布。相同条件未知题具有相同pooled score/q25/q75，不因Monte Carlo种子获得虚假的长短身份；各题仍保留独立16×K情景。没有同题历史就不能识别真实哪题长。
+默认`--forecast-mode distribution`只从独立calibration的完整回答向量建立总体/类别分布。新prompt只提供ID、真实输入token长度、规范文本hash与决策前可得的类别。相同条件任务不能通过随机场景的采样噪声获得不同点预测；各候选复用相同场景。
 
-`controlled-proxy`必须显式`--allow-controlled-proxy`。它使用与当前评估sample分离的同prompt原始K向量，默认权重0.75，alpha=1用于与旧同题系统对齐；不是chronological RL历史。真实在线提交API要求observed_seq严格早于decision_seq。当前R/EOS不进入轮前规划，容量始终按硬生成上限检查。
+`--forecast-mode controlled-proxy --allow-controlled-proxy --proxy-weight 1`显式启用额外同题信息的离线对照。原始当前窗口sample不进入历史；规范文本hash用于排除跨集合重复。它不是连续actor训练历史，不支持跨actor更新可信度结论。test1/test2已有历史结果，不称全新held-out。
 
-`--forecast-summary legacy`仅供重放旧点分数及种子；旧未标记artifact按legacy解释，不可命中新pooled缓存。缓存绑定public batch、模型/生成合同、快照、服务目录和训推双方布局；新batch或漂移需重新评估及容量复核。
+`--no-history`不读取或哈希未使用的历史文件。默认独立分布遇到缺失历史文件时明确记录`HISTORY_FILE_MISSING`并返回容量回退；空总体池同理。已有文件损坏或模型/config不兼容时明确失败。无可靠分布时选择最小可行TP的合法布局，硬上限预测不被描述为逐题长短预测。
 
-最终同窗对比采用controlled alpha1并披露信息口径。test1/test2已有历史实验，不能称全新held-out；test3/test4跨prompt全系统泛化未完成。独立校准模式的P0/PB消融另列，不能与不同信息集结果混作单一算法收益。
+快照与算子服务目录分别有版本。校验包括模型/生成合同、来源sample、prompt hash、目录SHA和预测摘要；committed-history接口拒绝未来observed_seq，离线proxy不伪造时间轴。独立规划审计会从原始允许的calibration样本重建分布，再重建预测和部署绑定，而非只验证快照自哈希。
 
-## 快速候选规划
+## 机制一：资源与代价
 
-当前8种训练覆盖×9种推理模板×3种容量前沿比例，共216候选。新增蛇形最大TP4覆盖为13×TP4＋1×TP2，TP8覆盖允许残余行不同位置；每个组合法相邻，54die完整且不重叠。不读取历史native结果生成或排名模板。
+物理网格为9行×6 die，共54 die；27个规范TP2控制/optimizer对不是固定推理实例数，也不等于训练DP数。当前算子目录支持TP1/2/4/8；54不能全部按TP8整除，因此布局允许混合TP。TP1使用每规范对内两个独立实例，当前没有TP1扩组协议。
 
-|模式|216候选规划搜索中位/s|完整进程中位/s|相对完整16情景最优代理差距|
-|---|---:|---:|---:|
-|one_scene|1.558536|2.237521|3.5968%|
-|shortlist6|2.419998|3.112540|0.8165%|
-|full|12.685062|13.418036|0%（仅该代理候选集）|
+默认枚举216个有限模板组合。`one_scene`快评一个场景；`full`精评16场景；`shortlist6`保留各推理族代表再精评，实际候选数可能超过6。风险目标沿用既有均值/尾部组合。有限模板、保留策略和局部位置搜索均不是全局最优证明。
 
-这是4B三次重复的主机计时，存在并发任务影响。约9.55ms仅为已加载artifact后的摘要和容量子步骤，不是完整规划。旧90候选0.69s不能冒充当前规模时间。代理忽略部分运行时协作与精确网络排队，最终还需原生TUNE门；不保证全局最优。
+推理容量包括权重、最大KV增长、常驻状态和缓冲；预测不能缩小hard预留。训练TP/DP区域同样经内存检查，运行时在实际EOS后再次验证每个训练批。全部候选非法时明确失败，不返回未验证计划。离线artifact仍需针对当前公开输入、目录与容量重新校验。
 
-推理与PB训练home队列默认按历史score长优先。未知题同分布点分数相同，不制造题间长短差异。PS冻结PB训练顺序。可选`--home-policy service`按实际训练TP估计teacher和训练服务，避免重复除以die数；该策略全量更慢，未选为最终策略。
+可重复的`--resource-candidate inference@fraction:training`指定显式子集，例如`box4_top@1.0:row1`；未给参数则使用完整候选族。比例只接受0.5/0.75/1.0，非法名称/空集拒绝。artifact、部署与审计绑定子集。复用TUNE已验资源几何仍会重建当前任务放置与容量，不能把单候选搜索时间称为从头发现全局最优的成本。
 
-## 4B开发验收与策略选择
+代价目标包括区域释放、teacher/training服务及公共前后缀，目标不是只优化GEN。但该代理没有完整重放运行时共享队列、动态接手和所有可选批细化，所以代理排名仍需native验证。服务目录拟合误差不等于完整周期的统计保证。
 
-下表都是完整4B TUNE、1536回答、固定成本、原生执行与独立审计PASS。后五项使用相同controlled alpha1信息，位置/训练布局变化见备注；不是GPU test1对比。
+## 机制二：区域释放与位置
 
-|策略|设备周期/s|idle die·s|解释|
-|---|---:|---:|---|
-|扩展布局＋原批|74.566400|99.177207|推理6×TP8＋TP4＋TP2，训练27×TP2|
-|service home|77.695910|140.832983|训练变9×TP4＋9×TP2，不是纯单变量放置消融|
-|就绪批ready_lpt|75.876085|169.900037|更多helper事件仍可能推迟关键批|
-|仅晚区域cap2|73.526129|41.172088|早区域/GEN/teacher不变|
-|仅晚区域cap1|73.297172|23.739210|早区域/GEN/teacher不变，最终选中|
+PB保持完整group、区域长任务配额和整数worker配额，联合考虑推理生产者与训练home。每个推理/训练布局对单独计算放置，缓存不能只以训练partition为键。不同DP编号不代表推理cohort可独立退出，必须同时跟踪物理占用和数据生产者依赖。
 
-cap1较严格匹配原批缩短1.7021%，idle减少76.0638%，训练角色服务增加6.899502 die·s，新增权重/梯度读写真实计费；432批、96捐赠、240远端样本。GEN结束51.472602s、首训练49.317864s完全相同；无推理TP扩组。角色占用不是硬件FLOP利用率，helper是训练列子集。
+PS在固定队列内容/顺序下搜索合法位置，评估共同阻塞、helper可用性与路径竞争。当前只支持同训练区域、相同TP/cap的完整推理队列交换；跨区域cohort、PENDING或不支持的TP1场景明确保留PB。本次全量部署是否发生PS，以各自`position-proof.json`为准，不把回退算作位置收益。
 
-`final_campaign.py`先等待所有声明4B候选完整退出并审计，且最快TUNE不高于旧批准73.873630185369s，才冻结策略并启动最终三个test1。仅依据TUNE选取one_scene/score/input/late-cap1，不能用最终三档结果倒填选择。最终规划主机2.573342/2.894729/3.365557s；设备结果仍待验收。
+此前同信息同资源4B开发P0/PB为91.188989/78.674187s；这是legacy摘要版本的对照，不可当作最终pooled版本收益。32回答合法PS功能例25.651234→25.407870s，仅证明该功能场景。
 
-## 晚区域训练粒度：为什么有效
+## 机制三：协作与训练接管
 
-长优先运行时排序会改变其他区域helper何时空闲。实际ready_lpt对照中，关键批等到72.694s才被接手，完成75.837s；仅增加捐赠次数并不降低周期。根因之一是原子大批执行期间不能发布下一批，helper无法跨越安全边界抢占。
+推理优先接手尚未开始的回答，再根据收益、权重/KV兼容、准入域、容量和真实链路状态判断是否扩组。当前是完整TP扩组并保持到EOS，不是任意活动收缩或新增FFN-only协议。推理扩组次数读取`inference-resizes.json`及audit的`native_resizes`，不能用遗留`helper_segments`代替。
 
-`--late-region-batch-cap 1`仅在全局rollout已经真实完成时构建的区域训练程序中，将本地最大样本数约束为cap×(training_tp/2)。早区域保留原大批效率，teacher/reference/old-policy不变；不读取未来EOS，也不改变完整K8优势quorum。默认0保持原程序，允许1/2/4；更小批不是默认更快，额外读写必须计费并原生验收。
+区域内相关推理全部安全退出且记录齐备后，区域才执行teacher/reference、完整K8优势与反传；不必等待全片GEN。必须分别报告“训练准备提前”和“反传提前”，不能混称。某批次无反传重叠不等于接管接口未实现。
 
-参数绑定资源、部署、计划ID及微批记录；独立审计检查decision_tick不早于实际GEN结束、applied/eligible一致和批大小、样本一次贡献/统一分母。helper仍执行既有TP2容量门控的可迁移程序，不是活动批中途抢占。共享finalizer覆盖base/cached/adaptive三个真正builder，排序发生在同步门编号之前，避免只修改未被调用的基类路径。
+训练协作转移已经就绪、尚未开始的批。源die在step安全点发起；接收方必须完成整个训练区域和规范状态恢复，处于waiting且没有其他service/lease。活动训练批不可抢占，当前没有闲置helper在源长批中途独立拉取任务的协议。训练帮助可按域或全片范围运行，最终实验使用wafer范围并对路径争用计费。
 
-## Mesh与位置优化的实际覆盖
+helper以规范TP2执行可搬运程序，沿用原逐模型微批上限，必要时顺序拆成多个子批；完整payload读、网络传输、写与确认均收费。实际B8开发对照中22个捐赠批在helper上按B4+B4执行，不能假定本地主批与helper服务相同。
 
-PS只在完整推理cohort嵌套于训练区域、整队列装入cap、可建模无PENDING时启用。跨区cohort、TP1或未建模待启动行为保留PB。最终三档计划均因crossing cohorts保留PB，不能宣称它们取得PS位置优化收益。合法32回答功能例PB25.651234→PS25.407870s（0.9487%）仅证明该场景。
+`--late-region-batch-cap 1`只对全局GEN已实际结束后才构建的训练区域收紧原子批。参数按TP2对缩放：TP2/4/8的上限分别1/2/4；早构建区域保持原批效率。`--training-ready-order ready_lpt`只按EOS后已知的本地服务估计调整训练任务顺序。
 
-消息级XY/YX策略读取真实FIFO及已宣布未启动bytes；整个逻辑消息走同一路，不改在途包路径。13个packet检查包含旧XY等价、可替代拥塞路径、必经割面、完整bytes/ACK及clock scale。可替代路径例最大tick1081545→590125，不可外推为RL周期加速；必经割面收益为0。
+实验性`--adaptive-training-batch-max 8`允许本地EOS后按64GB容量拼批；`--training-tail-fine-samples 8`或16保留队列后缀细批。它们默认0，原M1 TP2训练服务目录只覆盖B4以内，故部署显式标注runtime refinement未被代理评分。完整4B对照未获得test1收益，最终选用packing0/tail0，而不是把这些试验开关默认开启。
 
-完整4B同配置mesh off/on为78.145321/78.145774s，未获得周期收益。64回答训练协作功能例，原批36.454723s/15捐赠/30并发helper dies；cap2为34.827264s/29捐赠/52helper dies；cap1为34.163925s/58捐赠。小例不替代完整1536回答结果。
+Mesh策略读取真实FIFO和已宣布未启动bytes，对整个逻辑消息选择XY/YX，不改在途路径。13个packet检查覆盖旧XY等价、可替代路径、必经割面、bytes/ACK及clock scale。完整4B路由开关78.145321/78.145774s，无周期收益；小拓扑路径改善不能外推为模型加速，也不证明所有拥塞已消失。
 
-## 梯度与发布合同
+## 梯度与版本合同
 
-训练helper会在非区域根已恢复的TP2缓冲区新增梯度。生产保留27规范optimizer owners的完整RS、归一化、norm/clip、Adam、owner AG及actor_v1统一发布；训练区域DP数不等于optimizer owners数。没有显式最终贡献者证书就不启用root-only图。
+训练helper可在非区域根的TP2缓冲区新增梯度。生产保留27规范optimizer owners的完整RS、全局样本归一化、norm/clip、Adam、owner AG及actor_v1统一发布。训练DP数不等于归约参与者数。没有最终贡献者证书，不启用root-only稀疏图。
 
-隔离4B后缀原始约39.2ms，稀疏区域根RS加重分发约39.8ms，未采用。割面发布树未启用。当前证据支持先优化几十秒计算和原子批安全点，不能只按理论通信字节减少宣称端到端收益。
+4B隔离后缀原始约39.2ms，稀疏根RS及重分发约39.8ms，未采用。割面发布树未启用，不能把理论字节减少算作端到端收益。审计检查全部固定样本一次贡献、训练job身份、实际TP程序、梯度和版本提交。
 
-## 远端复现
+## 远端复现与证据检查
 
-在目标机器准备独立成本目录；rl_xy默认配置不代表54活动die。14B须单独prepare，reference生命周期适配不同，不能复用4B成本目录。
+在新目录准备成本，14B需独立prepare。以下为复现命令模板，不表示本次又运行了新实验：
 
 ```bash
 python scripts/prepare_idea1_joint.py --model 4B --output /remote/work/cost-4B
 RLXY_COST_ROOT=/remote/work/cost-4B python scripts/workload_planner/plan_system.py --model 4B --window tune --mode one_scene --late-region-batch-cap 1 --output /remote/work/plan-4B
 ```
 
-匹配同题对照时显式增加`--forecast-mode controlled-proxy --allow-controlled-proxy --proxy-weight 1`。默认命令是独立分布路径，不应预期复现受控信息结果。
-
-固定上游seed为4ce9ecfe746a3ee5fe47559a11d91644d641fa7f，构建器只写指定新输出，seed保持干净；需要CMake和Protobuf C++前缀，不安装系统依赖。
+读取`deployment.json`中的三份输入路径后执行；同时设置当前Protobuf动态库目录：
 
 ```bash
-python scripts/workload_planner/build_mesh_backend.py --seed /remote/work/astra-seed --output /remote/work/native-mesh --protobuf-prefix /remote/work/protobuf/usr --cmake /remote/work/venv/bin/cmake
-python scripts/workload_planner/build_mesh_backend.py --verify-only --output /remote/work/native-mesh
-RLXY_COST_ROOT=/remote/work/cost-4B python scripts/workload_planner/validate_host_cost.py /remote/work/linux-cost-validation.json
-```
-
-本次Linux GCC13.3、Protobuf C++3.21.12、CMake3.31.6。新目录重建131.73s，3628个固定C++/CMake源字节一致，13packet检查通过；构建路径不同导致二进制SHA不同，分别记录。verify-only不代替行为测试或硬件校准。
-
-读取deployment.json路径后执行，动态库前缀需加入LD_LIBRARY_PATH：
-
-```bash
-PYTHONPATH=/remote/work/cost-4B/src python scripts/workload_planner/run_mesh_system.py --model 4B --window tune --training-scope wafer --assignment /remote/work/plan-4B/ps/selected-plan.json --resource-layout /remote/work/plan-4B/ps/selected-plan.json --inference-layout /remote/work/plan-4B/ps/inference-layout.json --workload-forecast /remote/work/plan-4B/ps/forecast.json --native-root /remote/work/native-mesh --fast-cost-validation /remote/work/linux-cost-validation.json --mesh-controller --mesh-routing adaptive_xy_yx --output /remote/work/run-4B
+PYTHONPATH=/remote/work/cost-4B/src python scripts/workload_planner/run_mesh_system.py --model 4B --window tune --training-scope wafer --assignment /remote/work/plan-4B/ps/selected-plan.json --resource-layout /remote/work/plan-4B/ps/selected-plan.json --inference-layout /remote/work/plan-4B/ps/inference-layout.json --workload-forecast /remote/work/plan-4B/ps/forecast.json --native-root /remote/work/native-mesh/astra-sim --fast-cost-validation /remote/work/linux-cost-validation.json --mesh-controller --mesh-routing adaptive_xy_yx --output /remote/work/run-4B
 python scripts/audit_idea1_inference.py /remote/work/run-4B --output /remote/work/run-4B-audit.json
 python scripts/report_idea1_workload.py /remote/work/run-4B --audit-report /remote/work/run-4B-audit.json --output /remote/work/run-4B-states
 ```
 
-## 验证与可迁移证据
+后端构建固定上游4ce9ecfe746a3ee5fe47559a11d91644d641fa7f与本仓库扩展，不修改原seed或系统包。Linux GCC13.3/Protobuf C++3.21.12/CMake3.31.6，新目录构建131.73s；3628个固定源字节一致，13packet检查通过。成本加速器7个大/小/ragged/FP32形状与冻结Python事件逐字段一致；这些不是硬件校准。
 
-当前全回归497项总数，3skip，其余通过；docs及git diff检查退出0。这些不替代实体硬件或数值训练。独立规划审计重建原始16×K预测、sample排除、布局及队列绑定；仅按已记录候选分数重新排名，不冒充独立重跑所有评分。
+```bash
+python scripts/workload_planner/build_mesh_backend.py --seed /remote/work/astra-seed --output /remote/work/native-mesh --protobuf-prefix /remote/work/protobuf/usr --cmake /remote/work/venv/bin/cmake
+python scripts/workload_planner/build_mesh_backend.py --verify-only --output /remote/work/native-mesh
+```
 
-`scripts/package_idea1_workload.py`按显式case计划打包，归档源字节不改写；只迁移command.trace_path和source-map目的地，保留原文及双重哈希。`scripts/check_idea1_workload.py BUNDLE --require-final`无需模拟器即可检查三档test1/1536、187项每模型成本源、预测来源、完整原生事件、TP/EOS/KV、训练贡献和统一更新。已通过功能例、完整4B以及新cap功能的归档往返和独立负例；最终三档bundle待完成。
+打包器归档原始源字节；只迁移trace和source-map的目标路径并保留原件与双SHA。检查器无需模拟器即可独立复查原生事件、187项每模型成本源、预测/校准来源、输入哈希、实际部署选项、训练贡献与更新。最终包还逐项重算全部baseline列及唯一模型行。
 
-GPU baseline为48×A100，晶圆54die，非等功耗/面积/成本；尚无GPU同helper策略消融。最终同窗表使用旧完整系统device_s，旧Mac规划代理和本次Linux主机开销分列，不把所有对GPU收益单独归因于mesh。
+```bash
+python scripts/check_idea1_workload.py /remote/work/portable-final-bundle --require-final
+```
 
-## 已验证资源几何的离线候选子集
+## 统计边界与未执行项
 
-统一入口和分布CLI提供可重复的`--resource-candidate inference@fraction:training`，例如`--resource-candidate box4_top@1.0:row1`。参数未给出时仍搜索216候选；给出时只在明确子集内评分、重新计算当前batch的PB/PS及hard容量，非法名字、空集或比例拒绝。artifact、部署和独立规划审计绑定此子集，不将一个候选描述成全局最优。
+设备秒是仿真时间，规划/控制/构建/验证的进程墙钟独立报告。新进程计时不代表已清空OS文件缓存。旧完整系统使用device_s，不能把旧Mac规划代理与本次Linux主机耗时混加后当实体硬件周期。role occupancy包含本地内存/通信等待，不等于FLOP利用率；训练helper为训练占用子集，不能重复相加。
 
-资源几何可从已完成TUNE原生验收的布局库中选择，任务历史和队列仍随新batch更新。本次4B子集严格来自已审计73.297172s TUNE；重建该TUNE后，全部inference/forecast及关键home/helper/cap执行绑定逐项相同。其test1冷规划0.963052s，内部单候选搜索0.028359s；离线原生验收的成本另记，不伪装成28ms首次发现最优。
+GPU为48 A100，晶圆54die，非等面积/功耗/成本；没有GPU同helper策略消融。一次历史窗口的条件结果不能证明跨分布/多seed/真实actor漂移或学习质量。
 
-初轮test1快评选13×TP4＋TP2，native/audit均PASS，但69.720098s比旧device68.262716s慢2.135%。GEN46.453401→43.843299s更快，首次训练却43.998837→45.168828s，early overlap2.454564→0。更多捐赠74→98也未减少idle。该负例说明需评估释放时间分布和完整周期，不能只优化GEN结束或helper事件数量。
+统一三档1536回答验收使用同一冻结运行源c5f5db4；后续无历史文件/校准审计修复只改规划与校验层，84个执行核心文件与该版本逐SHA一致。test3/test4的完整窗口各有一处canonical TUNE重复，虽已准备公开hash决定的352/632回答前缀协议及规划合同检查，按本轮收束范围未启动其原生矩阵，不作泛化结论。Oracle全候选原生枚举、活动训练层间协作通知、更大训练helper TP及发布树均未执行或实现。
 
-test1的shortlist6和full16均选box4/row1，完整规划分别3.364356/13.690099s。布局库复用与多情景短名单的4B原生对照正在运行；此处不预填收益。当前503项测试总数，3skip，其余通过；最终三档和GitHub CI尚待完成。
-
-## EOS后的容量感知训练拼批（开发中）
-
-`--adaptive-training-batch-max 8`是原生训练程序构建阶段的可选上限，默认0保留原逐模型上限。只有本区域所有相关回答都已实际EOS，才可按真实长度尝试拼批；每批继续由原SystemMemory.phase检查64GB容量，装不下则缩小。teacher两次forward不变，完整K8优势和统一更新合同不变。与晚区域cap1一起使用时，晚区域仍优先使用细批，早区域可用大批减少重复状态读写。
-
-这是执行器的局部优化，不假称已进入原M1服务目录评分。当前TP2训练目录只覆盖到B4；不为B8填造外推时间，而用同一成本源的实际原生程序验收。512项单测总数、3skip，其余通过；独立审计新增逐样本EOS时刻、配置上限、批清单和样本一次性检查。新选项的原生功能/全量性能仍待验收。
-
-4B test1事后容量诊断（不是规划输入或性能结果）：原B4上限形成384批；尝试B8可形成177个B8和30个B4，共207批、仍1536样本，最大训练阶段峰值62.386GB，小于原64GB限制。诊断未模拟晚区域cap或实际网络，不能按批数比例直接声称周期加速。
-
-最新功能验收：64回答双home例真实执行early B8和late B1，原生与独立审计通过；提前区域的训练program本地服务1.569020→1.504409s，但整个fixture69.629352s不变，不称整体加速。完整4B TUNE/test1正在验证。六项历史公开实验兼容检查全部退出0，检查范围见原日志，不是重新运行历史硬件实验。
-
-最终三模型dispatcher显式携带拼批上限，并与已审计TUNE的实际resource-layout逐字段核对；可通过预先声明的resource_candidates_by_model配置使用已验证资源几何，仍重新构建当前任务的预测、放置和容量。未声明时保留完整候选搜索。用户已暂缓GitHub上传，最终交付采用远端等价检查及可复现归档，不等待认证或线上CI。
-
-## 前段拼批、末段细批（待性能验收）
-
-完整4B的纯B8拼批为负例：TUNE74.372965s、test169.630843s，均原生及独立审计通过，却未过既有性能门。相同test1布局下训练角色工作1046.844207→1027.166196die·s，idle90.867048→141.753694die·s；节省服务量被原子批尾部失衡抵消。GEN和teacher不变，不能把该差异归因于预测或新硬件。
-
-`--adaptive-training-batch-max 8 --training-tail-fine-samples 8`在本区域实际EOS后，保留原队列最后8个样本为细批（每批不超过TP/2），此前样本按容量尽量拼批。所有样本顺序、teacher、完整K8优势依赖和统一更新不变；晚区域cap继续适用。参数默认0保留历史行为；此策略同样未进入原M1 B4服务目录评分，完整native验收前不称加速。独立审计从原trace及home队列重建末段成员，拒绝跨前后段混批、伪造fine标签、漏样和容量/EOS违约。
-
-无历史入口：统一planner的`--no-history`转发已有hard-limit预测及最小可行TP回退；独立规划审计识别capacity-only-fallback-diagnostic阶段。完整4B规划/绑定合同smoke通过（无native执行或设备耗时），冷规划约1.559s，选择可行TP1；该选择只表达保守容量回退，不宣称吞吐最优。此修复不改变当前冻结v16的训练/推理运行时。
-
-最终可迁移验收还逐一核对部署记录与实际native的packing/tail/cap/ready-order配置、明确资源候选子集及三份原始输入哈希；原生记录仅允许追加一个LF的已知序列化差异，不能用一份配置的结果搭配另一份部署参数。真实初验三档正例及18个参数/输入哈希篡改负例通过，进一步由归档往返验证。
-
-无历史文件路径补齐：显式no-history不再读取/哈希历史文件；默认独立分布遇到缺失文件时记录HISTORY_FILE_MISSING并返回容量回退，空calibration池同理。损坏或模型/配置不匹配的现有历史明确失败。真实planner入口测试主动拒绝所有history字节读取，显式无历史和文件缺失两例均通过。此修复只在规划层，当前final11冻结运行源不修改。
-
-为补充未知prompt验证，预先冻结两个4B独立评价batch：test3前44组/352回答、test4前79组/632回答。各窗口再下一组与TUNE存在canonical文本重复，因此前缀仅按公开hash确定；不称完整1536窗口held-out，不减少主表三档1536工作量。三种信息策略共用相同冻结候选族/执行/样本/cost：无历史最小可行TP、独立calibration分布、额外同题信息的离线controlled alpha1；最后一种不是未知prompt预测或真实时间序列。原生结果未产生前协议已固定，不按这些结果改规则，不报告未执行的oracle或全局regret。统一入口新增subset-prompts，保持完整K8组并在预测/绑定两端一致传递。
-
-独立规划审计进一步从原始test1/test2规范prompt、TUNE/reserved排除集合及原始history样本重建calibration快照，避免只验证快照自哈希。真实初验三档均通过；已构造内容被改动且重新计算自哈希仍合法的快照，原始来源重建会拒绝，污染calibration prompt集合也会拒绝。无快照时不读取历史文件。
+用户已暂缓GitHub上传。本轮以远端代码/数据、统一结果、分析、可复现归档及等价检查交付，不等待认证或线上CI；不承诺所有模型一定超过旧完整系统。

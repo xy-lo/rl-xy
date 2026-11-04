@@ -46,3 +46,22 @@ python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/dev
 ```bash
 python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/distribution-development
 ```
+
+## 资源子集与运行时粒度的补充证据
+
+[运行时开发清单](runtime-development/bundle-manifest.json)完整保存8个1536回答点和4个64/128回答功能点，均重新执行原生事件/预测与校准来源的离线审计。它们是已有结果的打包，不是新一轮原生实验。
+
+|策略|4B TUNE设备/s|4B test1设备/s|
+|---|---:|---:|
+|原批＋晚区cap1|73.297172|69.052905|
+|容量允许时拼B8|74.372965|69.630843|
+|B8＋末8样本细批|75.549236|70.673202|
+|同上＋ready LPT|74.095541|70.673201|
+
+TUNE原批证据在development，test1原批证据在runtime-development；同资源/forecast执行绑定已核验。LPT改善本组TUNE但test1无可计收益。另一个test1 shortlist布局点69.195777s也保留，不以代理排名当原生最优。功能点采用明确observed-fit夹具，不能当规划性能。
+
+[机制归因](runtime-development/analysis/mechanism-cause-attribution-01.md)区分机制一代理误差、机制二释放耦合及机制三批粒度/安全点限制。B8方向未被选为最终默认，不将更多捐赠次数或更少批数当加速。
+
+```bash
+python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/runtime-development
+```
