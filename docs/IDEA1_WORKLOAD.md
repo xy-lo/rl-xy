@@ -146,3 +146,5 @@ test1的shortlist6和full16均选box4/row1，完整规划分别3.364356/13.69009
 `--adaptive-training-batch-max 8 --training-tail-fine-samples 8`在本区域实际EOS后，保留原队列最后8个样本为细批（每批不超过TP/2），此前样本按容量尽量拼批。所有样本顺序、teacher、完整K8优势依赖和统一更新不变；晚区域cap继续适用。参数默认0保留历史行为；此策略同样未进入原M1 B4服务目录评分，完整native验收前不称加速。独立审计从原trace及home队列重建末段成员，拒绝跨前后段混批、伪造fine标签、漏样和容量/EOS违约。
 
 无历史入口：统一planner的`--no-history`转发已有hard-limit预测及最小可行TP回退；独立规划审计识别capacity-only-fallback-diagnostic阶段。完整4B规划/绑定合同smoke通过（无native执行或设备耗时），冷规划约1.559s，选择可行TP1；该选择只表达保守容量回退，不宣称吞吐最优。此修复不改变当前冻结v16的训练/推理运行时。
+
+最终可迁移验收还逐一核对部署记录与实际native的packing/tail/cap/ready-order配置、明确资源候选子集及三份原始输入哈希；原生记录仅允许追加一个LF的已知序列化差异，不能用一份配置的结果搭配另一份部署参数。真实初验三档正例及18个参数/输入哈希篡改负例通过，进一步由归档往返验证。

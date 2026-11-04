@@ -28,6 +28,41 @@ def verify_comparison(comparison,final,baseline_path):
         assert math.isclose(row['speedup_gpu_device'],row['gpu_s']/row['device_s'],rel_tol=1e-12)
         assert math.isclose(row['reduction_old_complete_device'],1-row['device_s']/row['old_complete_system_device_s'],rel_tol=1e-12)
 
+def verify_deployment(deployment,case,assignment_bytes,layout,inference_bytes,constraint=None):
+    """Bind published planner options and original input hashes to executed data."""
+    assert deployment['model']==case['model'] and deployment['window']==case['window']
+    assignment=json.loads(assignment_bytes)
+    fields={'adaptive_training_batch_max':('adaptive_training_batch_max',0),
+            'training_tail_fine_samples':('training_tail_fine_samples',0),
+            'late_region_batch_cap':('late_region_batch_cap_per_pair',0),
+            'training_ready_order':('training_ready_order','input')}
+    for published,(native,default) in fields.items():
+        value=deployment.get(published,default);actual=layout.get(native,default)
+        assert type(value) is type(default) and value==actual,published
+        assert assignment.get(native,default)==actual,'executed option differs from original input'
+    unscored=deployment.get('runtime_training_packing_unscored',False)
+    assert type(unscored) is bool and unscored==bool(layout.get('adaptive_training_batch_max',0))
+    for key,data in [('selected-plan.json',assignment_bytes),('inference-layout.json',inference_bytes)]:
+        # Native recordings add one trailing LF to the input JSON. Accept that
+        # exact serialization difference, without replacing byte hashes by a
+        # loose semantic comparison.
+        candidates={hashlib.sha256(data).hexdigest(),hashlib.sha256(data.removesuffix(b'\n')).hexdigest()}
+        assert deployment['hashes'][key] in candidates,key
+    # PB writes standard JSON; the optional PS stage writes indented JSON.
+    forecast_hashes={hashlib.sha256(json.dumps(assignment['forecasts'],**formatting).encode()).hexdigest()
+        for formatting in ({},{'indent':2})}
+    assert deployment['hashes']['forecast.json'] in forecast_hashes
+    declared=deployment.get('resource_candidates')
+    if declared is None:assert constraint is None
+    else:
+        assert isinstance(declared,list) and declared
+        normalized=set()
+        for value in declared:
+            inference,training=value.split(':');name,fraction=inference.split('@')
+            normalized.add(name+'@'+str(float(fraction))+':'+training)
+        assert normalized==set(constraint or []),'resource candidate constraint'
+
+
 def verify_bundle(root,require_final=False):
     root=Path(root);m=load(root/'bundle-manifest.json')
     assert m['schema']=='idea1.portable-workload-evidence/1'
@@ -84,6 +119,11 @@ def verify_bundle(root,require_final=False):
             assert report['status']==case['audit_status']=='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT'
             assert result['requests']==result['completed']==result['trained_samples']==case['expected_answers']
             assert result['total_s']==case['total_device_s'] and result['binary_sha256']==case['binary_sha256']
+            if m['final'] and case['kind']=='final':
+                deployment=load(root/'deployment'/(case['model']+'.json'))
+                offline=load(dst/'planning/offline/result.json')
+                verify_deployment(deployment,case,(run/'assignment.json').read_bytes(),load(run/'resource-layout.json'),
+                    (run/'inference-layout.json').read_bytes(),offline.get('candidate_constraint'))
             reports.append(dict(id=case['id'],model=case['model'],window=case['window'],answers=case['expected_answers'],total_device_s=result['total_s']))
     if require_final or m['final']:
         assert m['final']
