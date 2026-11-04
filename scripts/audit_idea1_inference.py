@@ -5,6 +5,43 @@ from collections import Counter,defaultdict
 from audit_idea1_system import audit,digest,load
 
 
+def audit_training_packing(choices,layout,eos,train_mb,regional_items=None):
+    """Reconstruct the local-EOS information boundary and full sample coverage."""
+    cap=layout.get('adaptive_training_batch_max',0)
+    assert type(cap) is int and cap in (0,1,2,4,8)
+    if not cap:
+        assert layout.get('training_tail_fine_samples',0)==0
+        assert not any('adaptive_training_batch_max' in x for x in choices)
+        return None
+    assert type(train_mb) is int and train_mb>0
+    tail=layout.get('training_tail_fine_samples',0)
+    assert type(tail) is int and tail in (0,8,16)
+    if tail:assert regional_items is not None,'fine tail requires independently reconstructed home order'
+    tailsets={r:set(ids[-tail:]) for r,ids in regional_items.items()} if tail else {}
+    tids=[];grown=0;training=[x for x in choices if x['stage']=='training']
+    for x in training:
+        assert x['adaptive_training_batch_max']==cap
+        ids=x['packing_tids'];assert len(ids)==x['actual'] and len(set(ids))==len(ids)
+        assert all(t in eos and eos[t]<=x['decision_tick'] for t in ids),'packing precedes observed EOS'
+        maximum=cap
+        if x.get('late_region_cap_eligible'):maximum=min(maximum,layout['late_region_batch_cap_per_pair']*(x['tp']//2))
+        if tail:
+            region=x['region'];assert all(t in regional_items[region] for t in ids)
+            expected=all(t in tailsets[region] for t in ids)
+            assert expected or all(t not in tailsets[region] for t in ids),'batch crosses bulk/tail boundary'
+            assert x['training_tail_fine_samples']==tail and type(x['tail_fine']) is bool and x['tail_fine']==expected
+            if expected:maximum=min(maximum,x['tp']//2)
+        assert x['actual']<=x['maximum']==maximum
+        assert x['tp'] in (2,4,8)
+        expected_baseline=train_mb if x['tp']==2 else min(8,train_mb*x['tp'])
+        assert type(x['baseline_maximum']) is int and x['baseline_maximum']==expected_baseline
+        grown+=x['actual']>x['baseline_maximum'];tids.extend(ids)
+    assert Counter(tids)==Counter(eos.keys()),'packing drops or duplicates samples'
+    assert all('adaptive_training_batch_max' not in x for x in choices if x['stage']!='training')
+    proof=dict(adaptive_training_batch_max=cap,adaptive_training_batches=len(training),larger_than_baseline_batches=grown,packing_uses_observed_EOS=True)
+    if tail:proof.update(training_tail_fine_samples=tail,tail_fine_batches=sum(x['tail_fine'] for x in training),tail_membership_reconstructed=True)
+    return proof
+
 def check(folder):
     base=audit(folder);cmd=load(folder/'command.json');trace=Path(cmd['trace_path'])
     if not trace.is_absolute():trace=Path(__file__).resolve().parents[1]/trace
@@ -145,13 +182,54 @@ def check(folder):
         for key,value in values.items():
             got=actual[str(rank)][key]
             assert math.isclose(got,value,rel_tol=2e-11,abs_tol=.1),(rank,key,got,value)
-    return dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT',base=base,inference_programs=len(events),
+    training_layout=load(folder/'resource-layout.json')
+    ready_order=training_layout.get('training_ready_order','input')
+    assert ready_order in ('input','ready_lpt')
+    if ready_order=='ready_lpt':
+        manifest=load(folder/'training-batches.json');tickets=load(folder/'training-ticket-events.json')
+        homes={int(x['home']) for x in manifest.values()}
+        for region in homes:
+            observed=[x['batch_id'] for x in tickets if x['region']==region]
+            expected_ids=sorted((bid for bid,x in manifest.items() if x['home']==region),
+                key=lambda bid:(-manifest[bid]['estimate_local_ns'],manifest[bid]['index']))
+            assert observed==expected_ids,('ready LPT ticket order',region)
+    late_cap=training_layout.get('late_region_batch_cap_per_pair',0)
+    assert type(late_cap) is int and late_cap in (0,1,2,4)
+    applied=0
+    if late_cap:
+        generation_end=load(folder/'result.json')['generation_end_tick']
+        choices=load(folder/'microbatch-choices.json')
+        for choice in choices:
+            if choice['stage']!='training':continue
+            assert 'late_region_cap_applied' in choice
+            if choice['late_region_cap_eligible']:
+                assert choice['global_rollout_complete'] and choice['decision_tick']>=generation_end
+                assert choice['actual']<=choice['maximum']<=late_cap*(choice['tp']//2)
+            if choice['late_region_cap_applied']:
+                applied+=1
+                assert choice['late_region_cap_eligible'] and choice['maximum']<choice['original_maximum']
+    choices=load(folder/'microbatch-choices.json') if (folder/'microbatch-choices.json').exists() else []
+    regional_items=None
+    if training_layout.get('training_tail_fine_samples',0):
+        bygroup=defaultdict(list)
+        for x in items:bygroup[str(x['group_id'])].append(x['trajectory_id'])
+        regional_items={int(r):[t for w in ws for gid in training_layout['queues'][str(w)] for t in bygroup[str(gid)]]
+            for r,ws in training_layout['region_members'].items()}
+    packing=audit_training_packing(choices,training_layout,eos,cmd.get('policy',{}).get('train_mb'),regional_items)
+
+    if packing:
+        recorded=Counter(tuple(x['packing_tids']) for x in choices if x['stage']=='training')
+        manifest=load(folder/'training-batches.json')
+        assert recorded==Counter(tuple(x['tids']) for x in manifest.values()),'packing choices differ from executable batches'
+    report=dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT',base=base,inference_programs=len(events),
         initial_inference_instances=54 if layout.get('paired_tp1') else len(initial),initial_tp_counts={1:54} if layout.get('paired_tp1') else dict(Counter(len(ws)*2 for ws in initial.values())),
-        native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
+        late_region_batch_cap=late_cap,late_region_capped_batches=applied,training_ready_order=ready_order,native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
         kv_storage_hazard_checked=True,
         pending_input_fanout_checked=True,
         pending_resize_exclusion_checked=True,
         EOS_and_KV_conservation=True,scope='cost/native timing; not numeric Transformer or physical hardware')
+    if packing:report.update(packing)
+    return report
 
 
 if __name__=='__main__':

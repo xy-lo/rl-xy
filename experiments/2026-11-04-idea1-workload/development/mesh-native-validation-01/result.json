@@ -1,0 +1,1230 @@
+{
+  "status": "PASS_NATIVE_MESH_ROUTING",
+  "records": [
+    {
+      "label": "one-baseline",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.005649205297231674,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 590125
+          }
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "label": "one-xy",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.006098400801420212,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 590125
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "xy",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 1,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                2,
+                5,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "one-adaptive",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.005078835412859917,
+      "policy": "adaptive_xy_yx",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 590125
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "adaptive_xy_yx",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 1,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                2,
+                5,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "shared_cut_alternatives-baseline",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576",
+        "1,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.005036516115069389,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 1081545
+          },
+          {
+            "src": 1,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 557257
+          }
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "label": "shared_cut_alternatives-xy",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576",
+        "1,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.006018711254000664,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 1081545
+          },
+          {
+            "src": 1,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 557257
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "xy",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 2,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                2,
+                5,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          },
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                2097152,
+                0,
+                0.0,
+                1048576.0
+              ],
+              [
+                2,
+                5,
+                2097152,
+                0,
+                0.0,
+                1048576.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 2,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "shared_cut_alternatives-adaptive",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576",
+        "1,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.004222307354211807,
+      "policy": "adaptive_xy_yx",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 590125
+          },
+          {
+            "src": 1,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 557257
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 1,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "adaptive_xy_yx",
+          "predicted_wait_delta_ns": 1048576.0,
+          "route_calls": 2,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                2,
+                5,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          },
+          {
+            "alternate_routes": 1,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                4,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                2,
+                5,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                4,
+                5,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 1048576.0,
+            "route_calls": 2,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "mandatory_row-baseline",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,2,1048576",
+        "1,2,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.003484059125185013,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 2,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 1048677
+          },
+          {
+            "src": 1,
+            "dst": 2,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          }
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "label": "mandatory_row-xy",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,2,1048576",
+        "1,2,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.004191035404801369,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 2,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 1048677
+          },
+          {
+            "src": 1,
+            "dst": 2,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "xy",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 2,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          },
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                2097152,
+                0,
+                0.0,
+                1048576.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 2,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "mandatory_row-adaptive",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,2,1048576",
+        "1,2,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.005293730646371841,
+      "policy": "adaptive_xy_yx",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 2,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 1048677
+          },
+          {
+            "src": 1,
+            "dst": 2,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "adaptive_xy_yx",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 2,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          },
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                1,
+                2,
+                2097152,
+                0,
+                0.0,
+                1048576.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 2,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "disjoint-baseline",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,1,1048576",
+        "3,4,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.0048947930335998535,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 1,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          },
+          {
+            "src": 3,
+            "dst": 4,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          }
+        ],
+        "status": "PASS"
+      }
+    },
+    {
+      "label": "disjoint-xy",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,1,1048576",
+        "3,4,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.003976788371801376,
+      "policy": "xy",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 1,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          },
+          {
+            "src": 3,
+            "dst": 4,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "xy",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 2,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          },
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                3,
+                4,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 2,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "disjoint-adaptive",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,1,1048576",
+        "3,4,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.005131855607032776,
+      "policy": "adaptive_xy_yx",
+      "clock_scale": 1,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 1,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          },
+          {
+            "src": 3,
+            "dst": 4,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 524389
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1.0,
+          "policy": "adaptive_xy_yx",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 2,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          },
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ],
+              [
+                3,
+                4,
+                1048576,
+                0,
+                0.0,
+                524288.0
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1.0,
+            "policy": "adaptive_xy_yx",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 2,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    },
+    {
+      "label": "clock-scale",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim/build-dynarl/RlxyPacketFixture",
+        "/home/xuyin.p/outputs/idea1-final-t162/mesh-native-validation-01/network.yml",
+        "wafer",
+        "0,5,1048576"
+      ],
+      "returncode": 0,
+      "wall_s": 0.005914868786931038,
+      "policy": "xy",
+      "clock_scale": 1000,
+      "result": {
+        "flows": [
+          {
+            "src": 0,
+            "dst": 5,
+            "bytes": 1048576,
+            "send_callbacks": 1,
+            "recv_callbacks": 1,
+            "end_tick": 590125
+          }
+        ],
+        "status": "PASS",
+        "mesh": {
+          "alternate_routes": 0,
+          "edge_fields": [
+            "src",
+            "dst",
+            "announced_not_started_bytes",
+            "queued_here_bytes",
+            "actual_queue_wait_ns",
+            "committed_service_ns"
+          ],
+          "edges": [],
+          "height": 2,
+          "native_ticks_per_ns": 1000.0,
+          "policy": "xy",
+          "predicted_wait_delta_ns": 0.0,
+          "route_calls": 1,
+          "schema": "rlxy.mesh-observed/2",
+          "width": 3
+        },
+        "admissions": [
+          {
+            "alternate_routes": 0,
+            "edge_fields": [
+              "src",
+              "dst",
+              "announced_not_started_bytes",
+              "queued_here_bytes",
+              "actual_queue_wait_ns",
+              "committed_service_ns"
+            ],
+            "edges": [
+              [
+                0,
+                1,
+                1048576,
+                0,
+                0.0,
+                524.288
+              ],
+              [
+                1,
+                2,
+                1048576,
+                0,
+                0.0,
+                524.288
+              ],
+              [
+                2,
+                5,
+                1048576,
+                0,
+                0.0,
+                524.288
+              ]
+            ],
+            "height": 2,
+            "native_ticks_per_ns": 1000.0,
+            "policy": "xy",
+            "predicted_wait_delta_ns": 0.0,
+            "route_calls": 1,
+            "schema": "rlxy.mesh-observed/2",
+            "width": 3
+          }
+        ]
+      }
+    }
+  ],
+  "suites": {
+    "one": {
+      "fixed_end_tick": 590125,
+      "adaptive_end_tick": 590125
+    },
+    "shared_cut_alternatives": {
+      "fixed_end_tick": 1081545,
+      "adaptive_end_tick": 590125
+    },
+    "mandatory_row": {
+      "fixed_end_tick": 1048677,
+      "adaptive_end_tick": 1048677
+    },
+    "disjoint": {
+      "fixed_end_tick": 524389,
+      "adaptive_end_tick": 524389
+    }
+  },
+  "old_binary_sha256": "eb23f1f19f4e6590557d8f0c3bc7b55a0c2e86229cf8096dadb627427976943c",
+  "new_binary_sha256": "e33a674495f418ee211531aa09f96a7228b0e34be67e43e6525b420dbea001b6",
+  "scope": "native small directed-link packet tests; not full 4B or physical hardware performance"
+}

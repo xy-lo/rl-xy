@@ -1,0 +1,70 @@
+{
+  "schema": "idea1.mechanism-cause-attribution/1",
+  "created_at": "2026-11-04T03:50:39.298708+00:00",
+  "runtime_commit": "c5f5db41f6cc9a71f6823ea88ff0cc85f24e1960",
+  "scope": "code-grounded attribution plus existing timing evidence; no new experiment; mixed resource/placement changes cannot establish pure single-mechanism causal effects",
+  "causes": [
+    {
+      "cause": "faster_GEN_but_slower_cycle",
+      "primary": "M1 static complete-cycle cost approximation",
+      "coupled": [
+        "M2 physical producer/data-home readiness",
+        "M3 helper eligibility and takeover gates"
+      ],
+      "verified": "planner objective already includes regional release + training service + common prefix/suffix; it does not fully simulate live shared queues/stealing/actual refinement",
+      "not_proven": "M2 alone caused the regression"
+    },
+    {
+      "cause": "larger_batch_saves_work_but_loses_tail_flexibility",
+      "primary": "M3 optional execution batching",
+      "coupled": [
+        "M1 scoring does not cover optionalB8 refinement"
+      ],
+      "verified": "B8fulltest1: training role -19.678010666die-s, idle +50.886645258die-s vsmatchedB4; 22 remotely executedB8 jobs actually use sequentialB4+B4",
+      "production": "packing0/tail0 selected; this negative optional variant is not final production policy"
+    },
+    {
+      "cause": "idle_helper_waits_for_source_batch_boundary",
+      "primary": "M3 source-driven unstarted-batch donation protocol",
+      "verified": "RegionalTrainingCooperator only runs on source step; receiver requires whole region trained/restored, waiting, no lease/service; active batch not split/preempted",
+      "not_proven": "routing conflict is the principal cause; current full4B XY vsadaptive differs only0.452506ms"
+    }
+  ],
+  "eightB": {
+    "initial_generation_s": 56.805298346562,
+    "new_generation_s": 63.931134173306,
+    "initial_first_training_s": 67.850668541895,
+    "new_first_training_s": 65.939486513015,
+    "initial_cycle_s": 108.971473082794,
+    "new_cycle_s": 103.259446395453,
+    "generation_change_s": 7.125835826744002,
+    "cycle_change_s": -5.712026687341009,
+    "initial_inference": "6TP8+TP4+TP2",
+    "initial_training": "13TP4+TP2,DP14",
+    "new_inference": "13TP4+TP2",
+    "new_training": "27TP2,DP27",
+    "caveat": "resource and assignment both change; not isolatedM1 ablation"
+  },
+  "m2_positive_evidence": {
+    "old_development_same_info_same_resource_P0_s": 91.18898873783701,
+    "PB_s": 78.674186708389,
+    "caveat": "legacy point-summary developer version, not final pooled runtime gain"
+  },
+  "source_files": {
+    "scripts/workload_planner/release_search.py": "79c0533f14e87b9635f538047ce710ee930bed0559c7b826abc8e95fa6991280",
+    "src/idea1_controller/region_release_placement.py": "2bb04152fda824142863d264ed17b674ae4f6c428ba192c648848e58b2167744",
+    "src/idea1_controller/native/adaptive.py": "8462f265cbe536d66518ae9078fd6d19115b1e245970e76f228534f887e2ab6b",
+    "src/idea1_controller/native/region_training_help.py": "418475d92881f9f761fa4da58a8f4f36c50bf86a30fc54d1dfd71b6f80d5c15f",
+    "src/idea1_controller/native/mesh_cohorts.py": "49b895829e820a862ad9ae3b2bdec43c96c0165a2412e35c4dffb800e12351a9",
+    "src/idea1_controller/native/regions.py": "e7289a0830e18c111bd14aee8acb9c120db09be228ee4dee25a851e7c02ebb83"
+  },
+  "evidence_paths": [
+    "first-acceptance-4b-regression-01.json",
+    "packing-full-test1-state-report-01/summary.json",
+    "bank-test1-controlled-full-01-state-report-02/summary.json",
+    "packing-atomic-tail-diagnostic-01.json",
+    "final-8b-state-report-01/summary.json",
+    "final-campaign-11/8B-test1/inference-audit.json",
+    "packing-full-test1-01/native-run/portable-training-programs.json.gz"
+  ]
+}

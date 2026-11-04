@@ -1,0 +1,86 @@
+{
+  "scope": "paired full4B TUNE with same independent same-prompt alpha1 forecast and fixed hardware; inference physical groups same, home assignment AND training partition differ; not a pure one-variable ablation",
+  "models": [
+    "4B"
+  ],
+  "comparison": {
+    "total_device_s": {
+      "score_dp27": 74.566400053373,
+      "service_dp18": 77.69590961766701,
+      "delta_service_minus_score": 3.129509564294011
+    },
+    "generation_end_s": {
+      "score_dp27": 51.472602013484,
+      "service_dp18": 43.836864923863,
+      "delta_service_minus_score": -7.635737089621003
+    },
+    "first_training_s": {
+      "score_dp27": 49.317863895768,
+      "service_dp18": 50.597609163864,
+      "delta_service_minus_score": 1.2797452680960006
+    },
+    "early_training_overlap_s": {
+      "score_dp27": 2.1547381177160005,
+      "service_dp18": 0,
+      "delta_service_minus_score": -2.1547381177160005
+    },
+    "post_generation_dynamic_tail_s": {
+      "score_dp27": 23.054304945641,
+      "service_dp18": 33.819400937796,
+      "delta_service_minus_score": 10.765095992154997
+    },
+    "training_transfers": {
+      "score_dp27": 65,
+      "service_dp18": 29,
+      "delta_service_minus_score": -36
+    },
+    "remote_training_samples": {
+      "score_dp27": 260,
+      "service_dp18": 200,
+      "delta_service_minus_score": -60
+    }
+  },
+  "generation_reduction": 0.14834565945628142,
+  "full_cycle_regression": 0.04196943344527804,
+  "roles": {
+    "training": {
+      "score_die_s": 1118.9116992548902,
+      "service_die_s": 1213.7469316111026,
+      "delta_service_minus_score": 94.83523235621237
+    },
+    "idle": {
+      "score_die_s": 99.17720670656797,
+      "service_die_s": 140.83298345073237,
+      "delta_service_minus_score": 41.6557767441644
+    },
+    "sample_transfer": {
+      "score_die_s": 0.00029693956199999973,
+      "service_die_s": 0.51123380157,
+      "delta_service_minus_score": 0.5109368620079999
+    },
+    "own": {
+      "score_die_s": 2292.8808998527943,
+      "service_die_s": 2293.8200872505013,
+      "delta_service_minus_score": 0.9391873977069736
+    },
+    "prepare": {
+      "score_die_s": 513.482618993764,
+      "service_die_s": 544.5268663702697,
+      "delta_service_minus_score": 31.04424737650561
+    }
+  },
+  "expanded-layout-controlled-full-01": {
+    "mean_local_compute_memory_s": 71.2590555328885,
+    "mean_native_communication_ns": 1469734042.925788
+  },
+  "service-home-controlled-full-01": {
+    "mean_local_compute_memory_s": 73.3368469828067,
+    "mean_native_communication_ns": 1748131200.6099846
+  },
+  "conclusions": [
+    "rollout balanced/shorter alone does not imply better full cycle",
+    "larger training TP and later early training are coupled in this candidate; proxy must account for regional release and portable helper costs",
+    "no inference resize in either full case; do not attribute gains to inference helper or mesh routing",
+    "role occupancy is not compute FLOP utilization; local compute/memory ledger provided separately"
+  ]
+}

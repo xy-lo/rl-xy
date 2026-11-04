@@ -36,5 +36,5 @@ class CachedCompleteKernel(CompleteKernel):
             self.batch_manifest[bid]=proof;self.batch_state[bid]='queued'
             jobs.append(('training',tids,steps,dict(**proof,steps=steps)))
         jobs.append(('gradient_restore',[],self._restore_gradient(r) if items else [],None))
-        self.region_programs[r]=tuple((stage,tids,self._synchronized(r,i,steps),job) for i,(stage,tids,steps,job) in enumerate(jobs))
+        self._finalize_region_program(r,jobs)
 

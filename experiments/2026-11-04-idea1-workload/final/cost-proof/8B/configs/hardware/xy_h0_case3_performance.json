@@ -1,0 +1,208 @@
+{
+  "schema_version": "rlxy.hardware/3",
+  "profile_id": "xy_h0_case3_performance",
+  "topology": "mesh2d_xy",
+  "compute_dtype": "fp16",
+  "d2d_caliber": "unspecified",
+  "parameters": {
+    "wafer_diameter_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "module_width_mm": {
+      "value": 24.99,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "module_height_mm": {
+      "value": 33.25,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "module_compute_area_mm2": {
+      "value": 499.9952,
+      "unit": "mm2",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "modules_x": {
+      "value": 6,
+      "unit": "count",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "modules_y": {
+      "value": 9,
+      "unit": "count",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "cores_per_module": {
+      "value": 256,
+      "unit": "count",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "core_clock_ghz": {
+      "value": 1,
+      "unit": "GHz",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "core_fp16_flops_per_ns": {
+      "value": 1020,
+      "unit": "FLOP/ns",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "core_bf16_flops_per_ns": {
+      "value": null,
+      "unit": "FLOP/ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "core_vector_ops_per_ns": {
+      "value": null,
+      "unit": "op/ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "sram_bytes_per_core": {
+      "value": 1250000,
+      "unit": "B",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "sram_bytes_per_ns_per_core": {
+      "value": null,
+      "unit": "B/ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "dram_bytes_per_module": {
+      "value": 64000000000,
+      "unit": "B",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "dram_bytes_per_ns_per_module": {
+      "value": 2000,
+      "unit": "B/ns",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "noc_bytes_per_ns_per_module": {
+      "value": null,
+      "unit": "B/ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "d2d_bytes_per_ns": {
+      "value": 2000,
+      "unit": "B/ns",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "d2d_latency_ns": {
+      "value": null,
+      "unit": "ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "packet_bytes": {
+      "value": null,
+      "unit": "B",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "nic_tx_bytes_per_module": {
+      "value": null,
+      "unit": "B",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "nic_rx_bytes_per_module": {
+      "value": null,
+      "unit": "B",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "host_bytes_per_ns": {
+      "value": null,
+      "unit": "B/ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    },
+    "host_latency_ns": {
+      "value": null,
+      "unit": "ns",
+      "source": "not specified in user H0 table or verified WSC-LLM sections",
+      "status": "unresolved"
+    }
+  },
+  "declared_geometry": {
+    "layout_width_mm": {
+      "value": 215,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "layout_height_mm": {
+      "value": 215,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "array_width_mm": {
+      "value": 199.92,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "array_height_mm": {
+      "value": 199.5,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "compute_die_width_mm": {
+      "value": 21.92,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    },
+    "compute_die_height_mm": {
+      "value": 22.81,
+      "unit": "mm",
+      "source": "user H0 table supplied 2026-10-26; WSC-LLM DOI:10.1145/3695053.3731101 Table 1 Case 3 / section 5.1.1",
+      "status": "design_candidate"
+    }
+  },
+  "provenance": {
+    "kind": "user_design_table",
+    "primary_paper": "https://doi.org/10.1145/3695053.3731101",
+    "retrieved_date": "2026-10-26",
+    "measured_hardware": false,
+    "process_nm": 7,
+    "core_style": "Dojo-style",
+    "cores_per_module_basis": "WSC-LLM section 5.1.1:16x16; user H0 references WSC-LLM",
+    "module_compute_area_basis": "derived 21.92*22.81; not total module footprint"
+  },
+  "notes": [
+    "Authoritative H0 transcription; old xy_h1h2h3_54.json is preserved only as a historical candidate.",
+    "6x9 means logical 54-node mesh here. Physical consistency is audited separately, not repaired silently.",
+    "FP16 1.02 TFLOPS/core equals 1020 FLOP/ns, not 1024. BF16/FP32/vector rates are not supplied.",
+    "Decimal MB/GB/TB used: per-core SRAM is 1250000 bytes, not a shared 17.28GB pool.",
+    "The WSC paper reports 6 TB/s total interconnect across four directions; this is not copied as a NoC or SRAM bandwidth.",
+    "D2D 2 TB/s is supplied. Its per-edge/per-direction caliber remains unconfirmed.",
+    "The declared array footprint equals an 8x6 grid of the declared module shape, not 54 modules; all source values are retained.",
+    "No implicit 300mm wafer or 26x33mm exposure constraint is introduced by this table.",
+    "This source profile is not an executable/calibrated full-H model. Explicit scenario assumptions must be separate.",
+    "User confirmed: retain54 and compute-die dimensions; Fig3 outer module and derived48 footprint are template references only, not Case3 fixed placement."
+  ],
+  "geometry_scope": "reference_template_not_case3_placement"
+}

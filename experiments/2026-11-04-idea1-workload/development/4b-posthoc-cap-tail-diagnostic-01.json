@@ -1,0 +1,74 @@
+{
+  "scope": "posthoc diagnosis only after audited full4B TUNE; actual responses never fed to placement or initial TP choice",
+  "source_sha256": "f1edc07faaa821915b916293111f28146855eeee57bbe3125464102a900ba9f1",
+  "answers": 1536,
+  "capped_answers": 121,
+  "groups": 192,
+  "groups_with_capped_answer": 38,
+  "cohorts": [
+    {
+      "root": 0,
+      "tp": 2,
+      "answers": 64,
+      "capped_answers": 1,
+      "max_response": 8192,
+      "response_tokens": 195228
+    },
+    {
+      "root": 1,
+      "tp": 4,
+      "answers": 128,
+      "capped_answers": 12,
+      "max_response": 8192,
+      "response_tokens": 347756
+    },
+    {
+      "root": 3,
+      "tp": 8,
+      "answers": 224,
+      "capped_answers": 16,
+      "max_response": 8192,
+      "response_tokens": 724000
+    },
+    {
+      "root": 5,
+      "tp": 8,
+      "answers": 224,
+      "capped_answers": 22,
+      "max_response": 8192,
+      "response_tokens": 688220
+    },
+    {
+      "root": 9,
+      "tp": 8,
+      "answers": 224,
+      "capped_answers": 22,
+      "max_response": 8192,
+      "response_tokens": 696455
+    },
+    {
+      "root": 15,
+      "tp": 8,
+      "answers": 224,
+      "capped_answers": 17,
+      "max_response": 8192,
+      "response_tokens": 685322
+    },
+    {
+      "root": 17,
+      "tp": 8,
+      "answers": 224,
+      "capped_answers": 15,
+      "max_response": 8192,
+      "response_tokens": 707587
+    },
+    {
+      "root": 21,
+      "tp": 8,
+      "answers": 224,
+      "capped_answers": 16,
+      "max_response": 8192,
+      "response_tokens": 688409
+    }
+  ]
+}

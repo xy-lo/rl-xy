@@ -1,0 +1,32 @@
+{
+  "cases": [
+    {
+      "id": "m1-native-tune-full-01",
+      "information": "legacy conditional point summary, P0 independent placement",
+      "device_s": 91.18898873783701,
+      "answers": 1536,
+      "training_transfers": 17,
+      "model": "Qwen3-4B",
+      "window": "tune"
+    },
+    {
+      "id": "m2-pb-native-full-01",
+      "information": "same legacy information/resource as P0, PB release placement",
+      "device_s": 78.674186708389,
+      "answers": 1536,
+      "training_transfers": 46,
+      "model": "Qwen3-4B",
+      "window": "tune"
+    },
+    {
+      "id": "pooled-global-trainingmesh-full-01",
+      "information": "pooled V2 unknown-prompt point summary; later runtime/layout, not paired solely with P0",
+      "device_s": 79.56926469803999,
+      "answers": 1536,
+      "training_transfers": 70,
+      "model": "Qwen3-4B",
+      "window": "tune"
+    }
+  ],
+  "scope": "development versions, not final v13 distribution acceptance; native audit included, independent full predictor reconstruction not packaged for these legacy plans; no cross-information causal comparison"
+}

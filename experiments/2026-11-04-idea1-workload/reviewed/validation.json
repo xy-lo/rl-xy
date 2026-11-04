@@ -1,0 +1,50 @@
+{
+  "runtime_source": "c5f5db41f6cc9a71f6823ea88ff0cc85f24e1960",
+  "remote_checks": [
+    {
+      "name": "all-unit",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "exit_status": 0,
+      "wall_s": 36.21283879876137
+    },
+    {
+      "name": "docs",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+        "scripts/check_docs.py"
+      ],
+      "exit_status": 0,
+      "wall_s": 0.20797958597540855
+    },
+    {
+      "name": "initial3-portable",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+        "scripts/check_idea1_workload.py",
+        "/home/xuyin.p/outputs/idea1-final-t162/portable-final-bundle-02",
+        "--require-final"
+      ],
+      "exit_status": 0,
+      "wall_s": 97.50592940673232
+    }
+  ],
+  "final_portable_verification": {
+    "argv": [
+      "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+      "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/heldout-audit-v19/scripts/check_idea1_workload.py",
+      "/home/xuyin.p/outputs/idea1-final-t162/portable-final-bundle-03",
+      "--require-final"
+    ],
+    "exit_status": 0,
+    "wall_s": 125.09593966789544
+  },
+  "regression_accepted_and_explained": true,
+  "github_upload": "deferred by user"
+}

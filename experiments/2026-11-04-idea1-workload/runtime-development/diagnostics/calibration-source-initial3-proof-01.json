@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "model": "4B",
+      "status": "PASS_PREDICTION_AND_DEPLOYMENT_BINDING",
+      "independent_calibration_source_reconstructed": true
+    },
+    {
+      "model": "8B",
+      "status": "PASS_PREDICTION_AND_DEPLOYMENT_BINDING",
+      "independent_calibration_source_reconstructed": true
+    },
+    {
+      "model": "14B",
+      "status": "PASS_PREDICTION_AND_DEPLOYMENT_BINDING",
+      "independent_calibration_source_reconstructed": true
+    }
+  ],
+  "scope": "new independent original-source reconstruction on real initial3; old runtime results unchanged"
+}

@@ -1,0 +1,112 @@
+{
+  "evidence_root": "/home/xuyin.p/outputs/idea1-final-t162",
+  "source": "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/final-audit-v17",
+  "source_commit": "c5f5db41f6cc9a71f6823ea88ff0cc85f24e1960",
+  "python": "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+  "native_root": "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim",
+  "ld_library_path": "/home/xuyin.p/outputs/idea1-final-t162/native/system-deps/usr/lib/x86_64-linux-gnu",
+  "cost4_root": "/home/xuyin.p/outputs/idea1-final-t162/cost-4B",
+  "cost14_root": "/home/xuyin.p/outputs/idea1-final-t162/cost-14B",
+  "cost_validation": "/home/xuyin.p/outputs/idea1-final-t162/linux-cost-validation.json",
+  "required_4b_runs": [
+    "expanded-layout-controlled-full-01",
+    "service-home-controlled-full-01",
+    "ready-lpt-controlled-full-02",
+    "late-cap-controlled-full-01",
+    "late-cap1-controlled-full-01",
+    "packing-full-tune-01",
+    "fine-tail-full-tune-01",
+    "fine-tail-lpt-full-tune-01",
+    "packing-full-test1-01",
+    "fine-tail-full-test1-01",
+    "fine-tail-lpt-full-test1-01",
+    "fine-tail-functional-bulk8-native-01",
+    "fine-tail-functional-tail8-native-01",
+    "training-late-cap-functional-01"
+  ],
+  "tune_run": "expanded-layout-controlled-full-01",
+  "training_stress_run": "training-late-cap-functional-01",
+  "max_tune_device_s": 73.873630185369,
+  "tune_ceiling_source": "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/training-mesh-v4/experiments/2026-11-03-idea1-elastic/assets/tune-profile-scores-4B.json",
+  "tune_ceiling_source_sha256": "9b11f8416cd3391058f6e66f4ef86866b7a5093652899c8a778f614f07e157fd",
+  "baseline_csv": "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/training-mesh-v4/experiments/2026-11-03-idea1-elastic/comparison.csv",
+  "baseline_csv_sha256": "ff43c7ae22b82724a5c39f28e077f319b1ccf42132073c5511ba41100a05abee",
+  "planner_mode": "one_scene",
+  "campaign_name": "final-campaign-11",
+  "candidate_4b_policies": [
+    {
+      "run": "expanded-layout-controlled-full-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/expanded-layout-4b-tune-plan-01/offline"
+    },
+    {
+      "run": "service-home-controlled-full-01",
+      "home_policy": "service",
+      "planner_mode": "one_scene",
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/service-home-4b-tune-plan-01/offline"
+    },
+    {
+      "run": "ready-lpt-controlled-full-02",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "ready_lpt",
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/ready-lpt-4b-tune-plan-02/offline"
+    },
+    {
+      "run": "late-cap-controlled-full-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 2,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/late-cap-4b-tune-plan-01/offline"
+    },
+    {
+      "run": "late-cap1-controlled-full-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 1,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/late-cap1-4b-tune-plan-01/offline"
+    },
+    {
+      "run": "packing-full-tune-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 1,
+      "adaptive_training_batch_max": 8,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/packing-4b-tune-plan-01/offline"
+    },
+    {
+      "run": "fine-tail-full-tune-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 1,
+      "adaptive_training_batch_max": 8,
+      "training_tail_fine_samples": 8,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/fine-tail-4b-tune-plan-01/offline"
+    },
+    {
+      "run": "fine-tail-lpt-full-tune-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "ready_lpt",
+      "late_region_batch_cap": 1,
+      "adaptive_training_batch_max": 8,
+      "training_tail_fine_samples": 8,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/fine-tail-lpt-4b-tune-plan-01/offline"
+    }
+  ],
+  "resource_candidates_by_model": {
+    "4B": [
+      "box4_top@1.0:row1"
+    ],
+    "8B": [
+      "packed2_head@1.0:row1"
+    ]
+  },
+  "publication": "GitHub deferred by user; remote equivalent checks",
+  "acceptance_note": "User explicitly accepts not exceeding prior complete system if reasons are explained. Retain all baseline values, report all regressions; no invented improvement. Final3 unifiedsource and complete audits still required."
+}

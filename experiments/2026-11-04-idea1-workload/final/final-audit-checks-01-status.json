@@ -1,0 +1,26 @@
+[
+  {
+    "name": "all-unit",
+    "argv": [
+      "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ],
+    "exit_status": 0,
+    "wall_s": 35.17252509854734
+  },
+  {
+    "name": "initial3-portable",
+    "argv": [
+      "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+      "scripts/check_idea1_workload.py",
+      "/home/xuyin.p/outputs/idea1-final-t162/portable-final-bundle-02",
+      "--require-final"
+    ],
+    "exit_status": 0,
+    "wall_s": 97.70226926915348
+  }
+]

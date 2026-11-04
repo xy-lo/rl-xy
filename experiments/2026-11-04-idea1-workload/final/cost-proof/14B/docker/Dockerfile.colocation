@@ -1,0 +1,4 @@
+ARG RLXY_BASE_IMAGE=rlxy-astrasim:0.6.0
+FROM ${RLXY_BASE_IMAGE}
+COPY src/rl_xy /opt/rlxy-source/rl_xy
+LABEL io.rlxy.colocation-contract="global-stages-megatron-naive-v1"

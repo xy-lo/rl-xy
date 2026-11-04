@@ -1,0 +1,40 @@
+{
+  "status": "PASS_PORTABLE_WORKLOAD_SYSTEM_EVIDENCE",
+  "final": true,
+  "cases": [
+    {
+      "id": "4B-test1",
+      "model": "4B",
+      "window": "test1",
+      "answers": 1536,
+      "total_device_s": 69.052905438236
+    },
+    {
+      "id": "8B-test1",
+      "model": "8B",
+      "window": "test1",
+      "answers": 1536,
+      "total_device_s": 103.259446395453
+    },
+    {
+      "id": "14B-test1",
+      "model": "14B",
+      "window": "test1",
+      "answers": 1536,
+      "total_device_s": 149.97195006826598
+    },
+    {
+      "id": "4B-selected-TUNE",
+      "model": "4B",
+      "window": "tune",
+      "answers": 1536,
+      "total_device_s": 73.297172299298
+    }
+  ],
+  "cost_models": [
+    "14B",
+    "4B",
+    "8B"
+  ],
+  "scope": "trace/cost timing simulation; not Transformer numerical training, learning quality or hardware calibration"
+}

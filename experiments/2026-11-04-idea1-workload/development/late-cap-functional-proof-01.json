@@ -1,0 +1,49 @@
+{
+  "status": "PASS_FUNCTIONAL_AND_PERFORMANCE_PREFLIGHT",
+  "cases": {
+    "training-functional-mesh-on-01": {
+      "device_s": 36.454723029491,
+      "batches": 16,
+      "transfers": 15,
+      "remote_samples": 60,
+      "peak_concurrent_remote_batches": 15,
+      "peak_helper_execution_dies": 30,
+      "mean_local_compute_memory_s": 4.307938069854352,
+      "requests": 64,
+      "trained_samples": 64
+    },
+    "training-late-cap-functional-01": {
+      "device_s": 34.827264448389,
+      "batches": 32,
+      "transfers": 29,
+      "remote_samples": 58,
+      "peak_concurrent_remote_batches": 26,
+      "peak_helper_execution_dies": 52,
+      "mean_local_compute_memory_s": 4.348418113418154,
+      "requests": 64,
+      "trained_samples": 64
+    }
+  },
+  "reduction_fraction": 0.044643284761357926,
+  "scope": "64-answer adversarial functional fixture; fixed batch data and hardware, late training granularity only; not full4B performance",
+  "late_cap_audit": {
+    "status": "PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT",
+    "inference_programs": 537,
+    "initial_inference_instances": 8,
+    "initial_tp_counts": {
+      "8": 6,
+      "4": 1,
+      "2": 1
+    },
+    "late_region_batch_cap": 2,
+    "late_region_capped_batches": 32,
+    "training_ready_order": "input",
+    "native_resizes": 0,
+    "generation_reply_local_and_comm_accounting": "all54ranks",
+    "kv_storage_hazard_checked": true,
+    "pending_input_fanout_checked": true,
+    "pending_resize_exclusion_checked": true,
+    "EOS_and_KV_conservation": true,
+    "scope": "cost/native timing; not numeric Transformer or physical hardware"
+  }
+}

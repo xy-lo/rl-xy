@@ -1,0 +1,24 @@
+{
+  "status": "FUNCTIONAL_LOCAL_PROGRAM_COMPARISON",
+  "values": {
+    "base": {
+      "batches": 2,
+      "samples": 8,
+      "local_program_ns": 1569019543.4101636,
+      "batch_sizes": [
+        4,
+        4
+      ]
+    },
+    "bulk8": {
+      "batches": 1,
+      "samples": 8,
+      "local_program_ns": 1504408914.4101636,
+      "batch_sizes": [
+        8
+      ]
+    }
+  },
+  "local_reduction": 0.04117898293323541,
+  "scope": "native-program compute+memory estimates at earlyhome3 only; complete fixture cycle unchanged because different latehome dominates, no extrapolated phase timings"
+}

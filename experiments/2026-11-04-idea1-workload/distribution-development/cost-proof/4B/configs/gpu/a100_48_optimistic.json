@@ -1,0 +1,42 @@
+{
+  "schema_version": "rlxy.gpu/1",
+  "name": "48x_A100_optimistic_compute_sensitivity_NOT_physical",
+  "gpu_count": 48,
+  "gpus_per_node": 8,
+  "sms_per_gpu": 108,
+  "shared_bytes_per_sm": 167936,
+  "dram_bytes_per_gpu": 80000000000,
+  "hbm_bytes_per_ns": 2039,
+  "bf16_flops_per_ns": 312000,
+  "fp32_flops_per_ns": 312000,
+  "vector_ops_per_ns": 19500,
+  "shared_bytes_per_ns_per_sm": 256,
+  "cta_tile": [
+    128,
+    128,
+    32
+  ],
+  "cta_candidates": [[32,64,32],[64,128,32],[128,128,32],[256,128,32]],
+  "kernel_launch_ns": 0,
+  "nvlink_bytes_per_ns_per_direction": 300,
+  "node_uplink_bytes_per_ns_per_direction": 400,
+  "nvlink_latency_ns": 250,
+  "uplink_latency_ns": 1000,
+  "precision_mode": "optimistic_tensorcore_sensitivity",
+  "physical_sku_prediction": false,
+  "provenance": {
+    "paper_reference": "WSC-LLM PDF page11: six nodes, eight A100-80GB per node, inter-node 400 GB/s; not 400 Gb/s",
+    "dense_rates_hbm": "https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet-nvidia-us-2188504-web.pdf",
+    "sms": "https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf",
+    "shared_capacity": "https://docs.nvidia.com/cuda/ampere-tuning-guide/",
+    "scenario_assumptions": [
+      "vector op rate uses FP32 add/multiply peak proxy, not transcendental calibration",
+      "SM shared bandwidth 256 B/ns is assumed",
+      "shape-adaptive legal CTA candidates, no cross-CTA L2 reuse, one CTA/SM are reference policy, not calibrated cuBLAS",
+      "launch1us and NVLink/uplink latency250/1000ns are assumed",
+      "600 GB/s NVLink interpreted aggregate bidirectional:300 per direction; single node uplink400 GB/s shared per direction is paper-caliber assumption",
+      "strict FP32 operands use CUDA FP32 peak; not a calibrated BF16 PyTorch backward mapping"
+    ],
+    "sensitivity": "all FP32/mixed GEMM charged at BF16 TensorCore peak without casting cost, launch omitted; intentionally favors GPU; not physical FP32 throughput or a rigorous total-runtime lower bound"
+  }
+}

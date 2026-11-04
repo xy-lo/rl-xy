@@ -43,7 +43,14 @@ def audit(folder):
     owner_region = {w: r for r, ws in regions.items() for w in ws}
     group_region = {g: owner_region[w] for w, q in queues.items() for g in q}
     if plan.get('forecasts'):
-        for r, quota in plan['long_quota_by_region'].items():
+        # Distribution-only resource planning does not yet claim mechanism-2
+        # regional long quotas. Keep the old policy's required proof unchanged.
+        if plan.get('planner_source')=='distribution-offline-evaluated-candidates':
+            assert set(plan['forecasts'])==set(group_region)
+            assert all(f['evidence_kind'] in ('CLASS','GLOBAL','DEFAULT','EXACT_PLUS_GLOBAL') for f in plan['forecasts'].values())
+            quotas=plan.get('long_quota_by_region',{})
+        else:quotas=plan['long_quota_by_region']
+        for r, quota in quotas.items():
             quota_regions={int(k):v for k,v in plan.get('helper_domains',plan['region_members']).items()}
             assert sum(plan['forecasts'][g]['label'] == 'proxy-long' for w in quota_regions[int(r)] for g in queues[w]) == quota
     # Verify copied source bytes, independent of the live development tree.
@@ -241,7 +248,12 @@ def audit(folder):
     # Preserve owner ordinal for RS/AG. Physical AR rings may be reordered.
     for o in ops:
         if o['collective'] in ('REDUCE_SCATTER', 'ALL_GATHER') and 'dp_' in o['name']:
+            if (folder/'gradient-route.json').exists() and o['collective']=='REDUCE_SCATTER':
+                continue # Verified as exact root order/range coverage below.
             assert o['ranks'] == list(range(o['ranks'][0], 54, 2))
+    if (folder/'gradient-route.json').exists():
+        from audit_idea1_gradient_route import audit_gradient_route
+        audit_gradient_route(folder,ops,regions,capacity)
     # Integrate dynamic roles only on the dynamic interval. Prefix/suffix are
     # separately labelled; final optimizer service must never count as idle.
     integrals = defaultdict(float)

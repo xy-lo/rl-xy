@@ -564,3 +564,61 @@
 | `tests/test_idea1_inference_groups.py` | 物理分组、KV重分片退休顺序和TP1/宽TP参数视图测试。 |
 | `tests/test_idea1_inference_planning.py` | 未来回答隔离、候选身份绑定、服务插值及准备区域保护测试。 |
 | `tests/test_idea1_tp_execution.py` | 真实TP编译、双TP1安全点和仅DATA_WAIT可借算的执行测试。 |
+
+## 工作负载分布与 Mesh 扩展
+
+| 文件 | 职责 |
+|---|---|
+| `scripts/audit_idea1_gradient_route.py` | 稀疏梯度范围、owner与原生图的独立审计 |
+| `scripts/check_idea1_workload.py` | 可移植工作负载系统证据复核与成本身份检查 |
+| `scripts/package_idea1_workload.py` | 原生证据归档、路径迁移与原字节保留 |
+| `scripts/workload_planner/bootstrap_native.py` | T162历史远端环境引导，路径假设保留作执行记录 |
+| `scripts/workload_planner/build_mesh_backend.py` | 显式路径的隔离mesh后端构建与只读身份验证 |
+| `scripts/workload_planner/check_sparse_suffix.py` | root-only可选梯度图编译和破坏性检查 |
+| `scripts/workload_planner/fast_replica.py` | 保持固定服务与情景的事件堆快速评分 |
+| `scripts/workload_planner/final_campaign.py` | 4B审计及性能门后的三模型验收调度 |
+| `scripts/workload_planner/make_mesh_fixture.py` | mesh功能压力绑定构造 |
+| `scripts/workload_planner/materialize.py` | 离线方案固定后的实际回放身份绑定 |
+| `scripts/workload_planner/materialize_release.py` | 固定资源下PB区域释放任务放置 |
+| `scripts/workload_planner/materialize_spatial.py` | PS物理位置候选与合法能力回退 |
+| `scripts/workload_planner/placement.py` | 固定任务配额与历史队列放置基础 |
+| `scripts/workload_planner/plan_system.py` | 离线评估、回放绑定与PS的统一入口 |
+| `scripts/workload_planner/release_search.py` | 按训推布局对共同计算PB的联合候选评估 |
+| `scripts/workload_planner/run_distribution.py` | 独立校准或受控同题的分布与离线候选生成 |
+| `scripts/workload_planner/run_mesh_system.py` | 观测mesh队列及可选策略的完整原生执行 |
+| `scripts/workload_planner/run_optimizer_component.py` | 声明root-only假设的独立optimizer组件消融 |
+| `scripts/workload_planner/search.py` | 合法资源模板、容量准入及快/精评分 |
+| `scripts/workload_planner/validate_host_cost.py` | 本机编译加速与固定Python算子流逐字段对照 |
+| `scripts/workload_planner/validate_mesh_native.py` | 显式后端路径的路由、链路冲突、默认语义与单位验收 |
+| `src/idea1_controller/controlled_forecast.py` | 明确非chronological的同题受控代理 |
+| `src/idea1_controller/gradient_routing.py` | 最终贡献者证明门下的可选梯度范围路由 |
+| `src/idea1_controller/mesh_observation.py` | 带单位、时效和有向链路账的只读观测 |
+| `src/idea1_controller/native/mesh_cohorts.py` | PENDING、TP扩组、训练helper的mesh收益评估 |
+| `src/idea1_controller/offline_candidates.py` | 候选缓存身份与当前部署容量复核 |
+| `src/idea1_controller/region_release_placement.py` | 配额与producer依赖感知的PB放置 |
+| `src/idea1_controller/spatial_release.py` | 共同阻塞及helper/路径互斥的有限PS搜索 |
+| `src/idea1_controller/workload.py` | 联合K向量、因果历史与独立校准快照合同 |
+| `tests/test_controlled_forecast.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_gradient_routing.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_mesh_builder.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_mesh_cohorts.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_mesh_observation.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_region_release_placement.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_spatial_release.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `tests/test_workload_distribution.py` | 对应工作负载/mesh合同与失败回退的单元测试 |
+| `scripts/audit_idea1_planning.py` | 从原始校准/同题样本重建预测、排除评估样本并审计候选及native绑定 |
+| `scripts/report_idea1_workload.py` | 从审计后的native事件重建时间点及逐die状态表 |
+| `src/idea1_controller/state_report.py` | 物理54die守恒及训练helper子集的角色采样 |
+| `tests/test_state_report.py` | 角色时间边界、原生list序列化与helper冲突测试 |
+| `tests/test_workload_templates.py` | 最大TP4覆盖、余量区域位置与相邻合法性测试 |
+
+| `scripts/workload_planner/placement_services.py` | 独立历史条件池与公开prompt的TP相关teacher/训练放置成本；避免未知题情景噪声作为点预测 |
+| `tests/test_placement_services.py` | TP服务单位、prompt成本、条件池平均和未知题等条件约束 |
+
+| `tests/test_final_campaign.py` | 仅TUNE选择、完整peer等待、审计失败与原性能门不放宽的接续测试 |
+
+| `tests/test_ready_training_order.py` | 已知序列形状的LPT批顺序保持优势/梯度边界、样本与票据身份，默认路径完全保留 |
+
+| `tests/test_late_region_batching.py` | 全局EOS观察门、晚启动区域细批、早区域及teacher不变和样本守恒 |
+
+| `tests/test_workload_comparison.py` | 最终同窗表的全基线列、唯一模型、基线哈希与设备比值篡改负例。 |

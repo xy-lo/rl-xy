@@ -1,0 +1,21 @@
+diff --git a/astra-sim/workload/Workload.cc b/astra-sim/workload/Workload.cc
+--- a/astra-sim/workload/Workload.cc
++++ b/astra-sim/workload/Workload.cc
+@@ -7,1 +7,2 @@
+ #include "astra-sim/workload/Workload.hh"
++#include "astra-sim/workload/RlxyResources.hh"
+@@ -50,1 +51,2 @@
+     this->is_finished = false;
++    rlxy::initialize(sys->id);
+@@ -146,1 +148,1 @@
+-        if (hw_resource->is_available(node)) {
++        if (hw_resource->is_available(node) && rlxy::available(sys->id, node->id())) {
+@@ -152,1 +154,2 @@
+ void Workload::issue(shared_ptr<Chakra::FeederV3::ETFeederNode> node) {
++    rlxy::start(sys->id, node->id(), Sys::boostedTick());
+@@ -480,1 +483,2 @@
+         hw_resource->release(node);
++        rlxy::finish(sys->id, node->id(), Sys::boostedTick());
+@@ -524,1 +528,2 @@
+             hw_resource->release(node);
++            rlxy::finish(sys->id, node->id(), Sys::boostedTick());

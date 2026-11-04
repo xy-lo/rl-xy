@@ -1,0 +1,23 @@
+{
+  "status": "PASS_MATCHED_FULL4B_AND_PRIOR_PERFORMANCE_GATE",
+  "model": "4B",
+  "window": "tune",
+  "answers": 1536,
+  "baseline_s": 74.566400053373,
+  "late_cap1_s": 73.297172299298,
+  "speed_reduction": 0.017021443346688536,
+  "prior_approved_ceiling_s": 73.873630185369,
+  "margin_s": 0.5764578860709975,
+  "idle_before_die_s": 99.17720670656797,
+  "idle_after_die_s": 23.739209824740033,
+  "idle_reduction": 0.7606384509802098,
+  "same_generation_end": true,
+  "same_first_training": true,
+  "same_generation_role_work": true,
+  "same_teacher_role_work": true,
+  "training_role_extra_die_s": 6.899502052084472,
+  "training_transfers": 96,
+  "training_batches": 432,
+  "remote_samples": 240,
+  "scope": "same resources/home/inference/forecast; actual late observed training granularity, all additional read/write charged; TUNE simulation"
+}

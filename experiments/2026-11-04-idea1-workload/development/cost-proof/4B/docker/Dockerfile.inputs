@@ -1,0 +1,6 @@
+# Reuse the verified native backend; this stage changes Python inputs only.
+ARG RLXY_BASE_IMAGE=rlxy-astrasim:0.2.0
+FROM ${RLXY_BASE_IMAGE}
+COPY src/rl_xy /opt/rlxy-source/rl_xy
+LABEL io.rlxy.input-contract="0.3.0"
+ENV PYTHONPATH=/workspace/rl-xy/src:/opt/rlxy-source:/opt/astra-sim

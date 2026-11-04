@@ -8,7 +8,14 @@ import subprocess
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-CURRENT = {'experiments/2026-11-03-idea1-elastic/README.md', 'experiments/2026-11-03-idea1-elastic/动态TP系统结果与瓶颈分析.md', 'docs/IDEA1_ELASTIC.md', 'docs/IDEA1_COMPLETE.md', 'experiments/2026-11-03-idea1-complete/README.md', 'experiments/2026-11-03-idea1-complete/系统结果与瓶颈分析.md', 'docs/IDEA1_LAYERED.md', 'experiments/2026-11-02-idea1-layered/README.md', 'docs/IDEA1_JOINT.md', 'docs/IDEA1_INSIGHTS.md', 'experiments/2026-11-02-idea1-joint/README.md', 'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md', 'docs/IDEA1.md', 'docs/H0_54.md', 'experiments/2026-11-02-h0-54/完整实验文档.md'}
+CURRENT = {'docs/IDEA1_WORKLOAD.md', 'docs/idea1-workload-system-plan.md', 'experiments/2026-11-03-idea1-elastic/README.md', 'experiments/2026-11-03-idea1-elastic/动态TP系统结果与瓶颈分析.md', 'docs/IDEA1_ELASTIC.md', 'docs/IDEA1_COMPLETE.md', 'experiments/2026-11-03-idea1-complete/README.md', 'experiments/2026-11-03-idea1-complete/系统结果与瓶颈分析.md', 'docs/IDEA1_LAYERED.md', 'experiments/2026-11-02-idea1-layered/README.md', 'docs/IDEA1_JOINT.md', 'docs/IDEA1_INSIGHTS.md', 'experiments/2026-11-02-idea1-joint/README.md', 'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md', 'docs/IDEA1.md', 'docs/H0_54.md', 'experiments/2026-11-02-h0-54/完整实验文档.md'}
+WORKLOAD_DATA = 'experiments/2026-11-04-idea1-workload'
+CURRENT.add(WORKLOAD_DATA+'/README.md')
+CURRENT.add(WORKLOAD_DATA+'/runtime-development/analysis/mechanism-cause-attribution-01.md')
+CURRENT.update(WORKLOAD_DATA+'/development/'+x for x in ['diagnostics/expanded-layout-state-report-01/states.md', 'diagnostics/late-cap-state-report-01/states.md', 'diagnostics/late-cap1-state-report-01/states.md', 'diagnostics/ready-lpt-state-report-02/states.md', 'diagnostics/service-home-state-report-01/states.md'])
+
+CURRENT.update(['experiments/2026-11-04-idea1-workload/final/comparison.md', 'experiments/2026-11-04-idea1-workload/final/diagnostics/14B/states.md', 'experiments/2026-11-04-idea1-workload/final/diagnostics/4B/states.md', 'experiments/2026-11-04-idea1-workload/final/diagnostics/8B/states.md', 'experiments/2026-11-04-idea1-workload/reviewed/FINAL_REPORT.md', 'experiments/2026-11-04-idea1-workload/reviewed/analysis/mechanism-cause-attribution-01.md', 'experiments/2026-11-04-idea1-workload/reviewed/die-states/14B-states.md', 'experiments/2026-11-04-idea1-workload/reviewed/die-states/4B-states.md', 'experiments/2026-11-04-idea1-workload/reviewed/die-states/8B-states.md'])
+
 HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-10-27-v0.6/模型内部瓶颈分解.md'}
 
 EVIDENCE = {'experiments/2026-11-01-idea1/test1-Idea1方法正文草稿.md', 'experiments/2026-11-01-idea1/test1-三模型结果与实现边界.md', 'experiments/2026-11-01-idea1/论文实验结果与表述.md'}

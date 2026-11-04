@@ -1,0 +1,116 @@
+{
+  "schema": "idea1.deployment/1",
+  "status": "PLANNED_REQUIRES_NATIVE_ACCEPTANCE",
+  "model": "8B",
+  "window": "test1",
+  "no_history": false,
+  "training_tail_fine_samples": 0,
+  "adaptive_training_batch_max": 0,
+  "runtime_training_packing_unscored": false,
+  "resource_candidates": [
+    "packed2_head@1.0:row1"
+  ],
+  "late_region_batch_cap": 1,
+  "training_ready_order": "input",
+  "home_policy": "score",
+  "forecast_mode": "controlled-proxy",
+  "forecast_summary": "pooled",
+  "position_reason": "PB_RETAINED_CROSSING_COHORTS_REQUIRE_FULL_RELEASE_MODEL",
+  "files": {
+    "selected-plan.json": "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/ps/selected-plan.json",
+    "inference-layout.json": "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/ps/inference-layout.json",
+    "forecast.json": "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/ps/forecast.json"
+  },
+  "hashes": {
+    "selected-plan.json": "19a845b4f9491e133b38f9fa7a757ae6d4bdc060407dd362bf765b7213934664",
+    "inference-layout.json": "dcf7b67961945c77a4b5f2215038af757189c3022c87efb9694e979b21bf2eaf",
+    "forecast.json": "009fe773f3b253e913d954042078bf3a4653586a95716323ab347e255fdd6f54"
+  },
+  "phases": [
+    {
+      "name": "offline",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+        "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/final-audit-v17/scripts/workload_planner/run_distribution.py",
+        "--model",
+        "8B",
+        "--window",
+        "test1",
+        "--mode",
+        "one_scene",
+        "--placement",
+        "release",
+        "--home-policy",
+        "score",
+        "--forecast-mode",
+        "controlled-proxy",
+        "--forecast-summary",
+        "pooled",
+        "--proxy-weight",
+        "1.0",
+        "--output",
+        "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/offline",
+        "--allow-controlled-proxy",
+        "--resource-candidate",
+        "packed2_head@1.0:row1"
+      ],
+      "returncode": 0,
+      "wall_s": 0.6041774190962315
+    },
+    {
+      "name": "bind",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+        "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/final-audit-v17/scripts/workload_planner/materialize.py",
+        "--offline-run",
+        "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/offline",
+        "--model",
+        "8B",
+        "--window",
+        "test1",
+        "--training-ready-order",
+        "input",
+        "--late-region-batch-cap",
+        "1",
+        "--adaptive-training-batch-max",
+        "0",
+        "--training-tail-fine-samples",
+        "0",
+        "--output",
+        "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/pb"
+      ],
+      "returncode": 0,
+      "wall_s": 0.13461285084486008
+    },
+    {
+      "name": "positions",
+      "argv": [
+        "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+        "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/final-audit-v17/scripts/workload_planner/materialize_spatial.py",
+        "--binding",
+        "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/pb",
+        "--public",
+        "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/offline/public.json",
+        "--model",
+        "8B",
+        "--output",
+        "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/8B-test1/plan/ps"
+      ],
+      "returncode": 0,
+      "wall_s": 0.18900634720921516
+    }
+  ],
+  "host_wall_s": 0.9314833395183086,
+  "runtime_contract": {
+    "inference": "legal TP1/2/4/8 and whole TP expansion until EOS; no active shrink",
+    "mesh": "observed shared-queue helper/PENDING/training selection plus bounded XY/YX routing",
+    "gradient": "canonical full DP27 RS; no sparse contributor certificate assumed",
+    "publication": "canonical owner AG then actor_v1 commit; cut-aware tree not enabled"
+  },
+  "limits": [
+    "finite resource templates and bounded PS search, not global optimality",
+    "planning wall time is separate from simulator device time",
+    "controlled proxy is offline, not chronological actor history",
+    "adaptive training packing is an EOS-time native refinement; fixed training surrogate coverage is unchanged"
+  ]
+}

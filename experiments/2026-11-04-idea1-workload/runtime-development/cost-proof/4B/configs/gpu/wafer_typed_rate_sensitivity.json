@@ -1,0 +1,71 @@
+{
+  "schema_version": "rlxy.wafer/1",
+  "mesh": [
+    6,
+    9
+  ],
+  "data_parallel": 27,
+  "source_profile": "../hardware/xy_h0_case3_performance.json",
+  "assumptions": {
+    "gemm_flops_per_ns": {
+      "value": 1020,
+      "status": "test_assumption",
+      "reason": "BF16 rate assumed equal to paper FP161020 for engineering scenario only; not verified"
+    },
+    "gemm_fp32_flops_per_ns": {
+      "value": 64,
+      "status": "test_assumption",
+      "reason": "Sensitivity to unvalidated wafer typed-compute rates;64 is not a paper measurement. Removes most of initial512/256 advantage, without fitting outcomes."
+    },
+    "vector_ops_per_ns": {
+      "value": 64,
+      "status": "test_assumption",
+      "reason": "Sensitivity to unvalidated wafer typed-compute rates;64 is not a paper measurement. Removes most of initial512/256 advantage, without fitting outcomes."
+    },
+    "module_path_bytes_per_ns": {
+      "value": 2000,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "sram_bytes_per_ns": {
+      "value": 4000,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "d2d_latency_ns": {
+      "value": 1,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "d2d_packet_bytes": {
+      "value": 4096,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "nic_tx_bytes_per_die": {
+      "value": 1048576,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "nic_rx_bytes_per_die": {
+      "value": 1048576,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "host_bytes_per_ns": {
+      "value": 64,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "host_latency_ns": {
+      "value": 100,
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    },
+    "d2d_caliber": {
+      "value": "per_edge_per_direction",
+      "status": "test_assumption",
+      "reason": "Explicit uncalibrated execution scenario value; not specified by H0 paper table; sensitivity required"
+    }
+  }
+}

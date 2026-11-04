@@ -1,0 +1,8587 @@
+[
+  {
+    "time_s": 0.0,
+    "phase": "prefix",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 54,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "prefix",
+        "training_helper": false,
+        "stage": "prefix"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 7.456640005337,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 10.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 18.641600013343,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 20.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 30.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 37.283200026686,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 40.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 54,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 49.317863895768,
+    "phase": "runtime",
+    "counts": {
+      "own": 2,
+      "generation_helper": 0,
+      "prepare": 50,
+      "training": 2,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 50.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 2,
+      "generation_helper": 0,
+      "prepare": 46,
+      "training": 6,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "own",
+        "training_helper": false,
+        "stage": "generation"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 51.472602013484,
+    "phase": "runtime",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 26,
+      "training": 26,
+      "transfer": 2,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "transfer",
+        "training_helper": false,
+        "stage": "region_data"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "transfer",
+        "training_helper": false,
+        "stage": "region_data"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 55.92480004003,
+    "phase": "runtime",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 2,
+      "training": 52,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "old_policy"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "old_policy"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 60.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 2,
+      "training": 52,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "prepare",
+        "training_helper": false,
+        "stage": "reference"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 67.109760048036,
+    "phase": "runtime",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 54,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 70.0,
+    "phase": "runtime",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 52,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 0,
+      "idle": 2
+    },
+    "training_helper_subset_dies": 10,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "idle",
+        "training_helper": false,
+        "stage": "gradient_ready"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "idle",
+        "training_helper": false,
+        "stage": "gradient_ready"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "training",
+        "training_helper": true,
+        "stage": "training"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "training",
+        "training_helper": false,
+        "stage": "training"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 74.526906959125,
+    "phase": "update",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 54,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  },
+  {
+    "time_s": 74.566399053373,
+    "phase": "update",
+    "counts": {
+      "own": 0,
+      "generation_helper": 0,
+      "prepare": 0,
+      "training": 0,
+      "transfer": 0,
+      "prefix": 0,
+      "update": 54,
+      "idle": 0
+    },
+    "training_helper_subset_dies": 0,
+    "total_dies": 54,
+    "per_die": [
+      {
+        "die": 0,
+        "row": 0,
+        "col": 0,
+        "worker": 0,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 1,
+        "row": 0,
+        "col": 1,
+        "worker": 0,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 2,
+        "row": 0,
+        "col": 2,
+        "worker": 1,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 3,
+        "row": 0,
+        "col": 3,
+        "worker": 1,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 4,
+        "row": 0,
+        "col": 4,
+        "worker": 2,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 5,
+        "row": 0,
+        "col": 5,
+        "worker": 2,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 6,
+        "row": 1,
+        "col": 0,
+        "worker": 3,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 7,
+        "row": 1,
+        "col": 1,
+        "worker": 3,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 8,
+        "row": 1,
+        "col": 2,
+        "worker": 4,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 9,
+        "row": 1,
+        "col": 3,
+        "worker": 4,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 10,
+        "row": 1,
+        "col": 4,
+        "worker": 5,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 11,
+        "row": 1,
+        "col": 5,
+        "worker": 5,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 12,
+        "row": 2,
+        "col": 0,
+        "worker": 6,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 13,
+        "row": 2,
+        "col": 1,
+        "worker": 6,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 14,
+        "row": 2,
+        "col": 2,
+        "worker": 7,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 15,
+        "row": 2,
+        "col": 3,
+        "worker": 7,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 16,
+        "row": 2,
+        "col": 4,
+        "worker": 8,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 17,
+        "row": 2,
+        "col": 5,
+        "worker": 8,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 18,
+        "row": 3,
+        "col": 0,
+        "worker": 9,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 19,
+        "row": 3,
+        "col": 1,
+        "worker": 9,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 20,
+        "row": 3,
+        "col": 2,
+        "worker": 10,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 21,
+        "row": 3,
+        "col": 3,
+        "worker": 10,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 22,
+        "row": 3,
+        "col": 4,
+        "worker": 11,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 23,
+        "row": 3,
+        "col": 5,
+        "worker": 11,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 24,
+        "row": 4,
+        "col": 0,
+        "worker": 12,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 25,
+        "row": 4,
+        "col": 1,
+        "worker": 12,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 26,
+        "row": 4,
+        "col": 2,
+        "worker": 13,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 27,
+        "row": 4,
+        "col": 3,
+        "worker": 13,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 28,
+        "row": 4,
+        "col": 4,
+        "worker": 14,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 29,
+        "row": 4,
+        "col": 5,
+        "worker": 14,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 30,
+        "row": 5,
+        "col": 0,
+        "worker": 15,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 31,
+        "row": 5,
+        "col": 1,
+        "worker": 15,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 32,
+        "row": 5,
+        "col": 2,
+        "worker": 16,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 33,
+        "row": 5,
+        "col": 3,
+        "worker": 16,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 34,
+        "row": 5,
+        "col": 4,
+        "worker": 17,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 35,
+        "row": 5,
+        "col": 5,
+        "worker": 17,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 36,
+        "row": 6,
+        "col": 0,
+        "worker": 18,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 37,
+        "row": 6,
+        "col": 1,
+        "worker": 18,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 38,
+        "row": 6,
+        "col": 2,
+        "worker": 19,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 39,
+        "row": 6,
+        "col": 3,
+        "worker": 19,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 40,
+        "row": 6,
+        "col": 4,
+        "worker": 20,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 41,
+        "row": 6,
+        "col": 5,
+        "worker": 20,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 42,
+        "row": 7,
+        "col": 0,
+        "worker": 21,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 43,
+        "row": 7,
+        "col": 1,
+        "worker": 21,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 44,
+        "row": 7,
+        "col": 2,
+        "worker": 22,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 45,
+        "row": 7,
+        "col": 3,
+        "worker": 22,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 46,
+        "row": 7,
+        "col": 4,
+        "worker": 23,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 47,
+        "row": 7,
+        "col": 5,
+        "worker": 23,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 48,
+        "row": 8,
+        "col": 0,
+        "worker": 24,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 49,
+        "row": 8,
+        "col": 1,
+        "worker": 24,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 50,
+        "row": 8,
+        "col": 2,
+        "worker": 25,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 51,
+        "row": 8,
+        "col": 3,
+        "worker": 25,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 52,
+        "row": 8,
+        "col": 4,
+        "worker": 26,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      },
+      {
+        "die": 53,
+        "row": 8,
+        "col": 5,
+        "worker": 26,
+        "role": "update",
+        "training_helper": false,
+        "stage": "update"
+      }
+    ],
+    "scope": "last observed scheduler role; each physical TP2 pair exposes one role; no claim of hardware FLOP utilization"
+  }
+]

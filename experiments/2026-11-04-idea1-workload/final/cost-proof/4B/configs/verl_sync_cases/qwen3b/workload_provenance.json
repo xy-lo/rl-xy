@@ -1,0 +1,13 @@
+{
+  "origin": "same captured 0.5B length workload across model shapes",
+  "actual_framework_capture_for_this_model": false,
+  "model_scale_counterfactual": true,
+  "source_case_sha256": "4f730607e0e1ce927b4e04f9599ea403f7b2d834d13f9d5f31794f3c7b02b050",
+  "model_config_sha256": "eed00b17e22553979d090fa492e587e92885e328914c8e0b0b78f0a0d3576b3b",
+  "unique_parameters": 3085938688,
+  "trajectory_count": 64,
+  "prompt_groups": 32,
+  "response_length": 4,
+  "warning": "short structural control; not representative long-response training or quality",
+  "numerical_training": false
+}

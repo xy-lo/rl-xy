@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+    "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/final-audit-v17/scripts/workload_planner/run_mesh_system.py",
+    "--model",
+    "14B",
+    "--window",
+    "test1",
+    "--training-scope",
+    "wafer",
+    "--assignment",
+    "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/14B-test1/plan/ps/selected-plan.json",
+    "--resource-layout",
+    "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/14B-test1/plan/ps/selected-plan.json",
+    "--inference-layout",
+    "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/14B-test1/plan/ps/inference-layout.json",
+    "--workload-forecast",
+    "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/14B-test1/plan/ps/forecast.json",
+    "--native-root",
+    "/home/xuyin.p/outputs/idea1-final-t162/native-mesh/astra-sim",
+    "--fast-cost-validation",
+    "/home/xuyin.p/outputs/idea1-final-t162/linux-cost-validation.json",
+    "--rollout-cap",
+    "64",
+    "--mesh-routing",
+    "adaptive_xy_yx",
+    "--mesh-controller",
+    "--output",
+    "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/14B-test1/native-run"
+  ],
+  "returncode": 0,
+  "wall_s": 5482.621006727219
+}

@@ -1,0 +1,14 @@
+diff --git a/astra-sim/network_frontend/analytical/congestion_aware/main.cc b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+--- a/astra-sim/network_frontend/analytical/congestion_aware/main.cc
++++ b/astra-sim/network_frontend/analytical/congestion_aware/main.cc
+@@ -13,0 +14,2 @@
++#include "astra-sim/workload/RlxyMesh.hh"
++#include <cstdlib>
+@@ -62,1 +64,6 @@
+-    const auto topology = construct_topology(network_parser);
++    const char* rlxy_model = std::getenv("RLXY_NETWORK_TOPOLOGY");
++    const auto topology = rlxy_model && std::string(rlxy_model)=="mesh2d"
++        ? std::shared_ptr<Topology>(std::make_shared<rlxy::Mesh2D>(network_parser))
++        : construct_topology(network_parser);
++    if (rlxy_model) std::cout << "[rlxy] network topology override: " << rlxy_model << std::endl;
++

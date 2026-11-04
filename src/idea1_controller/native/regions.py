@@ -18,8 +18,40 @@ from rl_xy.model import enumerate_parameters
 from .context import NativeContext,digest
 
 
+def order_ready_training_jobs(jobs,policy):
+    """Reorder only observed-shape training bodies, keeping phase boundaries.
+
+    Called after EOS data readiness when a region is compiled. The unchanged
+    generator exposes the training queue only after native advantage quorum.
+    Sample sets, batch bodies, ticket identities and update weights are intact.
+    """
+    if policy=='input':return jobs
+    if policy!='ready_lpt':raise ValueError('unknown ready training order')
+    import math
+    positions=[i for i,row in enumerate(jobs) if row[0]=='training']
+    if positions and positions!=list(range(min(positions),max(positions)+1)):
+        raise ValueError('training bodies must have one contiguous phase')
+    bodies=[jobs[i] for i in positions]
+    for _,_,_,job in bodies:
+        cost=job['estimate_local_ns']
+        if not math.isfinite(cost) or cost<=0:raise ValueError('invalid observed-shape training estimate')
+    bodies.sort(key=lambda row:(-row[3]['estimate_local_ns'],row[3]['index']))
+    result=list(jobs)
+    for i,row in zip(positions,bodies):result[i]=row
+    return result
+
+
 class RegionKernel(TrainingCoopRuntime):
     def configure_regions(self, regions, assigned, plan):
+        if plan.get('training_ready_order','input') not in ('input','ready_lpt'):raise ValueError('unknown ready training order')
+        cap=plan.get('late_region_batch_cap_per_pair',0)
+        if type(cap) is not int or cap not in (0,1,2,4):raise ValueError('invalid late-region batch cap')
+        if cap and not hasattr(self,'_batches'):raise ValueError('late-region batch cap requires adaptive memory-gated builder')
+        packing=plan.get('adaptive_training_batch_max',0)
+        if type(packing) is not int or packing not in (0,1,2,4,8):raise ValueError('invalid adaptive training batch maximum')
+        if packing and not hasattr(self,'_batches'):raise ValueError('adaptive packing requires memory-gated builder')
+        tail=plan.get('training_tail_fine_samples',0)
+        if type(tail) is not int or tail not in (0,8,16) or (tail and not packing):raise ValueError('invalid fine training tail')
         self.resource_layout=plan
         self.region_members={int(r):tuple(ws) for r,ws in regions.items()}
         self.region_of={w:r for r,ws in self.region_members.items() for w in ws}
@@ -111,6 +143,12 @@ class RegionKernel(TrainingCoopRuntime):
             self.batch_manifest[bid]=proof;self.batch_state[bid]='queued'
             jobs.append(('training',tids,steps,dict(**proof,steps=steps)))
         jobs.append(('gradient_restore',[],self._restore_gradient(r) if items else [],None))
+        self._finalize_region_program(r,jobs)
+
+    def _finalize_region_program(self,r,jobs):
+        # All base/cached/adaptive builders call this shared boundary. Sorting
+        # before synchronization keeps every TP rank on the same gate order.
+        jobs=order_ready_training_jobs(jobs,self.resource_layout.get('training_ready_order','input'))
         self.region_programs[r]=tuple((stage,tids,self._synchronized(r,i,steps),job) for i,(stage,tids,steps,job) in enumerate(jobs))
 
     def training_jobs(self,w):

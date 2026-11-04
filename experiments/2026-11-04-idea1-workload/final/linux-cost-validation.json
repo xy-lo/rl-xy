@@ -1,0 +1,378 @@
+{
+  "status": "PASS_EXACT_ALL_FIELDS",
+  "identity": {
+    "cpp_sha256": "accdf55725f68cad37f9972dd45993c06f1fffc0eca49ca882f837c1ace1febb",
+    "binary_sha256": "3b1489a6c03d5bebf28e21cc68c351a49ed12f83aa9d89659af2fa6b8abb077c",
+    "compiler": "g++",
+    "compiler_version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "flags": [
+      "-std=c++17",
+      "-O3",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-shared",
+      "-fPIC"
+    ],
+    "scope": "host event implementation only; frozen mathematical streams and hardware rates unchanged"
+  },
+  "cases": [
+    {
+      "problem": {
+        "m": 4096,
+        "n": 1024,
+        "k": 8192,
+        "batches": 1,
+        "a_bytes": 2,
+        "b_bytes": 2,
+        "output_bytes": 2,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 554766.4160153213,
+        "reference_memory_busy_ns": 543425.4728215068,
+        "reference_per_core_compute_max_ns": 263172.0156862745,
+        "active_cores": 256,
+        "audit": {
+          "reads": 1073741824,
+          "writes": 8388608,
+          "flops": 68719476736,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 327680
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 554766.4160153213,
+        "reference_memory_busy_ns": 543425.4728215068,
+        "reference_per_core_compute_max_ns": 263172.0156862745,
+        "active_cores": 256,
+        "audit": {
+          "reads": 1073741824,
+          "writes": 8388608,
+          "flops": 68719476736,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 327680
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.0554590318351984
+    },
+    {
+      "problem": {
+        "m": 5120,
+        "n": 4352,
+        "k": 8192,
+        "batches": 1,
+        "a_bytes": 2,
+        "b_bytes": 2,
+        "output_bytes": 2,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 1500285.9140740733,
+        "reference_memory_busy_ns": 1294439.1585185085,
+        "reference_per_core_compute_max_ns": 1398101.333333333,
+        "active_cores": 256,
+        "audit": {
+          "reads": 2483027968,
+          "writes": 44564480,
+          "flops": 365072220160,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 1500285.9140740733,
+        "reference_memory_busy_ns": 1294439.1585185085,
+        "reference_per_core_compute_max_ns": 1398101.333333333,
+        "active_cores": 256,
+        "audit": {
+          "reads": 2483027968,
+          "writes": 44564480,
+          "flops": 365072220160,
+          "vectors": 0,
+          "events": 12544,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.043557194992899895
+    },
+    {
+      "problem": {
+        "m": 5120,
+        "n": 4352,
+        "k": 32768,
+        "batches": 1,
+        "a_bytes": 2,
+        "b_bytes": 2,
+        "output_bytes": 2,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 5767334.874074057,
+        "reference_memory_busy_ns": 5077177.078518122,
+        "reference_per_core_compute_max_ns": 5592405.333333331,
+        "active_cores": 256,
+        "audit": {
+          "reads": 9932111872,
+          "writes": 44564480,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 49408,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 5767334.874074057,
+        "reference_memory_busy_ns": 5077177.078518122,
+        "reference_per_core_compute_max_ns": 5592405.333333331,
+        "active_cores": 256,
+        "audit": {
+          "reads": 9932111872,
+          "writes": 44564480,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 49408,
+          "tail_tiles": 0,
+          "max_workspace": 954368
+        },
+        "peak_concurrent_private_endpoint_transfers": 5,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.10593941621482372
+    },
+    {
+      "problem": {
+        "m": 32768,
+        "n": 4352,
+        "k": 5120,
+        "batches": 1,
+        "a_bytes": 2,
+        "b_bytes": 2,
+        "output_bytes": 2,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 6197640.446534435,
+        "reference_memory_busy_ns": 3920882.8965562107,
+        "reference_per_core_compute_max_ns": 5592405.333333317,
+        "active_cores": 256,
+        "audit": {
+          "reads": 6878658560,
+          "writes": 285212672,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 185088,
+          "tail_tiles": 20480,
+          "max_workspace": 1179648
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 6197640.446534435,
+        "reference_memory_busy_ns": 3920882.8965562107,
+        "reference_per_core_compute_max_ns": 5592405.333333317,
+        "active_cores": 256,
+        "audit": {
+          "reads": 6878658560,
+          "writes": 285212672,
+          "flops": 1460288880640,
+          "vectors": 0,
+          "events": 185088,
+          "tail_tiles": 20480,
+          "max_workspace": 1179648
+        },
+        "peak_concurrent_private_endpoint_transfers": 8,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.5550639070570469
+    },
+    {
+      "problem": {
+        "m": 17,
+        "n": 33,
+        "k": 65,
+        "batches": 1,
+        "a_bytes": 2,
+        "b_bytes": 2,
+        "output_bytes": 2,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 20.240468409586057,
+        "reference_memory_busy_ns": 16.90277777777778,
+        "reference_per_core_compute_max_ns": 5.735294117647059,
+        "active_cores": 16,
+        "audit": {
+          "reads": 26000,
+          "writes": 1122,
+          "flops": 72930,
+          "vectors": 0,
+          "events": 64,
+          "tail_tiles": 0,
+          "max_workspace": 2000
+        },
+        "peak_concurrent_private_endpoint_transfers": 7,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 20.240468409586057,
+        "reference_memory_busy_ns": 16.90277777777778,
+        "reference_per_core_compute_max_ns": 5.735294117647059,
+        "active_cores": 16,
+        "audit": {
+          "reads": 26000,
+          "writes": 1122,
+          "flops": 72930,
+          "vectors": 0,
+          "events": 64,
+          "tail_tiles": 0,
+          "max_workspace": 2000
+        },
+        "peak_concurrent_private_endpoint_transfers": 7,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.01413918100297451
+    },
+    {
+      "problem": {
+        "m": 1,
+        "n": 1024,
+        "k": 4096,
+        "batches": 1,
+        "a_bytes": 2,
+        "b_bytes": 2,
+        "output_bytes": 2,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 4425.5599406761885,
+        "reference_memory_busy_ns": 4393.43445048011,
+        "reference_per_core_compute_max_ns": 257.00392156862745,
+        "active_cores": 32,
+        "audit": {
+          "reads": 8650752,
+          "writes": 2048,
+          "flops": 8388608,
+          "vectors": 0,
+          "events": 800,
+          "tail_tiles": 0,
+          "max_workspace": 33920
+        },
+        "peak_concurrent_private_endpoint_transfers": 7,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 4425.5599406761885,
+        "reference_memory_busy_ns": 4393.43445048011,
+        "reference_per_core_compute_max_ns": 257.00392156862745,
+        "active_cores": 32,
+        "audit": {
+          "reads": 8650752,
+          "writes": 2048,
+          "flops": 8388608,
+          "vectors": 0,
+          "events": 800,
+          "tail_tiles": 0,
+          "max_workspace": 33920
+        },
+        "peak_concurrent_private_endpoint_transfers": 7,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.009136386215686798
+    },
+    {
+      "problem": {
+        "m": 32,
+        "n": 64,
+        "k": 128,
+        "batches": 1,
+        "a_bytes": 4,
+        "b_bytes": 4,
+        "output_bytes": 4,
+        "accumulator_bytes": 4,
+        "direction": "forward"
+      },
+      "equal": true,
+      "old": {
+        "reference_ns": 188.7762962962963,
+        "reference_memory_busy_ns": 128.5688888888889,
+        "reference_per_core_compute_max_ns": 64.0,
+        "active_cores": 16,
+        "audit": {
+          "reads": 196608,
+          "writes": 8192,
+          "flops": 524288,
+          "vectors": 0,
+          "events": 64,
+          "tail_tiles": 0,
+          "max_workspace": 12800
+        },
+        "peak_concurrent_private_endpoint_transfers": 6,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "new": {
+        "reference_ns": 188.7762962962963,
+        "reference_memory_busy_ns": 128.5688888888889,
+        "reference_per_core_compute_max_ns": 64.0,
+        "active_cores": 16,
+        "audit": {
+          "reads": 196608,
+          "writes": 8192,
+          "flops": 524288,
+          "vectors": 0,
+          "events": 64,
+          "tail_tiles": 0,
+          "max_workspace": 12800
+        },
+        "peak_concurrent_private_endpoint_transfers": 6,
+        "sram_load_B_per_ns": 400,
+        "sram_store_B_per_ns": 270
+      },
+      "python_s": 0.01123790256679058
+    }
+  ],
+  "scope": "Linux compiler checked against frozen Python event model; not hardware calibration"
+}

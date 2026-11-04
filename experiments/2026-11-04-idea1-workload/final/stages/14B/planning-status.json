@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/home/xuyin.p/outputs/idea1-final-t162/venv/bin/python3",
+    "/home/xuyin.p/outputs/idea1-final-t162/runtime-freezes/final-audit-v17/scripts/workload_planner/plan_system.py",
+    "--model",
+    "14B",
+    "--window",
+    "test1",
+    "--mode",
+    "one_scene",
+    "--home-policy",
+    "score",
+    "--training-ready-order",
+    "input",
+    "--late-region-batch-cap",
+    "1",
+    "--adaptive-training-batch-max",
+    "0",
+    "--training-tail-fine-samples",
+    "0",
+    "--forecast-mode",
+    "controlled-proxy",
+    "--allow-controlled-proxy",
+    "--proxy-weight",
+    "1",
+    "--output",
+    "/home/xuyin.p/outputs/idea1-final-t162/final-campaign-11/14B-test1/plan"
+  ],
+  "returncode": 0,
+  "wall_s": 3.0932915210723877
+}

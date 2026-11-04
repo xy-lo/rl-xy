@@ -1,0 +1,137 @@
+{
+  "status": "POSTHOC_DIAGNOSIS_NOT_SELECTION_ORACLE",
+  "cases": [
+    {
+      "run": "bank-test1-controlled-full-01",
+      "training_batches": 432,
+      "sample_count": 1536,
+      "batch_sizes": {
+        "4": 368,
+        "1": 64
+      },
+      "batch_duration_p50_s": 0.856117183259,
+      "batch_duration_p90_s": 2.822522109371,
+      "batch_duration_max_s": 4.236314561499,
+      "last_executed_batch": {
+        "batch_id": "10:5",
+        "home": 10,
+        "worker": 7,
+        "samples": 4,
+        "start_s": 66.648466670027,
+        "end_s": 69.013411009452,
+        "duration_s": 2.364944339425,
+        "tids": [
+          "880:69",
+          "880:76",
+          "880:93",
+          "880:94"
+        ]
+      },
+      "hashes": {
+        "training-batches.json": "becc20934831539749a86c26433ce93841c5e5ed6877528b12b861ec17121048",
+        "training-events.json": "754c64d001e17e2388cddcc879be184f59b77ab7845416970c0507798b61fc7d"
+      }
+    },
+    {
+      "run": "packing-full-test1-01",
+      "training_batches": 263,
+      "sample_count": 1536,
+      "batch_sizes": {
+        "4": 30,
+        "8": 169,
+        "1": 64
+      },
+      "batch_duration_p50_s": 1.189172523739,
+      "batch_duration_p90_s": 4.911377412235,
+      "batch_duration_max_s": 5.998366501755,
+      "last_executed_batch": {
+        "batch_id": "10:3",
+        "home": 10,
+        "worker": 14,
+        "samples": 8,
+        "start_s": 66.534885612325,
+        "end_s": 69.59134707155,
+        "duration_s": 3.056461459225,
+        "tids": [
+          "880:69",
+          "880:76",
+          "880:93",
+          "880:94",
+          "552:7",
+          "552:23",
+          "552:25",
+          "552:82"
+        ]
+      },
+      "hashes": {
+        "training-batches.json": "18ff82f5a81b7353140ddcd97a253279d587321399ebe3bf96d245f9de64e37a",
+        "training-events.json": "53be2d70eb20aa50fb2b6331708ab4c84e6c1c5ee24a06094cdb311619a0d419"
+      }
+    },
+    {
+      "run": "late-cap1-controlled-full-01",
+      "training_batches": 432,
+      "sample_count": 1536,
+      "batch_sizes": {
+        "4": 368,
+        "1": 64
+      },
+      "batch_duration_p50_s": 0.886438052691,
+      "batch_duration_p90_s": 3.201600743683,
+      "batch_duration_max_s": 4.739796736699,
+      "last_executed_batch": {
+        "batch_id": "0:62",
+        "home": 0,
+        "worker": 0,
+        "samples": 1,
+        "start_s": 73.179722869216,
+        "end_s": 73.257676207051,
+        "duration_s": 0.077953337835,
+        "tids": [
+          "687:85"
+        ]
+      },
+      "hashes": {
+        "training-batches.json": "67132acf32bc52b5a2698167947e98b5ffc7f6124906b9062afddd5b9e95e4af",
+        "training-events.json": "18a338de772fba80daed47eb5ef6f949a9203ed1b695b2047079e9e31bec7f60"
+      }
+    },
+    {
+      "run": "packing-full-tune-01",
+      "training_batches": 270,
+      "sample_count": 1536,
+      "batch_sizes": {
+        "4": 44,
+        "8": 162,
+        "1": 64
+      },
+      "batch_duration_p50_s": 1.336558667297,
+      "batch_duration_p90_s": 4.760350737387,
+      "batch_duration_max_s": 6.287156128835,
+      "last_executed_batch": {
+        "batch_id": "6:4",
+        "home": 6,
+        "worker": 18,
+        "samples": 8,
+        "start_s": 71.72798240503,
+        "end_s": 74.333472264911,
+        "duration_s": 2.605489859881,
+        "tids": [
+          "621:10",
+          "621:13",
+          "621:15",
+          "621:26",
+          "621:28",
+          "621:46",
+          "621:66",
+          "621:80"
+        ]
+      },
+      "hashes": {
+        "training-batches.json": "9897660b3b1a76c443358ad7f4b28d45d552aa055b586178c8b040fe1a40ea5f",
+        "training-events.json": "ac119a3bea70a682280772b8b6ce281dfef85b24869d9f85c61d3a79ce439320"
+      }
+    }
+  ],
+  "interpretation": "Larger atomic batch can cross K8 group boundary after memory shrink; this is mathematically allowed after ADV but increases unpreemptible final service. Test1 last native batch 4samples/2.36494s to8samples/3.05646s. Candidate: preserve fine tail and order ready training jobs by observed local service, validating fullcycle rather than event counts."
+}
