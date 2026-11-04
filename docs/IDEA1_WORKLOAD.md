@@ -116,3 +116,13 @@ python scripts/report_idea1_workload.py /remote/work/run-4B --audit-report /remo
 `scripts/package_idea1_workload.py`按显式case计划打包，归档源字节不改写；只迁移command.trace_path和source-map目的地，保留原文及双重哈希。`scripts/check_idea1_workload.py BUNDLE --require-final`无需模拟器即可检查三档test1/1536、187项每模型成本源、预测来源、完整原生事件、TP/EOS/KV、训练贡献和统一更新。已通过功能例、完整4B以及新cap功能的归档往返和独立负例；最终三档bundle待完成。
 
 GPU baseline为48×A100，晶圆54die，非等功耗/面积/成本；尚无GPU同helper策略消融。最终同窗表使用旧完整系统device_s，旧Mac规划代理和本次Linux主机开销分列，不把所有对GPU收益单独归因于mesh。
+
+## 已验证资源几何的离线候选子集
+
+统一入口和分布CLI提供可重复的`--resource-candidate inference@fraction:training`，例如`--resource-candidate box4_top@1.0:row1`。参数未给出时仍搜索216候选；给出时只在明确子集内评分、重新计算当前batch的PB/PS及hard容量，非法名字、空集或比例拒绝。artifact、部署和独立规划审计绑定此子集，不将一个候选描述成全局最优。
+
+资源几何可从已完成TUNE原生验收的布局库中选择，任务历史和队列仍随新batch更新。本次4B子集严格来自已审计73.297172s TUNE；重建该TUNE后，全部inference/forecast及关键home/helper/cap执行绑定逐项相同。其test1冷规划0.963052s，内部单候选搜索0.028359s；离线原生验收的成本另记，不伪装成28ms首次发现最优。
+
+初轮test1快评选13×TP4＋TP2，native/audit均PASS，但69.720098s比旧device68.262716s慢2.135%。GEN46.453401→43.843299s更快，首次训练却43.998837→45.168828s，early overlap2.454564→0。更多捐赠74→98也未减少idle。该负例说明需评估释放时间分布和完整周期，不能只优化GEN结束或helper事件数量。
+
+test1的shortlist6和full16均选box4/row1，完整规划分别3.364356/13.690099s。布局库复用与多情景短名单的4B原生对照正在运行；此处不预填收益。当前503项测试总数，3skip，其余通过；最终三档和GitHub CI尚待完成。
