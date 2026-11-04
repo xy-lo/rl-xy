@@ -144,3 +144,5 @@ test1的shortlist6和full16均选box4/row1，完整规划分别3.364356/13.69009
 完整4B的纯B8拼批为负例：TUNE74.372965s、test169.630843s，均原生及独立审计通过，却未过既有性能门。相同test1布局下训练角色工作1046.844207→1027.166196die·s，idle90.867048→141.753694die·s；节省服务量被原子批尾部失衡抵消。GEN和teacher不变，不能把该差异归因于预测或新硬件。
 
 `--adaptive-training-batch-max 8 --training-tail-fine-samples 8`在本区域实际EOS后，保留原队列最后8个样本为细批（每批不超过TP/2），此前样本按容量尽量拼批。所有样本顺序、teacher、完整K8优势依赖和统一更新不变；晚区域cap继续适用。参数默认0保留历史行为；此策略同样未进入原M1 B4服务目录评分，完整native验收前不称加速。独立审计从原trace及home队列重建末段成员，拒绝跨前后段混批、伪造fine标签、漏样和容量/EOS违约。
+
+无历史入口：统一planner的`--no-history`转发已有hard-limit预测及最小可行TP回退；独立规划审计识别capacity-only-fallback-diagnostic阶段。完整4B规划/绑定合同smoke通过（无native执行或设备耗时），冷规划约1.559s，选择可行TP1；该选择只表达保守容量回退，不宣称吞吐最优。此修复不改变当前冻结v16的训练/推理运行时。

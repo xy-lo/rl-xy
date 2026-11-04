@@ -50,7 +50,8 @@ def audit_planning(native,offline):
     catalog=ROOT/f'experiments/2026-11-03-idea1-elastic/assets/inference-catalog-{model}.json'
     assert artifact['catalog_sha256']==sha(catalog)
     selected=artifact['result'];winner=selected['winner'];mode=selected['mode']
-    stage='coarse' if mode=='one_scene' else 'full' if mode=='full' else 'fine'
+    stage={'one_scene':'coarse','full':'full','shortlist6':'fine','shortlist12':'fine',
+        'capacity_fallback':'capacity-only-fallback-diagnostic'}[mode]
     candidates=[c for c in selected['events'] if c['passed'] and c['stage']==stage]
     assert candidates and min(candidates,key=lambda c:(c['risk_s'],c['signature']))['signature']==winner['signature']
     constraint=selected.get('candidate_constraint')
