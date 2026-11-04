@@ -19,6 +19,11 @@ class AdaptiveKernel(CachedCompleteKernel):
         # K remains8. Max training batch8 avoids crossing unrelated groups in
         # this first implementation and preserves small frozen TP2 batches.
         if stage=='training':maximum=min(8,maximum) if tp>2 else self.train_mb
+        baseline_maximum=maximum
+        packing=getattr(self,'resource_layout',{}).get('adaptive_training_batch_max',0) if stage=='training' else 0
+        if packing:
+            if any(x['trajectory_id'] not in self.done for x in items):raise ValueError('training packing requires observed local EOS')
+            maximum=packing
         cap=getattr(self,'resource_layout',{}).get('late_region_batch_cap_per_pair',0)
         original_maximum=maximum
         late=bool(cap and stage=='training' and len(self.done)==len(self.ids))
@@ -30,6 +35,9 @@ class AdaptiveKernel(CachedCompleteKernel):
             proof=asdict(self.memory.phase(stage,tp,batch));assert proof['peak_bytes']<=self.op.capacity
             self.allocation_events.append(dict(certificate_tick=self.tick,region=self.targets[batch[0]['trajectory_id']],stage=stage,tp=tp,items=[x['trajectory_id'] for x in batch],**proof))
             choice=dict(stage=stage,tp=tp,maximum=maximum,actual=len(batch))
+            if packing:
+                choice.update(adaptive_training_batch_max=packing,baseline_maximum=baseline_maximum,
+                    packing_tids=[x['trajectory_id'] for x in batch],decision_tick=self.tick)
             if cap and stage=='training':
                 choice.update(late_region_cap_eligible=late,late_region_cap_applied=late and maximum<original_maximum,original_maximum=original_maximum,decision_tick=self.tick,
                     region=self.targets[batch[0]['trajectory_id']],global_rollout_complete=len(self.done)==len(self.ids))

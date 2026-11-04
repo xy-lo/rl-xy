@@ -13,6 +13,7 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--offline-run',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
  p.add_argument('--late-region-batch-cap',type=int,choices=[0,1,2,4],default=0)
  p.add_argument('--training-ready-order',choices=['input','ready_lpt'],default='input')
+ p.add_argument('--adaptive-training-batch-max',type=int,choices=[0,1,2,4,8],default=0)
  p.add_argument('--model',default='4B');p.add_argument('--window',default='tune');p.add_argument('--subset-prompts',type=int,default=0)
  a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
  artifact=json.loads((a.offline_run/'offline-candidates.json').read_text())
@@ -50,6 +51,9 @@ def main():
   home['training_ready_order']=a.training_ready_order;home['plan_id']=digest([home['plan_id'],a.training_ready_order])
  if a.late_region_batch_cap:
   home['late_region_batch_cap_per_pair']=a.late_region_batch_cap;home['plan_id']=digest([home['plan_id'],'late-region-batch-cap',a.late_region_batch_cap])
+ if a.adaptive_training_batch_max:
+  home['adaptive_training_batch_max']=a.adaptive_training_batch_max
+  home['plan_id']=digest([home['plan_id'],'adaptive-training-pack',a.adaptive_training_batch_max])
  (a.output/'selected-plan.json').write_text(json.dumps(home,indent=2))
  (a.output/'inference-layout.json').write_text(json.dumps(inf,indent=2))
  (a.output/'forecast.json').write_text(json.dumps(forecast))

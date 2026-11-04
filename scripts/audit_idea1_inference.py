@@ -5,6 +5,30 @@ from collections import Counter,defaultdict
 from audit_idea1_system import audit,digest,load
 
 
+def audit_training_packing(choices,layout,eos,train_mb):
+    """Reconstruct the local-EOS information boundary and full sample coverage."""
+    cap=layout.get('adaptive_training_batch_max',0)
+    assert type(cap) is int and cap in (0,1,2,4,8)
+    if not cap:
+        assert not any('adaptive_training_batch_max' in x for x in choices)
+        return None
+    assert type(train_mb) is int and train_mb>0
+    tids=[];grown=0;training=[x for x in choices if x['stage']=='training']
+    for x in training:
+        assert x['adaptive_training_batch_max']==cap
+        ids=x['packing_tids'];assert len(ids)==x['actual'] and len(set(ids))==len(ids)
+        assert all(t in eos and eos[t]<=x['decision_tick'] for t in ids),'packing precedes observed EOS'
+        maximum=cap
+        if x.get('late_region_cap_eligible'):maximum=min(maximum,layout['late_region_batch_cap_per_pair']*(x['tp']//2))
+        assert x['actual']<=x['maximum']==maximum
+        assert x['tp'] in (2,4,8)
+        expected_baseline=train_mb if x['tp']==2 else min(8,train_mb*x['tp'])
+        assert type(x['baseline_maximum']) is int and x['baseline_maximum']==expected_baseline
+        grown+=x['actual']>x['baseline_maximum'];tids.extend(ids)
+    assert Counter(tids)==Counter(eos.keys()),'packing drops or duplicates samples'
+    assert all('adaptive_training_batch_max' not in x for x in choices if x['stage']!='training')
+    return dict(adaptive_training_batch_max=cap,adaptive_training_batches=len(training),larger_than_baseline_batches=grown,packing_uses_observed_EOS=True)
+
 def check(folder):
     base=audit(folder);cmd=load(folder/'command.json');trace=Path(cmd['trace_path'])
     if not trace.is_absolute():trace=Path(__file__).resolve().parents[1]/trace
@@ -171,13 +195,21 @@ def check(folder):
             if choice['late_region_cap_applied']:
                 applied+=1
                 assert choice['late_region_cap_eligible'] and choice['maximum']<choice['original_maximum']
-    return dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT',base=base,inference_programs=len(events),
+    choices=load(folder/'microbatch-choices.json') if (folder/'microbatch-choices.json').exists() else []
+    packing=audit_training_packing(choices,training_layout,eos,cmd.get('policy',{}).get('train_mb'))
+    if packing:
+        recorded=Counter(tuple(x['packing_tids']) for x in choices if x['stage']=='training')
+        manifest=load(folder/'training-batches.json')
+        assert recorded==Counter(tuple(x['tids']) for x in manifest.values()),'packing choices differ from executable batches'
+    report=dict(status='PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT',base=base,inference_programs=len(events),
         initial_inference_instances=54 if layout.get('paired_tp1') else len(initial),initial_tp_counts={1:54} if layout.get('paired_tp1') else dict(Counter(len(ws)*2 for ws in initial.values())),
         late_region_batch_cap=late_cap,late_region_capped_batches=applied,training_ready_order=ready_order,native_resizes=len(resize_by),generation_reply_local_and_comm_accounting='all54ranks',
         kv_storage_hazard_checked=True,
         pending_input_fanout_checked=True,
         pending_resize_exclusion_checked=True,
         EOS_and_KV_conservation=True,scope='cost/native timing; not numeric Transformer or physical hardware')
+    if packing:report.update(packing)
+    return report
 
 
 if __name__=='__main__':
