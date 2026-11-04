@@ -1,0 +1,56 @@
+{
+  "status": "PASS_REAL_PLANNER_ENTRYPOINT_WITH_HISTORY_FILE_UNAVAILABLE",
+  "cases": [
+    {
+      "case": "explicit",
+      "wall_s": 1.057219797745347,
+      "fallback_reason": "EXPLICIT_NO_HISTORY",
+      "selected_mode": "capacity_fallback",
+      "winner": {
+        "inf": "db172d042da927b02c3a95caa404a22ba70ccdb39f56262a32c821e67086c293",
+        "training": "7f2e02685a0d14a3be2d997f6273d89bea56ac3d29a1db748647347eb165189c",
+        "inf_name": "paired1@0.5",
+        "training_name": "row1",
+        "dp": 27,
+        "signature": "2f3f8eb8ac1ec9330591fa66f6d6c3d9e08d418f177b1d5555debf6d97d1e349",
+        "generated_s": 0.01881934516131878,
+        "passed": true,
+        "stage": "capacity-only-fallback-diagnostic",
+        "score_start_s": 0.7768009286373854,
+        "scored_s": 0.7840170040726662,
+        "risk_s": 310.3550536169941,
+        "scenarios_s": [
+          310.3550536169941
+        ],
+        "mean_region_dependencies": 1.0
+      },
+      "history_reads": 0
+    },
+    {
+      "case": "absent",
+      "wall_s": 0.8775469399988651,
+      "fallback_reason": "HISTORY_FILE_MISSING",
+      "selected_mode": "capacity_fallback",
+      "winner": {
+        "inf": "db172d042da927b02c3a95caa404a22ba70ccdb39f56262a32c821e67086c293",
+        "training": "7f2e02685a0d14a3be2d997f6273d89bea56ac3d29a1db748647347eb165189c",
+        "inf_name": "paired1@0.5",
+        "training_name": "row1",
+        "dp": 27,
+        "signature": "2f3f8eb8ac1ec9330591fa66f6d6c3d9e08d418f177b1d5555debf6d97d1e349",
+        "generated_s": 0.0173561479896307,
+        "passed": true,
+        "stage": "capacity-only-fallback-diagnostic",
+        "score_start_s": 0.7761026695370674,
+        "scored_s": 0.7832485754042864,
+        "risk_s": 310.3550536169941,
+        "scenarios_s": [
+          310.3550536169941
+        ],
+        "mean_region_dependencies": 1.0
+      },
+      "history_reads": 0
+    }
+  ],
+  "scope": "planning-only, no native execution; all history byte reads actively rejected"
+}

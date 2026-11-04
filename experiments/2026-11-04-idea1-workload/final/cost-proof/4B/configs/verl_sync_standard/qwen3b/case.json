@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.1",
+  "case_id": "verl_sync_qwen3b_fixed_P512_R32",
+  "evidence_kind": "synthetic_fixture",
+  "rounds": 1,
+  "model": {
+    "layers": 36,
+    "hidden_size": 2048,
+    "query_heads": 16,
+    "kv_heads": 2,
+    "head_dim": 128,
+    "ffn_size": 11008,
+    "vocab_size": 151936,
+    "actor_dtype_bytes": 2,
+    "reference_dtype_bytes": 2,
+    "master_dtype_bytes": 4,
+    "gradient_dtype_bytes": 4,
+    "optimizer_dtype_bytes": 4,
+    "qkv_bias": true,
+    "rotary_embedding": true,
+    "tie_word_embeddings": true
+  },
+  "workload": {
+    "round_id": 1,
+    "group_id": "selected-complete-groups",
+    "prompt_token_ids": [],
+    "max_response_length": 32,
+    "behavior_version": 0,
+    "trajectories": [
+      {
+        "trajectory_id": "T0",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G0",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T1",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G0",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T2",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G1",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T3",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G1",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T4",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G2",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T5",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G2",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T6",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G3",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T7",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G3",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T8",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G4",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T9",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G4",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T10",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G5",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T11",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G5",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T12",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G6",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T13",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G6",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T14",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G7",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T15",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G7",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T16",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G8",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T17",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G8",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T18",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G9",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T19",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G9",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T20",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G10",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T21",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G10",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T22",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G11",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T23",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G11",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T24",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G12",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T25",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G12",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T26",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G13",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T27",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G13",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T28",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G14",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T29",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G14",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T30",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G15",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T31",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G15",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T32",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G16",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T33",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G16",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T34",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G17",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T35",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G17",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T36",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G18",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T37",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G18",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T38",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G19",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T39",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G19",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T40",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G20",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T41",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G20",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T42",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G21",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T43",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G21",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T44",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G22",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T45",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G22",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T46",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G23",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T47",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G23",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T48",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G24",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T49",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G24",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T50",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G25",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T51",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G25",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T52",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G26",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T53",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G26",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T54",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G27",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T55",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G27",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T56",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G28",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T57",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G28",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T58",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G29",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T59",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G29",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T60",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G30",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T61",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G30",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T62",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G31",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      },
+      {
+        "trajectory_id": "T63",
+        "prompt_length": 512,
+        "response_length": 32,
+        "group_id": "G31",
+        "finish_reason": "fixed_budget_simulation",
+        "reward": null
+      }
+    ],
+    "advantage_rule": "demean_only",
+    "loss_reduction": "global_response_token_mean",
+    "optimizer": "adamw_shape_only"
+  },
+  "hardware": {
+    "dies": 2,
+    "cores_per_die": 1,
+    "dram_bytes_per_die": 262144,
+    "sram_bytes_per_core": 4096,
+    "nic_tx_bytes_per_die": 64,
+    "nic_rx_bytes_per_die": 64,
+    "gemm_flops_per_ns": 1,
+    "vector_ops_per_ns": 1,
+    "dram_bytes_per_ns": 16,
+    "module_path_bytes_per_ns": 16,
+    "sram_bytes_per_ns": 32,
+    "d2d_bytes_per_ns_per_direction": 8,
+    "d2d_latency_ns": 1,
+    "d2d_packet_bytes": 64,
+    "host_bytes_per_ns": 8,
+    "host_latency_ns": 2,
+    "astra_time_scale": 1000
+  },
+  "strategy": {
+    "tensor_parallel": 2,
+    "pipeline_parallel": 1,
+    "data_parallel": 1,
+    "training_microbatch_trajectories": 1,
+    "rollout_max_concurrency": 64,
+    "share_prompt_kv": false,
+    "actor_train_inference_layout_compatible": true,
+    "schedule": "strict_synchronous",
+    "kv_admission": "reserve_public_max_length"
+  },
+  "costs": {
+    "reward_cpu_ns": 12,
+    "advantage_cpu_ns": 8,
+    "sample_vector_ops_per_token": 16,
+    "softmax_vector_ops_per_element": 5,
+    "rmsnorm_vector_ops_per_element": 6,
+    "swiglu_vector_ops_per_element": 5,
+    "optimizer_vector_ops_per_local_parameter": 12,
+    "gradient_clip_vector_ops_per_local_parameter": 3,
+    "control_marker_ns": 1
+  }
+}

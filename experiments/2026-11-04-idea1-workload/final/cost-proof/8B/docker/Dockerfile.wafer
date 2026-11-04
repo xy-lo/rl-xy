@@ -1,0 +1,12 @@
+ARG RLXY_BASE_IMAGE=rlxy-astrasim:0.4.1
+FROM ${RLXY_BASE_IMAGE}
+USER root
+COPY docker/astrasim/RlxyResources.hh /opt/astra-sim/astra-sim/workload/RlxyResources.hh
+RUN cd /opt/astra-sim \
+    && test "$(grep -c '1024 \* 1024 \* 10, 10)' astra-sim/common/Logging.cc)" = 2 \
+    && sed -i 's/1024 \* 1024 \* 10, 10)/1024 * 1024 * 10, 1000)/g' astra-sim/common/Logging.cc \
+    && ./build/astra_analytical/build.sh -t all \
+    && sha256sum astra-sim/workload/RlxyResources.hh astra-sim/workload/RlxyMesh.hh astra-sim/common/Logging.cc > /opt/astra-sim/.rlxy-multicore-patch
+COPY src/rl_xy /opt/rlxy-source/rl_xy
+LABEL io.rlxy.private-sram-contract="1.1"
+ENV PYTHONPATH=/workspace/rl-xy/src:/opt/rlxy-source:/opt/astra-sim

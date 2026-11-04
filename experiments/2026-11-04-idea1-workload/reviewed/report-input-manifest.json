@@ -1,0 +1,30 @@
+{
+  "comparison_sha256": "9b2f1b245988c7e8b4da5094b58e0928768901ce29e53a5474646ebd66dfc088",
+  "bundle_manifest_sha256": "b9371295e32622e73ca44399d9f96f43d285d3a5a9912d9fc695be37975f27b7",
+  "status_sha256": "a38b4163c267fadba9417664e6135fa13f565d0571bbb90621cb7e4ca4a3d10b",
+  "generator_sha256": "488a1435c4cb2b5ff7e45437d31ccb98c9952c5154cfe59644fc65df19151abe",
+  "source_files": {
+    "4B": {
+      "native-run/result.json": "2e084d9ab3048d9c863d020cadf0d5c04236fb6920c9a70344c054d845f60d48",
+      "inference-audit.json": "f6c01bac43f9abe1161f78e3d5c5168170b56425988f51fa43101f68b7b831fe",
+      "plan/deployment.json": "3700ff932820555df7e27cf31d9e01bcf0e2541af168126c7625773af0695b48",
+      "native-status.json": "6b9cd4d142c50224919bc9aa1e7effe2316c64bdc1d1d752119cc45580759088",
+      "planning-status.json": "8b24f2424dabd1e541f987ff600fc862d617dfd085a26f13c996e88f9bc4a23b"
+    },
+    "8B": {
+      "native-run/result.json": "32b41d4ba10889f88a2628adec0867f573bcccc10d06451cf3619428725d551e",
+      "inference-audit.json": "aece5d07067681b24d1895f313ba9afd49352743bd567b98f8534b079a3941ba",
+      "plan/deployment.json": "d35abe1b5f1661fb36a8c8922f0b578c9524d3b36b27dcdc9917de32661f9aca",
+      "native-status.json": "58ce864f31c3c8d3eb6c93691c3342f6689b9eeb765ba07d4ba109094f05aba4",
+      "planning-status.json": "7d9b21c8ca6ff7aee034baa28915448acf1cdf0e71883a61b24ef80cc452bc8e"
+    },
+    "14B": {
+      "native-run/result.json": "9038c0c68bfd1b18f1d315d145352df2a29307305106a1092b9f7334a66b26be",
+      "inference-audit.json": "6f61b713e6f1196fb6251d053200114a85676f54bccd58a57dea9913cce3f3d2",
+      "plan/deployment.json": "702598198953ac820a6a922f6f226df0403f446b8e40774fb8f047997c95faf1",
+      "native-status.json": "75de6bf232191c51d1b5e922ff71abd545cb2864f479cf79f0c13692a48067b3",
+      "planning-status.json": "7e62055523886771c08e4473c1c38221fedbc8b446e5420e523f0f75a072ee37"
+    }
+  },
+  "human_review": "Corrected occupancy denominator label to dynamic role-event interval; numeric values unchanged"
+}

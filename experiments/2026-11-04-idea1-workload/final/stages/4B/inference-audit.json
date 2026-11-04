@@ -1,0 +1,302 @@
+{
+  "status": "PASS_ACTUAL_TP_INFERENCE_NATIVE_AUDIT",
+  "base": {
+    "status": "PASS_SIMULATION_EVIDENCE_AUDIT",
+    "model": "Qwen3-4B",
+    "window": "test1",
+    "samples": 1536,
+    "regions": 27,
+    "total_s": 69.052905438236,
+    "planning_proxy_s": 0,
+    "dynamic_origin_s": 4.704528e-06,
+    "generation_end_s": 43.071873566514,
+    "dynamic_end_s": 69.013411009454,
+    "native_suffix_s": 0.0394944287819925,
+    "first_training_s": 44.250833356883,
+    "role_integral_die_s": {
+      "own": 2111.9476997286665,
+      "idle": 90.86704830209,
+      "sample_transfer": 0.00040825707599999973,
+      "prepare": 477.06457733853046,
+      "training": 1046.844206838747
+    },
+    "post_generation_idle_die_s": 90.86694693177199,
+    "observed_peak_bytes": 52817588992,
+    "regional": [
+      {
+        "region": 0,
+        "training_tp": 2,
+        "samples": 64,
+        "first_prepare_s": 43.071873566514,
+        "teacher_s": 8.77737677264,
+        "training_s": 16.15215906299,
+        "gradient_ready_s": 68.007252443501
+      },
+      {
+        "region": 1,
+        "training_tp": 2,
+        "samples": 64,
+        "first_prepare_s": 38.738608751452,
+        "teacher_s": 8.799862020752,
+        "training_s": 20.176691812174,
+        "gradient_ready_s": 67.9707985887
+      },
+      {
+        "region": 2,
+        "training_tp": 2,
+        "samples": 64,
+        "first_prepare_s": 38.738608751452,
+        "teacher_s": 8.534011798784,
+        "training_s": 20.354567139139,
+        "gradient_ready_s": 67.860013730314
+      },
+      {
+        "region": 3,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.970583480132,
+        "teacher_s": 10.049817723046,
+        "training_s": 19.166266633789,
+        "gradient_ready_s": 68.251992807072
+      },
+      {
+        "region": 4,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.970580861752,
+        "teacher_s": 8.99173980983,
+        "training_s": 19.315373827069,
+        "gradient_ready_s": 67.729862339878
+      },
+      {
+        "region": 5,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.77217322991,
+        "teacher_s": 9.029946183302,
+        "training_s": 20.190886673515,
+        "gradient_ready_s": 68.009998565097
+      },
+      {
+        "region": 6,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.970582077536,
+        "teacher_s": 8.946671167862,
+        "training_s": 19.310835249632,
+        "gradient_ready_s": 67.291712734828
+      },
+      {
+        "region": 7,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.970583480132,
+        "teacher_s": 8.28803385183,
+        "training_s": 21.545609789706,
+        "gradient_ready_s": 69.013411009452
+      },
+      {
+        "region": 8,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.772170530008,
+        "teacher_s": 9.49411560967,
+        "training_s": 18.853631702354,
+        "gradient_ready_s": 67.227435006209
+      },
+      {
+        "region": 9,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 42.431972624388,
+        "teacher_s": 8.68301214487,
+        "training_s": 16.045528669188,
+        "gradient_ready_s": 67.22328857518
+      },
+      {
+        "region": 10,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 42.431969840894,
+        "teacher_s": 10.13862883383,
+        "training_s": 14.593947496155,
+        "gradient_ready_s": 67.215003162851
+      },
+      {
+        "region": 11,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.772171817848,
+        "teacher_s": 8.470657170454,
+        "training_s": 19.692632711868,
+        "gradient_ready_s": 67.289261271639
+      },
+      {
+        "region": 12,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 42.431971044078,
+        "teacher_s": 9.032449445446,
+        "training_s": 16.613931312177,
+        "gradient_ready_s": 68.200752072105
+      },
+      {
+        "region": 13,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 42.431972624388,
+        "teacher_s": 9.973101559014,
+        "training_s": 15.358575666373,
+        "gradient_ready_s": 67.767691477868
+      },
+      {
+        "region": 14,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.77217322991,
+        "teacher_s": 8.318462249782,
+        "training_s": 19.907712184927,
+        "gradient_ready_s": 67.289262104849
+      },
+      {
+        "region": 15,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 39.189399959346,
+        "teacher_s": 9.458843081494,
+        "training_s": 18.527467610923,
+        "gradient_ready_s": 67.264911577994
+      },
+      {
+        "region": 16,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 39.189397259626,
+        "teacher_s": 8.546735719798,
+        "training_s": 19.533377198119,
+        "gradient_ready_s": 67.583870813168
+      },
+      {
+        "region": 17,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.166911044004,
+        "teacher_s": 8.446750272198,
+        "training_s": 20.343492833346,
+        "gradient_ready_s": 67.35844694389
+      },
+      {
+        "region": 18,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 39.189398490034,
+        "teacher_s": 9.027880851478,
+        "training_s": 18.894770434875,
+        "gradient_ready_s": 67.339986226525
+      },
+      {
+        "region": 19,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 39.189399959346,
+        "teacher_s": 8.83944812279,
+        "training_s": 19.716248301167,
+        "gradient_ready_s": 67.844788901237
+      },
+      {
+        "region": 20,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.16690825325,
+        "teacher_s": 8.235717554086,
+        "training_s": 20.428863511229,
+        "gradient_ready_s": 67.262070885808
+      },
+      {
+        "region": 21,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 36.325213137946,
+        "teacher_s": 7.921596549926,
+        "training_s": 22.217600837507,
+        "gradient_ready_s": 67.25700050361
+      },
+      {
+        "region": 22,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 36.325210612712,
+        "teacher_s": 8.353871054294,
+        "training_s": 22.180105528843,
+        "gradient_ready_s": 67.192179638828
+      },
+      {
+        "region": 23,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.166909583992,
+        "teacher_s": 8.828810477814,
+        "training_s": 20.108152927095,
+        "gradient_ready_s": 67.223176408659
+      },
+      {
+        "region": 24,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 36.325211726082,
+        "teacher_s": 8.155728957878,
+        "training_s": 22.213601444577,
+        "gradient_ready_s": 67.19029862827
+      },
+      {
+        "region": 25,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 36.325213137946,
+        "teacher_s": 8.401772244742,
+        "training_s": 22.170752418993,
+        "gradient_ready_s": 67.189112804602
+      },
+      {
+        "region": 26,
+        "training_tp": 2,
+        "samples": 56,
+        "first_prepare_s": 38.166911044004,
+        "teacher_s": 8.787247387574,
+        "training_s": 19.700276432002,
+        "gradient_ready_s": 67.18397262232
+      }
+    ],
+    "native_training_transfers": 98,
+    "remote_samples": 293,
+    "early_training_transfers": 0,
+    "remote_sequential_microbatches": 98,
+    "remote_source_tp_counts": {
+      "2": 98
+    },
+    "reconstructed_issued_program_hashes": true,
+    "independent_raw_native_events": 2484,
+    "limitations": [
+      "cost/native-event simulation; no Transformer tensor or learning-quality proof",
+      "role occupancy includes memory, communication and dependency waiting, not arithmetic utilization",
+      "prefix and suffix excluded from dynamic role integrals"
+    ]
+  },
+  "inference_programs": 4849,
+  "initial_inference_instances": 8,
+  "initial_tp_counts": {
+    "2": 1,
+    "4": 1,
+    "8": 6
+  },
+  "late_region_batch_cap": 1,
+  "late_region_capped_batches": 64,
+  "training_ready_order": "input",
+  "native_resizes": 0,
+  "generation_reply_local_and_comm_accounting": "all54ranks",
+  "kv_storage_hazard_checked": true,
+  "pending_input_fanout_checked": true,
+  "pending_resize_exclusion_checked": true,
+  "EOS_and_KV_conservation": true,
+  "scope": "cost/native timing; not numeric Transformer or physical hardware"
+}

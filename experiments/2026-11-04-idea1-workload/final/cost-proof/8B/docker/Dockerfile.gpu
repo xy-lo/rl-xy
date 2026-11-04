@@ -1,0 +1,11 @@
+ARG RLXY_BASE_IMAGE=rlxy-astrasim:0.5.0
+FROM ${RLXY_BASE_IMAGE}
+USER root
+COPY docker/astrasim/RlxyGpu.hh /opt/astra-sim/astra-sim/workload/RlxyGpu.hh
+COPY docker/astrasim/gpu.patch /tmp/rlxy-gpu.patch
+RUN cd /opt/astra-sim \
+    && git apply --unidiff-zero /tmp/rlxy-gpu.patch \
+    && ./build/astra_analytical/build.sh -t all \
+    && sha256sum /tmp/rlxy-gpu.patch astra-sim/workload/RlxyGpu.hh > /opt/astra-sim/.rlxy-gpu-patch
+COPY src/rl_xy /opt/rlxy-source/rl_xy
+LABEL io.rlxy.gpu-topology="node-switch-spine-v1"

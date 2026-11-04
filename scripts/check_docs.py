@@ -14,6 +14,8 @@ CURRENT.add(WORKLOAD_DATA+'/README.md')
 CURRENT.add(WORKLOAD_DATA+'/runtime-development/analysis/mechanism-cause-attribution-01.md')
 CURRENT.update(WORKLOAD_DATA+'/development/'+x for x in ['diagnostics/expanded-layout-state-report-01/states.md', 'diagnostics/late-cap-state-report-01/states.md', 'diagnostics/late-cap1-state-report-01/states.md', 'diagnostics/ready-lpt-state-report-02/states.md', 'diagnostics/service-home-state-report-01/states.md'])
 
+CURRENT.update(['experiments/2026-11-04-idea1-workload/final/comparison.md', 'experiments/2026-11-04-idea1-workload/final/diagnostics/14B/states.md', 'experiments/2026-11-04-idea1-workload/final/diagnostics/4B/states.md', 'experiments/2026-11-04-idea1-workload/final/diagnostics/8B/states.md', 'experiments/2026-11-04-idea1-workload/reviewed/FINAL_REPORT.md', 'experiments/2026-11-04-idea1-workload/reviewed/analysis/mechanism-cause-attribution-01.md', 'experiments/2026-11-04-idea1-workload/reviewed/die-states/14B-states.md', 'experiments/2026-11-04-idea1-workload/reviewed/die-states/4B-states.md', 'experiments/2026-11-04-idea1-workload/reviewed/die-states/8B-states.md'])
+
 HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-10-27-v0.6/模型内部瓶颈分解.md'}
 
 EVIDENCE = {'experiments/2026-11-01-idea1/test1-Idea1方法正文草稿.md', 'experiments/2026-11-01-idea1/test1-三模型结果与实现边界.md', 'experiments/2026-11-01-idea1/论文实验结果与表述.md'}

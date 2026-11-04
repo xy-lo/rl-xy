@@ -1,7 +1,27 @@
-# 工作负载规划、Mesh协作与晚区域训练粒度
+# Idea1 工作负载规划与 Mesh 完整系统验收
 
-最终4B/8B/14B test1原生验收进行中；下表仅为完整4B TUNE开发结果。方法与复现入口见[实现合同](../../docs/IDEA1_WORKLOAD.md)。所有结果为固定成本、公开长度回放的AstraSim时序仿真，不是数值模型训练、学习质量或实体晶圆计时。
+最终4B/8B/14B test1均已完成，统一冻结执行源c5f5db4；每档1536回答、54die、一次统一更新，原生和独立执行/预测来源审计通过。全部为AstraSim固定成本时序仿真，不是数值训练或实体晶圆实测。GPU沿用已发布同窗48 A100基线，不是等面积/功耗/成本比较。
 
+|模型|GPU/s|H0/s|原生成/s|旧创新三/s|旧完整设备/s|本系统设备/s|GPU加速|较旧完整缩短|
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+|4B|132.966|162.372|107.623|80.825|68.263|69.053|1.926x|-1.16%|
+|8B|178.512|245.501|187.004|149.550|103.641|103.259|1.729x|+0.37%|
+|14B|260.755|348.756|285.635|226.354|152.404|149.972|1.739x|+1.60%|
+
+正值表示相对旧完整设备时间缩短，负值表示回归；未隐藏4B回归。规划主机时间独立列于[系统指标](reviewed/system-metrics.csv)，不与设备秒混算。4B/8B复用明确的TUNE资源子集，不是首次全局搜索。
+
+- [完整结果与瓶颈报告](reviewed/FINAL_REPORT.md)、[原始精度对比](reviewed/comparison.csv)、[结果及来源](reviewed/results.json)
+- [各时刻54die角色计数](reviewed/die-state-counts.csv)、[逐die状态](reviewed/per-die-states.csv)
+- [最终便携证据清单](final/bundle-manifest.json)、[实际验证记录](reviewed/validation.json)
+- [实现合同与复现](../../docs/IDEA1_WORKLOAD.md)
+
+```bash
+python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/final --require-final
+```
+
+最终测试为历史使用过的test1和显式同题alpha1离线proxy；当前sample排除。独立总体/类别模式另有开发结果，未执行独立held-out最终原生矩阵或全候选native oracle，不能据此宣称泛化或全局最优。用户要求收束后未再追加原生实验，GitHub暂不上传。
+
+## 4B TUNE开发结果
 |完整4B TUNE策略|设备/s|idle die·s|训练捐赠|
 |---|---:|---:|---:|
 |扩展布局＋原批|74.566400|99.177207|65|
@@ -29,7 +49,7 @@ python -m pip install -e '.[f2]'
 python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/development
 ```
 
-默认distribution为独立校准模式；本开发表使用显式controlled alpha1离线同题proxy，不是连续actor历史。test1/test2已有历史结果，不能称全新held-out。54晶圆die与48×A100并非等面积/功耗/成本，尚无GPU同helper策略消融。最终同窗表将用旧device_s，旧Mac代理规划与本次Linux主机规划分列。
+默认distribution为独立校准模式；本开发表使用显式controlled alpha1离线同题proxy，不是连续actor历史。test1/test2已有历史结果，不能称全新held-out。54晶圆die与48×A100并非等面积/功耗/成本，尚无GPU同helper策略消融。最终同窗表采用旧device_s，旧Mac代理规划与本次Linux主机规划分列。
 
 ## 独立分布模式的开发版本
 

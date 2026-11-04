@@ -1,0 +1,86 @@
+{
+  "candidates": [
+    {
+      "run": "expanded-layout-controlled-full-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/expanded-layout-4b-tune-plan-01/offline",
+      "device_s": 74.566400053373
+    },
+    {
+      "run": "service-home-controlled-full-01",
+      "home_policy": "service",
+      "planner_mode": "one_scene",
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/service-home-4b-tune-plan-01/offline",
+      "device_s": 77.69590961766701
+    },
+    {
+      "run": "ready-lpt-controlled-full-02",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "ready_lpt",
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/ready-lpt-4b-tune-plan-02/offline",
+      "device_s": 75.876085271557
+    },
+    {
+      "run": "late-cap-controlled-full-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 2,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/late-cap-4b-tune-plan-01/offline",
+      "device_s": 73.52612876836
+    },
+    {
+      "run": "late-cap1-controlled-full-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 1,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/late-cap1-4b-tune-plan-01/offline",
+      "device_s": 73.297172299298
+    },
+    {
+      "run": "packing-full-tune-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 1,
+      "adaptive_training_batch_max": 8,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/packing-4b-tune-plan-01/offline",
+      "device_s": 74.372965359161
+    },
+    {
+      "run": "fine-tail-full-tune-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "input",
+      "late_region_batch_cap": 1,
+      "adaptive_training_batch_max": 8,
+      "training_tail_fine_samples": 8,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/fine-tail-4b-tune-plan-01/offline",
+      "device_s": 75.549235740966
+    },
+    {
+      "run": "fine-tail-lpt-full-tune-01",
+      "home_policy": "score",
+      "planner_mode": "one_scene",
+      "training_ready_order": "ready_lpt",
+      "late_region_batch_cap": 1,
+      "adaptive_training_batch_max": 8,
+      "training_tail_fine_samples": 8,
+      "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/fine-tail-lpt-4b-tune-plan-01/offline",
+      "device_s": 74.09554147997
+    }
+  ],
+  "selected": {
+    "run": "late-cap1-controlled-full-01",
+    "home_policy": "score",
+    "planner_mode": "one_scene",
+    "training_ready_order": "input",
+    "late_region_batch_cap": 1,
+    "offline_plan": "/home/xuyin.p/outputs/idea1-final-t162/late-cap1-4b-tune-plan-01/offline",
+    "device_s": 73.297172299298
+  },
+  "selection": "native audited TUNE only; complete all declared variants before final-window planning; no global optimum claim"
+}
