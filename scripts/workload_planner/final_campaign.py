@@ -28,6 +28,9 @@ def select_tune_policy(root,variants,ceiling):
   assert ready_order in ('input','ready_lpt')
   cap=variant.get('late_region_batch_cap',0)
   assert type(cap) is int and cap in (0,1,2,4)
+  packing=variant.get('adaptive_training_batch_max',0)
+  assert type(packing) is int and packing in (0,1,2,4,8)
+  assert read(root/run_name/'native-run/resource-layout.json').get('adaptive_training_batch_max',0)==packing
   assert read(root/run_name/'native-run/resource-layout.json').get('late_region_batch_cap_per_pair',0)==cap
   assert read(root/run_name/'native-run/resource-layout.json').get('training_ready_order','input')==ready_order
   assert tune['requests']==tune['completed']==tune['trained_samples']==1536 and tune['capacity_passed']
@@ -95,7 +98,7 @@ def main():
    if 'offline_plan' in variant:
     proof=audit_planning(root/variant['run']/'native-run',Path(variant['offline_plan']))
     write(base/(variant['run']+'-planning-audit.json'),proof)
-  selected_home=chosen.get('home_policy','score');selected_mode=chosen.get('planner_mode',c['planner_mode']);selected_order=chosen.get('training_ready_order','input');selected_cap=chosen.get('late_region_batch_cap',0)
+  selected_home=chosen.get('home_policy','score');selected_mode=chosen.get('planner_mode',c['planner_mode']);selected_order=chosen.get('training_ready_order','input');selected_cap=chosen.get('late_region_batch_cap',0);selected_packing=chosen.get('adaptive_training_batch_max',0)
   stress=root/c['training_stress_run']/'native-run'
   events=read(stress/'mesh-coordination-events.json')
   if not any(e['kind']=='training-proposed' for e in events):raise RuntimeError('training mesh selection not exercised')
@@ -116,10 +119,19 @@ def main():
    folder=base/(model+'-test1');folder.mkdir(exist_ok=False)
    cost=cost14 if model=='14B' else Path(c['cost4_root'])
    env=dict(envbase,RLXY_COST_ROOT=str(cost),PYTHONPATH=str(cost/'src'))
-   args=[python,source/'scripts/workload_planner/plan_system.py','--model',model,'--window','test1','--mode',selected_mode,'--home-policy',selected_home,'--training-ready-order',selected_order,'--late-region-batch-cap',selected_cap,
+   args=[python,source/'scripts/workload_planner/plan_system.py','--model',model,'--window','test1','--mode',selected_mode,'--home-policy',selected_home,'--training-ready-order',selected_order,'--late-region-batch-cap',selected_cap,'--adaptive-training-batch-max',selected_packing,
     '--forecast-mode','controlled-proxy','--allow-controlled-proxy','--proxy-weight','1','--output',folder/'plan']
+   # Optional bank geometries are declared before final execution; the planner
+   # still reconstructs capacity, forecast and placement for this batch.
+   candidates=c.get('resource_candidates_by_model',{}).get(model,[])
+   if not isinstance(candidates,list) or any(not isinstance(x,str) for x in candidates):
+    raise ValueError('resource candidate bank must contain strings')
+   for candidate in candidates:args.extend(['--resource-candidate',candidate])
    run(args,folder,'planning',env)
    deploy=read(folder/'plan/deployment.json');files=deploy['files']
+   layout=read(files['selected-plan.json'])
+   assert layout.get('adaptive_training_batch_max',0)==selected_packing
+   assert layout.get('late_region_batch_cap_per_pair',0)==selected_cap
    cmd=[python,source/'scripts/workload_planner/run_mesh_system.py','--model',model,'--window','test1','--training-scope','wafer',
     '--assignment',files['selected-plan.json'],'--resource-layout',files['selected-plan.json'],'--inference-layout',files['inference-layout.json'],
     '--workload-forecast',files['forecast.json'],'--native-root',native,'--fast-cost-validation',c['cost_validation'],
@@ -160,9 +172,9 @@ def main():
    '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
   for x in compare:
    lines.append('|%s|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f|%.3fx|%.2f%%|'%(x['model'],x['gpu_s'],x['h0_s'],x['original_generation_s'],x['previous_innovation3_s'],x['old_complete_system_device_s'],x['device_s'],x['planning_host_s'],x['speedup_gpu_device'],100*x['reduction_old_complete_device']))
-  lines+=['',report['information'],'',report['evaluation'],'',report['timing'],'',report['scope'],'','GitHub发布、CI、最终瓶颈审查和额外消融由主任务继续，当前未标记整体完成。']
+  lines+=['',report['information'],'',report['evaluation'],'',report['timing'],'',report['scope'],'','远端等价检查、最终瓶颈审查和证据交付由主任务继续；用户已暂缓GitHub上传，当前未标记整体完成。']
   (base/'comparison.md').write_text('\n'.join(lines)+'\n')
-  status('results-ready-review-required',results_ready=True,next='audit same-window/cost identities, bottlenecks and regressions; finalize repository publication and CI')
+  status('results-ready-review-required',results_ready=True,next='audit same-window/cost identities, bottlenecks and regressions; finalize remote code/evidence and equivalent checks; GitHub upload deferred by user')
  except BaseException as error:
   status('needs-diagnosis',error=repr(error),next='inspect failed stage; do not duplicate or weaken benchmark');raise
 

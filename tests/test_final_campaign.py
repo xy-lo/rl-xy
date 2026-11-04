@@ -34,4 +34,12 @@ class FinalCampaignTests(unittest.TestCase):
    with self.assertRaises(ValueError):select_tune_policy(root,[a],73.8)
    (root/'a/inference-audit.json').write_text(json.dumps(dict(status='FAIL')))
    with self.assertRaises(AssertionError):select_tune_policy(root,[a],73.8)
+ def test_packing_must_match_actual_audited_tune_configuration(self):
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t);a=self.case(root,'a',70);a['adaptive_training_batch_max']=8
+   with self.assertRaises(AssertionError):select_tune_policy(root,[a],73.8)
+   (root/'a/native-run/resource-layout.json').write_text(json.dumps(dict(adaptive_training_batch_max=8)))
+   self.assertEqual(select_tune_policy(root,[a],73.8)[1]['adaptive_training_batch_max'],8)
+   a['adaptive_training_batch_max']=True
+   with self.assertRaises(AssertionError):select_tune_policy(root,[a],73.8)
 if __name__=='__main__':unittest.main()
