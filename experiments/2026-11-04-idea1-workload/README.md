@@ -19,7 +19,7 @@
 python scripts/check_idea1_workload.py experiments/2026-11-04-idea1-workload/final --require-final
 ```
 
-最终测试为历史使用过的test1和显式同题alpha1离线proxy；当前sample排除。独立总体/类别模式另有开发结果，未执行独立held-out最终原生矩阵或全候选native oracle，不能据此宣称泛化或全局最优。用户要求收束后未再追加原生实验，GitHub暂不上传。
+最终测试为历史使用过的test1和显式同题alpha1离线proxy；当前sample排除。独立总体/类别模式另有开发结果，未执行独立held-out最终原生矩阵或全候选native oracle，不能据此宣称泛化或全局最优。用户要求收束后未再追加原生实验；此后授权上传已验收代码与数据到`xy-lo/rl-xy`。原始结果和历史交付身份保持冻结，发布与CI状态单独核验。
 
 ## 4B TUNE开发结果
 |完整4B TUNE策略|设备/s|idle die·s|训练捐赠|

@@ -1,4 +1,4 @@
-> **工作负载分布与 Mesh 系统已完成三模型条件仿真验收：** [最终对比、负例与证据](experiments/2026-11-04-idea1-workload/README.md)，[实现合同与复现](docs/IDEA1_WORKLOAD.md)。保留4B回归，未验证硬件/学习质量/跨任务泛化；GitHub上传按用户要求暂缓。
+> **工作负载分布与 Mesh 系统已完成三模型条件仿真验收：** [最终对比、负例与证据](experiments/2026-11-04-idea1-workload/README.md)，[实现合同与复现](docs/IDEA1_WORKLOAD.md)。保留4B回归，未验证硬件/学习质量/跨任务泛化；代码、实验表格和可复现证据已归档；发布目标为`xy-lo/rl-xy`。
 
 > **当前完整Idea1系统：** [动态推理TP、独立训练区域与运行时协作](docs/IDEA1_ELASTIC.md)。4B/8B/14B两个窗口均完成同版原生复跑；TP搜索、逐die状态和独立审计见[动态TP实验](experiments/2026-11-03-idea1-elastic/README.md)。test1整步69.320/104.707/153.399秒，含一次Mac规划代理；固定成本仿真，实体硬件与学习质量尚未验证。
 
