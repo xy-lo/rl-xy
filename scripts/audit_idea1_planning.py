@@ -6,10 +6,44 @@ re-executed by this audit. It does not turn an offline proxy into RL history.
 import gzip,json,sys,hashlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
-from idea1_controller.workload import WorkloadSpec,DistributionSnapshot,forecasts,digest
+from idea1_controller.workload import WorkloadSpec,Observation,DistributionSnapshot,forecasts,digest
 from idea1_controller.controlled_forecast import controlled_forecasts
 load=lambda p:json.loads(Path(p).read_text())
 sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+
+def audit_calibration_source(offline,public,spec,model,raw):
+    """Rebuild independent calibration from original identities and source rows."""
+    if raw is None:return
+    inputs=ROOT/f'experiments/2026-10-29-qwen3/inputs/Qwen3-{model}'
+    canonical=load(inputs/'prompt_lengths.json')
+    def ids(window):return {str(x['group_id']) for x in load(inputs/(window+'.json'))['trajectories']}
+    def hashes(gs):return {canonical[g]['rendered_sha256'] for g in gs}
+    tune_hashes=hashes(ids('tune'));reserved=ids('test3')|ids('test4')
+    reserved={g for g in reserved if canonical[g]['rendered_sha256'] not in tune_hashes}
+    target={g['prompt_sha256'] for g in public}
+    allowed={g for g in ids('test1')|ids('test2') if canonical[g]['rendered_sha256'] not in tune_hashes|hashes(reserved)|target}
+    split=load(Path(offline)/'split-manifest.json')
+    assert set(split['calibration_prompt_hashes'])==hashes(allowed),'calibration prompt split differs from canonical source'
+    source=ROOT/f'experiments/2026-11-03-idea1-elastic/assets/history-{model}.json.gz'
+    history=json.loads(gzip.decompress(source.read_bytes()))
+    from idea1_controller.history import validate_history
+    used=[dict(group_id=g,prompt_length=canonical[g]['prompt_length'],prompt_sha256=canonical[g]['rendered_sha256'],library=canonical[g]['library'])
+        for g in sorted(allowed) if history['records'].get(g)]
+    validate_history(used,history,model,sha(inputs/'config.json'))
+    rows=[]
+    for g in sorted(allowed):
+        records=history['records'].get(g,[])
+        if not records:continue
+        binding=history['task_bindings'][g]
+        for record in records:
+            samples=record['samples']
+            if len(samples)!=spec.k or any(x['finish_reason'] not in ('stop','length') for x in samples):continue
+            rows.append(Observation(binding['prompt_sha256'],binding['prompt_length'],binding['library'],
+                digest([history['source_sha256'],g,[x['sample'] for x in samples]]),
+                tuple(x['response_length'] for x in samples),tuple(x['finish_reason']=='length' for x in samples)))
+    expected=DistributionSnapshot.build(rows,spec,kind='offline-calibration-proxy',source_sha256=sha(source))
+    assert digest(expected.to_dict())==digest(raw),'calibration snapshot cannot be reconstructed from declared permitted source samples'
+
 
 def audit_planning(native,offline):
     native=Path(native);offline=Path(offline);command=load(native/'command.json');model=command['model']
@@ -26,6 +60,7 @@ def audit_planning(native,offline):
         assert (g['prompt_length'],g['prompt_sha256'],g['library'])==(canonical['prompt_length'],canonical['rendered_sha256'],canonical['library'])
     summary_mode=split.get('forecast_summary','legacy')
     global_raw=load(offline/'global-distribution.json')
+    audit_calibration_source(offline,public,spec,model,global_raw)
     global_snapshot=DistributionSnapshot.from_dict(global_raw,spec) if global_raw else None
     snapshot=load(offline/'distribution.json');saved=load(offline/'forecast.json')
     if snapshot and snapshot['kind']=='offline-controlled-same-prompt-proxy':

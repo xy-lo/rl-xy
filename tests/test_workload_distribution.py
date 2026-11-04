@@ -122,3 +122,34 @@ class HistorySourceFallbackTests(unittest.TestCase):
                 bad=copy.deepcopy(good);bad[field]=value;bad['snapshot_id']=digest({k:v for k,v in bad.items() if k!='snapshot_id'})
                 p.write_bytes(gzip.compress(json.dumps(bad).encode()))
                 with self.assertRaises(ValueError):load(p,[],'4B','cfg')
+
+class CalibrationSourceAuditTests(unittest.TestCase):
+    def test_published_snapshot_rebuild_and_self_consistent_poison_rejected(self):
+        import json,sys,tarfile,tempfile,copy
+        from pathlib import Path
+        root=Path(__file__).resolve().parents[1];sys.path.insert(0,str(root/'scripts'))
+        from audit_idea1_planning import audit_calibration_source
+        folder=root/'experiments/2026-11-04-idea1-workload/development'
+        manifest=json.loads((folder/'bundle-manifest.json').read_text());case=next(c for c in manifest['cases'] if c['id']=='late-cap1-controlled-full-01')
+        with tarfile.open(folder/case['archive'],'r:gz') as archive:
+            def read(name):return json.load(archive.extractfile('planning/offline/'+name))
+            raw=read('global-distribution.json');public=read('public.json');split=read('split-manifest.json')
+        spec=WorkloadSpec(**split['spec']);snapshot=DistributionSnapshot.from_dict(raw,spec)
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d);(path/'split-manifest.json').write_text(json.dumps(split))
+            audit_calibration_source(path,public,spec,'4B',raw)
+            first=snapshot.records[0];lengths=list(first.lengths);lengths[0]+=1 if lengths[0]<spec.output_max else -1
+            poison=DistributionSnapshot.build((replace(first,lengths=tuple(lengths)),*snapshot.records[1:]),spec,kind=snapshot.kind,source_sha256=snapshot.source_sha256).to_dict()
+            # Its own digest/contract remain valid; original source reconstruction rejects it.
+            DistributionSnapshot.from_dict(poison,spec)
+            with self.assertRaises(AssertionError):audit_calibration_source(path,public,spec,'4B',poison)
+            bad=copy.deepcopy(split);bad['calibration_prompt_hashes'].append(public[0]['prompt_sha256']);(path/'split-manifest.json').write_text(json.dumps(bad))
+            with self.assertRaises(AssertionError):audit_calibration_source(path,public,spec,'4B',raw)
+    def test_no_snapshot_does_not_require_history_source(self):
+        import sys
+        from pathlib import Path
+        from unittest.mock import patch
+        sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
+        from audit_idea1_planning import audit_calibration_source
+        with patch.object(Path,'read_bytes',side_effect=AssertionError('unused source read')):
+            audit_calibration_source(Path('/missing'),[],WorkloadSpec('contract'),'4B',None)
