@@ -5,14 +5,19 @@ from collections import Counter,defaultdict
 from audit_idea1_system import audit,digest,load
 
 
-def audit_training_packing(choices,layout,eos,train_mb):
+def audit_training_packing(choices,layout,eos,train_mb,regional_items=None):
     """Reconstruct the local-EOS information boundary and full sample coverage."""
     cap=layout.get('adaptive_training_batch_max',0)
     assert type(cap) is int and cap in (0,1,2,4,8)
     if not cap:
+        assert layout.get('training_tail_fine_samples',0)==0
         assert not any('adaptive_training_batch_max' in x for x in choices)
         return None
     assert type(train_mb) is int and train_mb>0
+    tail=layout.get('training_tail_fine_samples',0)
+    assert type(tail) is int and tail in (0,8,16)
+    if tail:assert regional_items is not None,'fine tail requires independently reconstructed home order'
+    tailsets={r:set(ids[-tail:]) for r,ids in regional_items.items()} if tail else {}
     tids=[];grown=0;training=[x for x in choices if x['stage']=='training']
     for x in training:
         assert x['adaptive_training_batch_max']==cap
@@ -20,6 +25,12 @@ def audit_training_packing(choices,layout,eos,train_mb):
         assert all(t in eos and eos[t]<=x['decision_tick'] for t in ids),'packing precedes observed EOS'
         maximum=cap
         if x.get('late_region_cap_eligible'):maximum=min(maximum,layout['late_region_batch_cap_per_pair']*(x['tp']//2))
+        if tail:
+            region=x['region'];assert all(t in regional_items[region] for t in ids)
+            expected=all(t in tailsets[region] for t in ids)
+            assert expected or all(t not in tailsets[region] for t in ids),'batch crosses bulk/tail boundary'
+            assert x['training_tail_fine_samples']==tail and type(x['tail_fine']) is bool and x['tail_fine']==expected
+            if expected:maximum=min(maximum,x['tp']//2)
         assert x['actual']<=x['maximum']==maximum
         assert x['tp'] in (2,4,8)
         expected_baseline=train_mb if x['tp']==2 else min(8,train_mb*x['tp'])
@@ -27,7 +38,9 @@ def audit_training_packing(choices,layout,eos,train_mb):
         grown+=x['actual']>x['baseline_maximum'];tids.extend(ids)
     assert Counter(tids)==Counter(eos.keys()),'packing drops or duplicates samples'
     assert all('adaptive_training_batch_max' not in x for x in choices if x['stage']!='training')
-    return dict(adaptive_training_batch_max=cap,adaptive_training_batches=len(training),larger_than_baseline_batches=grown,packing_uses_observed_EOS=True)
+    proof=dict(adaptive_training_batch_max=cap,adaptive_training_batches=len(training),larger_than_baseline_batches=grown,packing_uses_observed_EOS=True)
+    if tail:proof.update(training_tail_fine_samples=tail,tail_fine_batches=sum(x['tail_fine'] for x in training),tail_membership_reconstructed=True)
+    return proof
 
 def check(folder):
     base=audit(folder);cmd=load(folder/'command.json');trace=Path(cmd['trace_path'])
@@ -196,7 +209,14 @@ def check(folder):
                 applied+=1
                 assert choice['late_region_cap_eligible'] and choice['maximum']<choice['original_maximum']
     choices=load(folder/'microbatch-choices.json') if (folder/'microbatch-choices.json').exists() else []
-    packing=audit_training_packing(choices,training_layout,eos,cmd.get('policy',{}).get('train_mb'))
+    regional_items=None
+    if training_layout.get('training_tail_fine_samples',0):
+        bygroup=defaultdict(list)
+        for x in items:bygroup[str(x['group_id'])].append(x['trajectory_id'])
+        regional_items={int(r):[t for w in ws for gid in training_layout['queues'][str(w)] for t in bygroup[str(gid)]]
+            for r,ws in training_layout['region_members'].items()}
+    packing=audit_training_packing(choices,training_layout,eos,cmd.get('policy',{}).get('train_mb'),regional_items)
+
     if packing:
         recorded=Counter(tuple(x['packing_tids']) for x in choices if x['stage']=='training')
         manifest=load(folder/'training-batches.json')

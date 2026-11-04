@@ -31,18 +31,28 @@ class AdaptiveKernel(CachedCompleteKernel):
         # their original batch efficiency; late regions create finer atomic
         # jobs so a busy donor reaches helper dispatch points sooner.
         if late:maximum=min(maximum,cap*factor)
-        for batch in self.memory.batches(items,stage,tp,maximum):
-            proof=asdict(self.memory.phase(stage,tp,batch));assert proof['peak_bytes']<=self.op.capacity
-            self.allocation_events.append(dict(certificate_tick=self.tick,region=self.targets[batch[0]['trajectory_id']],stage=stage,tp=tp,items=[x['trajectory_id'] for x in batch],**proof))
-            choice=dict(stage=stage,tp=tp,maximum=maximum,actual=len(batch))
-            if packing:
-                choice.update(adaptive_training_batch_max=packing,baseline_maximum=baseline_maximum,
-                    packing_tids=[x['trajectory_id'] for x in batch],decision_tick=self.tick)
-            if cap and stage=='training':
-                choice.update(late_region_cap_eligible=late,late_region_cap_applied=late and maximum<original_maximum,original_maximum=original_maximum,decision_tick=self.tick,
-                    region=self.targets[batch[0]['trajectory_id']],global_rollout_complete=len(self.done)==len(self.ids))
-            self.mb_choices.append(choice)
-            yield batch
+        tail=getattr(self,'resource_layout',{}).get('training_tail_fine_samples',0) if packing else 0
+        segments=[(items,maximum,False)]
+        if tail:
+            cut=max(0,len(items)-tail)
+            # Reserve a bounded suffix as portable atomic work. The bulk prefix
+            # and suffix retain the original sample order and capacity checks.
+            segments=[(items[:cut],maximum,False),(items[cut:],min(maximum,factor),True)]
+        for part,bound,is_tail in segments:
+            for batch in self.memory.batches(part,stage,tp,bound):
+                proof=asdict(self.memory.phase(stage,tp,batch));assert proof['peak_bytes']<=self.op.capacity
+                self.allocation_events.append(dict(certificate_tick=self.tick,region=self.targets[batch[0]['trajectory_id']],stage=stage,tp=tp,items=[x['trajectory_id'] for x in batch],**proof))
+                choice=dict(stage=stage,tp=tp,maximum=bound,actual=len(batch))
+                if packing:
+                    choice.update(adaptive_training_batch_max=packing,baseline_maximum=baseline_maximum,
+                        packing_tids=[x['trajectory_id'] for x in batch],decision_tick=self.tick,region=self.targets[batch[0]['trajectory_id']])
+                if tail:
+                    choice.update(training_tail_fine_samples=tail,tail_fine=is_tail)
+                if cap and stage=='training':
+                    choice.update(late_region_cap_eligible=late,late_region_cap_applied=late and bound<original_maximum,original_maximum=original_maximum,decision_tick=self.tick,
+                        region=self.targets[batch[0]['trajectory_id']],global_rollout_complete=len(self.done)==len(self.ids))
+                self.mb_choices.append(choice)
+                yield batch
 
     def _build_region_program(self,r):
         items=self.groups[r];ranks=self.region_ranks[r];tp=len(ranks);jobs=[]

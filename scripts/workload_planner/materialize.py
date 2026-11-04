@@ -14,6 +14,7 @@ def main():
  p.add_argument('--late-region-batch-cap',type=int,choices=[0,1,2,4],default=0)
  p.add_argument('--training-ready-order',choices=['input','ready_lpt'],default='input')
  p.add_argument('--adaptive-training-batch-max',type=int,choices=[0,1,2,4,8],default=0)
+ p.add_argument('--training-tail-fine-samples',type=int,choices=[0,8,16],default=0)
  p.add_argument('--model',default='4B');p.add_argument('--window',default='tune');p.add_argument('--subset-prompts',type=int,default=0)
  a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
  artifact=json.loads((a.offline_run/'offline-candidates.json').read_text())
@@ -54,6 +55,10 @@ def main():
  if a.adaptive_training_batch_max:
   home['adaptive_training_batch_max']=a.adaptive_training_batch_max
   home['plan_id']=digest([home['plan_id'],'adaptive-training-pack',a.adaptive_training_batch_max])
+ if a.training_tail_fine_samples:
+  if not a.adaptive_training_batch_max:raise ValueError('fine training tail requires adaptive packing')
+  home['training_tail_fine_samples']=a.training_tail_fine_samples
+  home['plan_id']=digest([home['plan_id'],'training-tail-fine-samples',a.training_tail_fine_samples])
  (a.output/'selected-plan.json').write_text(json.dumps(home,indent=2))
  (a.output/'inference-layout.json').write_text(json.dumps(inf,indent=2))
  (a.output/'forecast.json').write_text(json.dumps(forecast))

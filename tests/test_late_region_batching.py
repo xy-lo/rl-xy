@@ -3,6 +3,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from types import SimpleNamespace
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts/idea1_layered/legacy'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from idea1_controller.native.adaptive import AdaptiveKernel
 
 @dataclass
@@ -77,5 +78,37 @@ class PackingAuditTests(unittest.TestCase):
  def test_legacy_has_no_new_declaration(self):
   audit,c,l,e=self.fixture();self.assertIsNone(audit([dict(stage='training')],{},e,4))
   with self.assertRaises(AssertionError):audit(c,{},e,4)
+
+class FineTailTests(unittest.TestCase):
+ def fixture(self):
+  k=AdaptivePackingTests().packed();items=[dict(trajectory_id=str(i)) for i in range(16)]
+  k.targets={str(i):0 for i in range(16)};k.done=set(k.targets);k.ids=set(k.done)|{'future'}
+  k.resource_layout['training_tail_fine_samples']=8
+  return k,items
+ def test_bulk_prefix_and_fine_suffix_preserve_order_and_capacity(self):
+  k,items=self.fixture();b=list(k._batches(items,'training',2))
+  self.assertEqual([len(x) for x in b],[8]+[1]*8)
+  self.assertEqual([x for batch in b for x in batch],items)
+  self.assertEqual([x['tail_fine'] for x in k.mb_choices],[False]+[True]*8)
+  self.assertEqual([x['maximum'] for x in k.mb_choices],[8]+[1]*8)
+  self.assertEqual(len(k.allocation_events),9)
+ def test_teacher_and_global_cap_remain_binding(self):
+  k,items=self.fixture();self.assertEqual([len(x) for x in k._batches(items,'old_policy',2)],[8,8])
+  k,items=self.fixture();k.ids=set(k.done);self.assertEqual([len(x) for x in k._batches(items,'training',2)],[1]*16)
+ def test_invalid_tail_requires_packing_and_valid_integer(self):
+  from idea1_controller.native.regions import RegionKernel
+  for plan in [dict(training_tail_fine_samples=8),dict(adaptive_training_batch_max=8,training_tail_fine_samples=True),dict(adaptive_training_batch_max=8,training_tail_fine_samples=4)]:
+   with self.assertRaises(ValueError):object.__new__(AdaptiveKernel).configure_regions({}, {},plan)
+ def test_independent_audit_reconstructs_suffix_and_rejects_false_labels(self):
+  from audit_idea1_inference import audit_training_packing
+  import copy
+  k,items=self.fixture();list(k._batches(items,'training',2))
+  choices=[dict(x,tp=2) for x in k.mb_choices];regional={0:list(k.targets)};eos={t:50 for t in k.targets}
+  self.assertEqual(audit_training_packing(choices,k.resource_layout,eos,4,regional)['tail_fine_batches'],8)
+  for field,value in [('tail_fine',False),('maximum',8),('region',1)]:
+   bad=copy.deepcopy(choices);bad[-1][field]=value
+   with self.assertRaises((AssertionError,KeyError)):audit_training_packing(bad,k.resource_layout,eos,4,regional)
+  bad=copy.deepcopy(choices);bad[0]['packing_tids'][-1],bad[-1]['packing_tids'][0]=bad[-1]['packing_tids'][0],bad[0]['packing_tids'][-1]
+  with self.assertRaises(AssertionError):audit_training_packing(bad,k.resource_layout,eos,4,regional)
 
 if __name__=='__main__':unittest.main()

@@ -50,6 +50,8 @@ class RegionKernel(TrainingCoopRuntime):
         packing=plan.get('adaptive_training_batch_max',0)
         if type(packing) is not int or packing not in (0,1,2,4,8):raise ValueError('invalid adaptive training batch maximum')
         if packing and not hasattr(self,'_batches'):raise ValueError('adaptive packing requires memory-gated builder')
+        tail=plan.get('training_tail_fine_samples',0)
+        if type(tail) is not int or tail not in (0,8,16) or (tail and not packing):raise ValueError('invalid fine training tail')
         self.resource_layout=plan
         self.region_members={int(r):tuple(ws) for r,ws in regions.items()}
         self.region_of={w:r for r,ws in self.region_members.items() for w in ws}
