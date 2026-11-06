@@ -1,0 +1,29 @@
+{
+  "scope": "test1-only length metadata and measured reward durations; no code, outputs or host paths",
+  "models": {
+    "4B": {
+      "original_input_sha256": "f4854505c7c1ca3b710854e697adc996044f12f3f6a654cb32070bc199a0dccb",
+      "original_bank_sha256": "393340e634422bbcf93a5721b39d5be0c3a17eda7602b75e48c18b81caa330d3",
+      "test1_input_sha256": "292ba34959aca05e8f5a4bcb3d8fd75f538684d4820f592401cb56dbef9334ec",
+      "test1_reward_sha256": "ea87556bef322b856e5b2a14b3a39f7eb9cef4c5e4351cac6bcdee4855cea67b",
+      "prompts": 192,
+      "samples": 1536
+    },
+    "8B": {
+      "original_input_sha256": "5d332f70e3c800fc0eff7191891250b848c00a4beb465f924cccf71eaa942c46",
+      "original_bank_sha256": "b933dce66486718097ba869b4d332a3ffc96661257bbef8365978dbcf677d20b",
+      "test1_input_sha256": "49d8af335c8016494724338bbc8c79072b7e651edecdfb9ca06bfa55e643c15e",
+      "test1_reward_sha256": "72c71902f06ff36d3e73c3d354a804542b2e34e65dafe69fd9ba183a60ed38fe",
+      "prompts": 192,
+      "samples": 1536
+    },
+    "14B": {
+      "original_input_sha256": "3a8165b4066fc908bbb938a79cb02b31642473aaa24ee1c1697b6ed864543482",
+      "original_bank_sha256": "30477f9286503c177d2be05f74ce7657bda9d1024a65a6fcea10094de674e23a",
+      "test1_input_sha256": "96973749fddef3d397020047e711c29014ff354e0142d4d03f93f12091de189c",
+      "test1_reward_sha256": "3970c422c1422da811fadfa0d5a0a240f91dc6b9fca12b4a4635a02b95e37b92",
+      "prompts": 192,
+      "samples": 1536
+    }
+  }
+}
