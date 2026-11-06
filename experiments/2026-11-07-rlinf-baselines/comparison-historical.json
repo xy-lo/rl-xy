@@ -1,0 +1,70 @@
+[
+  {
+    "model": "4B",
+    "gpu_rlinf_seconds": 142.4516538931885,
+    "wafer_rlinf_seconds": 195.11445441052976,
+    "wafer_verl_seconds": 200.8429266457692,
+    "wafer_vs_gpu_time_ratio": 1.3696889371100478,
+    "wafer_verl_over_wafer_rlinf": 1.0293595482330924,
+    "wafer_case": "full-4B",
+    "gpu_case": "tpgrid-test1-r4-t2-arrival_rr",
+    "wafer_verl_case": "verl-4B-reserve",
+    "policy": {
+      "train_tp": 2,
+      "rollout_tp": 4,
+      "train_mb": 4,
+      "logprob_mb": 4,
+      "cap": 128
+    },
+    "capacity_gate": null,
+    "step_sha256": "b7f3c79424ab7f30001ef119349e90255bb7312749db7c037aebc9ece7ea68dd"
+  },
+  {
+    "model": "8B",
+    "gpu_rlinf_seconds": 183.91309151856396,
+    "wafer_rlinf_seconds": 238.99023359315441,
+    "wafer_verl_seconds": 249.27570657865542,
+    "wafer_vs_gpu_time_ratio": 1.299473743928833,
+    "wafer_verl_over_wafer_rlinf": 1.0430372104786947,
+    "wafer_case": "full-8B-reserve",
+    "gpu_case": "control-8B-t2-r4-input",
+    "wafer_verl_case": "verl-8B-reserve",
+    "policy": {
+      "train_tp": 2,
+      "rollout_tp": 4,
+      "train_mb": 4,
+      "logprob_mb": 4,
+      "cap": 128
+    },
+    "capacity_gate": {
+      "runtime_reserve_bytes": 3221225472,
+      "description": "microbatch memory plus fixed reserve must fit per die",
+      "wrapper_sha256": "37194d6092e89030bd7affdcb2152192afb66343691917982fb5120120d5f94f"
+    },
+    "step_sha256": "c6af0bac320b9a79564b6d1e0cc0fa9873bf318bacd28964e99483d20e1e4b51"
+  },
+  {
+    "model": "14B",
+    "gpu_rlinf_seconds": 256.71084267286125,
+    "wafer_rlinf_seconds": 295.63768701443985,
+    "wafer_verl_seconds": 319.44408966958275,
+    "wafer_vs_gpu_time_ratio": 1.1516369310165249,
+    "wafer_verl_over_wafer_rlinf": 1.0805256017781661,
+    "wafer_case": "full-14B-reserve",
+    "gpu_case": "last-14B-t4-r8-m4-l16",
+    "wafer_verl_case": "verl-14B",
+    "policy": {
+      "train_tp": 4,
+      "rollout_tp": 8,
+      "train_mb": 4,
+      "logprob_mb": 16,
+      "cap": 128
+    },
+    "capacity_gate": {
+      "runtime_reserve_bytes": 3221225472,
+      "description": "microbatch memory plus fixed reserve must fit per die",
+      "wrapper_sha256": "37194d6092e89030bd7affdcb2152192afb66343691917982fb5120120d5f94f"
+    },
+    "step_sha256": "95aac7b658255a43f413947a119469ba432bd72adf683d60b62574e52ecce48a"
+  }
+]

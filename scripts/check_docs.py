@@ -9,6 +9,7 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = {'docs/IDEA1_WORKLOAD.md', 'docs/idea1-workload-system-plan.md', 'experiments/2026-11-03-idea1-elastic/README.md', 'experiments/2026-11-03-idea1-elastic/动态TP系统结果与瓶颈分析.md', 'docs/IDEA1_ELASTIC.md', 'docs/IDEA1_COMPLETE.md', 'experiments/2026-11-03-idea1-complete/README.md', 'experiments/2026-11-03-idea1-complete/系统结果与瓶颈分析.md', 'docs/IDEA1_LAYERED.md', 'experiments/2026-11-02-idea1-layered/README.md', 'docs/IDEA1_JOINT.md', 'docs/IDEA1_INSIGHTS.md', 'experiments/2026-11-02-idea1-joint/README.md', 'README.md', 'docs/ARCHITECTURE.md', 'docs/REPRODUCING.md', 'docs/EXPERIMENT_DESIGN.md', 'docs/RESULTS.md', 'docs/FILE_MAP.md', 'docs/F2_HANDOFF.md', 'docs/IDEA1.md', 'docs/H0_54.md', 'experiments/2026-11-02-h0-54/完整实验文档.md'}
+CURRENT.add('experiments/2026-11-07-rlinf-baselines/README.md')
 WORKLOAD_DATA = 'experiments/2026-11-04-idea1-workload'
 CURRENT.add(WORKLOAD_DATA+'/README.md')
 CURRENT.add(WORKLOAD_DATA+'/runtime-development/analysis/mechanism-cause-attribution-01.md')
