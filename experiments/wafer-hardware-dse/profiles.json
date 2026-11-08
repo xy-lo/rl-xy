@@ -1,0 +1,11 @@
+{
+  "schema": "wafer.hardware.candidates/1",
+  "units": "decimal GB, TB/s; mesh columns x rows; D2D per edge per direction is a modeling assumption",
+  "shared": {"cores_per_die": 256, "sram_bytes_per_core": 1250000, "module_path_TB_s": 2.0, "d2d_latency_ns": 100, "packet_bytes": 4096, "train_tp": 2},
+  "candidates": [
+    {"id": "H1", "case": "Case 1", "columns": 7, "rows": 9, "dies": 63, "dram_GB_per_die": 32, "dram_TB_s_per_die": 1, "d2d_TB_s_per_edge_direction": 2.5},
+    {"id": "H2", "case": "Case 2", "columns": 7, "rows": 8, "dies": 56, "dram_GB_per_die": 48, "dram_TB_s_per_die": 1.5, "d2d_TB_s_per_edge_direction": 2.25},
+    {"id": "H0", "case": "Case 3", "columns": 6, "rows": 9, "dies": 54, "dram_GB_per_die": 64, "dram_TB_s_per_die": 2, "d2d_TB_s_per_edge_direction": 2},
+    {"id": "H3", "case": "Case 4", "columns": 6, "rows": 8, "dies": 48, "dram_GB_per_die": 96, "dram_TB_s_per_die": 3, "d2d_TB_s_per_edge_direction": 1.5}
+  ]
+}

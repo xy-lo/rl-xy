@@ -37,7 +37,8 @@ class PlatformBackend(Backend):
             'rollout_weights_per_rank':sum(x.local_elements_per_die for x in enumerate_parameters(self.op.case_tp(policy.rollout_tp)))*2,
             'export_scratch_per_rank':max((x.unique_elements*2 for x in rows if not x.replicated),default=0) if policy.train_tp>1 else 0}
         self.capacity=self.op.capacity; self.max_param=max(r.local_elements_per_die for r in rows)
-        self.history_response_bound=8192
+        self.history_response_bound=16384 if model=='32B' else 8192
+        self.model_seq_cap=32768 if model=='32B' else 16384
 
     def route(self, src, dst):
         x,y=src%6,src//6; dx,dy=dst%6,dst//6; links=[]

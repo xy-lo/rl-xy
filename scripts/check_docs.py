@@ -21,6 +21,9 @@ HISTORICAL = {'experiments/2026-10-27-v0.6/实验结果.md', 'experiments/2026-1
 
 EVIDENCE = {'experiments/2026-11-01-idea1/test1-Idea1方法正文草稿.md', 'experiments/2026-11-01-idea1/test1-三模型结果与实现边界.md', 'experiments/2026-11-01-idea1/论文实验结果与表述.md'}
 
+CURRENT.add('experiments/wafer-hardware-dse/README.md')
+EVIDENCE.add('experiments/wafer-hardware-dse/RESULTS.md')
+
 def source_files():
     skip = {'__pycache__', '.pytest_cache', '.git'}
     return {str(p.relative_to(ROOT)) for folder in ['src', 'scripts', 'tests', 'configs', 'docker', 'calibration'] for p in (ROOT / folder).rglob('*') if p.is_file() and not any(x in skip or x.endswith(('.egg-info', '.dist-info')) for x in p.parts) and p.suffix not in {'.pyc', '.pyo'} and p.name != '.DS_Store'}

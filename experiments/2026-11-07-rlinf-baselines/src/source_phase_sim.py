@@ -93,7 +93,7 @@ class SourceTrainer(Trainer):
                 new_shards={w:[all_samples[j] for j in parts[k]] for k,w in enumerate(workers)}
                 assert len({r.rid for rs in new_shards.values() for r in rs})==len(all_samples)
                 # Explicit padded tensor model for RLinf all_gather_object path.
-                seq_len=16384;prompt_cap=self.s.be.op.prompt_cap;response_cap=seq_len-prompt_cap
+                seq_len=self.s.be.model_seq_cap;prompt_cap=self.s.be.op.prompt_cap;response_cap=seq_len-prompt_cap
                 bytes_per_sample=18*seq_len+12*response_cap+21
                 local_payload=(len(all_samples)//dp)*bytes_per_sample+65536
                 ranks=[r for w in workers for r in range(w*p.train_tp,(w+1)*p.train_tp)]

@@ -29,15 +29,19 @@ def verify_assets():
 
 
 def make_operator(model, platform, *, cache_dir=None):
-    if model not in ('4B', '8B', '14B'):
+    if model not in ('4B', '8B', '14B', '32B'):
         raise ValueError('unsupported f2 model')
     manifest = verify_assets()
-    config = INPUTS / ('Qwen3-' + model) / 'config.json'
-    if sha(config) != manifest['input_hashes'][model]['config.json']:
+    config = (ROOT / 'experiments/2026-11-07-rlinf-baselines/inputs/Qwen3-32B/config.json' if model == '32B' else INPUTS / ('Qwen3-' + model) / 'config.json')
+    config_expected = ('97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb'
+                       if model == '32B' else manifest['input_hashes'][model]['config.json'])
+    if sha(config) != config_expected:
         raise ValueError('f2 model config differs from historical input')
     if platform == 'gpu':
         from .qwen3_cost import Operators
-        op = Operators(ROOT, config, 'gpu', gpu_calibration=ASSETS / 'profiles/gpu-local.json')
+        # 32B matrix shapes are outside the measured A100 calibration domain.
+        # Use the explicit analytic provider and never label it calibrated.
+        op = Operators(ROOT, config, 'gpu', gpu_calibration=None if model == '32B' else ASSETS / 'profiles/gpu-local.json')
         op.profile['communication_service_overhead'] = json.loads((ASSETS / 'profiles/gpu-protocol.json').read_text())
     elif platform == 'wafer':
         os.environ['RLXY_F2_REPO'] = str(ROOT)

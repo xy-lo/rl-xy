@@ -46,7 +46,7 @@ class FullMethodSim(SourcePhaseSim):
     def __init__(self,*args,reward_bank=None,cpu_workers=32,max_batched_tokens=8192,host_bytes_per_second=25e9,cpu_timeline=None,released_source_training=False,**kwargs):
         super().__init__(*args,**kwargs)
         self.f2_engine=getattr(self.be,'cost_contract',None)=='f2'
-        self.max_batched_tokens=self.be.p.cap*16384 if self.f2_engine else max_batched_tokens
+        self.max_batched_tokens=self.be.p.cap*self.be.model_seq_cap if self.f2_engine else max_batched_tokens
         self.cap=self.be.p.cap if self.f2_engine else 2048
         self.source_prefetch_limit=True
         # Active entry is rlvr_pipeline_async, not the older debug Megatron
@@ -101,9 +101,9 @@ class FullMethodSim(SourcePhaseSim):
         assert rid not in self.reward_submitted;self.reward_submitted.add(rid)
         r=self.reqs[rid]
         duration=0. if self.bank is None else float(self.bank[(r.gid,r.sample)]['seconds'])
-        if self.bank is not None:assert self.bank[(r.gid,r.sample)]['status']=='PASS_MEASUREMENT'
+        if self.bank is not None:assert self.bank[(r.gid,r.sample)]['status'] in ('PASS_MEASUREMENT','MODELLED_ZERO')
         i=self.cpu_rr%len(self.cpu_ready);self.cpu_rr+=1;start=max(t,self.cpu_ready[i]);end=start+duration;self.cpu_ready[i]=end
-        self.reward_tasks.append({'request':rid,'domain':'code','resource':'cpu','worker':i,'submitted':t,'start':start,'end':end})
+        self.reward_tasks.append({'request':rid,'domain':'math' if self.be.model_seq_cap==32768 else 'code','resource':'cpu','worker':i,'submitted':t,'start':start,'end':end})
         self.log(t,'REWARD_SUBMIT',request=rid,worker=i);self.push(end,'cpu_reward_done',rid)
 
     def handle_event(self,t,kind,data):
@@ -181,10 +181,13 @@ class FullMethodSim(SourcePhaseSim):
                  host_transfers=self.host_tasks,host_bandwidth={'H2D':self.host_bw,'D2H':self.host_bw},
                  state_boundary='CPU actor/master/reference/Adam; GPU updated rollout; gradients discarded after update',
                  state_lifetime='offloaded during generation, loaded before training; stream gradients retained on GPU',
-                 engine_contract={'max_num_seqs':self.cap,'max_num_batched_tokens':self.max_batched_tokens,'block_size':16,'gpu_memory_utilization':.85,'max_model_len':16384,'runtime_reserve_bytes':self.runtime_bytes},
+                 engine_contract={'max_num_seqs':self.cap,'max_num_batched_tokens':self.max_batched_tokens,'block_size':16,'gpu_memory_utilization':.85,'max_model_len':self.be.model_seq_cap,'runtime_reserve_bytes':self.runtime_bytes},
                  generation_resident_peak_bytes=self.be.state['rollout_weights_per_rank']+self.runtime_bytes+d['kv_peak_bytes'],
                  engine_peak_scheduled_tokens=max(r.peak_scheduled_tokens for r in self.replicas),
                  scope='conditional existing-workload method adaptation; no reward measured' if self.bank is None else 'conditional existing-workload method adaptation with measured CPU rewards')
+        if self.bank is not None and all(row['status']=='MODELLED_ZERO' for row in self.bank.values()):
+            d['modelled_reward_service_seconds']=d.pop('measured_reward_service_seconds')
+            d['scope']='conditional math workload simulation; reward service modelled as zero, not measured'
         if self.cpu_timeline is None:d['seconds']=max(d['seconds'],reward_end)
         else:
             # Outstanding stateless CPU rewards continue across actor updates.

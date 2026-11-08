@@ -76,12 +76,13 @@ class CollocatedEarly(Collocated):
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- p=argparse.ArgumentParser();p.add_argument('--platform',choices=['gpu','wafer'],required=True);p.add_argument('--output-root',required=True);p.add_argument('--runtime-reserve-gib',type=float,default=0);p.add_argument('--model',choices=['4B','8B','14B'],required=True);p.add_argument('--mode',choices=['verl','rlinf_collocated'],required=True);p.add_argument('--window',choices=['test1'],required=True);p.add_argument('--assignment',choices=['striped','group_chunk'],required=True);p.add_argument('--release',choices=['global','group','instance'],required=True);p.add_argument('--reward-service',choices=['parallel','group_serial'],default='parallel');p.add_argument('--prompts',type=int,default=192);p.add_argument('--run-id',required=True);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--platform',choices=['gpu','wafer'],required=True);p.add_argument('--output-root',required=True);p.add_argument('--runtime-reserve-gib',type=float,default=0);p.add_argument('--model',choices=['4B','8B','14B','32B'],required=True);p.add_argument('--mode',choices=['verl','rlinf_collocated'],required=True);p.add_argument('--window',choices=['test1'],required=True);p.add_argument('--assignment',choices=['striped','group_chunk'],required=True);p.add_argument('--release',choices=['global','group','instance'],required=True);p.add_argument('--reward-service',choices=['parallel','group_serial'],default='parallel');p.add_argument('--prompts',type=int,default=192);p.add_argument('--run-id',required=True);a=p.parse_args()
  work=Path(a.output_root).resolve();work.mkdir(parents=True,exist_ok=True);root=ROOT;out=work/a.run_id;out.mkdir(exist_ok=False);st={'status':'RUNNING','pid':os.getpid(),'start':time.time(),'args':vars(a)};(out/'status.json').write_text(json.dumps(st,indent=2))
  try:
   install_exact_mapper();inp=R/'inputs'/f'{a.model}-test1.json';bankp=R/'inputs'/f'{a.model}-reward.jsonl';groups=[g for g in json.loads(inp.read_text()) if g['window']==a.window][:a.prompts];assert len(groups)==a.prompts
-  rows=[json.loads(x) for x in bankp.read_text().splitlines()];bank={(x['group_id'],x['sample']):x for x in rows};assert len(rows)==len(bank) and all(x['status']=='PASS_MEASUREMENT' for x in rows)
+  rows=[json.loads(x) for x in bankp.read_text().splitlines()];bank={(x['group_id'],x['sample']):x for x in rows};assert len(rows)==len(bank) and all(x['status']==('MODELLED_ZERO' if a.model=='32B' else 'PASS_MEASUREMENT') for x in rows)
   policy=Policy(**f2_gpu_policy(root,a.model));be=FullBackend(root,a.model,policy,a.platform,active_world=48,cost_contract='f2',cost_cache_dir=work/'f2-cost-cache')
+  if a.model=='32B':be.op.prompt_cap=max(s['prompt_length'] for g in groups for s in g['samples'])
   if a.runtime_reserve_gib:
    reserve=int(a.runtime_reserve_gib*1024**3)
    def fit_chunks(lengths,limit,training):

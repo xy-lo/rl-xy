@@ -18,12 +18,12 @@ def make_f2_operator(root,model,platform,cache_dir=None):
         raise ValueError('cost assets do not identify the accepted f2 bundle')
     op=f2_runtime.make_operator(model,platform,cache_dir=cache_dir)
     if platform=='gpu':
-        if not getattr(op,'calibration_identity',None):raise ValueError('f2 GPU local calibration not active')
+        if model != '32B' and not getattr(op,'calibration_identity',None):raise ValueError('f2 GPU local calibration not active')
         if not op.profile.get('communication_service_overhead'):raise ValueError('f2 GPU protocol residual not active')
     elif not getattr(op,'local_timing_identity',None):
         raise ValueError('f2 wafer event-timeline provider not active')
     path=f2_runtime.ASSETS/'assets-manifest.json'
-    op.baseline_contract_identity={'contract':'accepted-f2-local-costs','historical_bundle_sha256':HISTORICAL_F2_BUNDLE,
+    op.baseline_contract_identity={'contract':'32B-analytic-GPU-unverified' if model=='32B' and platform=='gpu' else 'accepted-f2-local-costs','historical_bundle_sha256':HISTORICAL_F2_BUNDLE,
         'assets_manifest_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
         'provider_class':type(op.provider).__module__+'.'+type(op.provider).__name__,
         'gpu_calibration':getattr(op,'calibration_identity',None),'wafer_local_timing':getattr(op,'local_timing_identity',None),
@@ -32,6 +32,9 @@ def make_f2_operator(root,model,platform,cache_dir=None):
     return op
 
 def f2_gpu_policy(root,model):
+    if model == '32B':
+        # Declared initial candidate, not a measured or optimized policy.
+        return {'train_tp':8,'rollout_tp':8,'train_mb':1,'logprob_mb':1,'cap':32}
     root=Path(root);assets=root/'experiments/2026-10-29-qwen3-f2'
     manifest=json.loads((assets/'assets-manifest.json').read_text());name=f'policies/{model}-gpu.json';path=assets/name
     if hashlib.sha256(path.read_bytes()).hexdigest()!=manifest['files'][name]:raise ValueError('f2 GPU policy asset changed')

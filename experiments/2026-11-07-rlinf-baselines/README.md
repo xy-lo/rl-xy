@@ -45,3 +45,7 @@ python3 experiments/2026-11-07-rlinf-baselines/run_verl.py \
 ```
 
 Provider assets, operator implementation, and tests in the existing main repository remain authoritative. Cache keys bind source/hardware/mapping identity; differences in the base revision or source identity can cause the historical timing to differ and require explicit revalidation. No cache or ephemeral process logs are checked in.
+
+## Qwen3-32B Math n32
+
+The 32B test1 input comprises 192 groups of eight samples, derived from Math-CoT-44k-Qwen3-32b-n32-16384-with-logprob-and-entropy revision 1d9017fa06913d15ee6c0394d53c13e959fc17fb. Reward times are explicitly modelled as zero, not measured; GPU cost uses an uncalibrated analytic provider because its shapes lie outside the A100 calibration domain. These are conditional simulations, not native framework runs or quality measurements. A one-group GPU veRL simulation smoke was executed; see the repository test commands and use a fresh run ID.

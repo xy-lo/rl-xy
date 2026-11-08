@@ -29,7 +29,7 @@ class F2ReleaseTest(unittest.TestCase):
 
     def test_f2_rejects_unsupported_models(self):
         with self.assertRaises(ValueError):
-            make_operator('32B', 'gpu')
+            make_operator('70B', 'gpu')
 
     def test_screen_can_select_the_128_concurrency_baseline(self):
         from rl_xy.qwen3_experiment import Screen
